@@ -1,15 +1,15 @@
-\documentclass[10pt,twocolumn]{article}
-%\documentclass[pageno]{jpaper}
+%\documentclass[10pt,twocolumn]{article}
+\documentclass[pageno]{jpaper}
 
 \newcommand{\asplossubmissionnumber}{XXX}
-\input{csmathmacro}
+%\input{csmathmacro}
 \usepackage{balance}
 %\usepackage{enumitem}
-\usepackage[shortlabels]{enumitem}
-\usepackage{mathtools}
+%\usepackage[shortlabels]{enumitem}
+%\usepackage{mathtools}
 \usepackage[normalem]{ulem}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \setlist{noitemsep,topsep=0pt}
 
@@ -33,9 +33,12 @@
 \newcommand{\GB}{\,GB}
 \newcommand{\MHz}{\,MHz}
 \newcommand{\GHz}{\,GHz}
+\newcommand{\eg}{\emph{e.g.},}
+\newcommand{\ie}{\emph{i.e.},}
 
 
-\newcommand{\SYSTEM}{ESP}
+\newcommand{\SYSTEM}{COOLNAME}
+\newcommand{\TODO}[1]{\textbf{TODO: 1}}
 \newcommand{\secref}[1]{Section~\ref{sec:#1}}
 %\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
 \newcommand{\Secref}[1]{Section~\ref{#1}} 
@@ -47,16 +50,16 @@
 \renewcommand{\textfraction}{0.05} 
 \begin{document}
 
-\title{title} \author{Paper \# 92} \date{}
+\title{Big Data for Little Cores \\ {\large Combining Learning and Control for
+  Mobile Energy Efficiency}} \author{Paper \# 92} \date{}
 
 \maketitle
 \thispagestyle{empty}
 
-\begin{abstract}
-  
-\end{abstract}
 
-%\input{tex/introduction}
+\input{abstract}
+
+\input{intro}
 
 
 \newpage

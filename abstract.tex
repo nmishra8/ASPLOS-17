@@ -1,0 +1,31 @@
+\begin{abstract}
+  Systems designed for mobile and Internet-of-things (IoT) must
+  deliver performance to interactive applications (that monitor the
+  environment and respond to users) and they must conserve resources
+  to extend battery life.  Meeting these conflicting goals is
+  complicated by two issues: (1) hardware heterogeneity leading to
+  complicated optimization spaces and (2) dynamic operating conditions
+  including unpredictable changes in available resources and
+  application behavior.  Machine learning techniques handle
+  complicated optimization spaces, but do not incorporate models of
+  system dynamics; optimal control techniques provide formal
+  guarantees of dynamic behavior, but cannot handle non-linear system
+  models.  In this paper, we propose a combination of learning and
+  control techniques to meet mobile system's performance requirements
+  in unpredictable environments.  Specifically, we combine a
+  hierarchical Bayesian model (HBM) with a lightweight control system
+  (LCS).  The HBM runs on a remote server, aggregating data from many
+  separate mobile systems to learn customized models of
+  performance/power tradeoffs.  The LCS runs locally on the mobile
+  system and tunes resource usage to meet performance requirements
+  efficiently.  We implement both the HBM and LCS and test their
+  ability to learn and control ARM big.LITTLE systems.  Compared to
+  existing learning and control methods, our proposed combined system
+  delivers more reliable performance -- only XX\% error compared to
+  YY\% for learning and ZZ\% for control -- and higher energy
+  efficiency -- achieving ZZ\% of optimal and improving by XX\% over
+  learning and YY\% over control.  When used in a multi-application
+  scenario these numbers improve: xx\% error compared to yy\% for
+  learning and zz\% for control and improvements of xx\% and zz\%,
+  respectively, in energy efficiency.
+\end{abstract}
