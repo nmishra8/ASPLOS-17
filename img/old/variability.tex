@@ -1,0 +1,102 @@
+\begin{tikzpicture}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 1,
+        xlabels at=edge top,
+        xticklabels at=edge top,
+        vertical sep=5pt
+    },
+axis x line* = top,
+xlabel near ticks,
+major x tick style = transparent,
+height=3.5cm,
+width=0.95\columnwidth,
+xmin=0,
+xmax=17,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ytick=\empty,
+xtick=\empty,
+xticklabels={},
+yticklabels={},
+]
+\nextgroupplot[ylabel={\small $\mathsf{Coeff.~of~Variation}$ },
+ylabel shift={10mm},
+ymin=0,
+ymax=1,
+]
+
+
+\end{groupplot}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 1,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=5pt
+    },
+axis x line* = bottom,
+xlabel near ticks,
+major x tick style = transparent,
+xlabel={},
+height=3.5cm,
+width=0.95\columnwidth,
+xmin=0,
+xmax=21,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ytick=\empty,
+xticklabel shift={0pt},
+x tick label style={rotate=35, anchor=east},
+xtick={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20},
+xticklabels={
+{\tiny $\mathsf{blackscholes}$},
+{\tiny $\mathsf{bodytrack}$},
+{\tiny $\mathsf{facesim}$},
+{\tiny $\mathsf{ferret}$},
+{\tiny $\mathsf{fluidanimate}$},
+{\tiny $\mathsf{frequmine}$},
+{\tiny $\mathsf{raytrace}$},
+{\tiny $\mathsf{swaptions}$},
+{\tiny $\mathsf{vips}$},
+{\tiny $\mathsf{x264}$},
+{\tiny $\mathsf{canneal}$},
+{\tiny $\mathsf{dedup}$},
+{\tiny $\mathsf{streamcluster}$},
+{\tiny $\mathsf{STREAM}$},
+{\tiny $\mathsf{SWISH++}$},
+{\tiny $\mathsf{HOP}$},
+{\tiny $\mathsf{KMeans}$},
+{\tiny $\mathsf{KMeans-Fuzzy}$},
+{\tiny $\mathsf{ScalParC}$},
+{\tiny $\mathsf{SVM-RFE}$},
+},
+ymin=0,
+ymax=1.0,
+ytick={0,0.2,0.4,0.6,0.8,1.0},
+yticklabels={0,0.2,0.4,0.6,0.8,1.0},
+% legend cell align=left, 
+% legend style={ column sep=1ex },
+ymajorgrids,
+grid style={dashed},
+ylabel={\footnotesize (Std. Deviation/Mean) },
+ylabel shift={0mm},
+]
+\nextgroupplot[ybar=\pgflinewidth,
+bar width=3.5pt,
+% legend entries = {{\footnotesize $\mathsf{Server}$}},
+% legend style={draw=none,legend columns=2,at={(0.5,1.4)},anchor=north},
+]
+\addplot table[x index=0,y index=2, col sep=tab] {img/variability.txt};
+\node at (axis cs:6.0,0.9) [rotate=35] {\scriptsize{$2.8$}};
+
+
+\end{groupplot}
+
+\end{tikzpicture}

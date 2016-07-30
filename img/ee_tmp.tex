@@ -1,0 +1,144 @@
+\begin{tikzpicture}
+\definecolor{s1}{RGB}{228, 26, 28}
+\definecolor{s2}{RGB}{55, 126, 184}
+\definecolor{s3}{RGB}{77, 175, 74}
+\definecolor{s4}{RGB}{152, 78, 163}
+\definecolor{s5}{RGB}{255, 127, 0}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 1,
+        xlabels at=edge top,
+        xticklabels at=edge top,
+        vertical sep=5pt
+    },
+axis x line* = top,
+xlabel near ticks,
+major x tick style = transparent,
+height=2.5cm,
+width=0.88\textwidth,
+xmin=0,
+xmax=9,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ylabel style={align=center},
+ytick=\empty,
+xtick=\empty,
+xticklabels={},
+yticklabels={},
+ymin=0,
+ymax=1,
+]
+\nextgroupplot[ylabel={$\mathsf{10\%}$},
+y label style={rotate=270},
+ylabel shift={12mm},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\nextgroupplot[
+ylabel shift={12mm},
+y label style={rotate=270},
+ylabel={$\mathsf{30\%}$},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\nextgroupplot[
+ylabel shift={12mm},
+y label style={rotate=270},
+ylabel={$\mathsf{50\%}$},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel={$\mathsf{70\%}$},
+y label style={rotate=270},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel={$\mathsf{90\%}$},
+y label style={rotate=270},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\end{groupplot}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 5,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=5pt
+    },
+axis x line* = bottom,
+xlabel near ticks,
+major x tick style = transparent,
+xlabel={},
+height=2.5cm,
+width=0.88\textwidth,
+xmin=0,
+xmax=22,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ylabel style={align=center},
+ytick=\empty,
+ymin=0.25,
+ymax=1.75,
+ytick={0,0.5,1.0,1.5,2.0},
+yticklabels={,0.5,1.0,1.5,2.0},
+legend cell align=left, 
+legend style={ column sep=1ex },
+ymajorgrids,
+grid style={dashed},
+]
+
+
+\nextgroupplot[ybar=\pgflinewidth,
+bar width=2.0pt,
+ylabel shift={0mm},
+xticklabel shift={0pt},
+x tick label style={rotate=35, anchor=east},
+xtick={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21},
+xticklabels={
+{\scriptsize $\mathsf{blackscholes}$},
+{\scriptsize $\mathsf{bodytrack}$},
+{\scriptsize $\mathsf{facesim}$},
+{\scriptsize $\mathsf{ferret}$},
+{\scriptsize $\mathsf{fluidanimate}$},
+{\scriptsize $\mathsf{frequmine}$},
+{\scriptsize $\mathsf{raytrace}$},
+{\scriptsize $\mathsf{swaptions}$},
+{\scriptsize $\mathsf{vips}$},
+{\scriptsize $\mathsf{x264}$},
+{\scriptsize $\mathsf{canneal}$},
+{\scriptsize $\mathsf{dedup}$},
+{\scriptsize $\mathsf{streamcluster}$},
+{\scriptsize $\mathsf{STREAM}$},
+{\scriptsize $\mathsf{SWISH++}$},
+{\scriptsize $\mathsf{HOP}$},
+{\scriptsize $\mathsf{KMeans}$},
+{\scriptsize $\mathsf{KMeans-Fuzzy}$},
+{\scriptsize $\mathsf{ScalParC}$},
+{\scriptsize $\mathsf{SVM-RFE}$},
+{\scriptsize $\mathsf{\mathbf{Average}}$}},
+]
+%\pgfplotstableread[col sep=space]{img/single-app/dyn-eff-0.1.txt}\loadedtable;
+\addplot table[x index=0,y index=2, col sep=space] {img/single-app/dyn2-eff-0.1.txt};
+%\addplot table[x index=1,y index=2] {\loadedtable};
+%\addplot table[x index=1,y index=2] {\loadedtable};
+
+%\addplot table[x index=1,y index=2] {img/single-app/dyn-eff-0.1.txt};
+\addplot table[x index=0,y index=6, col sep=space] {img/ee/ee-copper-0.0.txt};
+%\addplot table[x index=0,y index=6, col sep=space] {img/ee/ee-copper-0.10.txt};
+%\addplot table[x index=0,y index=6, col sep=space] {img/ee/ee-copper-0.20.txt};
+%\addplot table[x index=0,y index=6, col sep=space] {img/ee/ee-copper-0.50.txt};
+
+\end{groupplot}
+\end{tikzpicture}

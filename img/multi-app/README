@@ -1,0 +1,15 @@
+All these files are results of running multiapp data.
+Halfway through, we launch some other stuff that takes up about 1/4 of the available resources.  
+
+The files have a line for each benchmark and a line at the end with the average.
+
+There are four columns:
+Benchmark leo poet leo+poet
+
+err is represented as MAPE and expressed as a percentage.
+
+efficiency is normalized to the best possible energy if 
+we had a perfect model. 
+efficiency (So higher is better).  If desired, we could 
+invert efficiency to get energy consumption.
+
