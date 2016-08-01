@@ -73,6 +73,38 @@ general behavior of the entire class of application and require
 negligible online overhead.  This focused approach is extremely
 effective for multimedia applications
 \cite{grace2,flinn99,flinn2004,xtune,TCST} and web-servers
-\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a}.  
+\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} because the workloads can
+be characterized ahead of time so that the models produce sound control.
 
+Indeed, the need for good models is the central tension in developing
+control for computing systems.  It is always possible to build a
+control for a specific application and system by extensively modeling
+that pair.  More general controllers which work with a range of
+applications have addressed this issue with models in several ways.
+Several approaches provide control libraries that encapsulate control
+functionality and require users to input a model
+\cite{ControlWare,Sojka,Rajkumar,POET}.  Other approaches
+automatically synthesize both a model and a controller for either
+hardware \cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.
+% Still others start with a general model, and customize it at runtime
+% by either classifying an application's behavior and using a model
+% for that class \cite{MICRO2016} or using some computationally ef
+\TODO{There are some approaches that update a model using ``online''
+  learning. We should talk about those, but only if we have data that
+  shows that online is worse than LEO.  I think we will have that in
+  the paper, though.}  Our approach is unique in that a remote server
+generates the model automatically.  By offloading the learning part to
+a remote server, we are able to (1) combine data from many
+applications and systems and (2) apply computionally expensive, but
+highly accurate learning techniques.
+
+
+Perhaps the most similar approach to ours is Carat \cite{}.  Carat
+aggregates data across many mobile devices and sends a report to human
+users about how to configure their device to increase battery life.
+While both Carat and our approach learn across devices, they have very
+different goals.  Carat's goal is to return very high-level
+information to human users; \eg you should update a driver to extend
+battery life.  Our approach returns lower-level models to another
+automated system that will apply those models to save energy.
 
