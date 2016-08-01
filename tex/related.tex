@@ -1,0 +1,78 @@
+\section{Related Work}
+
+We discuss related work in managing resources to meet performance
+goals with and reduce energy.  We first discuss machine learning
+approaches, then control theoretic ones.  
+
+\subsection{Machine Learning}
+There are a huge array of different learning techniques that are
+applicable to different prolems.  As discussed in in \secref{learning}
+we break learning for reasource management into three categories:
+offline, online, and hybrid approaches.  
+
+\subsubsection{Offline Learning}
+The offline approaches build models before deployment and then use
+those fixed models to allocate resources
+\cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  In
+these approaches, the model building phase is generally very expensive
+requiring both a large number of samples and substantial computation
+to turn those samples into a model that accurately captures the
+relationship between the observed features and the behavior to be
+estimated.  Applying the model online, however, tends to be low
+overhead.  The main drawback is that the models are not updated as the
+system runs, so there is no chance to correct mistakes or adapt to
+specific workloads.
+
+\TODO{Vijay's webbrowsing learner?}
+
+\subsubsection{Online Learning}
+Online techniques use observations of the current application to tune
+system resource usage for that application
+\cite{Li2006,Flicker,ParallelismDial,Ponamarev,petabricksDynamic,LeeBrooks}.
+For example, Flicker is a configurable architecture and optimization
+framework that uses only online models to maximize performance under a
+power limitation \cite{Flicker}.  Another example, ParallelismDial,
+uses online adaptation to tailor parallelism to application workload
+\cite{ParallelismDial}.
+
+
+
+\subsubsection{Hybrid Approaches}
+Some approaches have combined offline predictive models with online
+adaptation
+\cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
+  wu2012inferred}.  For example, Dubach et al.  propose such a combo
+for optimizing the microarchitecture of a single core
+\cite{dubach2010}.  Such predictive models have also been employed at
+the OS level to manage system energy consumption \cite{Koala,Cinder}.
+\cite{wu2012inferred}.
+
+
+Still other approaches combine offline modeling with online model
+updates \cite{JouleGuard,Bitirgen2008,Ipek}.  For example, Bitirgen et
+al use an artificial neural network to allocate resources to multiple
+applications in a multicore \cite{Bitirgen2008}.  The neural network
+is trained offline and then adapted online using measured feedback.
+This approach optimizes performance but does not consider power or
+energy minimization.  LEO, the system we extend in this paper, also
+uses a combination of offline and online approaches.  LEO collects
+data about a number of applications offline and combines that with a
+small number of observations made online for the current application
+\cite{LEO}.
+
+\subsection{Control}
+Almost all control solutions can be thought of as a combination of
+offline model building with online adaptation.  Usually the model
+building involves substantial empirical measurement and statistical
+regression to build a model (analogous to determining the value of $k$
+in \eqnref{clock}) that is then used to synthesize a control system
+\cite{Wu2004,TCST,Chen2011,PTRADE,Heartbeats2,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
+Over a narrow range of applications the combination of offline
+learning and control works well, as the offline models capture the
+general behavior of the entire class of application and require
+negligible online overhead.  This focused approach is extremely
+effective for multimedia applications
+\cite{grace2,flinn99,flinn2004,xtune,TCST} and web-servers
+\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a}.  
+
+
