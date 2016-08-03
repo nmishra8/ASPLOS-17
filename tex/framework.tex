@@ -1,16 +1,39 @@
 \section{Combined Learning and Control}
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/ControlLearning.png}
+\caption{Overview of the proposed approach. A remote HBM generates a
+  model which is used to tailor control to a particular application
+  running on a heterogeneous mobile system.}
+  \label{fig:overview}
+\end{figure}
+
 
 %Overview. Learning background.  Control background.
 Our goal is to combine learning with control to tackle the complexity
-and dynamics of modern mobile systems.  We use a hierarchical Bayesian
-model to learn how resource allocation affects the power and
-performance of an application.  This learning framework is
-computationally expensive so it runs on a remote server which sends
-learned models to the mobile system.  Those models are used by a
-control system that dynamically tunes application resource usage to
-handle system dynamics. This section provides a brief overview of the
-relevant learning and control techniques used in this paper, and then
-describes the interface we propose to combine them.
+and dynamics of modern mobile systems.  \figref{overview} shows a
+detailed overview of our approach.  A mobile system (in the figure's
+lower right) runs an application.  Some small number of performance
+measurements are taken on the device and sent to a server.  The server
+uses a hierarchical Bayesian model to combine these measurements with
+ones taken on other devices and with measurements of other
+applications.  Using this large volume of data, the HBM produces a
+model of performance and power for all combinations of resources on
+the device.  This model is stored in a novel data structure, called a
+\emph{performance hash table} (PHT), which is the key interface
+between the remote learner and the lightweight control system (LCS)
+that manages the device.  The LCS adjusts resource usage to meet
+performance requirements for interactive mobile applications with
+minimal energy.  The PHT is the key data structure allowing the LCS to
+apply the learned models in constant ($O(1)$) time.  Producing the PHT
+is significantly more expensive, but it is done remotely and does not
+impact the device to be managed.  In this manner, the HBM handles the
+complexity of the device and the LCS handles the dynamics, with the
+PHT beign the key interface linking the two.  This section provides a
+brief overview of the relevant learning and control techniques used in
+this paper, and then describes the interface we propose to combine
+them.
+
+
 
 \subsection{Hierarchical Bayesian Learning}
 
@@ -140,91 +163,13 @@ different types of behavior.
 
 
 \subsection{Controlling Computing Systems}
+
 Control theory provides a discipline for tuning parameters to ensure
-that a system meets some requirement in a dynamic environment.  In
-this section we describe a typical control system for managing compute
-resources and then describe how to generalize it for our purposes.  We
-restrict ourselves to the set of controllers that manage performance
-for computing systems.
-
-A controller has a performance goal (corresponding to a
-quality-of-service or real-time constraint) and adjusts system resource
-usage to see that the goal is met.  In a simple example, a control
-system might adjust processor frequency to ensure that a performance
-goal is met \cite{lefurgy}.  Even better, an optimal controller would
-use the minimal clockspeed to meet the performance requirement.
-
-To turn clockspeed into performance a controller needs a model
-relating these two values.  Directly mapping clockspeed to performance
-is difficult -- a hypothetical model might account for instruction
-mixes, memory hierarchy, memory latency, synchronization overheads,
-etc.  Building such a model is tedious and error-prone process and
-that is before we address system dynamics (\eg applications
-transitioning from memory to compute bound).  Instead, control systems
-use relatively simple difference models\footnote{Continuous time
-  systems would use differential equations, but as time in computers
-  is inherently discretized we restrict ourselves to discussion of
-  difference equations which are appropriate for discrete time
-  systems.}. 
-
-%example difference model -- built into the controller
-Continuing the example of controlling performance with clockspeed, a
-simple model appropriate for control would be to assume that the
-performance is a linear function of the clockspeed:
-\begin{equation}
-  perf(t) = k \cdot clock(t-1) + \delta \label{eqn:clock}
-\end{equation}
-Here, the performance observed at time $perf(t)$ is predicted as some
-constant $k$ times the clockspeed applied at the previous time step,
-$clock(t-1)$, plus some noise, $\delta$ drawn from a Gaussian
-distribution.  This simple linear difference model ignores low-level
-details like instruction mix, and instead uses feedback, predicting
-behavior of the next time step as a function of one variable setting
-from the previous time step.  Using the relationship of
-\eqnref{clock}, we can synthesize a simple deadbeat controller that is
-provably convergent to the desired performance:
-\begin{eqnarray}
-  error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clock(t) &=& clock(t-1) - \frac{error(t)}{k}
-  \label{eqn:clock-control}
-\end{eqnarray}
-
-
-% Can we make the model a tunable parameter?
-The controller of \eqnref{clock-control} provides formal guarantees
-that it will converge to the desired performance ($goal$ in
-\eqnref{clock-error}) and it bounds the time taken to converge.  All
-these guarantees, however, are predicated on the accuracy of the
-model; \ie on the value $k$ in this simple example.  This value is
-highly dependent on the particular application under control.  More
-complicated examples that control multiple resources are relatively
-straightforward extensions of the example shown here that use matrix
-equations instead of the scalar equations presented here
-\cite{METE,others}.  Either way, the control system suffers a similar
-tension as our learners -- we could set the value of $k$ to be
-application specific, but that controller will fail on some
-applications.  If we choose a value of $k$ such that performance still
-converges to the goal for all applications it will be very slow,
-meaning that the controller will take many time steps to react to some
-dynamic events.  It would clearly be beneficial to tune the control
-models to individual applications.  We do this by combining learning
-and control as described in the next section.
-
-
-\TODO{I am not sure it is clear how control addresses dynamics.  What
-  can we add?}
-
-
-\subsection{Interfacing Control and Learning}
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/ControlLearning.png}
-\caption{Overview of the proposed approach. A remote HBM generates a
-  model which is used to tailor control to a particular application
-  running on a heterogeneous mobile system.}
-  \label{fig:overview}
-\end{figure}
-
+that a system meets some requirement in a dynamic environment.  
+We use a controller to meet a performance goal (corresponding to a
+quality-of-service or real-time constraint) and adjust system resource
+usage to see that the goal is met.  For example, control systems have
+been proposed for managing clock speed in processors \cite{lefurgy}.
 
 
 We would like to use control and learning to solve the problem of
@@ -232,25 +177,25 @@ meeting an application's performance requirements while minimizing
 energy consumption.  The difficulty is that classical control
 formulations like the example above integrate the models directly into
 the controller; \ie the application-dependent relationship between
-performance and resource usage is directly used in the control
-equations.  We propose to address this problem using the classic
-computer science trick of adding a layer of indirection.  This idea is
-illustrated in \figref{overview}.  Instead of directly controlling
-resources using an application-dependent model, we will control
-\emph{speedup} and pass that speedup value to a separate module that
-translates speedup into a desired resource configuration using the
-learned models.  In this section, we first describe our formulation
-for controlling speedup and then describe the translator that converts
-that speedup into resource allocations.
+performance and the controlled resource is directly used in the
+control equations.  We propose to address this problem using the
+classic computer science trick of adding a layer of indirection.  This
+idea is illustrated in \figref{overview}.  Instead of directly
+controlling resources using an application-dependent model, we will
+control \emph{speedup} and pass that speedup value to a separate
+module that translates speedup into a desired resource configuration
+using the learned models.  Similar models have been used to build
+generalized controllers where users are responsible for supplying the
+models \cite{POET}.  Our goal is to eliminate this user burden and
+have a remote HBM supply the model.
 
 \subsubsection{Controlling Speedup}
-Analogous to \eqnref{clock} we write a simple difference model
-relating speedup to performance:
+We write a simple difference model relating speedup to performance:
 \begin{equation}
-  perf(t) = b \cdot speedup(t-1) + \delta \label{eqn:speedup}
+  perf(t) = m \cdot speedup(t-1) + \delta \label{eqn:speedup}
 \end{equation}
-where $b$ is the \emph{base speed} of the application, here defined as
-the speed when all resources are available.  While $b$ is application
+where $m$ is the \emph{max speed} of the application, here defined as
+the speed when all resources are available.  While $m$ is application
 specific, it is easy to measure online, by simply allocating all
 resources. Such a configuration should not violate any performance
 constraints (although it is unlikely to be energy efficient) so it is
@@ -260,21 +205,22 @@ constraints.
 With this model, the control law is simply:
 \begin{eqnarray}
   error(t) &=& goal - perf(t) \label{eqn:speedup-error} \\
-  speedup(t) &=& speedup(t-1) - \frac{error(t)}{b}
+  speedup(t) &=& speedup(t-1) - \frac{error(t)}{m}
   \label{eqn:speedup-control}
 \end{eqnarray}
 which states that the speedup to apply at time $t$ is a function of
-the previous speedup, the error at time $t$ and the base speed $b$.
+the previous speedup, the error at time $t$ and the max speed $m$.
 This is a very simple \emph{deadbeat} controller that provides all the
-standard control theoretic formal guarantees.  By measuring base speed
-online while the application runs, we can tune the control to a
-specific application.  We note that using this definition of base
-speed, most speedups will be less than one.  In addition to making
-base speed easier to measure, this has the nice property of bounding
-the learner's output, making for more robust learning \TODO{Nikita,
-  what am I trying to say here? Or should we just put a forward
-  reference because the next section benefits from a max speedup of 1}
-Of course, we still have the challenging problem of converting an
+standard control theoretic formal guarantees
+\cite{controlhandbook,seec-scs2010}.  By measuring max speed online
+while the application runs, we can tune the control to a specific
+application.  Using this definition of max speed, most
+speedups will be less than one.  In addition to making max speed
+easier to measure, this has the nice property of bounding the
+learner's output, making for more robust learning \TODO{Nikita, what
+  am I trying to say here? Or should we just put a forward reference
+  because the next section benefits from a max speedup of 1} Of
+course, we still have the challenging problem of converting an
 abstract speedup into an actual resource allocation.
 
 
@@ -285,18 +231,21 @@ architecture, that specifically means mapping speedup into a number of
 big cores, a number of small cores, and a speed for both (on our
 system big and little cores can be clocked separately).
 
-The primary challenge here is that the HBM produces a discrete
-non-linear function of resource usage into speedup and powerup, while
-\eqnref{speedup-control} is a continuous linear function.  We bridge
-this divide by assigning time to resource allocations such that the
-average speedup over a control interval is that produced by
-\eqnref{speedup-control}.
+The primary challenge here is that the HBM produces a non-linear
+function mapping discrete resource allocations into speedup and
+powerup, while \eqnref{speedup-control} is a continuous linear
+function.  We bridge this divide by assigning time to resource
+allocations such that the average speedup over a control interval is
+that produced by \eqnref{speedup-control}.
 
-We call an assignment of time to resources a schedule.  Not
-surprisingly, there are typically many schedules that meet a
-particular performance requirement.  We would like to find a minimal
+We call an assignment of time to resources a \emph{schedule}. We call
+a combination of settings for each resource a \emph{configuration}.  For
+example, using two big cores at 1.5 \GHz and putting all the little
+cores to sleep is one configuration.  Not surprisingly, there are
+typically many schedules that meet a particular performance
+requirement.  To extend battery life, we would like to find a minimal
 energy schedule. Given a time interval $\tau$, a workload $W$ to
-complete in that interval, and a set of $C$ configurations, we
+complete in that interval, and a set of $C$ configuration, we
 formalize this problem as:
 \begin{eqnarray}
   \minimize && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
@@ -313,27 +262,27 @@ work must be done, while \eqnref{deadline} requires the work to be
 done on time.  \eqnref{time} simply avoids negative time.  
 
 
-
-
-\subsubsection{Analysis}
+\subsubsection{A Fast Algorithm For Resource Scheduling}
 While most linear programming problems would be inefficient to solve
 repeatedly on a mobile device, the one in \eqnrref{power}{time} has a
-constant time ($O(1)$ solution.
-
-Kim et al. analyzed heuristic solutions to the problem of minimizing
-energy while meeting a performance constraint \cite{kim-cpsna}.  They
-observed that there must be an optimal solution with the following
-properties:
+constant time ($O(1)$ solution.  Kim et al. analyzed heuristic
+solutions to the problem of minimizing energy while meeting a
+performance constraint \cite{kim-cpsna}.  They observed that there
+must be an optimal solution with the following properties:
 \begin{itemize}
 \item At most two of $\tau_c$ are non-zero, meaning that at most two
-  configurations will be used in any time interval.
-\item If you chart the configurations in the power and performance
-  tradeoff space (\TODO{add figure}) the two configurations with
-  non-zero $\tau_c$ lie on the lower convex hull of the power
-  performance tradeoff space.
+  resource configurations will be used in any time interval.  This
+  property both drastically limits the search space and puts a limit
+  on the overhead of switching configurations, since it is never
+  profitable to switch more than twice in an interval.
+\item If one plots the configurations in the power and performance
+  tradeoff space (so that performance is on the x-axis and power is on
+  the y-axis \TODO{add figure}) the two configurations with non-zero
+  $\tau_c$ lie on the lower convex hull of the power performance
+  tradeoff space.
 \end{itemize}
 We use these two facts to construct a constant time algorithm for
-finding the optimal solution online.  
+finding the optimal solution to \eqnrref{power}{time} online.  
 
 
 \begin{figure}
@@ -343,21 +292,20 @@ finding the optimal solution online.
   \label{fig:pht}
 \end{figure}
 
-
-
-We create a \emph{performance hash table} (PHT).  The PHT will only
-contain points on the lower convex hull of the power/performance
-tradeoff space.  The PHT is illustrated in \figref{pht}.  It consists
-of two arrays, the first is an array of pointers that point into the
-second array, which stores the configurations on the convex hull
-sorted by speedup.  Recall that speedups are computed relative to the
-base speed which uses all resources.  We therefore know the largest
-speedup is 1, so we need only concern ourselves with speedups less
-than 1.  The first table, of pointers has a \emph{resolution}
-indicating how many decimal points of precision it captures.  The
-example in \figref{pht} has a resolution of .1.  Each pointer in the
-first table points to the configuration in the second array that has
-the largest speedup less than or equal to the index.
+The key data structure is the \emph{performance hash table} (PHT).
+The PHT will only contain points on the lower convex hull of the
+power/performance tradeoff space.  The PHT is illustrated in
+\figref{pht}.  It consists of two arrays, the first is an array of
+pointers that point into the second array, which stores the
+configurations on the convex hull sorted by speedup.  Recall that
+speedups are computed relative to the max speed which uses all
+resources.  We therefore know the largest speedup is 1, so we need
+only concern ourselves with speedups less than 1.  The first table, of
+pointers has a \emph{resolution} indicating how many decimal points of
+precision it captures.  The example in \figref{pht} has a resolution
+of 0.1.  Each pointer in the first table points to the configuration
+in the second array that has the largest speedup less than or equal to
+the index.
 
 To use the table, the translator receives a speedup $s(t)$ from the
 controller.  It needs to convert this into two configurations referred
