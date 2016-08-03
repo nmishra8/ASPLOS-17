@@ -1,5 +1,64 @@
 \section{Experimental evaluations}
 
+\subsection{Experimental setup}
+
+We perform our experiments on odroidxue devices which are a small mobile like devices with Ubuntu 14.04 running on them. These devices have 19 speed settings with all being available for its 4 big cores and 13 for four LITTLE cores. Thus in total we have 128 user accessible configurations. Each configuration has a different performance and power. We use 20 different benchmarks from five different suites including PARSEC
+(\texttt{blackscholes},\texttt{facesim}, \texttt{x264} ) \cite{parsec}, 
+Minebench
+(\texttt{Kmeans},  
+\texttt{non fuzzy kmeans \\* (Kmeansnf)}) \cite{minebench}, 
+Seec
+(\texttt{dijkstra}) \cite{seec}, 
+Parmibench
+(\texttt{ferret}) \cite{parmibench}, and Rodinia
+(\texttt{backprop},\texttt{cfd}, \texttt{nn}, \texttt{lud}, \\* 
+\texttt{backprop}, \texttt{bfs}) \cite{rodinia}.  
+We also use a
+partial differential equation solver (\texttt{jacobi}) and a memory intensive benchmark pair (\texttt{stream}) and (\texttt{stream\_threads}) \cite{stream}. Our benchmarks vary from compute-bound applications to memory bound workloads and also workloads that are a combination of both as shown in \figref{application_variety}.
+Our applications have been instrumented with heartbeat library to report heartbeats/second as a measure of performance \cite{poet}.
+
+\subsection{Evaluation metrics}
+We use LEO to estimate the performance and power for our applications. The accuracy of LEO for learning is measured as,
+\begin{equation}
+\label{eq:accuracy}
+accuracy(\hat{\y},\y) = max\left(1 - \frac{\| \hat{\y}-\y \|^2_2 }{\| \y - \bar{\y}\|^2_2},0\right).
+\end{equation}
+
+where $\hat{\y}$ represents the predicted performance and power values and $\y$ is the true value of the power and performance.
+
+Our \SYSTEM{} uses the model for power and performance and its controller actively uses this knowledge to meet the performance target. A performance target can be thought of as a quality of service expectation for the given application. We run our applications from 10\% to 90\% performance targets and observe how our \SYSTEM{} performs under each constraint. we quantify how well the applications are meeting the target by using the commonly used metric called MAPE. Suppose the application is supposed to finish $n$ jobs while maintaining a speed of $S_r$, then MAPE is as shown below,
+
+\begin{equation}
+MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S_{r} - s_m(i)}{S_r},0 \right)
+\end{equation}
+
+where $S_{r}$ is the performance target and $s_m(i)$ is the performance observed for $i$th job.
+\TODO{energy metric}.
+
+\subsection{Points of comparison}
+
+We compare \SYSTEM{} to the following baselines,
+\TODO{mention how controller is different for online and offline}
+
+\begin{enumerate}
+\item \textit{Online} -- This strategy carries out polynomial
+  multivariate regression on the observed dataset using configuration
+  values (the number of cores and speed-settings) as
+  predictors, and estimates the rest of the data-points based the same
+  model. The learnt model is then sent to the controller. Note that the process of collecting samples for estimation might be very expensive and this model requires a minimum number of samples to start with. This method uses only the observations and
+  not the prior data.
+\item \textit{Offline} -- This is our zero-sample policy. This method takes the mean over the rest of the applications to estimate the power and performance of the given application and uses these predictions for the controller.
+  This strategy only uses prior information and does not update the model
+  based on runtime observations.
+
+\item \textit{LEO} -- 
+\end{enumerate}
+
+
+\subsection{Power and performance estimation}
+
+We used LEO as described in \secref{} to estimate the power and performance for the applications using only 10 out of 128 observations. The true performance and power frontiers for the applications are very unusual for some applications with multiple local minima across the configuration space as shown in \figref{contour}. Therefore we argue that using line-search based techniques which blindly increases or decreases resources (cores/clockspeed) to directly improve or reduce performance isn't optimal since we might end up in a local minima. The contour plot for power is more uniform and proportional to the amount of resources, except for a few applications like, \TODO{} as shown in \figref{}. 
+Our results are summarized in \figref{fig:accuracy}. LEO is XX better than online and xx better than offline on average. LEO uniformly performs well for all applications with the worst accuracy being YY as compared to offline and online algorithm.
 
 \begin{figure*}[t]
   \input{img/accuracy-performance.tex}
@@ -8,14 +67,21 @@
   \label{fig:accuracy}
 \end{figure*}
 
+\subsubsection{Sensitivity to the measured samples}
+In this section we summarize results on how sensitive LEO is to varying the number of samples for estimation. Odroid devices are quite small and sampling overhead can be quite expensive hence it is important that our methods do not require huge number of samples. In \figref{sensitivity} we observe that when no samples are available LEO performs as well as Offline approach and as it gets more samples the accuracy uniformly improves and reaches greater than 90\% with around 20 samples. On the other hand, the online approach needs at least 9 samples so that the design matrix for the polynomial regression has more samples than variables. As we get more samples the accuracy for online model improves but still does not meet the accuracy that LEO can achieve for same number of samples.
 
-\begin{figure*}[t]
-  \input{img/accuracy-power.tex}
+\begin{figure}[t]
+  \input{img/sample-accuracy.tex}
    \vskip -1em
-  \caption{Accuracy power}
-  \label{fig:accuracy}
-\end{figure*}
+  \caption{Multi Applications Energy}
+  \label{fig:sensitivity}
+\end{figure}
 
+\subsection{\SYSTEM{}}
+\subsubsection{Single application}
+We demonstrate how well \SYSTEM{} performs in in terms of energy consumption and MAPE throughout the runtime of an application for different performance targets. The performance targets have been set up to measure the capabilities of \SYSTEM{} under different scenarios. 10\% performance target corresponds to low performance target and a good static strategy might be to choose lower configurations to conserve energy, on the other hand 90\% performance target would mean we could choose highest configurations since MAPE is generally minimized at the highest configurations. The interesting performance targets are around 50\% where we don't have obvious choices for configuration settings to either save energy or minimize MAPE. We find that \SYSTEM{} has lower MAPE and energy consumption than the baseline algorithms. \TODO{some more specific example}.
+
+As shown in \figref{single-perf}, \SYSTEM{} uniformly has the smaller MAPE
 \begin{figure*}[t]
   \input{img/single-app-performance.tex}
    \vskip -1em
@@ -30,7 +96,8 @@
   \label{fig:single-energy}
 \end{figure*}
 
-
+\subsubsection{Multiple applications}
+In this experiment we show that \SYSTEM{} is quite robust and performs well even in presence of multiple other applications as well. Similar to previous section, we show that \SYSTEM{} works well for different performance targets in case of multi applications as well. The applications are allowed to run alone for a while and after 10 seconds we launched four other random applications which contend for the resources as our target application. The controller in our \SYSTEM{} quickly notes that the performance target are being missed and moves the application to a configuration which would guarantee higher performance. Note that we do not need to get new model for multiple applications. The previously learnt model is sufficient under the noisy conditions as well. Overall on an average \SYSTEM{} is XX better in terms of energy  and yy better in terms of MAPE that the baseline algorithms. \TODO{More intuition}%The reason for this interesting situation is that the controller is scale independent hence when the performance of the application increases or dec
 \begin{figure*}[t]
   \input{img/multi-app-performance.tex}
    \vskip -1em
@@ -45,11 +112,25 @@
   \label{fig:multi-energy}
 \end{figure*}
 
-%\PUNT{
-\begin{figure*}[t]
-  \input{img/sample-accuracy.tex}
+\TODO{Figure timeline for multiple applications}
+\subsubsection{Phase change}
+In this experiment we demonstrate that \SYSTEM{} allows applications to operate well by changing resource allotment even if the input to the application is changing with time.
+\begin{figure}[t]
+  \input{img/x264-phases.tex}
    \vskip -1em
-  \caption{Multi Applications Energy}
+  \caption{X264 phase change}
   \label{fig:multi-energy}
-\end{figure*}
-%}
+\end{figure}
+\TODO{Stream}
+\subsubsection{Overhead}
+
+
+
+
+
+
+
+
+
+
+
