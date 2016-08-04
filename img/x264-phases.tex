@@ -42,10 +42,12 @@ yticklabels={,0.5,1.0,1.5,2.0},
 yticklabel style={font=\footnotesize},
 ymin=0,
 ymax=1.5,
-legend entries={{{$\mathsf{\SYSTEM{}}$}}},
+legend entries={{{$\mathsf{\SYSTEM{}}$}},POET,LEO},
 legend style={draw=none,at={(0.5,1.4)},anchor=north,legend columns=4,line width=5pt},
 ]
 \addplot[thick, solid, color=s3] table[x index=0,y index=6,col sep=space] {img/image_text/x264-native-ducks-better-results.txt};
+\addplot[thick, solid, color=s4] table[x index=0,y index=4,col sep=space] {img/image_text/x264-native-ducks-better-results.txt};
+\addplot[thick, solid, color=s5] table[x index=0,y index=2,col sep=space] {img/image_text/x264-native-ducks-better-results.txt};
 %\addplot[thick, solid, color=s3] table[x index=0,y index=1,col sep=tab] {img/x264-phases-clover-dvfs.txt};
 %\addplot[thick, solid, color=s4] table[x index=0,y index=1,col sep=tab] {img/x264-phases-clover-copper.txt};
 %\addplot[thick, solid, black] coordinates {(0, 1) (4500, 1)};
@@ -67,6 +69,8 @@ xticklabels={,0,60,120,240,360,480},
 %xticklabel style={font=\footnotesize},
 ]
 \addplot[thick, solid, color=s3] table[x index=0,y index=7,col sep=space] {img/image_text/x264-native-ducks-better-results.txt};
+\addplot[thick, solid, color=s4] table[x index=0,y index=5,col sep=space] {img/image_text/x264-native-ducks-better-results.txt};
+\addplot[thick, solid, color=s5] table[x index=0,y index=3,col sep=space] {img/image_text/x264-native-ducks-better-results.txt};
 %\addplot[thick, solid, color=s3] table[x index=0,y index=2,col sep=tab] {img/x264-phases-clover-dvfs.txt};
 %\addplot[thick, solid, color=s4] table[x index=0,y index=2,col sep=tab] {img/x264-phases-clover-copper.txt};
 %\addplot[thick, dashed, black] coordinates {(1500,0) (1500, 250)};

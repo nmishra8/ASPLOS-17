@@ -28,7 +28,7 @@ apply the learned models in constant ($O(1)$) time.  Producing the PHT
 is significantly more expensive, but it is done remotely and does not
 impact the device to be managed.  In this manner, the HBM handles the
 complexity of the device and the LCS handles the dynamics, with the
-PHT beign the key interface linking the two.  This section provides a
+PHT being the key interface linking the two.  This section provides a
 brief overview of the relevant learning and control techniques used in
 this paper, and then describes the interface we propose to combine
 them.
@@ -68,23 +68,20 @@ them.
 \label{fig:learning-models}
 \end{figure*}
 
-In general, all machine learning techniques take observations of some
-phenomena and turn them into a model to predict future outcomes.  In
-our specific case, we want to take observations about application's
-performance and power given a resource allocation and predict how
-future application's will perform or how different resource
-allocations will affect the current application.  
+In general, most machine learning models are predictive in nature. They take observations of some
+phenomena and turn them into a model to predict future outcomes.  
+%In our specific case, we want to take observations about application's performance and power given a resource allocation and predict how different resource allocations will affect the application's performance and power consumption.  
 
 In this work, we use a hierarchical Bayesian model (HBM) to turn
 observations of applications' performance and power into predictions
 about how other, unobserved resource allocations will alter that
 performance and power.  We use a HBM because it provides a
 statistically sound framework for learning across applications and
-devices.  The HBM is also well suited to learning the complicated
-tradeoff spaces that arise from heterogeneity in modern mobile
+devices.  The HBM is non-parametric in terms of resource configurations, hence well suited to learning the complicated
+trade-off spaces that arise from heterogeneity in modern mobile
 processors.
 
-When selecting a learning framework we must find a tradeoff between
+When selecting a learning framework we must find a trade-off between
 the specific and the general; \ie between frameworks that build
 application-specific models and frameworks that combine observations
 across applications.  For example, the key to energy efficiency on
@@ -118,18 +115,18 @@ applications and will therefore converge very quickly; however, it is
 overly general and cannot learn features specific to a single
 application.
 
-The HBM (illustrated in \figref{HBM}) is a good compromise.  Each
+The HBM (illustrated in \figref{HBM}) is the best of both worlds. The models benefit from both, the observations of the current application as well as of the previously seen applications.  Each
 application has its own model, allowing specificity, but these models
 are conditionally dependent on some underlying probability
 distribution with a hidden mean and co-variance matrix.  In practice,
 the HBM will estimate a model for a new application using a small
 number of observations and combining those observations with the large
-number of observations previously made of similar applications.
-Rather than over-generalizing, the HBM will use only similar
+number of observations previously made of applications.
+Rather than over-generalizing, the HBM will implicitly use similar
 applications to learn models.  In addition, the HBM's accuracy
 increases as more applications are observed because more different
 types of behavior are represented in the pool of prior knowledge.  Of
-course, the computational complexity of learning also increases with
+course, the computational complexity of learning which is linear in the number of applications also increases with
 increasing applications, but this is why we offload the learning to a
 remote server.
 
