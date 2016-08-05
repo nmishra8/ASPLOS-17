@@ -34,11 +34,14 @@ MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S_{r} - s_
 
 where $S_{r}$ is the performance target and $s_m(i)$ is the performance observed for $i$th job.
 \TODO{energy metric}.
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/performance-contour3.pdf}
+\begin{figure*}
+\centering
+%\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour3.pdf}
+\includegraphics[scale=0.4]{figures/performance-contour3.pdf}
+
 \caption{Contour.}
   \label{fig:contour}
-\end{figure}
+\end{figure*}
 \subsection{Points of comparison}
 
 We compare \SYSTEM{} to the following baselines,
@@ -119,14 +122,14 @@ In this experiment we show that \SYSTEM{} is quite robust and performs well even
 \TODO{Figure timeline for multiple applications}
 \subsubsection{Phase change}
 In this experiment we demonstrate that \SYSTEM{} allows applications to operate well by changing resource allotment even if the input to the application is changing with time.
-\PUNT{
+
 \begin{figure}[t]
-  \input{img/x264-phases.tex}
+  \input{img/x264-phases2.tex}
    \vskip -1em
   \caption{X264 phase change}
   \label{fig:multi-energy}
 \end{figure}
-}
+
 \TODO{Stream}
 \subsubsection{Overhead}
 
