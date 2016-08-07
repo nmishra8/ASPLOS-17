@@ -1,17 +1,22 @@
-\section{Experimental evaluations}
+\section{Experimental setup}
 
-\subsection{Experimental setup}
+\section{Platform and Benchmarks}
+We perform our experiments on four ODROID XU3 devices which are a
+small mobile devices with Ubuntu 14.04 running on them. The ODROID
+boards have Samsung Exynos 5 Octa processors based on the ARM
+big.LITTLE architecture.  Each processor has 19 speed settings with
+all being available for its 4 big cores and 13 for 4 LITTLE cores.
+Each board has a power meter updated at 1 \ms intervals.  Each
+resource configuration (combination of big/LITTLE cores and
+clockspeeds) has a different performance and power, which is, itself,
+application dependent.
 
-We perform our experiments on ODROID XU3 devices which are a small
-mobile devices with Ubuntu 14.04 running on them. These devices have
-19 speed settings with all being available for its 4 big cores and 13
-for 4 LITTLE cores. Each configuration has a different performance and
-power. We use 20 different benchmarks from five different suites
-including PARSEC (\texttt{blackscholes},\texttt{facesim},
-\texttt{x264} ) \cite{parsec}, Minebench (\texttt{Kmeans}, \texttt{non
-  fuzzy kmeans \\* (Kmeansnf)}) \cite{minebench}, Seec
-(\texttt{dijkstra}) \cite{seec}, Parmibench (\texttt{ferret})
-\cite{parmibench}, and Rodinia
+We use 20 different benchmarks from five suites including PARSEC
+(\texttt{blackscholes},\texttt{facesim}, \texttt{x264} )
+\cite{parsec}, Minebench (\texttt{Kmeans}, \texttt{non fuzzy kmeans
+  \\* (Kmeansnf)}) \cite{minebench}, Seec (\texttt{dijkstra})
+\cite{seec}, Parmibench (\texttt{ferret}) \cite{parmibench}, and
+Rodinia
 (\texttt{backprop},\texttt{cfd}, \texttt{nn}, \texttt{lud}, \\*
 \texttt{backprop}, \texttt{bfs}) \cite{rodinia}.  We also use a
 partial differential equation solver (\texttt{jacobi}) and a memory
@@ -19,70 +24,93 @@ intensive benchmark pair (\texttt{stream}) and
 (\texttt{stream\_threads}) \cite{stream}. Our benchmarks vary from
 compute-bound applications to memory bound workloads and also
 workloads that are a combination of both as shown in
-\figref{application_variety}.  Our applications have been instrumented
-with heartbeat library to report heartbeats/second as a measure of
-performance \cite{POET}.
+\figref{application_variety}.  Eachapplication has been instrumented
+to report its performance as heartbeats/second an application-specific
+performance metric \cite{POET}.
 
 \subsection{Evaluation metrics}
-We use LEO to estimate the performance and power for our applications.
-The accuracy of LEO for learning is measured as,
+We evaluate learning methods by computing the \emph{accuracy} of the
+learned models:
 \begin{equation}
 \label{eq:accuracy}
 accuracy(\hat{\y},\y) = max\left(1 - \frac{\| \hat{\y}-\y \|^2_2 }{\| \y - \bar{\y}\|^2_2},0\right).
 \end{equation}
-
-where $\hat{\y}$ represents the predicted performance and power values
+where $\hat{\y}$ represents the predicted performance/power values
 and $\y$ is the true value of the power and performance.
 
 \SYSTEM{} uses the model for power and performance and its controller
 actively uses this knowledge to meet the performance target. A
 performance target can be thought of as a quality of service
 expectation for the given application. We run our applications from
-10\% to 90\% performance targets and observe how our \SYSTEM{}
-performs under each constraint. we quantify how well the applications
-are meeting the target by using the commonly used metric called MAPE.
-Suppose the application is supposed to finish $n$ jobs while
-maintaining a speed of $S_r$, then MAPE is as shown below,
-
+10\% to 90\% performance targets and observe how \SYSTEM{} performs
+under each constraint. We quantify the ability to meet performance
+targets using the standard metric \emph{mean absolute percentage
+  error} (MAPE).  Suppose the application wants to emit $n$ heartbeats
+while maintaining a speed of $S_r$, then MAPE is calculated as:
 \begin{equation}
 MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S_{r} - s_m(i)}{S_r},0 \right)
 \end{equation}
-
 where $S_{r}$ is the performance target and $s_m(i)$ is the
-performance observed for $i$th job.
+performance observed for $i$th heartbeat.
 
 \begin{figure*}
 \centering
 %\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour3.pdf}
 \includegraphics[scale=0.4]{figures/sample-contour3.png}
-
 \caption{Contour.}
   \label{fig:contour}
 \end{figure*}
-\subsection{Points of comparison}
-We first compare the prediction accuracy for our machine learning
-model LEO to the following algorithms.
 
+We evaluate energy savings by constructing an oracle.  We run every
+application in every resource configuration and record performance and
+power for every heartbeat.  By post processing this data we can
+determine the optimal configuration for each heartbeat and each
+performance target. To produce an energy metric that we can compare
+across applications, we normalize energy as:
+\begin{equation}
+  normalized\,energy = e_m / e_{optimal} - 1
+\end{equation}
+where $e_m$ is the measured energy and $e_{optimal}$ is the optimal
+energy produced by our oracle. We subtract 1, so that this metric
+shows the proportion of energy consumed over optimal.  \TODO{Should we
+  multiply this by 100, so that it is also a \%?  That seems like a
+  good idea -- might as well be consistent across the two metrics.  We
+  don't even have to change the data, just the axis labels. }
+
+
+\subsection{Points of comparison}
+As discussed in \secref{learning}, we classify learning approaches
+into \emph{Online} and \emph{Offline} approaches, which we then use to
+construct baselines to which we compare \SYSTEM{}:
 \begin{enumerate}
-\item \textit{Online} -- This strategy carries out polynomial
-  multivariate regression on the observed dataset using configuration
-  values (the number of cores and speed-settings) as predictors, and
-  estimates the rest of the data-points based the same model. The
-  learned model is then sent to the controller. Note that the process
-  of collecting samples for estimation might be very expensive and
-  this model requires a minimum number of samples to start with. This
-  method uses only the observations and not the prior data.
-\item \textit{Offline} -- This is our zero-sample policy. This method
-  takes the mean over the rest of the applications to estimate the
-  power and performance of the given application and uses these
-  predictions for the controller.  This strategy only uses prior
-  information and does not update the model based on runtime
+\item \textit{Online} -- This strategy observes the current
+  application in a small number of configurations then performs
+  polynomial multivariate regression and estimates the performance and
+  power of the unobserrved configurations. \PUNT{Note that the process
+    of collecting samples for estimation might be very expensive and
+    this model requires a minimum number of samples to start with.
+    This method uses only the observations and not the prior data.}
+\item \textit{Offline} -- This is our zero-sample policy, used when we
+  do not observe any values for the current application. This method
+  takes the mean over all known applications and uses that to estimate
+  power and performance for new applications.  This strategy only uses
+  prior information and does not update the model based on runtime
   observations.
 \end{enumerate}
-We later compare \SYSTEM{} to the baselines constructed with a
-combination of different learning models and a state-of-art controller
-based on \emph{Pace-to-idle(P2I)} heuristic which has been proven to
-be a better heuristic than \emph{Race-to-idle} \cite{RACINGPACING}.
+
+We compare \SYSTEM{}'s combination of HBM with control to baselines
+constructed with a combination of different learning models and a
+state-of-art controller based on the \emph{Pace-to-idle (P2I)}
+heuristic \cite{RACINGPACING}.  Pace-to-idle is proven to be never
+worse than race-to-idle and often provides as much as $2\times$
+energy savings, but requires application-specific knowledge to
+implement.  Pace-to-idle completes jobs in the most energy-efficient
+configuration and then transitions to a low-power sleep state until
+the next job is ready.  As the energy-efficiency of a configuration is
+application-dependent, it is natural to combine pace-to-idle with
+machine learning approaches that can estimate the energy efficiency
+for different applications.  In the next section, we will compare
+\SYSTEM{}'s delivered performance and energy savings with:
 \begin{enumerate}
 \item \textit{Online-P2I} -- We use the \textit{Online} learning model
   in combination with \emph{Pace-to-idle(P2I)} heuristic.
@@ -90,12 +118,169 @@ be a better heuristic than \emph{Race-to-idle} \cite{RACINGPACING}.
   model in combination with \emph{Pace-to-idle(P2I)} heuristic.
 \item \textit{LEO-P2I} -- We use the \textit{LEO} learning model in
   combination with \emph{Pace-to-idle(P2I)} heuristic.
-\item \textit{POET} -- We use the \textit{offline} learning model in
-  combination with \emph{POET} controller.
+\item \textit{POET} -- A state-of-the-art, open source control system
+  designed to meet application performance with minimal energy.  POET
+  requires users to specify a model of resource performance and power
+  consumption.  We use POET with the model produced by the
+  \emph{Offline} learner.
 \end{enumerate}
 
-\subsection{Power and performance estimation}
+\section{Experimental Evaluation}
+We evaluate \SYSTEM{}'s ability to deliver requested performance with
+near-optimal energy.  We first examine performance accuracy and energy
+in a single-application scenario, where each application is run by
+itself.  We then consider a multi-application scenario where each
+application is run and then, halfway through, a second random
+application is launched, testing the ability to deliver performance in
+a changing environment.  We then examine other dynamic scenarios where
+applicaction inputs or behavior changes during application execution.
+Finally we compare the accuracy of the various learning approaches to
+offer insight into why \SYSTEM{} performs so well.
 
+\subsection{Performance and Energy for One Application}
+%Setup
+To test the ability to deliver performance and minimize energy, we set
+a range of targets ranging from 10-90\% of the maximum achievable
+performance on our system. The extreme targets are generally easy to
+hit. The most interesting performance targets are around 30\%-70\%
+where there are not obvious choices for configuration settings. These
+intermediate targets require a blend of big and LITTLE cores and
+getting that blend to both meet the performance and reduce energy is
+dependent on accurate models of performance and power.
+
+% Results
+The results for these single-application tests are shown in
+\figsref{single-perf}{single-energy}.  The benchmarks are shown on the
+x-axis; the y-axes show MAPE and the normalized energy, respectively.
+
+We find that \SYSTEM{} has lower MAPE and energy consumption than the
+baseline algorithms. Across all applications and targets, the online
+model produces an average error of 5.4\%, the offline: 4.4\%, LEO:
+4.0\%, POET: 4.7\%, and \SYSTEM{}: 2.0\%.  These results show that
+\SYSTEM{} reduces error by a factor of two compared to prior
+approaches.  
+
+The energy consumption results are even more impressive.  The online
+model requires an average of 30\% more energy than optimal, offline:
+16\%, LEO: 20\%, POET: 13\%, and \SYSTEM{}: 5\%.  Thus the combination
+of learning and control provides a dramatic reduction in energy
+consumption compared to even state-of-the-art learning or control
+approaches.  The reason is that the combination is complementary: LEO
+produces accurate models while control both can correct small errors
+in those models and adapt to dynamic changes in behavior.
+
+\begin{figure*}[t]
+  \input{img/single-app-performance.tex}
+   \vskip -1em
+  \caption{Single Applications MAPE}
+  \label{fig:single-perf}
+\end{figure*}
+
+\begin{figure*}[t]
+  \input{img/single-app-energy.tex}
+   \vskip -1em
+  \caption{Single Applications energy}
+  \label{fig:single-energy}
+\end{figure*}
+
+%In addition to providing better average case behavior, \SYSTEM{}
+%provides significantly better worst case behavior.  
+
+
+\subsection{Performance and Energy for Multile Applications}
+In this experiment, we test the ability to deliver performance in an
+environment where applications compete for resources.  We launch each
+of our benchmarks with a performance target (using the same targets as
+the prior study).  Halfway through execution, we start another
+application randomly drawn from our benchmark set.  We bind this
+application to one big core.  Launching this second application
+clearly changes performance and power consumption.  Delivering
+performance to the original application in this dynamic scenario
+clearly tests the ability to react to environmental changes.
+
+The results for the multi-application tests are shown in
+\figsref{multi-perf}{multi-energy}.  The benchmarks are shown on the
+x-axis; the y-axes show MAPE and the normalized energy, respectively.
+We note that the 90\% target is generally not reachable in this
+scenario as it would require the controlled application to have
+exclusive use of all big cores.
+
+
+As in the prior study, \SYSTEM{} has lower MAPE than the baseline
+algorithms. Across all applications and targets, the online model
+produces an average error of 15\%, the offline: 14\%, LEO: 11\%, POET:
+9\%, and \SYSTEM{}: 7\%.  In this case the average numbers skew
+\SYSTEM{}'s benefit as no approach does very well with the 90\% target
+and all but online do well at the 10\% target.  So, we also consider
+worst case behavior for all targets but the 90\% one.  The online
+approach has a highest MAPE of 80\% for LUD at the 70\% target.
+Offline's highest MAPE is 71\% for STREAM at the 30\% target.  LEO's
+highest MAPE is 70\%, also for STREAM at 30\%. POET's highest MAPE of
+35\% also occurs for STREAM at 30\%.  \SYSTEM{}'s highest MAPE of 24\%
+occurs with LUD at the 70\% target.  POET and \SYSTEM{} both produce
+better outcomes in the dynamic scenario because they are specifically
+designed to handle system dynamics.  \SYSTEM{}, however, does
+significantly better in the worst case than POET because it starts
+with better models that are more robust to variation.
+
+The energy consumption results are not as meaningful for this
+experiment, but they are included for completeness.  Because there is
+another applciation running that is not under control, it consumes
+resources and energy that drag down energy efficiency for all
+approaches. 
+
+\begin{figure*}[htp!]
+  \input{img/multi-app-performance.tex}
+   \vskip -1em
+  \caption{Multi Applications MAPE}
+  \label{fig:multi-perf}
+\end{figure*}
+
+\begin{figure*}[t]
+  \input{img/multi-app-energy.tex}
+   \vskip -1em
+  \caption{Multi Applications Energy}
+  \label{fig:multi-energy}
+\end{figure*}
+
+To demonstrate the benefits of \SYSTEM{} in this dynamic environment
+we look at the specific example of \texttt{bodytrack} at the 70\%
+performance target.  The time series data for bodytrack is shown in
+\figref{bodytrack-multiapp}.  The figures show time (measured in
+frames) on the x-axis and performance/power on the y-axes.
+Performance is normalized to the target.  There is a curve for each of
+LEO, POET, and \SYSTEM{}.  
+
+\begin{figure}[t]
+  \input{img/bodytrack-multiapp.tex}
+   \vskip -1em
+  \caption{bodytrack multiapp}
+  \label{fig:bodytrack-multiapp}
+\end{figure}
+
+This small example clearly illustrates the benefits of \SYSTEM{}
+compared to prior approaches that use only control or learning.  There
+are two key regions in the figures, the times before the second
+application starts (on the left of the vertical dashed line) and the
+times after (on the right).  Before the second application starts (at
+the dashed line), both LEO and \SYSTEM{} do a good job of tracking the
+target and keeping energy low.  In contrast, POET produces oscillating
+performance (and thus power) because it has a bad model of LITTLE core
+performance causing it to use the LITTLE cores too much and then too
+little.  This oscillation also results in unnecessary power
+consumption.  After the second application starts, POET and \SYSTEM{}
+recognize the performacne has changed and adjust resource usage.
+\SYSTEM{} does a slightly better job of tracking the change, producing
+fewer oscillations.  LEO cannot adjust to the change as it computes
+the optimal configuration once at the beginning of the application.
+Overall, LEO produces a MAPE of 13\%, POET's is 9\%, and \SYSTEM{}'s
+is 4\%.  \SYSTEM{} produces better results than LEO because it reacts
+to the change; it produces better results than POET because it has
+captured the complex behavior specific to this application on this
+system.
+
+
+\subsection{Power and performance estimation}
 We use LEO as described in \secref{sec:framework:HBM} to estimate the
 power and performance for the applications using only 10 out of 128
 observations. The true performance and power frontiers for the
@@ -147,75 +332,10 @@ accuracy that LEO can achieve for same number of samples.
 \begin{figure}[t]
   \input{img/sample-accuracy.tex}
    \vskip -1em
-  \caption{Multi Applications Energy}
+  \caption{Estimation accuracy versus sample size.}
   \label{fig:sensitivity}
 \end{figure}
 
-\subsection{\SYSTEM{}}
-\subsubsection{Single application}
-In this section, we demonstrate how \SYSTEM{} performs in in terms of
-energy consumption and MAPE throughout the runtime of an application
-for different performance targets. The performance targets have been
-set up to measure the capabilities of \SYSTEM{} under different
-scenarios. 10\% performance target corresponds to low performance
-target and a good static strategy might be to choose lower
-configurations to conserve energy, on the other hand 90\% performance
-target would mean the application requires to run in fast, hence we
-could choose highest configurations since MAPE is generally minimized
-at the highest configurations. The interesting performance targets are
-around 30\%-70\% where we don't have obvious choices for configuration
-settings to either save energy or minimize MAPE. We find that
-\SYSTEM{} has lower MAPE and energy consumption than the baseline
-algorithms. \TODO{some more specific example}. As shown in
-\figref{fig:single-perf} and \figref{fig:single-energy}, \SYSTEM{}
-uniformly has the smaller MAPE
-
-\begin{figure*}[t]
-  \input{img/single-app-performance.tex}
-   \vskip -1em
-  \caption{Single Applications MAPE}
-  \label{fig:single-perf}
-\end{figure*}
-
-\begin{figure*}[t]
-  \input{img/single-app-energy.tex}
-   \vskip -1em
-  \caption{Single Applications energy}
-  \label{fig:single-energy}
-\end{figure*}
-
-\subsubsection{Multiple applications}
-In this experiment we show that \SYSTEM{} is quite robust and performs
-well even in presence of multiple other applications as well. Similar
-to previous section, we show that \SYSTEM{} works well for different
-performance targets in case of multi applications as well. As shown in
-\figref{fig:multi-energy}, the applications are allowed to run alone
-for a while and after 10 seconds we launched four other random
-applications which contend for the resources as our target
-application. The controller in our \SYSTEM{} quickly notes that the
-performance target are being missed and moves the application to a
-configuration which would guarantee higher performance. Note that we
-do not need to get new model for multiple applications. The previously
-learnt model is sufficient under the noisy conditions as well. Overall
-on an average \SYSTEM{} is XX better in terms of energy and yy better
-in terms of MAPE that the baseline algorithms. \TODO{More
-  intuition}
-% The reason for this interesting situation is that the controller is
-% scale independent hence when the performance of the application
-% increases or dec
-\begin{figure*}[htp!]
-  \input{img/multi-app-performance.tex}
-   \vskip -1em
-  \caption{Multi Applications MAPE}
-  \label{fig:multi-perf}
-\end{figure*}
-
-\begin{figure*}[t]
-  \input{img/multi-app-energy.tex}
-   \vskip -1em
-  \caption{Multi Applications Energy}
-  \label{fig:multi-energy}
-\end{figure*}
 
 \subsubsection{Phase change}
 In this experiment we demonstrate that \SYSTEM{} allows applications
@@ -238,12 +358,6 @@ But, \SYSTEM{} provides better energy savings as compared to LEO-P2I.
    \vskip -1em
   \caption{X264 phase change}
   \label{fig:x264-phase-change}
-\end{figure}
-\begin{figure}[t]
-  \input{img/bodytrack-multiapp.tex}
-   \vskip -1em
-  \caption{bodytrack multiapp}
-  \label{fig:multi-energy}
 \end{figure}
 
 \PUNT{
