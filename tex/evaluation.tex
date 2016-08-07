@@ -93,9 +93,8 @@ Now we look into some results on how sensitive LEO is to varying the number of s
 
 \subsection{\SYSTEM{}}
 \subsubsection{Single application}
-We demonstrate how well \SYSTEM{} performs in in terms of energy consumption and MAPE throughout the runtime of an application for different performance targets. The performance targets have been set up to measure the capabilities of \SYSTEM{} under different scenarios. 10\% performance target corresponds to low performance target and a good static strategy might be to choose lower configurations to conserve energy, on the other hand 90\% performance target would mean we could choose highest configurations since MAPE is generally minimized at the highest configurations. The interesting performance targets are around 50\% where we don't have obvious choices for configuration settings to either save energy or minimize MAPE. We find that \SYSTEM{} has lower MAPE and energy consumption than the baseline algorithms. \TODO{some more specific example}.
+In this section, we demonstrate how \SYSTEM{} performs in in terms of energy consumption and MAPE throughout the runtime of an application for different performance targets. The performance targets have been set up to measure the capabilities of \SYSTEM{} under different scenarios. 10\% performance target corresponds to low performance target and a good static strategy might be to choose lower configurations to conserve energy, on the other hand 90\% performance target would mean the application requires to run in fast, hence we could choose highest configurations since MAPE is generally minimized at the highest configurations. The interesting performance targets are around 30\%-70\% where we don't have obvious choices for configuration settings to either save energy or minimize MAPE. We find that \SYSTEM{} has lower MAPE and energy consumption than the baseline algorithms. \TODO{some more specific example}. As shown in \figref{fig:single-perf} and \figref{fig:single-energy}, \SYSTEM{} uniformly has the smaller MAPE
 
-As shown in \figref{single-perf}, \SYSTEM{} uniformly has the smaller MAPE
 \begin{figure*}[t]
   \input{img/single-app-performance.tex}
    \vskip -1em
@@ -111,8 +110,8 @@ As shown in \figref{single-perf}, \SYSTEM{} uniformly has the smaller MAPE
 \end{figure*}
 
 \subsubsection{Multiple applications}
-In this experiment we show that \SYSTEM{} is quite robust and performs well even in presence of multiple other applications as well. Similar to previous section, we show that \SYSTEM{} works well for different performance targets in case of multi applications as well. The applications are allowed to run alone for a while and after 10 seconds we launched four other random applications which contend for the resources as our target application. The controller in our \SYSTEM{} quickly notes that the performance target are being missed and moves the application to a configuration which would guarantee higher performance. Note that we do not need to get new model for multiple applications. The previously learnt model is sufficient under the noisy conditions as well. Overall on an average \SYSTEM{} is XX better in terms of energy  and yy better in terms of MAPE that the baseline algorithms. \TODO{More intuition}%The reason for this interesting situation is that the controller is scale independent hence when the performance of the application increases or dec
-\begin{figure*}[t]
+In this experiment we show that \SYSTEM{} is quite robust and performs well even in presence of multiple other applications as well. Similar to previous section, we show that \SYSTEM{} works well for different performance targets in case of multi applications as well. As shown in \figref{fig:multi-energy}, the applications are allowed to run alone for a while and after 10 seconds we launched four other random applications which contend for the resources as our target application. The controller in our \SYSTEM{} quickly notes that the performance target are being missed and moves the application to a configuration which would guarantee higher performance. Note that we do not need to get new model for multiple applications. The previously learnt model is sufficient under the noisy conditions as well. Overall on an average \SYSTEM{} is XX better in terms of energy  and yy better in terms of MAPE that the baseline algorithms. \TODO{More intuition}%The reason for this interesting situation is that the controller is scale independent hence when the performance of the application increases or dec
+\begin{figure*}[htp!]
   \input{img/multi-app-performance.tex}
    \vskip -1em
   \caption{Multi Applications MAPE}
@@ -126,15 +125,14 @@ In this experiment we show that \SYSTEM{} is quite robust and performs well even
   \label{fig:multi-energy}
 \end{figure*}
 
-\TODO{Figure timeline for multiple applications}
 \subsubsection{Phase change}
-In this experiment we demonstrate that \SYSTEM{} allows applications to operate well by changing resource allotment even if the input to the application is changing with time.
+In this experiment we demonstrate that \SYSTEM{} allows applications to operate well by changing resource allotment even if the input to the application is changing with time. In \figref{fig:x264-phase-change} we see \texttt{X264}, a video encoder application runs in 2 different phases with phase change at $180^{th}$ frame. The video encode is running difficult scenes in phase 1 and the scene become significantly less hard in phase-2. In phase-1, \SYSTEM{} and the baseline LEO-P2I seem to have lower MAPE as compared to POET. At the same time, these two algorithms seem to consume less energy than POET indicating that POET is operating at a configuration not on the pareto frontier of power and performance. When we change phase, \SYSTEM{} and LEO-P2I both algorithms are still able to meet the performance target with far less fluctuations as compared to POET. But, \SYSTEM{} provides better energy savings as compared to LEO-P2I.
 
 \begin{figure}[t]
   \input{img/x264-phases2.tex}
    \vskip -1em
   \caption{X264 phase change}
-  \label{fig:multi-energy}
+  \label{fig:x264-phase-change}
 \end{figure}
 \begin{figure}[t]
   \input{img/bodytrack-multiapp.tex}
@@ -151,8 +149,9 @@ In this experiment we demonstrate that \SYSTEM{} allows applications to operate 
   \label{fig:multi-energy}
 \end{figure}
 }
-\TODO{Stream}
+
 \subsubsection{Overhead}
+The main overhead of \SYSTEM{} is due to sampling where the applications need to run through a few configurations before \SYSTEM{} can reliably estimate the entire power and performance frontier. We argue that the sampling cost can be distributed across devices by asking each of them to contribute samples for estimation. Once the sampling phase is over, LEO is very quite fast and can generate an estimate as fast as 500 ms which is significantly smaller than the time required for sampling the applications.
 
 
 
