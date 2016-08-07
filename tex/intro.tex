@@ -16,13 +16,15 @@ with minimal energy on mobile systems: (1) complexity and (2)
 dynamics.  Each challenge has been addressed individually.  First,
 machine learning approaches can identify the complicated,
 power/performance tradeoff spaces that arise on configurable,
-heterogeneous mobile systems \cite{}.  Such approaches can learn
-complex models, identifying and avoiding local extrema that lead to
-inefficient resource usage.  Second, control theoretic techniques
-ensure performance is met with minimal energy by tuning resource
-allocation using application feedback \cite{}.  Control techniques
-provide a formal basis for reasoning about dynamics and can ensure
-performance requirements are met despite application, input, or
+heterogeneous mobile systems
+\cite{dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev}.  Such
+approaches can learn complex models, identifying and avoiding local
+extrema that lead to inefficient resource usage.  Second, control
+theoretic techniques ensure performance is met with minimal energy by
+tuning resource allocation using application feedback
+\cite{Wu2004,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2}.  Control
+techniques provide a formal basis for reasoning about dynamics and can
+ensure performance requirements are met despite application, input, or
 workload fluctuations.
 
 Learning and control techniques have complementary strengths and
@@ -91,41 +93,42 @@ a variety of settings.  While many applications have inherent dynamics
 adapt to the unknown by running each application with other, random
 applications.  We evaluate both the ability to meet performance
 requests and minimize energy consumption.  We find that \SYSTEM{}:
+\TODO{Double check all the numbers once we have the final values from
+  the evaluation section.}
 \begin{itemize}
 \item \textbf{Delivers Performance Better: } We calculate the error
   between the desired and delivered performance.  When running one
   application at a time, \SYSTEM{} achieves an average error of 2.1\%,
   compared to 3.4-5.4\% for existing learning methods and 4.6\% for
-  existing control approaches (See \secref{}).  
+  existing control approaches.  
   % In a multi-application setting, our approach avchieves an average
   % error of YYY\%, compared to WWW\% and ZZZ\% (See \secref{}).
-\item \textbf{Requires Lower Average Energy:} We compare energy
-  consumption to optimal found through exhaustive search.  When
+\item \textbf{Uses Lower Average Energy:} We compare energy
+  consumption to the optimal found through exhaustive search.  When
   running one application at a time, \SYSTEM{} achieves an average
   energy consumption of 6\%, greater than optimal compared to 16-28\%
   for existing learning methods and 20\% for existing control
-  approaches (See \secref{}).
+  approaches.
 \item \textbf{Provides Better Worst Case Behavior:} In the single
   application case, \SYSTEM{} worst observed error across all
   applications and targets is 9\% compared to 19-73\% for prior
   learning methods and 25\% for existing control methods.  The worst
   observed energy for \SYSTEM{} is 1.82$\times$ greater than optimal,
   while it is 4-12$\times$ greater for learning and 2.9 $\times$
-  greater for control. (See \secref{}).
+  greater for control.
 \item \textbf{Adapts to Dynamics:} We test \SYSTEM{}'s ability to deal
   with changing environments by running each benchmark with a
   performance target and then randomly starting another application on
   one core.  Even though the available resources fluctuate
   dynamically, \SYSTEM{}'s worst performance error is 30\%, while it
   is 71-84\% for prior learning approaches and 35\% for prior control
-  approaches.  (See \secref{}).  Additional studies show \SYSTEM{}
-  reacting to input changes (See \secref{}) and application behavioral
-  changes (See \secref{}).
+  approaches.  Additional studies show \SYSTEM{} reacting to input
+  changes and application behavioral changes.
 \end{itemize}
 In summary, this paper makes the following contributions:
 \begin{itemize}
-\item Proposing the combination of a hierarchical Bayesian learning with
-  a lightweight control system to meet the twin challenges of
+\item Proposing the combination of a hierarchical Bayesian learning
+  with a lightweight control system to meet the twin challenges of
   addressing complexity and dynamics to deliver performance with
   minimal energy on mobile systems.
 \item An interface for combining discrete learned models of resource
