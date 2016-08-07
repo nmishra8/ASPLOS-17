@@ -101,7 +101,8 @@ grid style={dashed},
 
 \nextgroupplot[ybar=\pgflinewidth,
 bar width=2.0pt,
-legend entries = {{$\mathsf{Online}$},{$\mathsf{Offline}$},{$\mathsf{LEO}$},{$\mathsf{POET}$},{$\mathsf{LEO-POET}$}},legend style={draw=none,legend columns=5,at={(.5,1.7)},anchor=north},
+legend entries = {{$\mathsf{Online-P2I}$},{$\mathsf{Offline-P2I}$},{$\mathsf{LEO-P2I}$},{$\mathsf{POET}$},{$\mathsf{\SYSTEM{}}$}},
+legend style={draw=none,legend columns=5,at={(.5,1.7)},anchor=north},
 ylabel shift={0mm},
 ]
 \addplot table[x index=0,y index=2, col sep=space] {img/image_text/ma-err-0.1.txt};

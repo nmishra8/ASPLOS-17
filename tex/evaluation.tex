@@ -33,19 +33,17 @@ MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S_{r} - s_
 \end{equation}
 
 where $S_{r}$ is the performance target and $s_m(i)$ is the performance observed for $i$th job.
-\TODO{energy metric}.
+
 \begin{figure*}
 \centering
 %\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour3.pdf}
-\includegraphics[scale=0.4]{figures/performance-contour3.pdf}
+\includegraphics[scale=0.4]{figures/sample-contour3.png}
 
 \caption{Contour.}
   \label{fig:contour}
 \end{figure*}
 \subsection{Points of comparison}
-
-We compare \SYSTEM{} to the following baselines,
-\TODO{mention how controller is different for online and offline}
+We first compare the prediction accuracy for our machine learning model LEO to the following algorithms.
 
 \begin{enumerate}
 \item \textit{Online} -- This strategy carries out polynomial
@@ -57,15 +55,24 @@ We compare \SYSTEM{} to the following baselines,
 \item \textit{Offline} -- This is our zero-sample policy. This method takes the mean over the rest of the applications to estimate the power and performance of the given application and uses these predictions for the controller.
   This strategy only uses prior information and does not update the model
   based on runtime observations.
-
-\item \textit{LEO} -- 
 \end{enumerate}
-
+We later compare \SYSTEM{} to the baselines constructed with a combination of different learning models and a state-of-art controller based on \emph{Pace-to-idle(P2I)} heuristic which has been proven to be a better heuristic than \emph{Race-to-idle} \cite{RACINGPACING}. 
+\begin{enumerate}
+\item \textit{Online-P2I} -- We use the \textit{Online} learning model in combination with  \emph{Pace-to-idle(P2I)} heuristic.
+\item \textit{Offline-P2I} -- We use the \textit{Offline} learning model in combination with  \emph{Pace-to-idle(P2I)} heuristic.
+\item \textit{LEO-P2I} -- We use the \textit{LEO} learning model in combination with  \emph{Pace-to-idle(P2I)} heuristic.
+\item \textit{POET} -- We use the \textit{offline} learning model in combination with  \emph{POET} controller. 
+\end{enumerate}
 
 \subsection{Power and performance estimation}
 
-We used LEO as described in \secref{} to estimate the power and performance for the applications using only 10 out of 128 observations. The true performance and power frontiers for the applications are very unusual for some applications with multiple local minima across the configuration space as shown in \figref{contour}. Therefore we argue that using line-search based techniques which blindly increases or decreases resources (cores/clockspeed) to directly improve or reduce performance isn't optimal since we might end up in a local minima. The contour plot for power is more uniform and proportional to the amount of resources, except for a few applications like, \TODO{} as shown in \figref{}. 
-Our results are summarized in \figref{fig:accuracy}. LEO is XX better than online and xx better than offline on average. LEO uniformly performs well for all applications with the worst accuracy being YY as compared to offline and online algorithm.
+We used LEO as described in \secref{sec:framework:HBM} to estimate the power and performance for the applications using only 10 out of 128 observations. The true performance and power frontiers for the applications are very unusual for some applications with multiple local minima across the configuration space as shown in \figref{fig:contour}. Therefore, line-search based techniques for  resources allocation (cores/clockspeed) to directly improve or reduce performance isn't optimal since we might end up in a local minima. In  \figref{fig:contour}, we can see that 
+the performance plot for the applications \texttt{Kmeans},\texttt{lavamd} and \texttt{X264} 
+against the clockspeed and cores is non-convex and contains at least 2 local minima corresponding to big and LITTLE cores. 
+Similarly, we have power plot for 3 applications and the surface seems very non-smooth. The non-smoothness of the surface is the reason why parametric models over these curves do not perform well and technique, which is non-parametric hence is not affected by the shape of the curve, but rather depends on the application behavior being similar to at least one other application seems to work pretty well.
+
+Our results are summarized in \figref{fig:accuracy}. LEO is 13.4\% better than online and 19.1\% better than offline in terms of performance estimation and LEO is 3.7\% better than online and 1.5\% better than offline in terms of power estimation, on average over all the benchmarks. %Infact, LEO uniformly performs well for all applications with the worst accuracy being YY as compared to offline and online algorithm.
+
 
 \begin{figure*}[t]
   \input{img/accuracy-performance.tex}
@@ -75,7 +82,7 @@ Our results are summarized in \figref{fig:accuracy}. LEO is XX better than onlin
 \end{figure*}
 
 \subsubsection{Sensitivity to the measured samples}
-In this section we summarize results on how sensitive LEO is to varying the number of samples for estimation. Odroid devices are quite small and sampling overhead can be quite expensive hence it is important that our methods do not require huge number of samples. In \figref{sensitivity} we observe that when no samples are available LEO performs as well as Offline approach and as it gets more samples the accuracy uniformly improves and reaches greater than 90\% with around 20 samples. On the other hand, the online approach needs at least 9 samples so that the design matrix for the polynomial regression has more samples than variables. As we get more samples the accuracy for online model improves but still does not meet the accuracy that LEO can achieve for same number of samples.
+Now we look into some results on how sensitive LEO is to varying the number of samples for estimation. Odroid devices are quite small and sampling overhead can be quite expensive hence it is important that our methods do not require huge number of samples. In \figref{fig:sensitivity} we observe that when no samples are available LEO performs as well as Offline approach and as it gets more samples the accuracy uniformly improves and reaches greater than 90\% with around 20 samples. On the other hand, the online approach needs at least 9 samples so that the design matrix for the polynomial regression has more samples than variables. As we get more samples the accuracy for online model improves but still does not meet the accuracy that LEO can achieve for same number of samples.
 
 \begin{figure}[t]
   \input{img/sample-accuracy.tex}
@@ -129,7 +136,21 @@ In this experiment we demonstrate that \SYSTEM{} allows applications to operate 
   \caption{X264 phase change}
   \label{fig:multi-energy}
 \end{figure}
+\begin{figure}[t]
+  \input{img/bodytrack-multiapp.tex}
+   \vskip -1em
+  \caption{bodytrack multiapp}
+  \label{fig:multi-energy}
+\end{figure}
 
+\PUNT{
+\begin{figure}[t]
+  \input{img/ferret-multiapp.tex}
+   \vskip -1em
+  \caption{ferret multiapp}
+  \label{fig:multi-energy}
+\end{figure}
+}
 \TODO{Stream}
 \subsubsection{Overhead}
 
