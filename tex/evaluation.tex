@@ -28,7 +28,28 @@ workloads that are a combination of both as shown in
 to report its performance as heartbeats/second an application-specific
 performance metric \cite{POET}.
 
+The combination of different types of cores with different clockspeeds
+creates a complicated tradeoff space, that is application dependent.
+This complexity is one of the reasons to use machine learning to
+estimate models.  To demonstrate this complexity we illustrate the
+performance and power tradeoff spaces for three example applications
+in \figref{fig:contour}.  The figures show cores on the x-axis and
+clockspeed on the y-axis performance and power are shown as intensity,
+with darker colors representing larger performance/power.
+
+The presence of local minima and maxima mean that simple gradient
+ascent/descent methods are not suitable to navigating these tradeoff
+spaces. \figref{fig:contour} shows that the performance plot for the
+applications \texttt{Kmeans},\texttt{lavamd} and \texttt{x264} against
+the clockspeed and cores is non-convex and contains at least 2 local
+minima corresponding to big and LITTLE cores.  Similarly, the power
+plot for the applications and the surface is non-smooth.  This
+non-smoothness is the reason why parametric models of these curves do
+not perform well and the hierarchical Bayesian model -- which is
+non-parametric -- is not affected by the shape of the curve.
+
 \subsection{Evaluation metrics}
+\PUNT{
 We evaluate learning methods by computing the \emph{accuracy} of the
 learned models:
 \begin{equation}
@@ -37,6 +58,7 @@ accuracy(\hat{\y},\y) = max\left(1 - \frac{\| \hat{\y}-\y \|^2_2 }{\| \y - \bar{
 \end{equation}
 where $\hat{\y}$ represents the predicted performance/power values
 and $\y$ is the true value of the power and performance.
+}
 
 \SYSTEM{} uses the model for power and performance and its controller
 actively uses this knowledge to meet the performance target. A
@@ -132,12 +154,13 @@ in a single-application scenario, where each application is run by
 itself.  We then consider a multi-application scenario where each
 application is run and then, halfway through, a second random
 application is launched, testing the ability to deliver performance in
-a changing environment.  We then examine other dynamic scenarios where
-applicaction inputs or behavior changes during application execution.
-Finally we compare the accuracy of the various learning approaches to
-offer insight into why \SYSTEM{} performs so well.
+a changing environment.  
+%We then examine other dynamic scenarios where
+%applicaction inputs or behavior changes during application execution.
+%Finally we compare the accuracy of the various learning approaches to
+%offer insight into why \SYSTEM{} performs so well.
 
-\subsection{Performance and Energy for One Application}
+\subsection{Performance and Energy for One App}
 %Setup
 To test the ability to deliver performance and minimize energy, we set
 a range of targets ranging from 10-90\% of the maximum achievable
@@ -187,7 +210,7 @@ in those models and adapt to dynamic changes in behavior.
 %provides significantly better worst case behavior.  
 
 
-\subsection{Performance and Energy for Multile Applications}
+\subsection{Performance and Energy for Multile Apps}
 In this experiment, we test the ability to deliver performance in an
 environment where applications compete for resources.  We launch each
 of our benchmarks with a performance target (using the same targets as
@@ -279,26 +302,11 @@ to the change; it produces better results than POET because it has
 captured the complex behavior specific to this application on this
 system.
 
-
+\PUNT{
 \subsection{Power and performance estimation}
 We use LEO as described in \secref{sec:framework:HBM} to estimate the
 power and performance for the applications using only 10 out of 128
-observations. The true performance and power frontiers for the
-applications are very unusual for some applications with multiple
-local minima across the configuration space as shown in
-\figref{fig:contour}. Therefore, line-search based techniques for
-resources allocation (cores/clockspeed) to directly improve or reduce
-performance isn't optimal since we might end up in a local minima. In
-\figref{fig:contour}, we can see that the performance plot for the
-applications \texttt{Kmeans},\texttt{lavamd} and \texttt{X264} against
-the clockspeed and cores is non-convex and contains at least 2 local
-minima corresponding to big and LITTLE cores.  Similarly, we have
-power plot for 3 applications and the surface seems very non-smooth.
-The non-smoothness of the surface is the reason why parametric models
-over these curves do not perform well and technique, which is
-non-parametric hence is not affected by the shape of the curve, but
-rather depends on the application behavior being similar to at least
-one other application seems to work pretty well.
+observations.
 
 Our results are summarized in \figref{fig:accuracy}. LEO is 13.4\%
 better than online and 19.1\% better than offline in terms of
@@ -314,20 +322,27 @@ the benchmarks.
   \caption{Accuracy performance}
   \label{fig:accuracy}
 \end{figure*}
+}
 
-\subsubsection{Sensitivity to the measured samples}
-Now we look into some results on how sensitive LEO is to varying the
-number of samples for estimation. Odroid devices are quite small and
-sampling overhead can be quite expensive hence it is important that
-our methods do not require huge number of samples. In
-\figref{fig:sensitivity} we observe that when no samples are available
-LEO performs as well as Offline approach and as it gets more samples
-the accuracy uniformly improves and reaches greater than 90\% with
-around 20 samples. On the other hand, the online approach needs at
-least 9 samples so that the design matrix for the polynomial
-regression has more samples than variables. As we get more samples the
-accuracy for online model improves but still does not meet the
-accuracy that LEO can achieve for same number of samples.
+\subsection{Sensitivity to the measured samples}
+We examine \SYSTEM{}' sensitivity to sample size.  We vary the number
+of samples taken online and show how that affects the accuracy of the
+learned models.  We note that this is simply the HBM's accuracy in
+producing the model used by the controller.  This number is
+significant, because we do not want to take a large number of samples
+of new applications, if we can avoid it.
+
+\figref{sensitivity} shows the results and compares \SYSTEM{}'s
+accuracy to the online approach for learning both performance (top)
+and power (bottom).  The figure shows sample size on the x-axis and
+accuracy on the y-axis.  \SYSTEM{}'s HBM initially performs as well as
+the Offline approach and as sample size increases, the accuracy
+uniformly improves and reaches greater than 90\% with around 20
+samples. On the other hand, the online approach needs at least 9
+samples so that the design matrix for the polynomial regression has
+more samples than variables.  As we get more samples the accuracy for
+the online model improves but still does not meet \SYSTEM{}'s accuracy
+for the same number of samples.
 
 \begin{figure}[t]
   \input{img/sample-accuracy.tex}
@@ -336,7 +351,7 @@ accuracy that LEO can achieve for same number of samples.
   \label{fig:sensitivity}
 \end{figure}
 
-
+\PUNT{
 \subsubsection{Phase change}
 In this experiment we demonstrate that \SYSTEM{} allows applications
 to operate well by changing resource allotment even if the input to
@@ -368,6 +383,7 @@ But, \SYSTEM{} provides better energy savings as compared to LEO-P2I.
   \label{fig:multi-energy}
 \end{figure}
 }
+}
 
 \subsubsection{Overhead}
 The main overhead of \SYSTEM{} is due to sampling where the
@@ -375,9 +391,10 @@ applications need to run through a few configurations before \SYSTEM{}
 can reliably estimate the entire power and performance frontier. We
 argue that the sampling cost can be distributed across devices by
 asking each of them to contribute samples for estimation. Once the
-sampling phase is over, LEO is very quite fast and can generate an
+sampling phase is over, the HBM is quite fast and can generate an
 estimate as fast as 500 ms which is significantly smaller than the
-time required for sampling the applications.
+time required for sampling the applications. \TODO{Expand on the
+  controller overhead.}
 
 
 
