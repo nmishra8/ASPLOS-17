@@ -1,0 +1,25 @@
+fprintf('Single App: online offline leo poet leo+poet\n');
+for j = 0:4
+    id = (2*j + 1)*0.1;
+    filename = ['dyn-eff-',num2str(id),'.txt'];
+    fid = fopen(filename);
+    c = textscan(fid,'%d %s %f %f %f %f %f %f %f %f' );  
+    d = cell2mat(c(4:8));
+    fclose(fid);
+    mat = d(1:(end-1),:);
+    
+    MAXX(j+1,:) = max(mat);
+    MEANN(j+1,:)= mean(mat);
+    fprintf('%5.2f, %5.2f|MAX %s|MEAN %s \n',id,min(min(mat)),...
+        sprintf('%5.2f ',max(mat)),sprintf('%5.2f ',mean(mat)));
+end
+
+fprintf('MEA = %s | MAX = %s \n', sprintf('%5.2f ',max(MAXX)),...
+    sprintf('%5.2f ',mean(MEANN)));
+%Single App 
+% 0.10,  0.00|MAX  0.80  1.21  0.96  1.47  0.82 |MEAN  0.35  0.16  0.12  0.21  0.08  
+% 0.30,  0.00|MAX  0.84  1.91  1.56  0.82  0.60 |MEAN  0.37  0.21  0.18  0.20  0.08  
+% 0.50,  0.00|MAX  2.35  1.45  1.12  1.02  0.39 |MEAN  0.36  0.27  0.15  0.26  0.07  
+% 0.70,  0.00|MAX 10.63  3.07  3.07  1.44  0.54 |MEAN  0.81  0.30  0.31  0.39  0.08  
+% 0.90,  0.00|MAX  8.34  1.89  8.34  1.89  0.14 |MEAN  0.71  0.31  0.79  0.22  0.03  
+

@@ -66,6 +66,14 @@ brief overview of the relevant learning and control techniques used in
 \label{fig:learning-models}
 \end{figure*}
 
+\begin{figure}
+\centering
+%\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour2.png}
+\includegraphics[width=\columnwidth]{figures/performance-contour2.png}
+%\includegraphics[scale=0.4]{figures/sample-contour3.png}
+\caption{Contour.}
+  \label{fig:contour}
+\end{figure}
 In general, most machine learning models are predictive in nature.
 They take observations of some phenomena and turn them into a model to
 predict future outcomes.
@@ -153,6 +161,25 @@ practice, the HBM can learn much more complicated tradeoffs by
 combining observations of the new application with prior knowledge of
 different types of behavior.
 
+The combination of different types of cores with different clockspeeds
+creates a complicated tradeoff space, that is application dependent.
+This complexity is one of the reasons to use machine learning to
+estimate models.  To demonstrate this complexity we illustrate the
+performance and power tradeoff spaces for three example applications
+in \figref{fig:contour}.  The figures show cores on the x-axis and
+clockspeed on the y-axis performance and power are shown as intensity,
+with darker colors representing larger performance/power.
+
+The presence of local minima and maxima mean that simple gradient
+ascent/descent methods are not suitable to navigating these tradeoff
+spaces. \figref{fig:contour} shows that the performance plot for the
+applications \texttt{Kmeans},\texttt{lavamd} and \texttt{x264} against
+the clockspeed and cores is non-convex and contains at least 2 local
+minima corresponding to big and LITTLE cores.  Similarly, the power
+plot for the applications and the surface is non-smooth.  This
+non-smoothness is the reason why parametric models of these curves do
+not perform well and the hierarchical Bayesian model -- which is
+non-parametric -- is not affected by the shape of the curve.
 %Online Models
 
 %Offline Models
@@ -167,6 +194,9 @@ estimate application performance and power for server systems
 ran natively on the system to be optimized). \TODO{What more do we say
   here?  I like the non-parametric stuff that you put in the
   evaluation section.  Could we move that here?}
+
+
+
 
 % We test LEO's accuracy compared to existing online and offline
 % approaches to is 13.4\% better than online and 19.1\% better than

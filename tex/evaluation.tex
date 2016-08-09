@@ -28,25 +28,7 @@ workloads that are a combination of both as shown in
 to report its performance as heartbeats/second an application-specific
 performance metric \cite{POET}.
 
-The combination of different types of cores with different clockspeeds
-creates a complicated tradeoff space, that is application dependent.
-This complexity is one of the reasons to use machine learning to
-estimate models.  To demonstrate this complexity we illustrate the
-performance and power tradeoff spaces for three example applications
-in \figref{fig:contour}.  The figures show cores on the x-axis and
-clockspeed on the y-axis performance and power are shown as intensity,
-with darker colors representing larger performance/power.
 
-The presence of local minima and maxima mean that simple gradient
-ascent/descent methods are not suitable to navigating these tradeoff
-spaces. \figref{fig:contour} shows that the performance plot for the
-applications \texttt{Kmeans},\texttt{lavamd} and \texttt{x264} against
-the clockspeed and cores is non-convex and contains at least 2 local
-minima corresponding to big and LITTLE cores.  Similarly, the power
-plot for the applications and the surface is non-smooth.  This
-non-smoothness is the reason why parametric models of these curves do
-not perform well and the hierarchical Bayesian model -- which is
-non-parametric -- is not affected by the shape of the curve.
 
 \subsection{Evaluation metrics}
 \PUNT{
@@ -75,13 +57,6 @@ MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S_{r} - s_
 where $S_{r}$ is the performance target and $s_m(i)$ is the
 performance observed for $i$th heartbeat.
 
-\begin{figure*}
-\centering
-%\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour3.pdf}
-\includegraphics[scale=0.4]{figures/sample-contour3.png}
-\caption{Contour.}
-  \label{fig:contour}
-\end{figure*}
 
 We evaluate energy savings by constructing an oracle.  We run every
 application in every resource configuration and record performance and
@@ -90,7 +65,7 @@ determine the optimal configuration for each heartbeat and each
 performance target. To produce an energy metric that we can compare
 across applications, we normalize energy as:
 \begin{equation}
-  normalized\,energy = e_m / e_{optimal} - 1
+  normalized\,energy = 100\% . (e_m / e_{optimal} - 1)
 \end{equation}
 where $e_m$ is the measured energy and $e_{optimal}$ is the optimal
 energy produced by our oracle. We subtract 1, so that this metric
@@ -101,25 +76,6 @@ shows the proportion of energy consumed over optimal.  \TODO{Should we
 
 
 \subsection{Points of comparison}
-As discussed in \secref{learning}, we classify learning approaches
-into \emph{Online} and \emph{Offline} approaches, which we then use to
-construct baselines to which we compare \SYSTEM{}:
-\begin{enumerate}
-\item \textit{Online} -- This strategy observes the current
-  application in a small number of configurations then performs
-  polynomial multivariate regression and estimates the performance and
-  power of the unobserrved configurations. \PUNT{Note that the process
-    of collecting samples for estimation might be very expensive and
-    this model requires a minimum number of samples to start with.
-    This method uses only the observations and not the prior data.}
-\item \textit{Offline} -- This is our zero-sample policy, used when we
-  do not observe any values for the current application. This method
-  takes the mean over all known applications and uses that to estimate
-  power and performance for new applications.  This strategy only uses
-  prior information and does not update the model based on runtime
-  observations.
-\end{enumerate}
-
 We compare \SYSTEM{}'s combination of HBM with control to baselines
 constructed with a combination of different learning models and a
 state-of-art controller based on the \emph{Pace-to-idle (P2I)}
@@ -134,9 +90,20 @@ machine learning approaches that can estimate the energy efficiency
 for different applications.  In the next section, we will compare
 \SYSTEM{}'s delivered performance and energy savings with:
 \begin{enumerate}
-\item \textit{Online-P2I} -- We use the \textit{Online} learning model
+\item \textit{Online-P2I} -- This strategy observes the current
+  application in a small number of configurations then performs
+  polynomial multivariate regression and estimates the performance and
+  power of the unobserrved configurations. \PUNT{Note that the process
+    of collecting samples for estimation might be very expensive and
+    this model requires a minimum number of samples to start with.
+    This method uses only the observations and not the prior data.}We use the \textit{Online} learning model
   in combination with \emph{Pace-to-idle(P2I)} heuristic.
-\item \textit{Offline-P2I} -- We use the \textit{Offline} learning
+\item \textit{Offline-P2I} -- This is our zero-sample policy, used when we
+  do not observe any values for the current application. This method
+  takes the mean over all known applications and uses that to estimate
+  power and performance for new applications.  This strategy only uses
+  prior information and does not update the model based on runtime
+  observations.We use the \textit{Offline} learning
   model in combination with \emph{Pace-to-idle(P2I)} heuristic.
 \item \textit{LEO-P2I} -- We use the \textit{LEO} learning model in
   combination with \emph{Pace-to-idle(P2I)} heuristic.
@@ -248,7 +215,7 @@ with better models that are more robust to variation.
 
 The energy consumption results are not as meaningful for this
 experiment, but they are included for completeness.  Because there is
-another applciation running that is not under control, it consumes
+another application running that is not under control, it consumes
 resources and energy that drag down energy efficiency for all
 approaches. 
 
@@ -338,7 +305,7 @@ and power (bottom).  The figure shows sample size on the x-axis and
 accuracy on the y-axis.  \SYSTEM{}'s HBM initially performs as well as
 the Offline approach and as sample size increases, the accuracy
 uniformly improves and reaches greater than 90\% with around 20
-samples. On the other hand, the online approach needs at least 9
+samples. On the other hand, the online approach needs at least 7
 samples so that the design matrix for the polynomial regression has
 more samples than variables.  As we get more samples the accuracy for
 the online model improves but still does not meet \SYSTEM{}'s accuracy
