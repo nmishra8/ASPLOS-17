@@ -6,7 +6,7 @@ DVIPDF=dvipdfm
 PDFLATEX=pdflatex
 
 #FIG-FILES = figures/*.png figures_tex/*.tex
-TEX-FILES = *.tex
+TEX-FILES = *.tex tex/*.tex
 BIB-FILES = *.bib
 TOP-LEVEL-ROOT = document
 CRNAME = asplos2017
