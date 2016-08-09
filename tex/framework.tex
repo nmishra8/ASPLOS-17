@@ -217,19 +217,28 @@ been proposed for managing clock speed in processors \cite{lefurgy}.
 We would like to use control and learning to solve the problem of
 meeting an application's performance requirements while minimizing
 energy consumption.  The difficulty is that classical control
-formulations like the example above integrate the models directly into
-the controller; \ie the application-dependent relationship between
-performance and the controlled resource is directly used in the
-control equations.  We propose to address this problem using the
-classic computer science trick of adding a layer of indirection.  This
-idea is illustrated in \figref{overview}.  Instead of directly
-controlling resources using an application-dependent model, we will
-control \emph{speedup} and pass that speedup value to a separate
-module that translates speedup into a desired resource configuration
-using the learned models.  Similar models have been used to build
-generalized controllers where users are responsible for supplying the
-models \cite{POET}.  Our goal is to eliminate this user burden and
-have a remote HBM supply the model.
+formulations integrate the models directly into the controller; \ie
+the application-dependent relationship between performance and the
+controlled resource is directly used in the control equations.  For
+example, consider a control system designed to meet a performance goal
+by managing processor frequency.  This controller's coefficients would
+directly encode the relationship between frequency and application
+performance.  On mobile devices, we need to capture the relationship
+between all available resources and application performance, but this
+relationship is obviously application specific.  Thus, we face the
+problem of implementing a general control system that is applicable to
+a number of applications, and where the models relating resources to
+performance are not known ahead of time.
+
+We propose to address this problem using the classic computer science
+trick of adding a layer of indirection.  This idea is illustrated in
+\figref{overview}.  Instead of directly controlling resources using an
+application-dependent model, we will control \emph{speedup} and pass
+that speedup value to a separate module that translates speedup into a
+desired resource configuration using the learned models.  Similar
+models have been used to build generalized controllers where users are
+responsible for supplying the models \cite{POET}.  Our goal is to
+eliminate this user burden and have a remote HBM supply the model.
 
 \subsubsection{Controlling Speedup}
 We write a simple difference model relating speedup to performance:

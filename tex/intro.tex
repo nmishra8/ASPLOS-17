@@ -2,19 +2,19 @@
 Mobile systems have clear requirements for user satisfaction: they
 must meet performance goals necessary for interacting with sensors and
 human users and must conserve energy to maximize battery life.  To
-address these often conflicting requirements, hardware platforms have
-become increasingly diverse and complicated.  Many such processors
-support, for example, different core types with different
-performance/power tradeoffs, which can be operated at many different
-speeds.  Meeting performance requirements is further complicated by
-the dynamic nature of computing systems: application demands can vary
-widely as a function of input or application phase and multiple
-applications may compete for resources.
+address these conflicting requirements, hardware platforms have become
+increasingly diverse.  Many mobile processors support, for example,
+different core types with different performance/power tradeoffs, which
+can be operated at many different speeds.  Meeting performance
+requirements is further complicated by the dynamic nature of computing
+systems: application resource demands can vary widely as a function of
+input or application phase and multiple applications may compete for
+resources.
 
 Thus, two central challenges arise to meeting performance requirements
 with minimal energy on mobile systems: (1) complexity and (2)
 dynamics.  Each challenge has been addressed individually.  First,
-machine learning approaches can identify the complicated,
+machine learning approaches can model the complicated,
 power/performance tradeoff spaces that arise on configurable,
 heterogeneous mobile systems
 \cite{dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev}.  Such
@@ -28,12 +28,11 @@ ensure performance requirements are met despite application, input, or
 workload fluctuations.
 
 Learning and control techniques have complementary strengths and
-weaknesses.  Learning approaches handle complexity, but have no
-established mechanism for managing system dynamics; more powerful
-learning methods also tend to incur higher computational cost making
-them ill-suited for runtime use on energy-constrained devices.
-Control approaches handle dynamics, but rely on linear models that are
-increasingly insufficient to capture the diversity of modern hardware.
+weaknesses.  Learning approaches handle complexity -- including
+non-linearities and non-convexity -- but have no established mechanism
+for managing system dynamics.  Control approaches handle dynamics, but
+rely on linear models that are increasingly insufficient to capture
+the diversity of modern hardware.
 
 We therefore propose combining learning and control techniques to
 manage both complexity and dynamics.  We call our approach
@@ -45,12 +44,13 @@ between performance/power and resource usage, (2) a lightweight
 control system (LCS) that dynamically tunes resource usage to meet
 performance requirements with minimal energy, and (3) a performance
 hash table (PHT) that serves as the interface between learning and
-control.  The HBM produces very accurate models of power and
-performance, but it is computationally expensive, so in \SYSTEM{}, the
-HBM runs on a remote server.  The LCS runs on mobile devices and
-receives models from the HBM.  These models are stored in the PHT, a
-data structure, based on a hash table, that allows the LCS to
-determine energy minimal resource schedules in constant time.  
+control.  The HBM produces accurate models of power and performance,
+but it is computationally expensive, so in \SYSTEM{}, the HBM runs on
+a remote server.  The LCS runs on mobile devices and receives models
+from the HBM.  These models are stored in the PHT, a data structure,
+based on a hash table, that allows the LCS to determine energy minimal
+resource schedules in constant time.
+
 
 The PHT is \SYSTEM{}'s key enabler.  While learning and control
 systems exist, their combination requires an appropriate interface.
@@ -83,26 +83,23 @@ problems.
 % studied in this paper, and we believe it is sufficiently general to
 % apply to other combinations of learning and control as well.
 
-We implement \SYSTEM{} -- the HBM in Matlab for an x86 server and the
-LCS in C for ARM big.LITTLE systems.  We run 20 different benchmarks
-to test the HBM's ability to learn application specific models and the
-LCS's ability to deliver performance with near minimal energy
-consumption.  We compare to published learning and control methods in
-a variety of settings.  While many applications have inherent dynamics
-(\ie different processing phases), we explicitly test the ability to
-adapt to the unknown by running each application with other, random
+We test \SYSTEM{} on ARM big.LITTLE platforms with 20 different
+benchmarks to evaluate the HBM's ability to learn application specific
+models and the LCS's ability to deliver performance efficiently.  We
+compare to published learning and control methods in a variety of
+settings.  While many applications have inherent dynamics (\ie
+different processing phases), we explicitly test the ability to adapt
+to the unknown by running each application with other, random
 applications.  We evaluate both the ability to meet performance
 requests and minimize energy consumption.  We find that \SYSTEM{}:
 \TODO{Double check all the numbers once we have the final values from
   the evaluation section.}
 \begin{itemize}
-\item \textbf{Delivers Performance Better: } We calculate the error
+\item \textbf{Delivers Reliable Performance: } We calculate the error
   between the desired and delivered performance.  When running one
   application at a time, \SYSTEM{} achieves an average error of 2.1\%,
   compared to 3.4-5.4\% for existing learning methods and 4.6\% for
-  existing control approaches.  
-  % In a multi-application setting, our approach avchieves an average
-  % error of YYY\%, compared to WWW\% and ZZZ\% (See \secref{}).
+  existing control approaches.
 \item \textbf{Uses Lower Average Energy:} We compare energy
   consumption to the optimal found through exhaustive search.  When
   running one application at a time, \SYSTEM{} achieves an average
