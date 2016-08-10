@@ -1,128 +1,50 @@
 \section{Motivational Example}
 \label{sec:example}
 
-We present an example to show the benefits of combining control and
-machine learning.  We consider running a video encoder on a mobile
-device, specifically Samsung's Exynos 5 Octa with an ARM big.LITTLE
-architecture.  The video encoder has a performance goal -- it needs to
-keep up with the camera on the device.  Since exceeding this goal is
-not useful, we would like to just meet it while minimizing energy
-consumption to extend battery life as much as possible.  
-
-Our hardware platform has a number of features that can be used to
-tradeoff performance and power.  The processor has a cluster of four
-low-power LITTLE cores and a cluster of four high-performance big
-cores.  Cores from these clusters can be allocated to an application,
-and since our video encoder is parallel, more cores will increase
-performance while fewer cores will reduce power (as the cores are
-clock-gated).  In addition, each cluster has multiple DVFS settings
-that can be set independently for each.  Our goal is to find
-combinations of core allocations and clockspeed settings that meet our
-performance goal while minimizing energy consumption.
-
-This example demonstrates both the challenges inherent in resource
-allocation for modern mobile systems.  The complexity arises from the
-large number of combinations of cores and clock speeds available.  The
-dynamics arise because the video encoder's workload changes as the
-scene it is recording changes.  Specifically, we start the encoder
-with a difficult input scene and then after 250 frames, we transition
-to an easier scene, which requires on average XX\% less performance.
-\TODO{Let's put in a chart of the uncontrolled video}.  The first
-scene is so difficult that it is not possible to use the little cores
-at all, the second scene does permit combined use of big and little
-cores which leads to good energy efficiency.  
-
-The key to managing this workload on this architecture is to adapt to
-the change in input scene (dynamics) while correctly scheduling work
-on both big and little cores (complexity).  In this example, we look
-at three approaches: a machine learning approach \cite{}, a control
-system \cite{}, and our proposed approach which combines both.
-
-\figref{example} shows the results. \TODO{add figure.}
-
-\subsection{Machine Learning}
-There are a number of existing learning techniques for system resource
-management.  These include both offline learning (where models are
-built before hand) \cite{} and online learning (where models are
-constructed at runtime) \cite{}.  For this example, we use LEO, a
-recently proposed learning framework that combines features of both
-online and offline approaches \cite{}.  LEO takes a few observations
-of the current application and combines them with prior observations
-of other applications to estimate the performance and power for every
-possible assignment of resources to an application.  
-
-Once LEO produces these estimates it solves a linear optimization
-problem to find the optimal assignment of resources to an application.
-LEO handles a great deal of complexity and produces robust results
-even for non-linear models with local extrema.  LEO, however, does not
-handle dynamics.  LEO has no mechanisms to detect changing behavior
-and if it did, model updates are very expensive\footnote{In fact, the
-  original LEO paper suggests pairing LEO's learned models with a
-  control system for managing system dynamics.}.  
-
-LEO's performance on this example is shown by the \TODO{which} line in
-\figref{example}.  LEO meets the performance target (since we are not
-running an OS with hard real-time support, all approaches suffer from
-some natural variance) for both the hard and easier scenes.  When we
-look at the power consumption, however, we see that LEO is not as good
-as the control based approaches.  This is because LEO, by itself,
-cannot adapt to the change in input scenes.  When the input
-transitions, LEO is still using the old model, and it allocates more
-resources than necessary, leading to unnecessary energy consumption.
+Learning and control systems have complementary strengths and
+weaknesses.  In this section we present two simple examples that
+illustrate these properties.  We run our examples on mobile
+development boards featuring Samsung's Exynos 5 Octa with an ARM
+big.LITTLE architecture.  We first consider the problem of estimating
+the performance for an application running on this architecture.  We
+then consider meeting application performacne goals in a dynamic
+environment.  
 
 
-\subsection{Control Theory}
-Control theory is a popular methodology for managing compute resources
-precisely because it handles dynamics in practice while providing a
-foundation for formal reasoning about how the system will react to
-outside changes.  A number of control theoretic solutions have been
-proposed for managing system resources \cite{}.  In particular,
-several control theoretic solutions have been designed specifically
-for multimedia on mobile \cite{}.  For this example, we use POET which
-is portable across many architectures and has ARM implementations
-\cite{POET}.  POET requires users to specify a model mapping resources
-to performance and power, but it automatically tunes resource
-allocation to meet soft real-time performance constraints.
+\TODO{We also need to add references here.}
+\subsection{Estimating Performance}
+\figref{contour} illustrates how performance for applications vary as
+a function of resources on our system.  These plots show cores on the
+x-axis and clock frequency on the y-axis.  Performance is shown as
+hue, with darker colors representing higher performance.
 
-POET's control theoretical foundation allows it to manage system
-dynamics.  POET estimates application phase changes and even provides
-an optional interface allowing application developers to tune its
-responsiveness to changes in performance.  POET does not handle
-complexity, however, instead requiring the user to build a model to
-pass to POET.  For this example, we pass POET a model built for a
-different application.
-
-POET's behavior in this example is shown by \TODO{which?} line in
-\figref{example}.  POET meets the goal for the first scene.  When the
-scene transitions, however, the performance starts to oscillate.
-While some oscillation due to noise is inevitable, POET oscillates
-much more than either other approach.  This oscillation occurs because
-POET is using a bad model.  Using this model, POET is trying to
-transition to the little cores, but keeps missing the performance
-target and switching to the big cores at a high clockspeed.  POET's
-energy consumption is lower than LEO's, however, because POET can
-react to the dynamically changing input.
-
-\subsection{Combining Learning and Control}
-This example demonstrates the problems with either a strict learning
-or control approach.  In this paper we advocate combining the two so
-that models are learned for applications and then a controller takes
-over to manage dynamics.  The next section describes, in detail, how
-we propose to make the two approaches work together.  Here, we
-demonstrate the benefits.
-
-The combined approach is shown by \TODO{which?} line in
-\figref{example}.  The combination meets the performance target for
-both input scenes and produces the lowest energy consumption (XX\%
-better than LEO and YY\% better than POET \TODO{fill in}).  The
-controller handles the input transition and the learned models allow
-it to correctly use the little cores in the second scene without
-oscillating performance.
+\TODO{Let's put the discussion of the contour plots in here. We should
+  make the points that 1) some of these are easy to estimate (smooth)
+  some are harder, 2) if we want to be general we have to handle the
+  hard ones, and 3) the vast majority of control systems rely on
+  linear models which are not appropriate here.}
 
 
-\begin{figure}[t]
-  \input{img/stream-phases.tex}
-   \vskip -1em
-  \caption{X264 phase change}
-  \label{fig:multi-energy}
-\end{figure}
+\subsection{Managing Performance}
+To illustrate a dynamic system we launch \TODO{app} with a performance
+goal.  We use an existing control system to ensure that these goals
+are met.  Halfway through execution, we launch a second application on
+one of the big cores.  This new application alters the performance of
+\TODO{app} and the control adjusts by allocating more resources.  We
+compare the control system to a learning approach.
+
+\figref{dynamic} shows the results of this simple experiment, with
+time on the x-axis and performance on the y-axis, normalized to the
+target.  The vertical dashed line shows when the second application
+begins.  The figure clearly shows the benefits of a control system in
+this scenario.  After a small dip in performance, the controller
+adjusts to return it back to the desired level.  The learning system
+however, does not have any inherent mechanism to adapt to these
+changes.  While we could theoretically relearn the tradeoff space
+everytime the environment changes, this is obviously impractical.
+Furthermore, control systems already have mechanisms for managing
+dynamics.  The primary contribution of this paper is to combine a
+learning technique that can handle complexity -- as shown in \figref{}
+-- with a control system that can handle dynamics -- as shown in
+\figref{}. 
+
