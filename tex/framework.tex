@@ -180,9 +180,9 @@ Control theory provides a discipline for tuning parameters to ensure
 that a system meets some requirement in a dynamic environment.  We use
 a controller to meet a performance goal (corresponding to a
 quality-of-service or real-time constraint) and adjust system resource
-usage to see that the goal is met.  For example, control systems have
-been proposed for managing clock speed in processors \cite{lefurgy}.
-
+usage to see that the goal is met.  Our primary concern is making a
+control formulation that is general enough to be applied to a wide
+range of possible applications while receiving its model from the HBM.
 
 We would like to use control and learning to solve the problem of
 meeting an application's performance requirements while minimizing
@@ -233,16 +233,15 @@ which states that the speedup to apply at time $t$ is a function of
 the previous speedup, the error at time $t$ and the max speed $m$.
 This is a very simple \emph{deadbeat} controller that provides all the
 standard control theoretic formal guarantees
-\cite{controlhandbook,seec-scs2010}.  By measuring max speed online
-while the application runs, we can tune the control to a specific
-application.  Using this definition of max speed, most
-speedups will be less than one.  In addition to making max speed
-easier to measure, this has the nice property of bounding the
-learner's output, making for more robust learning \TODO{Nikita, what
-  am I trying to say here? Or should we just put a forward reference
-  because the next section benefits from a max speedup of 1} Of
-course, we still have the challenging problem of converting an
-abstract speedup into an actual resource allocation.
+\cite{seec-cdc2010,ICSE2014}.  By measuring max speed online while the
+application runs, we can tune the control to a specific application.
+Using this definition of max speed, most speedups will be less than
+one.  In addition to making max speed easier to measure, this has the
+nice property of bounding the learner's output, making for more robust
+learning \TODO{Nikita, what am I trying to say here? Or should we just
+  put a forward reference because the next section benefits from a max
+  speedup of 1} Of course, we still have the challenging problem of
+converting an abstract speedup into an actual resource allocation.
 
 
 \subsubsection{Translating Speedup}
