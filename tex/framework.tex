@@ -7,7 +7,14 @@
   heterogeneous mobile system.}
   \label{fig:overview}
 \end{figure}
-
+\begin{figure}
+\centering
+%\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour2.png}
+\includegraphics[width=\columnwidth]{figures/performance-contour2.png}
+%\includegraphics[scale=0.4]{figures/sample-contour3.png}
+\caption{Contour.}
+  \label{fig:contour}
+\end{figure}
 
 %Overview. Learning background.  Control background.
 \SYSTEM{} combines learning with control to tackle the complexity and
@@ -35,6 +42,8 @@ brief overview of the relevant learning and control techniques used in
 
 \subsection{Hierarchical Bayesian Learning}
 \label{sec:framework:HBM}
+
+\PUNT{
 \begin{figure*}
 
   \subfloat[]
@@ -65,22 +74,27 @@ brief overview of the relevant learning and control techniques used in
     the model built for application N.}
 \label{fig:learning-models}
 \end{figure*}
+}
+\begin{figure*}
+   \includegraphics[width=\textwidth]{figures/online_offline_HBM.pdf}
+  \caption{ Comparison of online (a) offline (b) and hierarchical
+    Bayesian models (c).  The arrows represent dependences, circles
+    are random variables, white circles are hidden variables that
+    cannot be observed and must be learned, solid circles represent
+    fully observed data, and shaded circles represent partially
+    observed data.  The online model is concerned only with the
+    current application (labeled N), the offline model combines all
+    observations into one model, and the HBM builds per-application
+    models, but makes them conditionally dependent on one another so
+    that prior observations can be used to increase the accuracy of
+    the model built for application N.}
+\label{fig:learning-models}
+\end{figure*}
 
-\begin{figure}
-\centering
-%\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour2.png}
-\includegraphics[width=\columnwidth]{figures/performance-contour2.png}
-%\includegraphics[scale=0.4]{figures/sample-contour3.png}
-\caption{Contour.}
-  \label{fig:contour}
-\end{figure}
-In general, most machine learning models are predictive in nature.
+
+In general, machine learning models are predictive in nature.
 They take observations of some phenomena and turn them into a model to
-predict future outcomes.
-%In our specific case, we want to take observations about application's performance and power given a resource allocation and predict how different resource allocations will affect the application's performance and power consumption.  
-
-In this work, we use a hierarchical Bayesian model (HBM) to turn
-observations of applications' performance and power into predictions
+predict future outcomes. In this work, we use a hierarchical Bayesian model (HBM) to turn observations of applications' performance and power into predictions
 about how other, unobserved resource allocations will alter that
 performance and power.  We use a HBM because it provides a
 statistically sound framework for learning across applications and
@@ -89,22 +103,40 @@ configurations, hence well suited to learning the complicated
 trade-off spaces that arise from heterogeneity in modern mobile
 processors.
 
-When selecting a learning framework we must find a trade-off between
-the specific and the general; \ie between frameworks that build
-application-specific models and frameworks that combine observations
-across applications.  For example, the key to energy efficiency on
-heterogeneous mobile systems is knowing when to make use of the
-smaller, low-power cores \cite{reddiHPCA2013,POET}.  An
-application-specific model will capture that precisely, but may
-require many observations before producing the correct model.  A more
-general model will capture the trend, \eg when most applications
-should transition, but this general model might miss the key
-inflection point for some applications.  We refer to
-application-specific models as \emph{online} because they build models
-for the current application and do not incorporate knowledge of other
-applications.  We refer to general models as \emph{offline} as they
-use prior observations of other applications to predict the behavior
-of a new application.
+The combination of different types of cores with different clockspeeds
+creates a complicated tradeoff space, that is application dependent.
+This complexity is one of the reasons to use machine learning to
+estimate models.  To demonstrate this complexity we illustrate the
+performance and power tradeoff spaces for two example applications
+in \figref{fig:contour}.  The figures show cores on the x-axis and
+clockspeed on the y-axis performance and power are shown as intensity,
+with darker colors representing larger performance/power. The presence of local minima and maxima mean that simple gradient
+ascent/descent methods are not suitable to navigating these tradeoff
+spaces. \figref{fig:contour} shows that the performance plot for the
+applications \texttt{Kmeans} and \texttt{lavamd} against
+the clockspeed and cores is non-convex and contains at least 2 local
+minima corresponding to big and LITTLE cores.  Similarly, the power
+plot for the applications and the surface is non-smooth.  This
+non-smoothness is the reason why parametric models based on clockspeed/Cores of these curves do
+not perform well and the hierarchical Bayesian model -- which is
+non-parametric -- is not affected by the shape of the curve.
+%Online Models
+
+%Offline Models
+
+%HBM
+
+%\TODO{I am not sure it is clear how learning addresses complexity.}
+
+\SYSTEM{} uses an HBM based on LEO \cite{LEO}, a learning system build to
+estimate application performance and power for server systems.  This HBM based model runs on a remote server (originally in LEO it ran natively on the system to be optimized). 
+
+We compare \SYSTEM{} to an \emph{online model}, which only uses the information on performance of the given application at different configurations. In order for such model to be predictive, it must be parametric in terms of those configuration values (cores/clockspeed) since no other information is available. The model would require certain number of samples to estimate the model parameters with low error. Unfortunately, the model might still falter if the model parameterization isn't correct, \eg{} if the model is misspecified and defined to be linear in cores but unlike compute-bound applications, the given application has limited parallelization and does not improve with more cores.
+
+We also compare \SYSTEM{} to a purely \emph{offline model} which only uses information from previously seen applications but lacks any knowledge of the application in hand. This general model will capture the trend, \eg when most applications
+should transition, but it might miss the key
+inflection point for some applications. 
+
 
 The HBM provides a good balance between the online and offline
 approaches.  The key differences between these three approaches are
@@ -123,16 +155,37 @@ knowledge. The offline approach uses all observations from prior
 applications and will therefore converge very quickly; however, it is
 overly general and cannot learn features specific to a single
 application.
+%%
+\PUNT{
+When selecting a learning framework we must find a trade-off between
+the specific and the general; \ie between frameworks that build
+application-specific models and frameworks that combine observations
+across applications.  For example, the key to energy efficiency on
+heterogeneous mobile systems is knowing when to make use of the
+smaller, low-power cores \cite{reddiHPCA2013,POET}.  An
+application-specific model will capture that precisely, but may
+require many observations before producing the correct model.  A more
+general model will capture the trend, \eg when most applications
+should transition, but this general model might miss the key
+inflection point for some applications.  We refer to
+application-specific models as \emph{online} because they build models
+for the current application and do not incorporate knowledge of other
+applications.  We refer to general models as \emph{offline} as they
+use prior observations of other applications to predict the behavior
+of a new application.
+}
 
-The HBM (illustrated in \figref{HBM}) is the best of both worlds. The
-models benefit from both the observations of the current application
-and the previously observed applications.  Each application has its own
+
+The HBM (illustrated in \figref{HBM}) is a superior combination of the above discussed approaches (\emph{online} and \emph{offline}). The
+model benefits from both, the observations of the current application
+and the previously observed applications.  The model relies on accurately learning the correlations between different configuration based of the data from previously seen applications. Since, dimension of the model's parameter, the correlation matrix scales with the number of configurations the model is non-parametric. 
+Unlike an \emph{offline} scenario, here each application has its own
 model, allowing specificity, but these models are conditionally
 dependent on some underlying probability distribution with a hidden
-mean and co-variance matrix.  In practice, the HBM will estimate a
+mean and co-variance matrix. In practice, the HBM will estimate a
 model for a new application using a small number of observations and
 combining those observations with the large number of observations
-previously made of applications.  Rather than over-generalizing, the
+previously made of applications . We would generate a model which most agrees with the learnt correlations and the new samples in hand. Rather than over-generalizing, the
 HBM will implicitly use similar applications to learn models.  In
 addition, the HBM's accuracy increases as more applications are
 observed because more different types of behavior are represented in
@@ -160,40 +213,6 @@ model, otherwise, it will use the compute-bound applications.  In
 practice, the HBM can learn much more complicated tradeoffs by
 combining observations of the new application with prior knowledge of
 different types of behavior.
-
-The combination of different types of cores with different clockspeeds
-creates a complicated tradeoff space, that is application dependent.
-This complexity is one of the reasons to use machine learning to
-estimate models.  To demonstrate this complexity we illustrate the
-performance and power tradeoff spaces for three example applications
-in \figref{fig:contour}.  The figures show cores on the x-axis and
-clockspeed on the y-axis performance and power are shown as intensity,
-with darker colors representing larger performance/power.
-
-The presence of local minima and maxima mean that simple gradient
-ascent/descent methods are not suitable to navigating these tradeoff
-spaces. \figref{fig:contour} shows that the performance plot for the
-applications \texttt{Kmeans},\texttt{lavamd} and \texttt{x264} against
-the clockspeed and cores is non-convex and contains at least 2 local
-minima corresponding to big and LITTLE cores.  Similarly, the power
-plot for the applications and the surface is non-smooth.  This
-non-smoothness is the reason why parametric models of these curves do
-not perform well and the hierarchical Bayesian model -- which is
-non-parametric -- is not affected by the shape of the curve.
-%Online Models
-
-%Offline Models
-
-%HBM
-
-%\TODO{I am not sure it is clear how learning addresses complexity.}
-
-\SYSTEM{} uses an HBM based on LEO, a learning system build to
-estimate application performance and power for server systems
-\cite{LEO}.  We modify LEO to run as a remote server (originally it
-ran natively on the system to be optimized). \TODO{What more do we say
-  here?  I like the non-parametric stuff that you put in the
-  evaluation section.  Could we move that here?}
 
 
 
