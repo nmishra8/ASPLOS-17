@@ -12,7 +12,7 @@ environment.
 
 
 \TODO{We also need to add references here.}
-\subsection{Estimating Performance}
+\subsection{Complexity}
 \figref{contour} illustrates how performance for applications vary as
 a function of resources on our system.  These plots show cores on the
 x-axis and clock frequency on the y-axis.  Performance is shown as
@@ -24,8 +24,24 @@ hue, with darker colors representing higher performance.
   hard ones, and 3) the vast majority of control systems rely on
   linear models which are not appropriate here.}
 
+\begin{figure}[t]
+  \input{img/lavamd-example.tex}
+   \vskip -1em
+  \caption{Performance Control for LAVAMD}
+  \label{fig:lavamd-example}
+\end{figure}
 
-\subsection{Managing Performance}
+\subsection{Dynamics}
+
+\begin{figure}[t]
+  \input{img/kmeans-example.tex}
+   \vskip -1em
+  \caption{Performance Control for KMEANS}
+  \label{fig:kmeans-example}
+\end{figure}
+
+
+
 To illustrate a dynamic system we launch \TODO{app} with a performance
 goal.  We use an existing control system to ensure that these goals
 are met.  Halfway through execution, we launch a second application on
