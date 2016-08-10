@@ -12,11 +12,9 @@ clockspeeds) has a different performance and power, which is, itself,
 application dependent.
 
 We use 20 different benchmarks from five suites including PARSEC
-(\texttt{blackscholes},\texttt{facesim}, \texttt{x264} )
-\cite{parsec}, Minebench (\texttt{Kmeans}, \texttt{non fuzzy kmeans
-  \\* (Kmeansnf)}) \cite{minebench}, Seec (\texttt{dijkstra})
-\cite{seec}, Parmibench (\texttt{ferret}) \cite{parmibench}, and
-Rodinia
+(\texttt{blackscholes},\texttt{facesim}, \texttt{ferret},
+\texttt{x264} ) \cite{parsec}, Minebench (\texttt{Kmeans}, \texttt{non
+  fuzzy kmeans \\* (Kmeansnf)}), and Rodinia
 (\texttt{backprop},\texttt{cfd}, \texttt{nn}, \texttt{lud}, \\*
 \texttt{backprop}, \texttt{bfs}) \cite{rodinia}.  We also use a
 partial differential equation solver (\texttt{jacobi}) and a memory
@@ -79,12 +77,12 @@ shows the proportion of energy consumed over optimal.  \TODO{Should we
 We compare \SYSTEM{}'s combination of HBM with control to baselines
 constructed with a combination of different learning models and a
 state-of-art controller based on the \emph{Pace-to-idle (P2I)}
-heuristic \cite{RACINGPACING}.  Pace-to-idle is proven to be never
-worse than race-to-idle and often provides as much as $2\times$
-energy savings, but requires application-specific knowledge to
-implement.  Pace-to-idle completes jobs in the most energy-efficient
-configuration and then transitions to a low-power sleep state until
-the next job is ready.  As the energy-efficiency of a configuration is
+heuristic \cite{kim-cpsna}.  Pace-to-idle is proven to be never worse
+than race-to-idle and often provides as much as $2\times$ energy
+savings, but requires application-specific knowledge to implement.
+Pace-to-idle completes jobs in the most energy-efficient configuration
+and then transitions to a low-power sleep state until the next job is
+ready.  As the energy-efficiency of a configuration is
 application-dependent, it is natural to combine pace-to-idle with
 machine learning approaches that can estimate the energy efficiency
 for different applications.  In the next section, we will compare
