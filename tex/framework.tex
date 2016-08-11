@@ -95,23 +95,7 @@ statistically sound framework for learning across applications and
 devices.  The HBM is non-parametric in terms of resource
 configurations, hence well suited to learning the complicated
 trade-off spaces that arise from heterogeneity in modern mobile
-processors.
-
-The combination of different types of cores with different clockspeeds
-creates a complicated tradeoff space, that is application dependent.
-This complexity is one of the reasons to use machine learning to
-estimate models.  To demonstrate this complexity we illustrate the
-performance and power tradeoff spaces for two example applications in
-\figref{fig:contour}.  The figures show cores on the x-axis and
-clockspeed on the y-axis performance and power are shown as intensity,
-with darker colors representing larger performance/power. The presence
-of local minima and maxima mean that simple gradient ascent/descent
-methods are not suitable to navigating these tradeoff spaces.
-\figref{fig:contour} shows that the performance plot for the
-applications \texttt{Kmeans} and \texttt{lavamd} against the
-clockspeed and cores is non-convex and contains at least 2 local
-minima corresponding to big and LITTLE cores.  Similarly, the power
-plot for the applications and the surface is non-smooth.  This
+processors, like those illustrated in \figref{contour}.  This
 non-smoothness is the reason why parametric models based on
 clockspeed/cores of these curves do not perform well and the
 hierarchical Bayesian model -- which is non-parametric -- is not
