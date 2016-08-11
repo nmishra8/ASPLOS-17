@@ -11,6 +11,12 @@ systems: application resource demands can vary widely as a function of
 input or application phase and multiple applications may compete for
 resources.
 
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/mobile-leo-poet.pdf}
+\caption{\SYSTEM{} overview.}
+  \label{fig:overview}
+\end{figure}
+
 Thus, two central challenges arise to meeting performance requirements
 with minimal energy on mobile systems: (1) complexity and (2)
 dynamics.  Each challenge has been addressed individually.  First,
@@ -38,18 +44,19 @@ We therefore propose combining learning and control techniques to
 manage both complexity and dynamics.  We call our approach
 \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning for
   \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
-  \textbf{E}fficiency} and it has three components: (1) a hierarchical
-Bayesian model (HBM) that learns application-specific relationships
-between performance/power and resource usage, (2) a lightweight
-control system (LCS) that dynamically tunes resource usage to meet
-performance requirements with minimal energy, and (3) a performance
-hash table (PHT) that serves as the interface between learning and
-control.  The HBM produces accurate models of power and performance,
-but it is computationally expensive, so in \SYSTEM{}, the HBM runs on
-a remote server.  The LCS runs on mobile devices and receives models
-from the HBM.  These models are stored in the PHT, a data structure,
-based on a hash table, that allows the LCS to determine energy minimal
-resource schedules in constant time.
+  \textbf{E}fficiency} and it has three components as illustrated in
+\figref{overview}: (1) a hierarchical Bayesian model (HBM) that learns
+application-specific relationships between performance/power and
+resource usage, (2) a lightweight control system (LCS) that
+dynamically tunes resource usage to meet performance requirements with
+minimal energy, and (3) a performance hash table (PHT) that serves as
+the interface between learning and control.  The HBM produces accurate
+models of power and performance, but it is computationally expensive,
+so in \SYSTEM{} the HBM runs on a remote server.  As it is remote, it
+is also capable of aggregating data from multiple devices.  The LCS
+runs on individual mobile devices and receives models from the HBM.
+These models are stored in the PHT, a data structure that allows the
+LCS to determine energy minimal resource schedules in constant time.
 
 
 The PHT is \SYSTEM{}'s key enabler.  While learning and control

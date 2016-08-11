@@ -1,12 +1,12 @@
 \section{Combining Learning and Control}
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/ControlLearning.png}
-\caption{\SYSTEM{} overview. A remote HBM generates a model, stored in
-  the performance hash table, which is used to control resources to
-  meet a performance goal for an application running on a
-  heterogeneous mobile system.}
-  \label{fig:overview}
-\end{figure}
+% \begin{figure}
+% \includegraphics[width=\columnwidth]{figures/ControlLearning.png}
+% \caption{\SYSTEM{} overview. A remote HBM generates a model, stored in
+%   the performance hash table, which is used to control resources to
+%   meet a performance goal for an application running on a
+%   heterogeneous mobile system.}
+%   \label{fig:overview}
+% \end{figure}
 
 
 %Overview. Learning background.  Control background.
@@ -261,8 +261,8 @@ We propose to address this problem using the classic computer science
 trick of adding a layer of indirection.  This idea is illustrated in
 \figref{overview}.  Instead of directly controlling resources using an
 application-dependent model, we will control \emph{speedup} and pass
-that speedup value to a separate module that translates speedup into a
-desired resource configuration using the learned models.  Similar
+that speedup value to a separate module that optimizes energy while
+respecting this speedup constraint using the learned models.  Similar
 models have been used to build generalized controllers where users are
 responsible for supplying the models \cite{POET}.  Our goal is to
 eliminate this user burden and have a remote HBM supply the model.
@@ -301,7 +301,7 @@ learning \TODO{Nikita, what am I trying to say here? Or should we just
 converting an abstract speedup into an actual resource allocation.
 
 
-\subsubsection{Translating Speedup}
+\subsubsection{Optimizing Speedup}
 We need to map the speedup produced by \eqnref{speedup-control} into a
 resource allocation.  On our target system, an ARM big.LITTLE
 architecture, that specifically means mapping speedup into a number of
@@ -359,83 +359,86 @@ must be an optimal solution with the following properties:
 \end{itemize}
 We use these two facts to construct a constant time algorithm for
 finding the optimal solution to \eqnrref{power}{time} online.  The
-intuition behind our solution is illustrated in \figref{convexhull}.
-This figure shows a hypothetical example of the power and performance
-tradeoffs the HBM might learn for some application and device.  Each
-point represents a configuration and each configuration is charted
-with normalized performance on the x-axis and normalized power on the
-y-axis.  For any feasible performance requirement, there is a minimal
-energy schedule that uses no more than two of the configurations on
-the lower convex hull as any points that lie above the lower convex
-hull require more power for equivalent performance \cite{kim-cpsna}.
-Therefore, the HBM estimates the power and performance of all
-configurations, then finds the lower convex hull, and sends that to
-the LCS.  The lower convex hull is the interface between the HBM and
-the LCS, and the key enabler of \SYSTEM{}'s combination of learning
-and control.
+intuition behind our solution is illustrated in the upper half of
+\figref{pht}.  This figure shows a hypothetical example of the power
+and performance tradeoffs the HBM might learn for some application and
+device.  Each point represents a configuration and each configuration
+is charted with normalized performance on the x-axis and normalized
+power on the y-axis.  For any feasible performance requirement, there
+is a minimal energy schedule that uses no more than two of the
+configurations on the lower convex hull as any points that lie above
+the lower convex hull require more power for equivalent performance
+\cite{kim-cpsna}.  Therefore, the HBM estimates the power and
+performance of all configurations, then finds the lower convex hull,
+and sends that to the LCS.  The lower convex hull is the interface
+between the HBM and the LCS, and the key enabler of \SYSTEM{}'s
+combination of learning and control.
+
+% \begin{figure}
+% \includegraphics[width=\columnwidth]{figures/TradeoffExample.png}
+% \caption{Example of plotting configurations in the power versus
+%   performance space.}
+%   \label{fig:convexhull}
+% \end{figure}
+
+
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures/TradeoffExample.png}
-\caption{Example of plotting configurations in the power versus
-  performance space.}
-  \label{fig:convexhull}
-\end{figure}
-
-
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/SpeedupHashTable.png}
-\caption{Data structure to efficiently convert required speedup into a
-  configuration.}
+  \includegraphics[width=\columnwidth]{figures/perforamnce-hash-table.pdf}
+  \caption{The Performance Hash Table and its relationship to the
+    configuration space.  The HBM encodes the configuration as the
+    lower convex hull of points in the performance/power tradeoff
+    space and stores those in a table indexed by speedup.}
   \label{fig:pht}
 \end{figure}
 
 The HBM stores the lower convex hull in a \emph{performance hash
-  table} (PHT).  The PHT is illustrated in \figref{pht}.  It consists
-of two arrays, the first is an array of pointers into the second
-array, which stores the configurations on the lower convex hull sorted
-by speedup.  Recall that speedups are computed relative to the maximum
-speed.  We therefore know the largest speedup is 1, so we need only
-concern ourselves with speedups less than 1.  The first table of
-pointers has a \emph{resolution} indicating how many decimal points of
-precision it captures.  The example in \figref{pht} has a resolution
-of $0.1$.  Each pointer in the first table points to the configuration
-in the second array that has the largest speedup less than or equal to
-the index.
+  table} (PHT).  The PHT and its relationship to the lower convex hull
+is illustrated in \figref{pht}.  It consists of two arrays, the first
+is an array of pointers into the second array, which stores the
+configurations on the lower convex hull sorted by speedup.  Recall
+that speedups are computed relative to the maximum speed.  We
+therefore know the largest speedup is 1, so we need only concern
+ourselves with speedups less than 1.  The first table of pointers has
+a \emph{resolution} indicating how many decimal points of precision it
+captures.  The example in \figref{pht} has a resolution of $0.1$.
+Each pointer in the bottom  table points to the configuration in the
+second array that has the largest speedup less than or equal to the
+index.
 
-To use the table, the translator receives a speedup $s(t)$ from the
+To use the table, the optimizer receives a speedup $s(t)$ from the
 controller.  It needs to convert this into two configurations referred
-to as $hi$ and $lo$.  To find the $hi$ configuration, the translator
+to as $hi$ and $lo$.  To find the $hi$ configuration, the optimizer
 clamps the desired speedup to the largest index lower than $s(t)$ and
 then walks forward until it finds the first configuration with a
 speedup higher than $s(t)$.  To find the $lo$ configuration, the
-translator clamps the desired speedup to the smallest index higher
-than $s(t)$ and then walks backwards until it finds the configuration
-with the largest speedup less than $s(t)$.
+optimizer clamps the desired speedup to the smallest index higher than
+$s(t)$ and then walks backwards until it finds the configuration with
+the largest speedup less than $s(t)$.
 
-For example, consider the PHT in \figref{pht} and a translator trying
-to meet a speedup $s(t) = .65$.  To find $hi$, the translator indexes
+For example, consider the PHT in \figref{pht} and an optimizer trying
+to meet a speedup $s(t) = .65$.  To find $hi$, the optimizer indexes
 at .6 and walks up to find $c=2$ with $s_c=.8$, setting $hi = 2$.  To
-find $lo$, the translator indexes the table at .7 and walks backward
-to find $c=1$ with $s_c=.2$, setting $lo = 1$.
+find $lo$, the optimizer indexes the table at .7 and walks backward to
+find $c=1$ with $s_c=.2$, setting $lo = 1$.
 
-Finally, the translator sets $\tau_{hi}$ and $\tau_{lo}$ by solving
-the following set of equations:
+Finally, the optimizer sets $\tau_{hi}$ and $\tau_{lo}$ by solving the
+following set of equations:
 \begin{eqnarray}
   \tau &=& \tau_{hi} + \tau_{lo}    \label{eqn:s1} \\
   s(t) &=& s_{hi} \cdot \tau_{hi} + s_{lo} \cdot \tau_{lo} \label{eqn:s2} 
 \end{eqnarray}
-In these equations, $s(t)$ is the speedup requested by the translator
+In these equations, $s(t)$ is the speedup requested by the optimizer
 and $s_c$ are speedups estimated by the learner.
 
-By solving \eqnsref{s1}{s2}, the translator has turned the
-controller's requested speedup into a schedule of resource allocations
-using the models provided by the HBM.  Provided that the resolution is
-large enough to get a good spread of configurations to indices, the
-translator will always index the configuration array at most one entry
-from where it needs to be.  Thus, the entire translation process runs
+By solving \eqnsref{s1}{s2}, the optimizer has turned the controller's
+requested speedup into a schedule of resource allocations using the
+models provided by the HBM.  Provided that the resolution is large
+enough to get a good spread of configurations to indices, the
+optimizer will always index the configuration array at most one entry
+from where it needs to be.  Thus, the entire optimization process runs
 in constant time -- assuming that the learner is responsible for
-building the PHT once before passing it on to the translator.  This
+building the PHT once before passing it on to the optimizer.  This
 efficiency comes at a cost of memory usage, as many of the entries in
 the speedup index table will point to redundant locations in the
 configuration array.  This tradeoff is reasonable in practice as the
@@ -453,8 +456,8 @@ local observations of an application it runs and sends those to the
 server.  The server integrates those observations in its HBM to
 produce customized models for each device.  These models are sent back
 to the individual devices where they are used to meet performance
-requirements with minimal energy by translating a speedup signal into
-configurations.
+requirements with minimal energy by turning a speedup signal into an
+optimal schedule of configurations.
 
 \TODO{The control theoretic guarantees are still valid provided that
   the error in the learned speedup is not too great.  Is it worth
