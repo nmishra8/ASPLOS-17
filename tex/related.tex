@@ -1,20 +1,19 @@
 \section{Related Work}
 
 We discuss related work in managing resources to meet performance
-goals with and reduce energy.  We first discuss machine learning
-approaches, then control theoretic ones.  
+goals and reduce energy.  
 
 \subsection{Machine Learning}
 There are a huge array of different learning techniques that are
-applicable to different prolems.  As discussed in in \secref{learning}
-we break learning for reasource management into three categories:
+applicable to different problems.  As discussed in in \secref{learning}
+we break learning for resource management into three categories:
 offline, online, and hybrid approaches.  
 
 \subsubsection{Offline Learning}
 The offline approaches build models before deployment and then use
 those fixed models to allocate resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  In
-these approaches, the model building phase is generally very expensive
+these approaches, the model building phase is generally very expensive,
 requiring both a large number of samples and substantial computation
 to turn those samples into a model that accurately captures the
 relationship between the observed features and the behavior to be
@@ -23,7 +22,17 @@ overhead.  The main drawback is that the models are not updated as the
 system runs, so there is no chance to correct mistakes or adapt to
 specific workloads.
 
-\TODO{Vijay's webbrowsing learner?}
+A good example of an offline approach applies learning to render web
+pages on mobile systems with low energy \cite{reddiHPCA2013}.  This
+system is similar in spirit to \SYSTEM{}.  It builds an offline model
+mapping web page features into estimations of performance for
+different core types.  When a new page is downloaded, the system
+quickly estimates the resource need to render the web page and uses the
+lowest energy resources that will still maintain user satisfaction.
+The mapping of web pages to resource use is very complicated and this
+approach deals with that complication.  It does not, however, address
+system dynamics; \eg when other apps are running concurrently with the
+web browser.
 
 \subsubsection{Online Learning}
 Online techniques use observations of the current application to tune
@@ -38,7 +47,7 @@ uses online adaptation to tailor parallelism to application workload
 
 
 \subsubsection{Hybrid Approaches}
-Some approaches have combined offline predictive models with online
+Some approaches combine offline predictive models with online
 adaptation
 \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
   wu2012inferred}.  For example, Dubach et al.  propose such a combo
@@ -64,8 +73,8 @@ small number of observations made online for the current application
 Almost all control solutions can be thought of as a combination of
 offline model building with online adaptation.  Usually the model
 building involves substantial empirical measurement and statistical
-regression to build a model (analogous to determining the value of $k$
-in \eqnref{clock}) that is then used to synthesize a control system
+regression to build a model that is then used to synthesize a control
+system
 \cite{Wu2004,TCST,Chen2011,PTRADE,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
 Over a narrow range of applications the combination of offline
 learning and control works well, as the offline models capture the
@@ -79,33 +88,33 @@ control.
 
 Indeed, the need for good models is the central tension in developing
 control for computing systems.  It is always possible to build a
-control for a specific application and system by extensively modeling
-that pair.  More general controllers which work with a range of
-applications have addressed this issue with models in several ways.
+controller for a specific application and system by extensively
+modeling that pair.  More general controllers which work with a range
+of applications have addressed this issue with models in several ways.
 Several approaches provide control libraries that encapsulate control
 functionality and require users to input a model
 \cite{ControlWare,Sojka,Rajkumar,POET}.  Other approaches
 automatically synthesize both a model and a controller for either
 hardware \cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.
-% Still others start with a general model, and customize it at runtime
-% by either classifying an application's behavior and using a model
-% for that class \cite{MICRO2016} or using some computationally ef
-\TODO{There are some approaches that update a model using ``online''
-  learning. We should talk about those, but only if we have data that
-  shows that online is worse than LEO.  I think we will have that in
-  the paper, though.}  Our approach is unique in that a remote server
-generates the model automatically.  By offloading the learning part to
-a remote server, we are able to (1) combine data from many
-applications and systems and (2) apply computionally expensive, but
-highly accurate learning techniques.
+JouleGuard combines learning for energy efficiency with control for
+managing application parameters \cite{JouleGuard}.  In JouleGuard, a
+learner adapts the controller's coefficients to model certainty, but
+JouleGuard's learner does not produce a new model for the controller.
+Because JouleGuard's learner runs on the same device as the controlled
+application, it must be computationally efficient and thus it cannot
+identify correlations across applications or even different resource
+configurations.  \SYSTEM{} is unique in that a remote server generates
+an application-specific model automatically.  By offloading the
+learning task, we are able to (1) combine data from many applications
+and systems and (2) apply computationally expensive, but highly accurate
+learning techniques.
 
-
-Perhaps the most similar approach to ours is Carat \cite{}.  Carat
-aggregates data across many mobile devices and sends a report to human
-users about how to configure their device to increase battery life.
-While both Carat and our approach learn across devices, they have very
-different goals.  Carat's goal is to return very high-level
+Perhaps the most similar approach to \SYSTEM{} is Carat \cite{carat}.
+Carat aggregates data across many mobile devices and sends a report to
+human users about how to configure their device to increase battery
+life.  While both Carat and \SYSTEM{} learn across devices, they have
+very different goals.  Carat's goal is to return very high-level
 information to human users; \eg you should update a driver to extend
-battery life.  Our approach returns lower-level models to another
+battery life.  \SYSTEM{} returns lower-level models to another
 automated system that will apply those models to save energy.
 
