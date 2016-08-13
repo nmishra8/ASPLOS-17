@@ -15,38 +15,38 @@ application phase and multiple applications may compete for resources.
   \label{fig:overview}
 \end{figure}
 
-Thus, two central challenges arise to meeting performance requirements
-with minimal energy on mobile systems: (1) complexity and (2)
-dynamics, each of which has been addressed individually.  Machine
-learning approaches can model the complicated, power/performance
+Thus, two challenges arise to meeting performance requirements with
+minimal energy on mobile systems: (1) complexity and (2) dynamics.
+Machine learning approaches handle the complex power/performance
 tradeoff spaces that arise on heterogeneous mobile systems
-\cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev}.
-\PUNT{Such approaches can learn complex models, identifying and
-  avoiding local extrema that lead to inefficient resource usage.}
-Control theoretic techniques explicitly address the dynamics of
-resource management
-\cite{Hellerstein2004a,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2}.
-\PUNT{Control techniques provide a formal basis for reasoning about
-  dynamics and are robust to application, input, and workload
-  fluctuations.}
-
-Learning and control techniques have complementary strengths and
-weaknesses.  Learning approaches handle complexity but have no
-established mechanism for managing system dynamics.  Control
-approaches handle dynamics but rely on linear models that do not
-capture the diversity of modern hardware.
+\cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev},
+but they have no established mechanisms for reacting to environmental
+fluctuations.  \PUNT{Such approaches can learn complex models,
+  identifying and avoiding local extrema that lead to inefficient
+  resource usage.}  Control theoretic techniques explicitly address
+system and resource dynamics
+\cite{Hellerstein2004a,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2},
+but rely on linear models that do not capture the diversity of modern
+hardware.  \PUNT{Control techniques provide a formal basis for
+  reasoning about dynamics and are robust to application, input, and
+  workload fluctuations. These approaches have complementary strengths
+  and weaknesses.  Learning handle complexity but have no established
+  mechanism for managing system dynamics.  Control approaches handle
+  dynamics but rely on linear models that do not capture the diversity
+  of modern hardware. } Individually, neither control nor learning
+meet the challenges of modern mobile resource management.
 
 We therefore propose \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd
   \textbf{L}earning for \textbf{O}ptimal \textbf{R}esource
-  \textbf{E}nergy \textbf{E}fficiency} a combination of learning and
+  \textbf{E}nergy \textbf{E}fficiency}, a combination of learning and
 control consisting of the three components shown in
 \figref{fig:overview}: (1) a hierarchical Bayesian model (HBM) that
 learns application-specific relationships between performance/power
 and resource usage, (2) a lightweight control system (LCS) that
 dynamically tunes resource usage to meet performance requirements with
 minimal energy, and (3) a performance hash table (PHT), which is the
-interface between learning and control.  There are two` unique aspects
-to \SYSTEM{}'s design:
+interface between learning and control.  \SYSTEM{}'s design has two
+unique features:
 \begin{itemize}
 \item \textit{Remote Learning:} Sophisticated learning techniques
   produce accurate models of complicated systems but they are
