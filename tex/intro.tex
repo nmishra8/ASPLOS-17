@@ -1,15 +1,13 @@
-\section{Introducation}
+\section{Introduction}
 Mobile systems have clear requirements for user satisfaction: they
 must meet performance goals necessary for interacting with sensors and
 human users and must conserve energy to maximize battery life.  To
-address these conflicting requirements, hardware platforms have become
-increasingly diverse.  Many mobile processors support, for example,
-different core types with different performance/power tradeoffs, which
-can be operated at many different speeds.  Meeting performance
-requirements is further complicated by the dynamic nature of computing
-systems: application resource demands can vary widely as a function of
-input or application phase and multiple applications may compete for
-resources.
+address these conflicting requirements, mobile processors have become
+increasingly diverse, exposing diverse heterogeneous resources that
+must be managed by software. Meeting performance requirements is
+further complicated by the dynamic nature of computing systems:
+application resource demands can vary widely as a function of input or
+application phase and multiple applications may compete for resources.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/mobile-leo-poet.pdf}
@@ -19,39 +17,81 @@ resources.
 
 Thus, two central challenges arise to meeting performance requirements
 with minimal energy on mobile systems: (1) complexity and (2)
-dynamics.  Each challenge has been addressed individually.  First,
-machine learning approaches can model the complicated,
-power/performance tradeoff spaces that arise on configurable,
-heterogeneous mobile systems
-\cite{dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev}.  Such
-approaches can learn complex models, identifying and avoiding local
-extrema that lead to inefficient resource usage.  Second, control
-theoretic techniques ensure performance is met with minimal energy by
-tuning resource allocation using application feedback
-\cite{Wu2004,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2}.  Control
-techniques provide a formal basis for reasoning about dynamics and can
-ensure performance requirements are met despite application, input, or
-workload fluctuations.
+dynamics, each of which has been addressed individually.  Machine
+learning approaches can model the complicated, power/performance
+tradeoff spaces that arise on heterogeneous mobile systems
+\cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev}.
+\PUNT{Such approaches can learn complex models, identifying and
+  avoiding local extrema that lead to inefficient resource usage.}
+Control theoretic techniques explicitly address the dynamics of
+resource management
+\cite{Hellerstein2004a,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2}.
+\PUNT{Control techniques provide a formal basis for reasoning about
+  dynamics and are robust to application, input, and workload
+  fluctuations.}
 
 Learning and control techniques have complementary strengths and
-weaknesses.  Learning approaches handle complexity -- including
-non-linearities and non-convexity -- but have no established mechanism
-for managing system dynamics.  Control approaches handle dynamics, but
-rely on linear models that are increasingly insufficient to capture
-the diversity of modern hardware.
+weaknesses.  Learning approaches handle complexity but have no
+established mechanism for managing system dynamics.  Control
+approaches handle dynamics but rely on linear models that do not
+capture the diversity of modern hardware.
 
-We therefore propose combining learning and control techniques to
-manage both complexity and dynamics.  We call our approach
-\SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning for
-  \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
-  \textbf{E}fficiency} and it has three components as illustrated in
-\figref{fig:overview}: (1) a hierarchical Bayesian model (HBM) that learns
-application-specific relationships between performance/power and
-resource usage, (2) a lightweight control system (LCS) that
+We therefore propose \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd
+  \textbf{L}earning for \textbf{O}ptimal \textbf{R}esource
+  \textbf{E}nergy \textbf{E}fficiency} a combination of learning and
+control consisting of the three components shown in
+\figref{fig:overview}: (1) a hierarchical Bayesian model (HBM) that
+learns application-specific relationships between performance/power
+and resource usage, (2) a lightweight control system (LCS) that
 dynamically tunes resource usage to meet performance requirements with
-minimal energy, and (3) a performance hash table (PHT) that serves as
-the interface between learning and control.  
+minimal energy, and (3) a performance hash table (PHT), which is the
+interface between learning and control.  There are two` unique aspects
+to \SYSTEM{}'s design:
+\begin{itemize}
+\item \textit{Remote Learning:} Sophisticated learning techniques
+  produce accurate models of complicated systems but they are
+  computationally expensive.  \SYSTEM{} mitigates this expense by
+  running the learner on a remote server. This approach not only
+  addresses overhead, it allows the learner to aggregate data from
+  multiple devices, improving learning accuracy.
+\item \textit{Fast Control:} The controller must not significantly
+  impact performance or energy on the mobile device.  Yet, the
+  controller must solve a constrained optimization problem to meet the
+  performance goal with minimal energy.  To overcome this difficulty,
+  \SYSTEM{}'s remote learner constructs a PHT for each application.
+  While building the PHT is expensive, it allows the LCS to solve the
+  constrained optimization problem in constant ($O(1)$) time.
+\end{itemize}
+The PHT is \SYSTEM{}'s key enabler.  It is the interface between the
+HBM and LCS, allows the HBM to be executed remotely, and enables fast
+mobile optimization.
 
+
+\PUNT{
+\SYSTEM{} overcomes three difficulties of combining learning and
+control:
+\begin{itemize}
+\item \textit{Model differences:} The learner produces non-linear
+  models of discrete resources, while the control system is based on
+  continuous, linear models.  \SYSTEM{} addresses this challenges by
+  scheduling resources in time to map a continuous control into
+  discrete resource configurations.
+\item \textit{Learning overhead:} Sophisticated learning techniques
+  produce accurate models of complicated systems but they are
+  computationally expensive.  \SYSTEM{} overcomes this difficulty by
+  running the learner on a remote server. This approach not only
+  addresses overhead, it allows the learner to aggregate data from
+  multiple devices, improving learning accuracy.
+\item \textit{Control overhead:} The controller must not significantly
+  impact performance or energy on the local device.  Therefore,
+  \SYSTEM{} stores the learned models in the PHT, which allows it to
+  schedule resources in constant ($O(1)$) time.  
+\end{itemize}
+The PHT is \SYSTEM{}'s key enabler.  It serves as the interface
+between the HBM and LCS, allows the learner to be executed remotely,
+and enables fast scheduling on the local device.
+}
+\PUNT{
 The main challenge in combining a learning system with a control system is that the learner produces non-linear models of
 resources (\eg cores and clockspeeds) which are discrete, while the control
 system is based on continuous linear models.  \SYSTEM{} bridges this
@@ -67,6 +107,7 @@ Thirdly, for great user satisfaction, we would like this system to be fast. Henc
 systems exist, their combination requires an appropriate interface.
  %The PHT stores the learned models in such a way that this optimization problem can be solved in constant time, making it appropriate for use on a mobile device.   
  While only tested with \SYSTEM{} we believe the PHT is general enough to be used by different learning and control systems, or even to solve different optimization problems.
+}
 
 
 % While control and learning frameworks exist, the key to combining them
@@ -85,41 +126,38 @@ systems exist, their combination requires an appropriate interface.
 % underlying system.  This interface allows us to combine the approaches
 % studied in this paper, and we believe it is sufficiently general to
 % apply to other combinations of learning and control as well.
+\PUNT{ We test \SYSTEM{} on ARM big.LITTLE platforms with 20 different
+  benchmarks to evaluate the HBM's ability to learn application
+  specific models and the LCS's ability to deliver performance
+  efficiently.  We compare to published learning and control methods
+  in a variety of settings.  While many applications have inherent
+  dynamics (\ie{}{} different processing phases), we explicitly test
+  the ability to adapt to the unknown by running each application with
+  other, random applications.} 
 
-We test \SYSTEM{} on ARM big.LITTLE platforms with 20 different
-benchmarks to evaluate the HBM's ability to learn application specific
-models and the LCS's ability to deliver performance efficiently.  We
-compare to published learning and control methods in a variety of
-settings.  While many applications have inherent dynamics (\ie{}{}
-different processing phases), we explicitly test the ability to adapt
-to the unknown by running each application with other, random
-applications. In summary, this paper makes the following contributions:
+This paper makes the following contributions:
 \begin{itemize}
-\item Proposing the combination of a hierarchical Bayesian learning
-  with a lightweight control system to meet the twin challenges of
-  addressing complexity and dynamics to deliver performance with
-  minimal energy on mobile systems.
-\item An interface for combining discrete learned models of resource
+\item The combination of a hierarchical Bayesian learning with a
+  lightweight control system to deliver performance with minimal
+  energy on mobile systems.
+\item An interface for combining learned models of discrete resource
   usage with continuous control models of resource dynamics.
-\item Evaluating the implementation and comparison to existing,
-  independent learning and control techniques.
+\item Comparison to independent learning and control techniques to
+  evaluate performance and energy.
+\end{itemize}
 
-\item We evaluate both the ability to meet performance
-requests and minimize energy consumption.  We find that \SYSTEM{}:
-\TODO{Double check all the numbers once we have the final values from
-  the evaluation section.}
+We implement the HBM on an x86 server and the LCS for ARM big.LITTLE
+devices and evaluate across 20 benchmarks.  We find that \SYSTEM{}:
 \begin{itemize}
 \item \textbf{Delivers Reliable Performance: } We calculate the error
   between the desired and delivered performance.  When running one
   application at a time, \SYSTEM{} achieves an average error of 2.1\%,
   compared to 3.4-5.4\% for existing learning methods and 4.6\% for
   existing control approaches.
-\item \textbf{Uses Lower Average Energy:} We compare energy
-  consumption to the optimal found through exhaustive search.  When
-  running one application at a time, \SYSTEM{} achieves an average
-  energy consumption of 7\%, greater than optimal compared to 25-52\%
-  for existing learning methods and 26\% for existing control
-  approaches.
+\item \textbf{Uses Lower Average Energy:} When running one application
+  at a time, \SYSTEM{} achieves an average energy consumption of 7\%,
+  greater than optimal compared to 25-52\% for existing learning
+  methods and 26\% for existing control approaches.
 \item \textbf{Provides Better Worst Case Behavior:} In the single
   application case, \SYSTEM{} worst observed error across all
   applications and targets is 9\% compared to 19-73\% for prior
@@ -133,7 +171,5 @@ requests and minimize energy consumption.  We find that \SYSTEM{}:
   one core.  Even though the available resources fluctuate
   dynamically, \SYSTEM{}'s worst performance error is 30\%, while it
   is 71-84\% for prior learning approaches and 35\% for prior control
-  approaches.  Additional studies show \SYSTEM{} reacting to input
-  changes and application behavioral changes.
-\end{itemize}
+  approaches.
 \end{itemize}
