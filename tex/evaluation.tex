@@ -1,28 +1,26 @@
 \section{Experimental setup}
 
 \subsection{Platform and Benchmarks}
-We perform our experiments on four ODROID XU3 devices which are a
+We perform our experiments on four ODROID-XU3 devices which are a
 small mobile devices with Ubuntu 14.04 running on them. The ODROID
 boards have Samsung Exynos 5 Octa processors based on the ARM
-big.LITTLE architecture.  Each processor has 19 speed settings with
-all being available for its 4 big cores and 13 for 4 LITTLE cores.
-Each board has a power meter updated at 1 \ms intervals.  Each
+big.LITTLE architecture.  Each processor has 19 speed settings for its 4 big cores and 13 for 4 LITTLE cores.
+Each board has a power meter updated at 1/4 \ms intervals.  Each
 resource configuration (combination of big/LITTLE cores and
 clockspeeds) has a different performance and power, which is, itself,
-application dependent.
+application-dependent.
 
 We use 20 different benchmarks from five suites including PARSEC
-(\texttt{blackscholes},\texttt{facesim}, \texttt{ferret},
-\texttt{x264} ) \cite{parsec}, Minebench (\texttt{Kmeans}, \texttt{non
+(\texttt{blackscholes}, \texttt{facesim}, \texttt{ferret}, \texttt{x264} ) \cite{parsec}, Minebench (\texttt{Kmeans}, \texttt{non
   fuzzy kmeans \\* (Kmeansnf)}), and Rodinia
-(\texttt{backprop},\texttt{cfd}, \texttt{nn}, \texttt{lud}, \\*
+(\texttt{backprop}, \texttt{cfd}, \texttt{nn}, \texttt{lud}, \\*
 \texttt{backprop}, \texttt{bfs}) \cite{rodinia}.  We also use a
 partial differential equation solver (\texttt{jacobi}) and a memory
 intensive benchmark pair (\texttt{stream}) and
 (\texttt{stream\_threads}) \cite{stream}. Our benchmarks vary from
 compute-bound applications to memory bound workloads and also
 workloads that are a combination of both as shown in
-\figref{application_variety}.  Eachapplication has been instrumented
+\figref{application_variety}.  Each application has been instrumented
 to report its performance as heartbeats/second an application-specific
 performance metric \cite{POET}.
 
@@ -40,9 +38,9 @@ where $\hat{\y}$ represents the predicted performance/power values
 and $\y$ is the true value of the power and performance.
 }
 
-\SYSTEM{} uses the model for power and performance and its controller
-actively uses this knowledge to meet the performance target. A
-performance target can be thought of as a quality of service
+%\SYSTEM{} uses the model for power and performance and its controller
+%actively uses this knowledge to meet the performance target. 
+A performance target can be thought of as a quality of service
 expectation for the given application. We run our applications from
 10\% to 90\% performance targets and observe how \SYSTEM{} performs
 under each constraint. We quantify the ability to meet performance
@@ -56,9 +54,10 @@ where $S_{r}$ is the performance target and $s_m(i)$ is the
 performance observed for $i$th heartbeat.
 
 
-We evaluate energy savings by constructing an oracle.  We run every
+%We evaluate energy savings by constructing an oracle.  
+We run every
 application in every resource configuration and record performance and
-power for every heartbeat.  By post processing this data we can
+power for every heartbeat.  By post-processing this data we can
 determine the optimal configuration for each heartbeat and each
 performance target. To produce an energy metric that we can compare
 across applications, we normalize energy as:
@@ -67,11 +66,13 @@ across applications, we normalize energy as:
 \end{equation}
 where $e_m$ is the measured energy and $e_{optimal}$ is the optimal
 energy produced by our oracle. We subtract 1, so that this metric
-shows the proportion of energy consumed over optimal.  \TODO{Should we
+shows the proportion of energy consumed over optimal. 
+\PUNT{
+ \TODO{Should we
   multiply this by 100, so that it is also a \%?  That seems like a
   good idea -- might as well be consistent across the two metrics.  We
   don't even have to change the data, just the axis labels. }
-
+}
 
 \subsection{Points of comparison}
 We compare \SYSTEM{}'s combination of HBM with control to baselines
@@ -91,20 +92,20 @@ for different applications.  In the next section, we will compare
 \item \textit{Online-P2I} -- This strategy observes the current
   application in a small number of configurations then performs
   polynomial multivariate regression and estimates the performance and
-  power of the unobserrved configurations. \PUNT{Note that the process
+  power of the unobserved configurations. \PUNT{Note that the process
     of collecting samples for estimation might be very expensive and
     this model requires a minimum number of samples to start with.
     This method uses only the observations and not the prior data.}We use the \textit{Online} learning model
-  in combination with \emph{Pace-to-idle(P2I)} heuristic.
+  in combination with \emph{Pace-to-idle (P2I)} heuristic.
 \item \textit{Offline-P2I} -- This is our zero-sample policy, used when we
   do not observe any values for the current application. This method
   takes the mean over all known applications and uses that to estimate
-  power and performance for new applications.  This strategy only uses
+  power and performance for new applications. This strategy only uses
   prior information and does not update the model based on runtime
-  observations.We use the \textit{Offline} learning
-  model in combination with \emph{Pace-to-idle(P2I)} heuristic.
+  observations. We use the \textit{Offline} learning
+  model in combination with \emph{Pace-to-idle (P2I)} heuristic.
 \item \textit{LEO-P2I} -- We use the \textit{LEO} learning model in
-  combination with \emph{Pace-to-idle(P2I)} heuristic.
+  combination with \emph{Pace-to-idle (P2I)} heuristic.
 \item \textit{POET} -- A state-of-the-art, open source control system
   designed to meet application performance with minimal energy.  POET
   requires users to specify a model of resource performance and power
@@ -125,12 +126,12 @@ a changing environment.
 %Finally we compare the accuracy of the various learning approaches to
 %offer insight into why \SYSTEM{} performs so well.
 
-\subsection{Performance and Energy for One App}
+\subsection{Performance and Energy for Single App}
 %Setup
 To test the ability to deliver performance and minimize energy, we set
 a range of targets ranging from 10-90\% of the maximum achievable
 performance on our system. The extreme targets are generally easy to
-hit. The most interesting performance targets are around 30\%-70\%
+hit. The most interesting performance targets are around 30\%-70\%,
 where there are not obvious choices for configuration settings. These
 intermediate targets require a blend of big and LITTLE cores and
 getting that blend to both meet the performance and reduce energy is
@@ -149,8 +150,7 @@ model produces an average error of 5.4\%, the offline: 4.4\%, LEO:
 approaches.  
 
 The energy consumption results are even more impressive.  The online
-model requires an average of 30\% more energy than optimal, offline:
-16\%, LEO: 20\%, POET: 13\%, and \SYSTEM{}: 5\%.  Thus the combination
+model requires an average of 30\% more energy than optimal, offline: 16\%, LEO: 20\%, POET: 13\%, and \SYSTEM{}: 5\%.  Thus the combination
 of learning and control provides a dramatic reduction in energy
 consumption compared to even state-of-the-art learning or control
 approaches.  The reason is that the combination is complementary: LEO
@@ -175,7 +175,7 @@ in those models and adapt to dynamic changes in behavior.
 %provides significantly better worst case behavior.  
 
 
-\subsection{Performance and Energy for Multile Apps}
+\subsection{Performance and Energy for Multiple Apps}
 In this experiment, we test the ability to deliver performance in an
 environment where applications compete for resources.  We launch each
 of our benchmarks with a performance target (using the same targets as
@@ -214,7 +214,7 @@ with better models that are more robust to variation.
 The energy consumption results are not as meaningful for this
 experiment, but they are included for completeness.  Because there is
 another application running that is not under control, it consumes
-resources and energy that drag down energy efficiency for all
+resources and energy that drags down energy efficiency for all
 approaches. 
 
 \begin{figure*}[htp!]
@@ -234,7 +234,7 @@ approaches.
 To demonstrate the benefits of \SYSTEM{} in this dynamic environment
 we look at the specific example of \texttt{bodytrack} at the 70\%
 performance target.  The time series data for bodytrack is shown in
-\figref{bodytrack-multiapp}.  The figures show time (measured in
+\figref{fig:bodytrack-multiapp}.  The figures show time (measured in
 frames) on the x-axis and performance/power on the y-axes.
 Performance is normalized to the target.  There is a curve for each of
 LEO, POET, and \SYSTEM{}.  
@@ -257,7 +257,7 @@ performance (and thus power) because it has a bad model of LITTLE core
 performance causing it to use the LITTLE cores too much and then too
 little.  This oscillation also results in unnecessary power
 consumption.  After the second application starts, POET and \SYSTEM{}
-recognize the performacne has changed and adjust resource usage.
+recognize the performance has changed and adjust resource usage.
 \SYSTEM{} does a slightly better job of tracking the change, producing
 fewer oscillations.  LEO cannot adjust to the change as it computes
 the optimal configuration once at the beginning of the application.
@@ -290,14 +290,14 @@ the benchmarks.
 }
 
 \subsection{Sensitivity to the measured samples}
-We examine \SYSTEM{}' sensitivity to sample size.  We vary the number
-of samples taken online and show how that affects the accuracy of the
+We examine \SYSTEM{}'s sensitivity to sample size.  We vary the number
+of samples taken online and show how it affects the accuracy of the
 learned models.  We note that this is simply the HBM's accuracy in
 producing the model used by the controller.  This number is
 significant, because we do not want to take a large number of samples
 of new applications, if we can avoid it.
 
-\figref{sensitivity} shows the results and compares \SYSTEM{}'s
+\figref{fig:sensitivity} shows the results and compares \SYSTEM{}'s
 accuracy to the online approach for learning both performance (top)
 and power (bottom).  The figure shows sample size on the x-axis and
 accuracy on the y-axis.  \SYSTEM{}'s HBM initially performs as well as
@@ -316,7 +316,7 @@ for the same number of samples.
   \label{fig:sensitivity}
 \end{figure}
 
-
+\PUNT{
 \subsubsection{Phase change}
 In this experiment we demonstrate that \SYSTEM{} allows applications
 to operate well by changing resource allotment even if the input to
@@ -347,6 +347,7 @@ But, \SYSTEM{} provides better energy savings as compared to LEO-P2I.
   \caption{ferret multiapp}
   \label{fig:multi-energy}
 \end{figure}
+}
 }
 }
 
