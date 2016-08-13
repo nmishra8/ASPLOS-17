@@ -127,7 +127,7 @@ predictive, it must be parametric in terms of the configuration space
 (cores/clockspeed) since no other information is available. This
 online model requires a certain number of samples to estimate the
 model parameters with low error.  Unfortunately, the model might still
-falter if the model parameterization is not correct; \eg if the model
+falter if the model parameterization is not correct; \eg{} if the model
 is misspecified and defined to be linear in cores, but the application
 actually hits an asymptote and no longer increases performance after
 some core count.
@@ -135,7 +135,7 @@ some core count.
 We also compare \SYSTEM{} to a purely \emph{offline model} which only
 uses information from previously seen applications but lacks any
 knowledge of the current application to be optimized. This general
-model will capture trends; \eg when most applications should
+model will capture trends; \eg{} when most applications should
 transition from LITTLE to big cores, but it might miss the key
 inflection point for some applications.
 
@@ -159,14 +159,14 @@ application.
 %%
 \PUNT{
 When selecting a learning framework we must find a trade-off between
-the specific and the general; \ie between frameworks that build
+the specific and the general; \ie{} between frameworks that build
 application-specific models and frameworks that combine observations
 across applications.  For example, the key to energy efficiency on
 heterogeneous mobile systems is knowing when to make use of the
 smaller, low-power cores \cite{reddiHPCA2013,POET}.  An
 application-specific model will capture that precisely, but may
 require many observations before producing the correct model.  A more
-general model will capture the trend, \eg when most applications
+general model will capture the trend, \eg{} when most applications
 should transition, but this general model might miss the key
 inflection point for some applications.  We refer to
 application-specific models as \emph{online} because they build models
@@ -203,6 +203,7 @@ the number of applications -- also increases with increasing
 applications, but this is why we offload the learning to a remote
 server.
 
+\PUNT{
 To provide intuition we offer a simple example.  Suppose we have
 observed many prior applications, all of which are either completely
 compute-bound or completely memory-bound, and we have an equal number
@@ -222,7 +223,7 @@ to build its model, otherwise, it will use the compute-bound
 applications.  In practice, the HBM learns much more complicated
 relationships by combining observations of the new application with
 prior knowledge of different types of behavior.
-
+}
 
 
 
@@ -245,7 +246,7 @@ range of possible applications while receiving its model from the HBM.
 We would like to use control and learning to solve the problem of
 meeting an application's performance requirements while minimizing
 energy consumption.  The difficulty is that classical control
-formulations integrate the models directly into the controller; \ie
+formulations integrate the models directly into the controller; \ie{}
 the application-dependent relationship between performance and the
 controlled resource is directly used in the control equations.  For
 example, consider a control system designed to meet a performance goal
@@ -266,7 +267,7 @@ that speedup value to a separate module that optimizes energy while
 respecting this speedup constraint using the learned models.  Similar
 models have been used to build generalized controllers where users are
 responsible for supplying the models \cite{POET}.  Our goal is to
-eliminate this user burden and have a remote HBM supply the model.
+eliminate this user burden and have a remote HBM supply the model, which are not just more accurate but become more intelligent with time as it acquires more data.
 
 \subsubsection{Controlling Speedup}
 We write a simple difference model relating speedup to performance:
@@ -448,7 +449,7 @@ energy while trying to save energy.  In practice, we recommend a table
 of size 100 which provides a sufficient resolution and is not too
 wasteful of space.
 
-
+\PUNT{
 \subsection{Putting It All Together}
 We briefly summarize our proposal for combining learning and control.
 Our approach consists of a number of independent mobile devices each
@@ -464,7 +465,7 @@ optimal schedule of configurations.
   the error in the learned speedup is not too great.  Is it worth
   analyzing those formal guarantees?}
 
-
+}
 
 %control slowdown
 
