@@ -3,28 +3,26 @@
   and conserve resources to extend battery life.  There are two
   central challenges to meeting these conflicting goals: (1) the
   complicated optimization spaces arising from hardware heterogeneity
-  and (2) dynamic changes in resource availability and application
-  behavior.  Machine learning techniques handle complicated
+  and (2) dynamic changes in application behavior and resource
+  availability.  Machine learning techniques handle complicated
   optimization spaces, but do not incorporate models of system
   dynamics; control theory provides formal guarantees of dynamic
   behavior, but cannot handle non-linear system models.  In this
-  paper, we propose a combination of learning and control techniques
-  to meet mobile system's performance requirements on heterogeneous
-  devices in unpredictable environments.  Specifically, we propose
-  \SYSTEM{}, which combines a hierarchical Bayesian model (HBM) with a
-  lightweight control system (LCS).  The HBM runs on a remote server,
-  learning customized performance/power models by aggregating data
-  across devices.  The LCS runs on the mobile system and tunes
-  resource usage to meet performance requirements efficiently. We
-  propose a unique interface, the Performance Hash Table (PHT) which
-  allows the LCS to apply the learned models in constant time.  We
-  implement \SYSTEM{} and test its ability to manage ARM big.LITTLE
-  systems.  Compared to existing learning and control methods,
-  \SYSTEM{} delivers more reliable performance -- only 2.1\% error
-  compared to 3.4-5.4\% for learning and 4.6\% for control -- and lower
-  energy -- achieving 7\% of optimal as compared to by 25-52\% over
-  learning and 26\% over control.  In a scenario where multiple
-  applications compete for resources, these numbers improve: 7\%
-  error compared to 11-15\% for learning and 9\% for control and
-  improvements of 2-20\% and 3\%, respectively, in energy efficiency.
+  paper, we propose \SYSTEM{}, a combination of learning and control
+  techniques to meet mobile system's performance requirements on
+  heterogeneous devices in unpredictable environments.  \SYSTEM{}
+  combines a hierarchical Bayesian model (HBM) with a lightweight
+  control system (LCS).  The HBM runs remotely, learning customized
+  performance/power models.  The LCS runs on the mobile system and
+  tunes resource usage.  A novel data structure, the Performance Hash
+  Table (PHT) allows the LCS to apply the learned models in constant
+  time.  We test \SYSTEM{}'s ability to manage ARM big.LITTLE systems.
+  Compared to existing learning and control methods, \SYSTEM{}
+  delivers more reliable performance -- only 2.1\% error compared to
+  3.4-5.4\% for learning and 4.6\% for control -- and lower energy --
+  achieving 7\% of optimal as compared to by 25-52\% over learning and
+  26\% over control.  When multiple applications compete for
+  resources, these numbers improve\PUNT{: 7\% error compared to
+    11-15\% for learning and 9\% for control and improvements of
+    2-20\% and 3\%, respectively, in energy efficiency}.
 \end{abstract}
