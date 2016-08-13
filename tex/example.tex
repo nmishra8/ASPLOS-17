@@ -1,9 +1,9 @@
 \section{Motivational Example}
 \label{sec:example}
-\begin{figure*}
+\begin{figure}
   \subfloat[]
   {
-    \includegraphics[width=.3\textwidth]{figures/lavamd.png}
+    \includegraphics[width=.3\columnwidth]{figures/lavamd.png}
     \label{fig:lavamd_contour}
   }
   \subfloat[]
@@ -13,12 +13,12 @@
   }
   \caption{(a) Contour plot for normalized performance for \texttt{Lavamd} algorithm for different configurations(b) Time-line for running \texttt{Lavamd}. \emph{Control} is running in isolation without an HBM based \emph{learning} mechanism which leads to oscillations in the performance.}
   \label{fig:learning-models}
-\end{figure*}
+\end{figure}
 
-\begin{figure*}
+\begin{figure}
   \subfloat[]
   {
-    \includegraphics[width=.3\textwidth]{figures/kmeans.png}
+    \includegraphics[width=.3\columnwidth]{figures/kmeans.png}
     \label{fig:kmeans_contour}
   }
   \subfloat[]
@@ -28,16 +28,15 @@
   }
   \caption{(a) Contour plot for normalized performance for \texttt{Kmeans} algorithm for different configurations(b) Time-line for running \texttt{Kmeans} alone until 10 seconds, when another application. \emph{Learning} is running in isolation without an LCS based \emph{control} mechanism which leads to a performance drop which does not recover by itself.}
   \label{fig:learning-models}
-\end{figure*}
+\end{figure}
 
-In this section we present two simple examples that illustrate the
-complementary strengths and weaknesses of learning and control.  We
-run our examples on mobile development boards featuring Samsung's
-Exynos 5 Octa with an ARM big.LITTLE architecture that has four
-energy-efficient LITTLE cores and four high-performance big cores.
-Each core cluster can be set to different clock speed, leading to a
-large configuration space for assigning resources to multi-threaded
-applications.
+We present two simple examples that illustrate the complementary
+strengths and weaknesses of learning and control.  We use mobile
+development boards featuring Samsung's Exynos 5 Octa with an ARM
+big.LITTLE architecture that has four energy-efficient LITTLE cores
+and four high-performance big cores.  Each core cluster can be set to
+different clock speeds, leading to a large configuration space for
+assigning resources to multi-threaded applications.
 
 Each configuration (assignment of cores and clockspeeds) has different
 performance, and this performance will be application dependent.
@@ -52,8 +51,8 @@ suitable to navigating these tradeoff spaces.
 that the performance plot for the applications \texttt{lavamd} and
 \texttt{kmeans} against the clockspeed and cores is non-convex and
 contains at least 2 local minima corresponding to big and LITTLE
-cores.  In addition, \texttt{lavamd} has other local minima and has a
-significantly more complicated tradeoff space than \texttt{kmeans}.
+cores.  \texttt{lavamd} has other local minima and a significantly
+more complicated tradeoff space than \texttt{kmeans}.
 
 \PUNT{
 \begin{figure}
@@ -67,15 +66,13 @@ significantly more complicated tradeoff space than \texttt{kmeans}.
 \end{figure}
 }
 
-In this example we consider, a hierarchical Bayesian model based
-learner (LEO) that estimates application performance as a function of
-its resource usage \cite{LEO}. Secondly, we consider POET, a control
-system that adjusts resource usage to meet application performance
-requirements with minimal energy \cite{POET}. We refer to LEO as the
-\emph{learning} approach and POET as the \emph{control} mechanism.  We
-use this section to develop intuition about the circumstances under
-which one performs better than the other, motivating our proposal to
-combine the two.
+We consider prior \emph{learning} and \emph{control} approaches.  LEO,
+a hierarchical Bayesian model based learner, estimates application
+performance as a function of its resource usage \cite{LEO}. POET, a
+control system, adjusts resource usage to meet application performance
+requirements with minimal energy \cite{POET}.  We use this section to
+develop intuition about the circumstances under which one performs
+better than the other, motivating our proposal to combine the two.
 
 \subsection{\emph{Learning} Complexity}
 A number of machine learning approaches have been proposed to estimate
@@ -141,16 +138,16 @@ resources.  We again compare \emph{learning} and \emph{control}.
 \end{figure}
 }
 
-\figref{fig:kmeans_timeline} shows the results of this experiment, with
-time on the x-axis and performance on the y-axis, normalized to the
-target.  The vertical dashed line shows when the second application
-begins.  The figure clearly shows the benefits of a control system in
-this scenario.  After a small dip in performance, the controller
-adjusts to return it back to the desired level.  The learning system
-however, does not have any inherent mechanism to measure the change or
-adapt to the altered performance.  While we could theoretically
-relearn the tradeoff space every time the environment changes, this is
-obviously impractical.  
+\figref{fig:kmeans_timeline} shows the results of this experiment,
+with time on the x-axis and performance on the y-axis, normalized to
+the target.  The vertical dashed line shows when the second
+application begins.  The figure clearly shows the benefits of a
+control system in this scenario.  After a small dip in performance,
+the controller adjusts to return it back to the desired level.  The
+learning system however, does not have any inherent mechanism to
+measure the change or adapt to the altered performance.  While we
+could theoretically relearn the tradeoff space every time the
+environment changes, doing so is impractical.
 
 Control systems are a great light-weight mechanisms for managing such
 dynamics. The control systems provide the necessary robustness to a
@@ -166,11 +163,9 @@ rates \cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} and multimedia
 applications which have to deal with multiple phases with different
 resource demands \cite{TCST,Agilos,grace2}.
 
-
-The primary contribution of this paper is to combine a learning
-technique that can handle complexity with a control system that can
-handle dynamic environments.
-
+\PUNT{ The primary contribution of this paper is to combine a learning
+  technique that can handle complexity with a control system that can
+  handle dynamic environments.  }
 
 %%
 \PUNT{
