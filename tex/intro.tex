@@ -45,32 +45,28 @@ manage both complexity and dynamics.  We call our approach
 \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning for
   \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
   \textbf{E}fficiency} and it has three components as illustrated in
-\figref{overview}: (1) a hierarchical Bayesian model (HBM) that learns
+\figref{fig:overview}: (1) a hierarchical Bayesian model (HBM) that learns
 application-specific relationships between performance/power and
 resource usage, (2) a lightweight control system (LCS) that
 dynamically tunes resource usage to meet performance requirements with
 minimal energy, and (3) a performance hash table (PHT) that serves as
-the interface between learning and control.  The HBM produces accurate
-models of power and performance, but it is computationally expensive,
-so in \SYSTEM{} the HBM runs on a remote server.  As it is remote, it
-is also capable of aggregating data from multiple devices.  The LCS
-runs on individual mobile devices and receives models from the HBM.
-These models are stored in the PHT, a data structure that allows the
-LCS to determine energy minimal resource schedules in constant time.
+the interface between learning and control.  
 
-
-The PHT is \SYSTEM{}'s key enabler.  While learning and control
-systems exist, their combination requires an appropriate interface.
-The challenge is that the learner produces non-linear models of
-discrete resources (\eg cores and clockspeeds), while the control
+The main challenge in combining a learning system with a control system is that the learner produces non-linear models of
+resources (\eg cores and clockspeeds) which are discrete, while the control
 system is based on continuous linear models.  \SYSTEM{} bridges this
 gap by scheduling resources in time to meet a performance requirement
-with minimal energy.  The PHT stores the learned models in such a way
-that this optimization problem can be solved in constant time, making
-it appropriate for use on a mobile device.  While only tested with
-\SYSTEM{} we believe the PHT is general enough to be used by different
-learning and control systems, or even to solve different optimization
-problems.
+with minimal energy.  
+
+The second challenge is that our learner (HBM) produces accurate
+models of power and performance, but like many sophisticated machine learning based models it is computationally expensive,
+so in \SYSTEM{} the HBM runs on a remote server.  Moreover, as it is remote, it
+is also capable of aggregating data from multiple devices, which makes learner more powerful. The controller (LCS) runs on individual mobile devices and receives models from the HBM.
+
+Thirdly, for great user satisfaction, we would like this system to be fast. Hence, we propose that  these models are stored in the PHT, a data structure that allows the LCS to determine energy minimal resource schedules in constant time. The PHT is \SYSTEM{}'s key enabler.  While learning and control
+systems exist, their combination requires an appropriate interface.
+ %The PHT stores the learned models in such a way that this optimization problem can be solved in constant time, making it appropriate for use on a mobile device.   
+ While only tested with \SYSTEM{} we believe the PHT is general enough to be used by different learning and control systems, or even to solve different optimization problems.
 
 
 % While control and learning frameworks exist, the key to combining them
@@ -97,7 +93,18 @@ compare to published learning and control methods in a variety of
 settings.  While many applications have inherent dynamics (\ie
 different processing phases), we explicitly test the ability to adapt
 to the unknown by running each application with other, random
-applications.  We evaluate both the ability to meet performance
+applications. In summary, this paper makes the following contributions:
+\begin{itemize}
+\item Proposing the combination of a hierarchical Bayesian learning
+  with a lightweight control system to meet the twin challenges of
+  addressing complexity and dynamics to deliver performance with
+  minimal energy on mobile systems.
+\item An interface for combining discrete learned models of resource
+  usage with continuous control models of resource dynamics.
+\item Evaluating the implementation and comparison to existing,
+  independent learning and control techniques.
+
+\item We evaluate both the ability to meet performance
 requests and minimize energy consumption.  We find that \SYSTEM{}:
 \TODO{Double check all the numbers once we have the final values from
   the evaluation section.}
@@ -129,16 +136,4 @@ requests and minimize energy consumption.  We find that \SYSTEM{}:
   approaches.  Additional studies show \SYSTEM{} reacting to input
   changes and application behavioral changes.
 \end{itemize}
-In summary, this paper makes the following contributions:
-\begin{itemize}
-\item Proposing the combination of a hierarchical Bayesian learning
-  with a lightweight control system to meet the twin challenges of
-  addressing complexity and dynamics to deliver performance with
-  minimal energy on mobile systems.
-\item An interface for combining discrete learned models of resource
-  usage with continuous control models of resource dynamics.
-\item Evaluating the implementation and comparison to existing,
-  independent learning and control techniques.
 \end{itemize}
-
-

@@ -1,5 +1,34 @@
 \section{Motivational Example}
 \label{sec:example}
+\begin{figure*}
+  \subfloat[]
+  {
+    \includegraphics[width=.3\textwidth]{figures/lavamd.png}
+    \label{fig:lavamd_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/lavamd-example-resized.tex}
+    \label{fig:lavamd_timeline}
+  }
+  \caption{(a) Contour plot for normalized performance for \texttt{Lavamd} algorithm for different configurations(b) Time-line for running \texttt{Lavamd}. \emph{Control} is running in isolation without an HBM based \emph{learning} mechanism which leads to oscillations in the performance.}
+  \label{fig:learning-models}
+\end{figure*}
+
+\begin{figure*}
+  \subfloat[]
+  {
+    \includegraphics[width=.3\textwidth]{figures/kmeans.png}
+    \label{fig:kmeans_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/kmeans-example-resized.tex}
+    \label{fig:kmeans_timeline}    
+  }
+  \caption{(a) Contour plot for normalized performance for \texttt{Kmeans} algorithm for different configurations(b) Time-line for running \texttt{Kmeans} alone until 10 seconds, when another application. \emph{Learning} is running in isolation without an LCS based \emph{control} mechanism which leads to a performance drop which does not recover by itself.}
+  \label{fig:learning-models}
+\end{figure*}
 
 In this section we present two simple examples that illustrate the
 complementary strengths and weaknesses of learning and control.  We
@@ -12,20 +41,119 @@ applications.
 
 Each configuration (assignment of cores and clockspeeds) has different
 performance, and this performance will be application dependent.
-\figref{contour} shows how performance varies as a function of both
+\figref{fig:lavamd_contour} and \figref{fig:kmeans_contour} show how performance varies as a function of both
 resource usage and application.  The figures show cores on the x-axis
 and clockspeed on the y-axis, with performance shown as intensity --
 darker colors representing higher performance. The presence of local
 minima and maxima mean that simple gradient ascent/descent methods are
 not suitable to navigating these tradeoff spaces.
-\figref{fig:contour} shows that the performance plot for the
+\figref{fig:lavamd_contour} and \figref{fig:kmeans_contour} also show that the performance plot for the
 applications \texttt{kmeans} and \texttt{lavamd} against the
-clockspeed and cores is non-convex and contains at least 2 local
+clockspeed and cores is highly non-convex and contains at least 2 local
 minima corresponding to big and LITTLE cores.  In addition,
 \texttt{lavamd} has other local minima and has a significantly more
 complicated tradeoff space than \texttt{kmeans}. 
 
+\PUNT{
+\begin{figure}
+\centering
+%\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour2.png}
+\includegraphics[width=\columnwidth]{figures/performance-contour2.png}
+%\includegraphics[scale=0.4]{figures/sample-contour3.png}
+\caption{Contour plots showing performance as a function of core
+  number, type, and speed.}
+  \label{fig:contour}
+\end{figure}
+}
 
+In this example we consider, a hierarchical Bayesian model based learner (LEO)that estimates application performance as a function of its resource usage \cite{LEO}. Secondly, we consider POET, a control system designed to adjust resource usage to meet application performance requirements with minimal energy
+\cite{POET}. In this example we would refer to LEO as the \emph{learning} algorithm and POET as the \emph{control} mechanism and see develop an intuition on under what circumstances they perform better than each other which would lead into the key insight on why we their combination is right solution.
+
+\subsection{Complexity in \emph{learning}}
+A number of machine learning approaches have been proposed to estimate
+application performance in a variety of scenarios
+\cite{reddiHPCA2013,LeeBrooks2006,CPR,ParallelismDial,Flicker,LeeBrooks,Koala}.
+Machine learning is well suited to building models of complicated
+systems like those shown in \figref{fig:lavamd_contour} and \figref{fig:kmeans_contour} . 
+
+To demonstrate how well suited learning is to managing complexity, we
+consider meeting a performance requirement for \texttt{lavamd}, the
+application with a complicated configuration space.  We launch
+the application with a soft performance constraint and both \emph{learning algorithm} (LEO) and the \emph{control algorithm}
+(POET) adjust resource usage to meet that requirement with minimal
+resource usage.  The \emph{learning} algorithm works by estimating the performance and power of
+all configurations and then using the lowest power configuration that
+meets the goal. 
+On the other hand, The \emph{control} algorithm does not have the knowledge of \texttt{lavamd}'s complicated profile but only has a knowledge of generic power/performance frontiers (similar to \texttt{kmeans} in this example) and it works by constantly measuring performance and
+adjusting resource usage to see that goals are met.  While many
+controllers use linear models, POET uses a convex model and handles
+some non-linearities; however, it is sensitive to local maxima.
+\PUNT{
+\begin{figure}[t]
+  \input{img/lavamd-example.tex}
+   \vskip -1em
+  \caption{Performance Control for LAVAMD}
+  \label{fig:lavamd-example}
+\end{figure}
+}
+\figref{fig:lavamd_timeline} shows the results of controlling 30 iterations
+of \texttt{lavamd} to meet the performance requirement.  The x-axis
+shows iteration number and the y-axis shows performance normalized to
+the goal.  %There is a line for both LEO (labeled \emph{learning}) and POET (labeled \emph{control}). 
+In this case, the learning approach
+achieves the performance goal and the controller oscillates wildly
+around it, sometimes not achieving the goal and sometimes delivering
+performance that is too high (and wastes energy). The problem stems from the fact that when the performance goal is not met the learner would adjust the resources to improve the performance based on an incorrect knowledge of the performance trade-off space. Hence, the knowledge as provide by the \emph{learner} is extremely crucial for the controller to make the right decision.
+
+%This result may be somewhat counter-intuitive.  The problem is that the controller cannot handle the complexity of \texttt{lavamd}.  One way to fix this problem would be to build a custom controller just for this application, but that controller would not be useful for other applications.  In contrast, the learner can find the local maxima in the configuration space, and as this application has no phase changes or other dynamics, the one configuration that the learner finds is suitable for the entire application.
+
+\subsection{\emph{Control} in Dynamics}
+We now consider controlling performance in a dynamic environment using
+the \texttt{kmeans} application.  In this scenario we start the
+application as the only application running on the system.  Halfway
+through its execution we launch a second application on a single big
+core.  This second application consumes about a quarter of the total
+resources.  We again compare \emph{learning} and \emph{control} for this situation.
+
+\PUNT{
+\begin{figure}[t]
+  \input{img/kmeans-example.tex}
+   \vskip -1em
+  \caption{Performance Control for KMEANS}
+  \label{fig:kmeans-example}
+\end{figure}
+}
+
+\figref{fig:kmeans_timeline} shows the results of this experiment, with
+time on the x-axis and performance on the y-axis, normalized to the
+target.  The vertical dashed line shows when the second application
+begins.  The figure clearly shows the benefits of a control system in
+this scenario.  After a small dip in performance, the controller
+adjusts to return it back to the desired level.  The learning system
+however, does not have any inherent mechanism to measure the change or
+adapt to the altered performance.  While we could theoretically
+relearn the tradeoff space every time the environment changes, this is
+obviously impractical.  
+
+Control systems are a great light-weight
+mechanisms for managing such dynamics. The control systems provide the necessary robustness to a system prone to such dynamics and fluctuations. These systems are resilient to scale change in the system performance or power and most of the dynamic changes(phase change or additional application running) reduces the performance at all configurations almost uniformly thus only affecting the scale of the performance but keeping the shape intact. 
+
+For this reason, control systems
+have been widely used to manage computing systems that have to deal
+with dynamic fluctuations.  These approaches have been especially
+successful in webservers with fluctuating request rates
+\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} and multimedia
+applications which have to deal with multiple phases with different
+resource demands \cite{TCST,Agilos,grace2}.
+
+
+The primary contribution of this paper is to combine a learning
+technique that can handle complexity with a control system that can
+handle dynamic environments.
+
+
+%%
+\PUNT{
 \begin{figure}
 \centering
 %\includegraphics[width=\paperwidth,scale=0.5]{figures/performance-contour2.png}
@@ -36,94 +164,14 @@ complicated tradeoff space than \texttt{kmeans}.
   \label{fig:contour}
 \end{figure}
 
-
-\subsection{Complexity}
-A number of machine learning approaches have been proposed to estimate
-application performance in a variety of scenarios
-\cite{reddiHPCA2013,LeeBrooks2006,CPR,ParallelismDial,Flicker,LeeBrooks,Koala}.
-Machine learning is well suited to building models of complicated
-systems like those shown in \figref{contour}.  In this example we
-consider LEO, a hierarchical Bayesian model that estimates application
-performance as a function of its resource usage \cite{LEO}. We compare
-LEO to POET, a control system designed to adjust resource usage to
-meet application performance requirements with minimal energy
-\cite{POET}.
-
-To demonstrate how well suited learning is to managing complexity, we
-consider meeting a performance requirement for \texttt{lavamd}, the
-application with the more complicated configuration space.  We launch
-the application with a soft performance constraint and both LEO and
-POET adjust resource usage to meet that requirement with minimal
-resource usage.  LEO works by estimating the performance ad power of
-all configurations and then using the lowest power configuration that
-meets the goal.  POET works by constantly measuring performance and
-adjusting resource usage to see that goals are met.  While many
-controllers use linear models, POET uses a convex model and handles
-some non-linearities; however, it is sensitive to local maxima.
-
-\begin{figure}[t]
-  \input{img/lavamd-example.tex}
-   \vskip -1em
-  \caption{Performance Control for LAVAMD}
-  \label{fig:lavamd-example}
-\end{figure}
-
-\figref{lavamd-example} shows the results of controlling 30 iterations
-of \texttt{lavamd} to meet the performance requirement.  The x-axis
-shows iteration number and the y-axis shows performance normalized to
-the goal.  There is a line for both LEO (labeled \emph{learning}) and
-POET (labeled \emph{control}). In this case, the learning approach
-achieves the performance goal and the controller oscillates wildly
-around it, sometimes not achieving the goal and sometimes delivering
-performance that is too high (and wastes energy).
-
-This result may be somewhat counter-intuitive.  The problem is that
-the controller cannot handle the complexity of \texttt{lavamd}.  One
-way to fix this problem would be to build a custom controller just for
-this application, but that controller would not be useful for other
-applications.  In contrast, the learner can find the local maxima in
-the configuration space, and as this application has no phase changes
-or other dynamics, the one configuration that the learner finds is
-suitable for the entire application.
-
-\subsection{Dynamics}
-We now consider controlling performance in a dynamic environment using
-the \texttt{kmeans} application.  In this scenario we start the
-application as the only application running on the system.  Halfway
-through its execution we launch a second application on a single big
-core.  This second application consumes about a quarter of the total
-resources.  We again compare learning and control using LEO and POET
-as proxies for these two methods.
-
-
 \begin{figure}[t]
   \input{img/kmeans-example.tex}
    \vskip -1em
   \caption{Performance Control for KMEANS}
   \label{fig:kmeans-example}
 \end{figure}
+}
 
 
-\figref{kmeans-example} shows the results of this experiment, with
-time on the x-axis and performance on the y-axis, normalized to the
-target.  The vertical dashed line shows when the second application
-begins.  The figure clearly shows the benefits of a control system in
-this scenario.  After a small dip in performance, the controller
-adjusts to return it back to the desired level.  The learning system
-however, does not have any inherent mechanism to measure the change or
-adapt to the altered performance.  While we could theoretically
-relearn the tradeoff space every time the environment changes, this is
-obviously impractical.  Furthermore, control systems already have
-mechanisms for managing dynamics.  For this reason, control systems
-have been widely used to manage computing systems that have to deal
-with dynamic fluctuations.  These approaches have been especially
-successful in webservers with fluctuating request rates
-\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008} and multimedia
-applications which have to deal with multiple phases with different
-resource demands \cite{TCST,Agilos,grace2}.
 
-
-The primary contribution of this paper is to combine a learning
-technique that can handle complexity with a control system that can
-handle dynamic environments.
 
