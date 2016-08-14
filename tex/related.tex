@@ -5,7 +5,7 @@ goals and reduce energy.
 
 \subsection{Machine Learning}
 There are a huge array of different learning techniques that are
-applicable to different problems.  As discussed in in \secref{learning}
+applicable to different problems.  As discussed in in \secref{framework:HBM}
 we break learning for resource management into three categories:
 offline, online, and hybrid approaches.  
 
@@ -13,7 +13,7 @@ offline, online, and hybrid approaches.
 The offline approaches build models before deployment and then use
 those fixed models to allocate resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  In
-these approaches, the model building phase is generally very expensive,
+these approaches, the model-building phase is generally very expensive,
 requiring both a large number of samples and substantial computation
 to turn those samples into a model that accurately captures the
 relationship between the observed features and the behavior to be
@@ -31,7 +31,7 @@ quickly estimates the resource need to render the web page and uses the
 lowest energy resources that will still maintain user satisfaction.
 The mapping of web pages to resource use is very complicated and this
 approach deals with that complication.  It does not, however, address
-system dynamics; \eg when other apps are running concurrently with the
+system dynamics; \eg{} when other apps are running concurrently with the
 web browser.
 
 \subsubsection{Online Learning}
@@ -53,12 +53,12 @@ adaptation
   wu2012inferred}.  For example, Dubach et al.  propose such a combo
 for optimizing the microarchitecture of a single core
 \cite{dubach2010}.  Such predictive models have also been employed at
-the OS level to manage system energy consumption \cite{Koala,Cinder}.
+the operating systems level to manage system energy consumption \cite{Koala,Cinder}.
 \cite{wu2012inferred}.
 
 
 Still other approaches combine offline modeling with online model
-updates \cite{JouleGuard,Bitirgen2008,Ipek}.  For example, Bitirgen et
+updates \cite{JouleGuard,Bitirgen2008,Ipek}.  Bitirgen et
 al use an artificial neural network to allocate resources to multiple
 applications in a multicore \cite{Bitirgen2008}.  The neural network
 is trained offline and then adapted online using measured feedback.
@@ -76,8 +76,8 @@ building involves substantial empirical measurement and statistical
 regression to build a model that is then used to synthesize a control
 system
 \cite{Wu2004,TCST,Chen2011,PTRADE,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
-Over a narrow range of applications the combination of offline
-learning and control works well, as the offline models capture the
+The combination of offline
+learning and control works well over a narrow range of applications, as the offline models capture the
 general behavior of the entire class of application and require
 negligible online overhead.  This focused approach is extremely
 effective for multimedia applications
@@ -91,9 +91,9 @@ control for computing systems.  It is always possible to build a
 controller for a specific application and system by extensively
 modeling that pair.  More general controllers which work with a range
 of applications have addressed this issue with models in several ways.
-Several approaches provide control libraries that encapsulate control
+Some provide control libraries that encapsulate control
 functionality and require users to input a model
-\cite{ControlWare,Sojka,Rajkumar,POET}.  Other approaches
+\cite{ControlWare,Sojka,Rajkumar,POET}.  Others
 automatically synthesize both a model and a controller for either
 hardware \cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.
 JouleGuard combines learning for energy efficiency with control for
@@ -114,7 +114,7 @@ Carat aggregates data across many mobile devices and sends a report to
 human users about how to configure their device to increase battery
 life.  While both Carat and \SYSTEM{} learn across devices, they have
 very different goals.  Carat's goal is to return very high-level
-information to human users; \eg you should update a driver to extend
+information to human users; \eg{} you should update a driver to extend
 battery life.  \SYSTEM{} returns lower-level models to another
 automated system that will apply those models to save energy.
 

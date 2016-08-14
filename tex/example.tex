@@ -1,9 +1,10 @@
 \section{Motivational Example}
 \label{sec:example}
-\begin{figure}
+\PUNT{
+\begin{figure*}
   \subfloat[]
   {
-    \includegraphics[width=.3\columnwidth]{figures/lavamd.png}
+    \includegraphics[width=.3\textwidth]{figures/lavamd.png}
     \label{fig:lavamd_contour}
   }
   \subfloat[]
@@ -13,7 +14,7 @@
   }
   \caption{(a) Contour plot for normalized performance for \texttt{Lavamd} algorithm for different configurations(b) Time-line for running \texttt{Lavamd}. \emph{Control} is running in isolation without an HBM based \emph{learning} mechanism which leads to oscillations in the performance.}
   \label{fig:learning-models}
-\end{figure}
+\end{figure*}
 
 \begin{figure}
   \subfloat[]
@@ -29,6 +30,33 @@
   \caption{(a) Contour plot for normalized performance for \texttt{Kmeans} algorithm for different configurations(b) Time-line for running \texttt{Kmeans} alone until 10 seconds, when another application. \emph{Learning} is running in isolation without an LCS based \emph{control} mechanism which leads to a performance drop which does not recover by itself.}
   \label{fig:learning-models}
 \end{figure}
+}
+\begin{figure*}
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figures/lavamd.png}
+    \label{fig:lavamd_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/lavamd-example-resized.tex}
+    \label{fig:lavamd_timeline}
+  }
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figures/kmeans.png}
+    \label{fig:kmeans_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/kmeans-example-resized.tex}
+    \label{fig:kmeans_timeline}    
+  }
+  \caption{(a) Contour plot for normalized performance for \texttt{Lavamd} algorithm for different configurations(b) Time-line for running \texttt{Lavamd}. \emph{Control} is running in isolation without an HBM based \emph{learning} mechanism which leads to oscillations in the performance. (c) Contour plot for normalized performance for \texttt{Kmeans} algorithm for different configurations(d) Time-line for running \texttt{Kmeans} alone until 10 seconds, when another application. \emph{Learning} is running in isolation without an LCS based \emph{control} mechanism which leads to a performance drop which does not recover by itself.}
+  \label{fig:learning-models}
+\end{figure*}
+
+
 
 We present two simple examples that illustrate the complementary
 strengths and weaknesses of learning and control.  We use mobile
