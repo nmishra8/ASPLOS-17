@@ -118,13 +118,13 @@ tick label style={font=\footnotesize},
 \newcommand{\Secref}[1]{Section~\ref{#1}} 
 \newcommand{\PUNT}[1]{}
 \newcommand{\figref}[2][{}]{{\figurename~\ref{#2}#1}} 
-\newcommand{\figsref}[2]{Figures~\ref{fig:#1} and~\ref{fig:#2}}
+\newcommand{\figsref}[2]{Figures~\ref{#1} and~\ref{#2}}
 \newcommand{\tblref}[1]{Table~\ref{tbl:#1}}
 \newcommand{\algref}[1]{Algorithm~\ref{alg:#1}}
 \renewcommand{\textfraction}{0.05} 
 %\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
 %\newcommand{\figsref}[2]{Figures~\ref{fig:#1} and~\ref{fig:#2}}
-\newcommand{\figrref}[2]{Figures~\ref{fig:#1}--\ref{fig:#2}}
+\newcommand{\figrref}[2]{Figures~\ref{#1}--\ref{#2}}
 %\newcommand{\secref}[1]{Section~\ref{sec:#1}}
 \newcommand{\secsref}[2]{Sections~\ref{sec:#1} and~\ref{sec:#2}}
 \newcommand{\eqnref}[1]{Eqn.~\ref{eqn:#1}}
