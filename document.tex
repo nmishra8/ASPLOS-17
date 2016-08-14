@@ -1,7 +1,7 @@
 %\documentclass[10pt,twocolumn]{article}
 \documentclass[pageno]{jpaper}
 
-\newcommand{\asplossubmissionnumber}{XXX}
+\newcommand{\asplossubmissionnumber}{209}
 %\input{csmathmacro}
 \usepackage{balance}
 %\usepackage{times}
@@ -14,6 +14,8 @@
 \usepackage{amstext,amssymb,amsmath,amsthm}
 %\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 %\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage[natbib=true,backend=bibtex,firstinits=true,style=numeric-comp,sorting=nyt,defernumbers,maxnames=99,maxcitenames=99]{biblatex}
+
 
 \setlist{noitemsep,topsep=0pt}
 
@@ -24,9 +26,12 @@
 \setlength{\topmargin}{0.0in}
 \setlength{\headheight}{0.0in}
 \setlength{\headsep}{0.0in}
-
+%
 \setlength{\abovecaptionskip}{1pt plus 2pt minus 2pt}
 \setlength{\textfloatsep}{3pt}
+
+
+
 %--------
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -140,6 +145,9 @@ tick label style={font=\footnotesize},
 
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+
+\bibliography{reference}
+
 \begin{document}
 
 \title{Big Data for LITTLE Cores \\ {\large Combining Learning and Control for
@@ -159,6 +167,7 @@ tick label style={font=\footnotesize},
 
 \newpage
 \clearpage
-\bibliographystyle{abbrv} 
-\bibliography{reference}
+%\bibliographystyle{abbrv} 
+%\bibliography{reference}
+\printbibliography
 \end{document}

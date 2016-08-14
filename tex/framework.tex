@@ -25,36 +25,6 @@ describes the interface that combines them.
 \label{sec:framework:HBM}
 
 %\PUNT{
-\begin{figure}
-
-  \subfloat[]
-  {
-    %\includegraphics[width=.33\textwidth]{figures/Online.pdf}
-    \includegraphics[width=.33\columnwidth]{figures/Online.pdf}
-
-    \label{fig:online}
-  }
-  \subfloat[]
-  {
-    %\includegraphics[width=.33\textwidth]{figures/Offline.pdf}
-    \includegraphics[width=.33\columnwidth]{figures/Offline.pdf}
-
-    \label{fig:offline}
-  }
-  \subfloat[]
-  {
-    %\includegraphics[width=.33\textwidth]{figures/HBM.pdf}
-    \includegraphics[width=.33\columnwidth]{figures/HBM.pdf}
-
-    \label{fig:HBM}
-  }
-  \caption{ Comparison of online, offline, and hierarchical Bayesian
-    models.  Arrows represent dependences, circles are random
-    variables, white circles are hidden and must be learned, solid
-    circles are fully observed data, and shaded circles are partially
-    observed.}
-\label{fig:learning-models}
-\end{figure}
 
 Machine learning models are predictive in nature.  Given some
 observations of a system, they create a model to predict future
@@ -90,6 +60,38 @@ general model will capture trends -- \eg{} when most applications
 should transition from LITTLE to big cores -- but it will miss key
 inflection points for applications that deviate from the general
 trend.
+
+\begin{figure}
+
+  \subfloat[]
+  {
+    %\includegraphics[width=.33\textwidth]{figures/Online.pdf}
+    \includegraphics[width=.33\columnwidth]{figures/Online.pdf}
+
+    \label{fig:online}
+  }
+  \subfloat[]
+  {
+    %\includegraphics[width=.33\textwidth]{figures/Offline.pdf}
+    \includegraphics[width=.33\columnwidth]{figures/Offline.pdf}
+
+    \label{fig:offline}
+  }
+  \subfloat[]
+  {
+    %\includegraphics[width=.33\textwidth]{figures/HBM.pdf}
+    \includegraphics[width=.33\columnwidth]{figures/HBM.pdf}
+
+    \label{fig:HBM}
+  }
+  \caption{ Comparison of online, offline, and hierarchical Bayesian
+    models.  Arrows represent dependences, circles are random
+    variables, white circles are hidden and must be learned, solid
+    circles are fully observed data, and shaded circles are partially
+    observed.}
+\label{fig:learning-models}
+\end{figure}
+
 
 The HBM is a combination of the \emph{online} and \emph{offline})
 approaches. The HBM incorporates both (1) observations of the current
