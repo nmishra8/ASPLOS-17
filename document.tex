@@ -4,12 +4,14 @@
 \newcommand{\asplossubmissionnumber}{XXX}
 %\input{csmathmacro}
 \usepackage{balance}
+%\usepackage{times}
+%\usepackage{fullpage}
 %\usepackage{enumitem}
 %\usepackage[shortlabels]{enumitem}
 %\usepackage{mathtools}
 \usepackage[normalem]{ulem}
 \usepackage{todonotes}
-
+\usepackage{amstext,amssymb,amsmath,amsthm}
 %\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 %\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
@@ -136,7 +138,8 @@ tick label style={font=\footnotesize},
 \newcommand{\minimize}{minimize}
 \newcommand{\st}{s.t.}
 
-
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
 \begin{document}
 
 \title{Big Data for LITTLE Cores \\ {\large Combining Learning and Control for

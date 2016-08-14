@@ -1,0 +1,135 @@
+\begin{tikzpicture}
+\definecolor{s1}{RGB}{228, 26, 28}
+\definecolor{s2}{RGB}{55, 126, 184}
+\definecolor{s3}{RGB}{77, 175, 74}
+\definecolor{s4}{RGB}{152, 78, 163}
+\definecolor{s5}{RGB}{255, 127, 0}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 1,
+        xlabels at=edge top,
+        xticklabels at=edge top,
+        vertical sep=5pt
+    },
+axis x line* = top,
+xlabel near ticks,
+major x tick style = transparent,
+height=3cm,
+width=\columnwidth,
+xmin=0,
+xmax=9,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ylabel style={align=center},
+ytick=\empty,
+xtick=\empty,
+xticklabels={},
+yticklabels={},
+ymin=0,
+ymax=1,
+]
+\nextgroupplot[ylabel={},
+y label style={rotate=270},
+ylabel shift={12mm},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\nextgroupplot[
+ylabel shift={12mm},
+y label style={rotate=270},
+ylabel={$\mathsf{30\%}$},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\nextgroupplot[
+ylabel shift={12mm},
+y label style={rotate=270},
+ylabel={$\mathsf{50\%}$},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel={$\mathsf{70\%}$},
+y label style={rotate=270},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel={$\mathsf{90\%}$},
+y label style={rotate=270},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\end{groupplot}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 2,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=5pt
+    },
+axis x line* = bottom,
+xlabel near ticks,
+major x tick style = transparent,
+xlabel={},
+height=3cm,
+width=\columnwidth,
+xmin=0,
+xmax=21,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ylabel style={align=center},
+ytick=\empty,
+ymin=0,
+ymax=0.5,
+ytick={0,0.1,0.3,0.5},
+yticklabels={,0.1,0.3,0.5},
+legend cell align=left, 
+legend style={ column sep=1ex },
+ymajorgrids,
+grid style={dashed},
+]
+
+
+\nextgroupplot[ybar=\pgflinewidth,
+bar width=2.0pt,
+ylabel={\footnotesize 1-adjR2}, 
+ylabel shift={0mm},
+xticklabel shift={1pt},
+x tick label style={rotate=35, anchor=east},
+xtick={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21},
+xticklabels={
+{\scriptsize $\mathsf{backprop}$},
+{\scriptsize $\mathsf{bfs}$},
+{\scriptsize $\mathsf{blackscholes}$},
+{\scriptsize $\mathsf{bodytrack}$},
+{\scriptsize $\mathsf{facesim}$},
+{\scriptsize $\mathsf{ferret}$},
+{\scriptsize $\mathsf{heartwall}$},
+{\scriptsize $\mathsf{hotspot}$},
+{\scriptsize $\mathsf{jacobi}$},
+{\scriptsize $\mathsf{kmeans}$},
+{\scriptsize $\mathsf{kmeansnf}$},
+{\scriptsize $\mathsf{lavamd}$},
+{\scriptsize $\mathsf{leukocyte}$},
+{\scriptsize $\mathsf{lud}$},
+{\scriptsize $\mathsf{nw}$},
+{\scriptsize $\mathsf{sha}$},
+{\scriptsize $\mathsf{srad}$},
+{\scriptsize $\mathsf{stream_threads}$},
+{\scriptsize $\mathsf{x264-ducks}$},
+{\scriptsize $\mathsf{x264-native}$}},
+]
+\addplot table[x index=0,y index=1, col sep=space] {img/image_text/mem-compute.txt};
+
+\end{groupplot}
+\end{tikzpicture}

@@ -20,10 +20,15 @@ intensive benchmark pair (\texttt{stream}) and
 (\texttt{stream\_threads}) \cite{stream}. Our benchmarks vary from
 compute-bound applications to memory bound workloads and also
 workloads that are a combination of both as shown in
-\figref{application_variety}.  Each application has been instrumented
+\figref{fig:application_variety}.  Each application has been instrumented
 to report its performance as heartbeats/second an application-specific
 performance metric \cite{POET}.
-
+\begin{figure}[t]
+  \input{img/mem-compute.tex}
+   \vskip -1em
+  \caption{Lack-of-fit for performance vs clock-speed for a fixed number of cores. Lower value for lack-of-fit indicates a more compute-bound application whereas a higher value indicates a memory bound application.}
+  \label{fig:application_variety}
+\end{figure}
 
 
 \subsection{Evaluation metrics}
@@ -267,6 +272,11 @@ to the change; it produces better results than POET because it has
 captured the complex behavior specific to this application on this
 system.
 
+
+
+
+
+
 \PUNT{
 \subsection{Power and performance estimation}
 We use LEO as described in \secref{sec:framework:HBM} to estimate the
@@ -281,12 +291,12 @@ the benchmarks.
 %Infact, LEO uniformly performs well for all applications with the worst accuracy being YY as compared to offline and online algorithm.
 
 
-\begin{figure*}[t]
-  \input{img/accuracy-performance.tex}
+\begin{figure}[t]
+  \input[width=\columnwidth]{img/accuracy-performance.tex}
    \vskip -1em
   \caption{Accuracy performance}
   \label{fig:accuracy}
-\end{figure*}
+\end{figure}
 }
 
 \subsection{Sensitivity to the measured samples}

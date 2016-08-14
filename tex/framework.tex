@@ -28,12 +28,8 @@ On the mobile device, this model is stored in a novel data structure, called a
 between the remote HBM and the lightweight control system (LCS) that
 manages the device.  The LCS adjusts resource usage to meet
 performance requirements for interactive mobile applications with
-minimal energy.  The PHT is the key data structure allowing the LCS to
-apply the learned models in constant ($O(1)$) time.  
-%Producing the PHT is significantly more expensive, but it is done remotely and does not impact the device to be managed.  
-In this manner, the HBM handles the
-complexity of the device and the LCS handles the dynamics, with the
-PHT being the key interface linking the two.  This section provides a
+minimal energy.  %The PHT is the key data structure allowing the LCS to apply the learned models in constant ($O(1)$) time.   Producing the PHT is significantly more expensive, but it is done remotely and does not impact the device to be managed.  In this manner, the HBM handles the complexity of the device and the LCS handles the dynamics, with the PHT being the key interface linking the two.
+  This section provides a
 brief overview of the relevant learning and control techniques used in
 \SYSTEM{}, and then describes the interface that combines them.
 
@@ -64,13 +60,12 @@ brief overview of the relevant learning and control techniques used in
 
     \label{fig:HBM}
   }
-  \caption{ Comparison of online (a) offline (b) and hierarchical
-    Bayesian models (c). The online model is concerned only with the
-    current application (labeled N), the offline model combines all
-    observations into one model, and the HBM builds per-application
-    models, but makes them conditionally dependent on one another so
-    that prior observations can be used to increase the accuracy of
-    the model built for application N.}
+  \caption{ Comparison of online, offline, and hierarchical Bayesian
+     models.  The arrows represent dependences, circles are random
+     variables, white circles are hidden variables that cannot be
+     observed and must be learned, solid circles represent fully
+     observed data, and shaded circles represent partially observed
+     data.}
 \label{fig:learning-models}
 \end{figure}
 %}
@@ -99,8 +94,10 @@ turn observations of applications' performance and power into
 predictions about how other, unobserved resource allocations will
 alter that performance and power.  We use a HBM because it provides a
 statistically sound framework for learning across applications and
-devices.  The HBM is non-parametric in terms of resource
-configurations, hence well suited to learning the complicated
+devices.  
+
+The HBM is non-parametric in terms of resource
+configurations. Instead of modelling performance of a configuration as a function of exact number of cores or clockspeed it tries to capture correlations between configurations hence well suited to learning the complicated
 trade-off spaces that arise from heterogeneity in modern mobile
 processors, like those illustrated in \figref{fig:lavamd_contour} and \figref{fig:kmeans_contour}.  This
 non-smoothness is the reason why parametric models based on
@@ -121,7 +118,7 @@ affected by the shape of the curve. \TODO{We still need one or two
 %on a remote server (originally in LEO it ran natively on the system to
 %be optimized).
 
-We compare \SYSTEM{} to an \emph{online model}, which only uses only
+We compare \SYSTEM{} to an \emph{online model} (See \figref{fig:online}), which only uses only
 observations of the current application.  For such model to be
 predictive, it must be parametric in terms of the configuration space
 (cores/clockspeed) since no other information is available. This
@@ -132,13 +129,14 @@ is misspecified and defined to be linear in cores, but the application
 actually hits an asymptote and no longer increases performance after
 some core count.
 
-We also compare \SYSTEM{} to a purely \emph{offline model} which only
+We also compare \SYSTEM{} to a purely \emph{offline model}(See \figref{fig:offline}) which only
 uses information from previously seen applications but lacks any
 knowledge of the current application to be optimized. This general
 model will capture trends; \eg{} when most applications should
 transition from LITTLE to big cores, but it might miss the key
 inflection point for some applications.
 
+\PUNT{
 The HBM provides a good balance between the online and offline
 approaches.  The key differences between these three approaches are
 illustrated in \figref{fig:learning-models}. In this figure, circles
@@ -156,6 +154,7 @@ knowledge. The offline approach uses all observations from prior
 applications and will therefore converge very quickly; however, it is
 overly general and cannot learn features specific to a single
 application.
+}
 %%
 \PUNT{
 When selecting a learning framework we must find a trade-off between
@@ -235,24 +234,22 @@ prior knowledge of different types of behavior.
 
 \subsection{Controlling Computing Systems}
 
-Control theory provides a discipline for tuning parameters to ensure
-that a system meets some requirement in a dynamic environment.  We use
-a controller to meet a performance goal (corresponding to a
-quality-of-service or real-time constraint) and adjust system resource
-usage to see that the goal is met.  Our primary concern is making a
+Control theory provides a discipline for tuning system parameters to ensure
+that a system meets the desired goals in a dynamic environment.  We use a controller to  adjust system resource usage to see that the performance goals (corresponding to a quality-of-service or real-time constraint) are met over time.  
+
+Our primary concern is making a
 control formulation that is general enough to be applied to a wide
 range of possible applications while receiving its model from the HBM.
 
 We would like to use control and learning to solve the problem of
 meeting an application's performance requirements while minimizing
 energy consumption.  The difficulty is that classical control
-formulations integrate the models directly into the controller; \ie{}
-the application-dependent relationship between performance and the
-controlled resource is directly used in the control equations.  For
+formulations integrate the application-dependent relationship between performance and the
+controlled resource is directly used in the control equations. This makes the control models too specific and they work well in some situations and fail in others.  For
 example, consider a control system designed to meet a performance goal
 by managing processor frequency.  This controller's coefficients would
 directly encode the relationship between frequency and application
-performance.  On mobile devices, we need to capture the relationship
+performance. On mobile devices we need to capture the relationship
 between all available resources and application performance, but this
 relationship is obviously application specific.  Thus, we face the
 problem of implementing a general control system that is applicable to
@@ -261,13 +258,20 @@ performance are not known ahead of time.
 
 We propose to address this problem using the classic computer science
 trick of adding a layer of indirection.  This idea is illustrated in
-\figref{fig:overview}.  Instead of directly controlling resources using an
+\figref{ig:framework:lcs}.  Instead of directly controlling resources using an
 application-dependent model, we will control \emph{speedup} and pass
 that speedup value to a separate module that optimizes energy while
 respecting this speedup constraint using the learned models.  Similar
 models have been used to build generalized controllers where users are
 responsible for supplying the models \cite{POET}.  Our goal is to
 eliminate this user burden and have a remote HBM supply the model, which are not just more accurate but become more intelligent with time as it acquires more data.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/LCS.pdf}
+\caption{Light-weight control system (LCS) }
+  \label{fig:framework:lcs}
+\end{figure}
+
 
 \subsubsection{Controlling Speedup}
 We write a simple difference model relating speedup to performance:
@@ -310,8 +314,8 @@ architecture, that specifically means mapping speedup into a number of
 big cores, a number of small cores, and a speed for both (on our
 system big and little cores can be clocked separately).
 
-The primary challenge here is that the HBM produces a non-linear
-function mapping discrete resource allocations into speedup and
+The primary challenge here is that since the system resources are discrete, the HBM produces a non-linear
+function mapping the resource allocations into speedup and
 powerup, while \eqnref{speedup-control} is a continuous linear
 function.  We bridge this divide by assigning time to resource
 allocations such that the average speedup over a control interval is
@@ -323,14 +327,14 @@ example, using two big cores at 1.5 \GHz and putting all the little
 cores to sleep is one configuration.  Not surprisingly, there are
 typically many schedules that meet a particular performance
 requirement.  To extend battery life, we would like to find a minimal
-energy schedule. Given a time interval $\tau$, a workload $W$ to
+energy schedule. Given a time interval $T$, a workload $W$ to
 complete in that interval, and a set of $C$ configuration, we
 formalize this problem as:
 \begin{eqnarray}
-  \minimize && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
-  \st %&& \nonumber\\
+  \argmin_{\tau} && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
+  \text{such that} %&& \nonumber\\
   && \sum_{c=0}^{C-1} \tau_c \cdot s_c \cdot b =  W \label{eqn:work} \\
-  && \sum_{c=0}^{C-1} \tau_c =  \tau \label{eqn:deadline} \\
+  && \sum_{c=0}^{C-1} \tau_c =  T \label{eqn:deadline} \\
   && 0 \le \tau_c \le \tau, \qquad \forall c \in \{0,\ldots,C-1\} \label{eqn:time}
 \end{eqnarray}
 where $p_c$ and $s_c$ are the estimated powerup and speedup of
@@ -372,7 +376,7 @@ configurations on the lower convex hull as any points that lie above
 the lower convex hull require more power for equivalent performance
 \cite{kim-cpsna}.  Therefore, the HBM estimates the power and
 performance of all configurations, then finds the lower convex hull,
-and sends that to the LCS.  The lower convex hull is the interface
+and sends that to the LCS.  This lower convex hull is the interface
 between the HBM and the LCS, and the key enabler of \SYSTEM{}'s
 combination of learning and control.
 
@@ -418,12 +422,13 @@ optimizer clamps the desired speedup to the smallest index higher than
 $s(t)$ and then walks backwards until it finds the configuration with
 the largest speedup less than $s(t)$.
 
+\PUNT{
 For example, consider the PHT in \figref{fig:pht} and an optimizer trying
 to meet a speedup $s(t) = .65$.  To find $hi$, the optimizer indexes
 at .6 and walks up to find $c=2$ with $s_c=.8$, setting $hi = 2$.  To
 find $lo$, the optimizer indexes the table at .7 and walks backward to
 find $c=1$ with $s_c=.2$, setting $lo = 1$.
-
+}
 Finally, the optimizer sets $\tau_{hi}$ and $\tau_{lo}$ by solving the
 following set of equations:
 \begin{eqnarray}
