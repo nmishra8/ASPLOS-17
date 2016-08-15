@@ -7,22 +7,22 @@
   availability.  Machine learning techniques handle complicated
   optimization spaces, but do not incorporate models of system
   dynamics; control theory provides formal guarantees of dynamic
-  behavior, but cannot handle non-linear system models.  In this
+  behavior, but struggles with non-linear system models.  In this
   paper, we propose \SYSTEM{}, a combination of learning and control
-  techniques to meet mobile system's performance requirements on
-  heterogeneous devices in unpredictable environments.  \SYSTEM{}
-  combines a hierarchical Bayesian model (HBM) with a lightweight
-  control system (LCS).  The HBM runs remotely, learning customized
-  performance/power models.  The LCS runs on the mobile system and
-  tunes resource usage.  A novel data structure, the Performance Hash
-  Table (PHT) allows the LCS to apply the learned models in constant
-  time.  We test \SYSTEM{}'s ability to manage ARM big.LITTLE systems.
-  Compared to existing learning and control methods, \SYSTEM{}
-  delivers more reliable performance -- only 2\% error compared to
-  4.5-5.4\% for learning and 4.7\% for control -- and lower energy --
-  achieving 7\% of optimal as compared to by 25-52\% over learning and
-  26\% over control.  When multiple applications compete for
-  resources, these numbers improve\PUNT{: 7\% error compared to
-    11-15\% for learning and 9\% for control and improvements of
-    2-20\% and 3\%, respectively, in energy efficiency}.
+  techniques to meet performance requirements on heterogeneous devices
+  in unpredictable environments.  \SYSTEM{} combines a hierarchical
+  Bayesian model (HBM) with a lightweight control system (LCS).  The
+  HBM runs remotely, learning customized performance/power models.
+  The LCS runs on the mobile system and tunes resource usage.  The
+  Performance Hash Table (PHT) is the interface between the two and
+  allows the LCS to apply the learned models in constant time.  We
+  test \SYSTEM{}'s ability to manage ARM big.LITTLE systems.  Compared
+  to existing learning and control methods, \SYSTEM{} delivers more
+  reliable performance -- only 2\% error compared to 4.5-5.4\% for
+  learning and 4.7\% for control -- and lower energy -- within 7\% of
+  optimal on average as compared to 25-52\% for learning and 26\% for
+  control.  When multiple applications compete for resources, these
+  numbers improve\PUNT{: 7\% error compared to 11-15\% for learning
+    and 9\% for control and improvements of 2-20\% and 3\%,
+    respectively, in energy efficiency}.
 \end{abstract}
