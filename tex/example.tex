@@ -53,12 +53,12 @@
     \label{fig:kmeans_timeline}    
   }
   \caption{(a) Performance for \texttt{lavamd} as a function of
-    configuration. (b) Managing \texttt{lavamd}'s performance.
+    configuration. (b) Managing \texttt{lavamd}'s performance:
     \emph{Learning} navigates the complicated configuration space, but
     \emph{control}'s simple model leads to oscillation. (c)
     Performance for \texttt{kmeans} as a function of configuration.
     (d) Managing \texttt{kmeans}' performance when another application
-    starts. \emph{Control} detects the change and adapts, but
+    starts: \emph{Control} detects the change and adapts, but
     \emph{learning} has no mechanism to handle these dynamics.}
   \label{fig:learning-models}
 \end{figure*}
@@ -122,20 +122,20 @@ estimates all configurations' performance and power and then uses the
 lowest power configuration that delivers the required performance.
 The \emph{control} approach has a generic model of power/performance
 frontiers (similar to \texttt{kmeans}) and it constantly measures
-performance and adjusting resource usage according to this generic
+performance and adjusts resource usage according to this generic
 model.  \PUNT{While many controllers use linear models, POET uses a
   convex model and handles some non-linearities; however, it is
   sensitive to local maxima.}
 
 \figref{fig:lavamd_timeline} shows the results of controlling 30
 iterations of \texttt{lavamd} to meet the performance requirement.
-The x-axis shows iteration number and the y-axis shows normalize
+The x-axis shows iteration number and the y-axis shows normalized
 performance.  The learning approach achieves the goal, but the
 controller oscillates wildly around it, sometimes not achieving the
 goal and sometimes delivering performance that is too high (and wastes
 energy). The oscillations occur because the controller adjusts
-resources usage based on an incorrect (over-simplified) model of
-the configuration space. Hence, the \emph{learner}'s ability to handle
+resources based on an incorrect (over-simplified) model of the
+configuration space. Hence, the \emph{learner}'s ability to handle
 complex models is crucial for reliable performance in this example.
 
 %This result may be somewhat counter-intuitive.  The problem is that the controller cannot handle the complexity of \texttt{lavamd}.  One way to fix this problem would be to build a custom controller just for this application, but that controller would not be useful for other applications.  In contrast, the learner can find the local maxima in the configuration space, and as this application has no phase changes or other dynamics, the one configuration that the learner finds is suitable for the entire application.
@@ -143,8 +143,8 @@ complex models is crucial for reliable performance in this example.
 \subsection{\emph{Controlling} Dynamics}
 We now consider a dynamic environment.  We begin with \texttt{kmeans}
 as the only application running on the system.  Halfway through its
-execution, we launch a second app on a single big core,
-dynamically altering resource availability.  
+execution, we launch a second app on a big core, dynamically altering
+resource availability.
 
 \figref{fig:kmeans_timeline} shows the results of this experiment.
 The vertical dashed line represents when the second application
