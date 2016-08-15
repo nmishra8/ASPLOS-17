@@ -29,43 +29,37 @@ xtick=\empty,
 xticklabels={},
 yticklabels={},
 ymin=0,
-ymax=2,
+ymax=1,
 ]
 \nextgroupplot[ylabel={$\mathsf{10\%}$},
 y label style={rotate=270},
 ylabel shift={12mm},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
 \nextgroupplot[
 ylabel shift={12mm},
 y label style={rotate=270},
 ylabel={$\mathsf{30\%}$},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
 \nextgroupplot[
 ylabel shift={12mm},
 y label style={rotate=270},
 ylabel={$\mathsf{50\%}$},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
 \nextgroupplot[
 ylabel shift={12mm},
 ylabel={$\mathsf{70\%}$},
 y label style={rotate=270},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
 \nextgroupplot[
 ylabel shift={12mm},
 ylabel={$\mathsf{90\%}$},
 y label style={rotate=270},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
 \end{groupplot}
 
 \begin{groupplot}[
@@ -91,8 +85,8 @@ ylabel style={align=center},
 ytick=\empty,
 ymin=0,
 ymax=2.5,
-ytick={0,0.5,1.5,2.5},
-yticklabels={,0.5,1.5,2.5},
+ytick={0,0.50,1.50,2.50},
+yticklabels={,50,150,250},
 legend cell align=left, 
 legend style={ column sep=1ex },
 ymajorgrids,
@@ -106,8 +100,8 @@ legend style={draw=none,legend columns=5,at={(.5,1.7)},anchor=north},
 ylabel shift={0mm},
 ymin=0,
 ymax=2,
-ytick={0,0.5,1.5,2.0},
-yticklabels={,0.5,1.5,2.0},
+ytick={0,0.5,1.5,2},
+yticklabels={,50,150,200},
 ]
 \addplot table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.1.txt};
 \addplot table[x index=0,y index=4, col sep=space] {img/image_text/dyn-eff-0.1.txt};
@@ -130,7 +124,7 @@ bar width=2.0pt,
 \addplot table[x index=0,y index=7, col sep=space] {img/image_text/dyn-eff-0.3.txt};
 
 \nextgroupplot[ybar=\pgflinewidth,
-ylabel={\footnotesize Energy\\heartbeat},
+ylabel={\footnotesize normalized energy},
 ylabel shift={0mm},
 bar width=2.0pt,
 %ymin=.9,
@@ -153,8 +147,8 @@ bar width=2.0pt,
 %yticklabels={1.0,,,,5.0,,,8.0},
 ymin=0,
 ymax=3,
-ytick={0,1.0,2.0,3.0},
-yticklabels={,1.0,2.0,3.0},
+ytick={0,1,2,3},
+yticklabels={,100,200,300},
 ]
 \addplot table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.7.txt};
 \addplot table[x index=0,y index=4, col sep=space] {img/image_text/dyn-eff-0.7.txt};
@@ -169,9 +163,9 @@ xticklabel shift={0pt},
 x tick label style={rotate=35, anchor=east},
 xtick={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22},
 ymin=0,
-ymax=3,
-ytick={0,1.0,2.0,3.0},
-yticklabels={,1.0,2.0,3.0},
+ymax=3.1,
+ytick={0,1,2,3},
+yticklabels={,100,200,300},
 xticklabels={
 {\scriptsize $\mathsf{backprop}$},
 {\scriptsize $\mathsf{bfs}$},

@@ -61,10 +61,10 @@ clear;
 fprintf('Multi App: online offline leo poet leo+poet\n');
 for j = 0:4
     id = (2*j + 1)*0.1;
-    filename = ['ma-eff-',num2str(id),'.txt'];
+    filename = ['ma-err-',num2str(id),'.txt'];
     fid = fopen(filename);
-   c = textscan(fid,'%d %s %f %f %f %f %f' ); 
-    d = 100*cell2mat(c(3:end));
+    c = textscan(fid,'%d %s %f %f %f %f %f' ); 
+    d = cell2mat(c(3:end));
     fclose(fid);
     mat = d(1:(end-1),:);
     
@@ -76,32 +76,6 @@ end
 
  fprintf('MAX = %s | MEAN = %s \n', sprintf('%5.2f ',max(MAXX)),...
      sprintf('%5.2f ',mean(MEANN)));
-% Multi App: online offline leo poet leo+poet
-%  0.10,  0.00|MAX 87.28 122.91 96.92 122.78 86.94 |MEAN 39.14 17.43 13.11 21.46 23.25  
-%  0.30,  0.00|MAX 88.81 199.22 163.18 75.08 53.04 |MEAN 30.32 20.88 16.83 20.59 17.81  
-%  0.50,  0.00|MAX 233.39 145.36 67.21 115.62 44.18 |MEAN 25.39 17.74  7.23 27.66 11.42  
-%  0.70,  0.00|MAX 863.72 57.18 24.55 158.70 100.12 |MEAN 45.48  4.62  2.08 20.50 21.99  
-%  0.90,  0.00|MAX 746.71 141.47 746.71 141.27 110.09 |MEAN 51.93 16.91 59.36 14.89 16.70  
-% MAX = 863.72 199.22 746.71 158.70 110.09  | MEAN = 38.45 15.52 19.72 21.02 18.23 clear;
-% fprintf('Multi App: online offline leo poet leo+poet\n');
-
-
-%------------------
-% Multi Energy
-for j = 0:4
-    id = (2*j + 1)*0.1;
-    filename = ['ma-err-',num2str(id),'.txt'];
-    fid = fopen(filename);
-    c = textscan(fid,'%d %s %f %f %f %f %f' );  
-    d = cell2mat(c(3:7));
-    fclose(fid);
-    mat = d(1:(end-1),:);
-    
-    MAXX(j+1,:) = max(mat);
-    MEANN(j+1,:)= mean(mat);
-    fprintf('%5.2f, %5.2f|MAX %s|MEAN %s \n',id,min(min(mat)),...
-        sprintf('%5.2f ',max(mat)),sprintf('%5.2f ',mean(mat)));
-end
 
 
 % Multi App: online offline leo poet leo+poet
@@ -113,3 +87,30 @@ end
 % fprintf('MAX = %s | MEAN = %s \n', sprintf('%5.2f ',max(MAXX)),...
 %     sprintf('%5.2f ',mean(MEANN)));
 % MAX = 84.35 71.91 84.35 36.79 30.44  | MEAN = 15.17 14.19 11.27  8.82  7.25  
+
+%------------------
+% Multi Energy
+for j = 0:4
+    id = (2*j + 1)*0.1;
+    filename = ['ma-eff-',num2str(id),'.txt'];
+    fid = fopen(filename);
+    c = textscan(fid,'%d %s %f %f %f %f %f' );  
+    d = 100*cell2mat(c(3:7));
+    fclose(fid);
+    mat = d(1:(end-1),:);
+    
+    MAXX(j+1,:) = max(mat);
+    MEANN(j+1,:)= mean(mat);
+    fprintf('%5.2f, %5.2f|MAX %s|MEAN %s \n',id,min(min(mat)),...
+        sprintf('%5.2f ',max(mat)),sprintf('%5.2f ',mean(mat)));
+end
+
+
+% Multi App: online offline leo poet leo+poet
+%  0.10,  0.00|MAX 87.28 122.91 96.92 122.78 86.94 |MEAN 39.14 17.43 13.11 21.46 23.25  
+%  0.30,  0.00|MAX 88.81 199.22 163.18 75.08 53.04 |MEAN 30.32 20.88 16.83 20.59 17.81  
+%  0.50,  0.00|MAX 233.39 145.36 67.21 115.62 44.18 |MEAN 25.39 17.74  7.23 27.66 11.42  
+%  0.70,  0.00|MAX 863.72 57.18 24.55 158.70 100.12 |MEAN 45.48  4.62  2.08 20.50 21.99  
+%  0.90,  0.00|MAX 746.71 141.47 746.71 141.27 110.09 |MEAN 51.93 16.91 59.36 14.89 16.70  
+% MAX = 863.72 199.22 746.71 158.70 110.09  | MEAN = 38.45 15.52 19.72 21.02 18.23 clear;
+% fprintf('Multi App: online offline leo poet leo+poet\n');
