@@ -7,15 +7,7 @@ increasingly diverse, exposing diverse heterogeneous resources that
 must be managed by software. Meeting performance requirements is
 further complicated by the dynamic nature of computing systems:
 application resource demands can vary widely as a function of input or
-application phase and multiple applications may compete for resources.
-
-\begin{figure}
-\includegraphics[width=\columnwidth]{figures/Mobile2.png}
-\caption{\SYSTEM{} overview.}
-  \label{fig:overview}
-\end{figure}
-
-Thus, two challenges arise to meeting performance requirements with
+application phase and multiple applications may compete for resources. Thus, two challenges arise to meeting performance requirements with
 minimal energy on mobile systems: (1) complexity and (2) dynamics.
 Machine learning approaches handle the complex power/performance
 tradeoff spaces that arise on heterogeneous mobile systems
@@ -36,6 +28,11 @@ hardware.  \PUNT{Control techniques provide a formal basis for
   of modern hardware. } Individually, neither control nor learning
 meet the challenges of modern mobile resource management.
 
+\begin{figure}
+\includegraphics[width=\columnwidth]{figures/Mobile2.png}
+\caption{\SYSTEM{} overview: Mobile phones running an application would communicate with the server running hierarchical Bayesian model(HBM) to receive the configuration file called performance hash table(PHT) which is fed into the light-weight controller system(LCS) for optimal resource utilization.}
+  \label{fig:overview}
+\end{figure}
 We therefore propose \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd
   \textbf{L}earning for \textbf{O}ptimal \textbf{R}esource
   \textbf{E}nergy \textbf{E}fficiency}, a combination of learning and
@@ -147,8 +144,8 @@ devices and evaluate across 20 benchmarks.  We find that \SYSTEM{}:
 \begin{itemize}
 \item \textbf{Delivers Reliable Performance: } We calculate the error
   between the desired and delivered performance.  When running one
-  application at a time, \SYSTEM{} achieves an average error of 2.1\%,
-  compared to 3.4-5.4\% for existing learning methods and 4.6\% for
+  application at a time, \SYSTEM{} achieves an average error of 2\%,
+  compared to 4.5-5.4\% for existing learning methods and 4.7\% for
   existing control approaches.
 \item \textbf{Uses Lower Average Energy:} When running one application
   at a time, \SYSTEM{} achieves an average energy consumption of 7\%,

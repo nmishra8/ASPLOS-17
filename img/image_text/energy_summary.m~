@@ -85,9 +85,6 @@ end
 % MAX = 863.72 199.22 746.71 158.70 110.09  | MEAN = 38.45 15.52 19.72 21.02 18.23 clear;
 % fprintf('Multi App: online offline leo poet leo+poet\n');
 
-
-%------------------
-% Multi Energy
 for j = 0:4
     id = (2*j + 1)*0.1;
     filename = ['ma-err-',num2str(id),'.txt'];

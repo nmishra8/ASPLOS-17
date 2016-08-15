@@ -7,7 +7,7 @@ boards have Samsung Exynos 5 Octa processors based on the ARM
 big.LITTLE architecture.  Each processor has 19 speed settings for its
 4 big cores and 13 for 4 LITTLE cores.  Each board has a power meter
 updated at 1/4 \ms intervals.  Each resource configuration
-(combination of big/LITTLE cores and clockspeeds) has a different
+(combination of big/LITTLE cores and clock-speeds) has a different
 performance and power, which is, itself, application-dependent.
 
 We use 20 different benchmarks from different suites including PARSEC
@@ -23,7 +23,7 @@ figure reports the \emph{lack-of-fit} or the lack of correlation
 between frequency and performance.  Applications with high lack-of-fit
 do not improve performance with increasing frequency, typical of
 memory bound applications, while applications with low lack-of-fit do
-see increasing performance with increasing clockspeed
+see increasing performance with increasing clock-speed
 \cite{powerslope}. Applications with intermediate lack-of-fit tend to
 improve with increasing clock speed up to a point and then see no
 further improvement.  Each application has been instrumented to report
@@ -32,7 +32,7 @@ performance metric \cite{POET}.
 \begin{figure}[t]
   \input{img/mem-compute.tex}
    \vskip -1em
-  \caption{Lack-of-fit for performance vs clock-speed for a fixed number of cores. Lower value for lack-of-fit indicates a more compute-bound application whereas a higher value indicates a memory bound application.}
+  \caption{\emph{Lack-of-fit} for performance vs clock-speed for a fixed number of cores. Lower value for lack-of-fit indicates a more compute-bound application whereas a higher value indicates a memory bound application.}
   \label{fig:application_variety}
 \end{figure}
 
@@ -100,9 +100,9 @@ machine learning approaches that can estimate the energy efficiency
 for different applications.  In the next section, we will compare
 \SYSTEM{}'s delivered performance and energy savings with:
 \begin{enumerate}
-\item \textit{Online-P2I} -- This strategy observes the current
-  application in a small number of configurations then performs
-  polynomial multivariate regression to estimate the performance and
+\item \textit{Online-P2I} -- This strategy observes the
+  application at small number of configurations then performs
+  polynomial multivariate regression for the performance and
   power of unobserved configurations. \PUNT{We use the \textit{Online}
     learning model in combination with \emph{Pace-to-idle (P2I)}
     heuristic.}
@@ -150,13 +150,13 @@ shown on the x-axis; the y-axes show MAPE and the normalized energy,
 respectively.  We find that \SYSTEM{} has lower MAPE and energy
 consumption than the baseline algorithms. Across all applications and
 targets, the online model produces an average error of 5.4\%, the
-offline: 4.4\%, LEO: 4.0\%, POET: 4.7\%, and \SYSTEM{}: 2.0\%.  These
+offline: 4.5\%, LEO: 4.0\%, POET: 4.7\%, and \SYSTEM{}: 2.0\%.  These
 results show that \SYSTEM{} reduces error by a factor of two compared
 to prior approaches.
 
 The energy consumption results are even more impressive.  The online
-model requires an average of 30\% more energy than optimal, offline:
-16\%, LEO: 20\%, POET: 13\%, and \SYSTEM{}: 5\%.  Thus the combination
+model requires an average of 52\% more energy than optimal, offline:
+25\%, LEO: 31\%, POET: 26\%, and \SYSTEM{}: 7\%.  Thus the combination
 of learning and control provides a dramatic reduction in energy
 consumption compared to even state-of-the-art learning or control
 approaches.  The reason is that the combination is complementary: LEO
@@ -166,14 +166,14 @@ in those models and adapt to dynamic changes in behavior.
 \begin{figure*}[t]
   \input{img/single-app-performance.tex}
    \vskip -1em
-  \caption{Single Applications MAPE}
+  \caption{Single applications MAPE}
   \label{fig:single-perf}
 \end{figure*}
 
 \begin{figure*}[t]
   \input{img/single-app-energy.tex}
    \vskip -1em
-  \caption{Single Applications energy}
+  \caption{Single applications energy}
   \label{fig:single-energy}
 \end{figure*}
 
@@ -202,11 +202,16 @@ have exclusive use of all big cores.
 
 \SYSTEM{} again has lower MAPE than the baseline algorithms. Across
 all applications and targets, the online model produces an average
-error of 15\%, the offline: 14\%, LEO: 11\%, POET: 9\%, and \SYSTEM{}:
-7\%.  In this case the average numbers skew \SYSTEM{}'s benefit as no
-approach does very well with the 90\% target and all but online do
-well at the 10\% target.  So, we also consider worst case behavior for
-all targets but the 90\% one.  The online approach has a highest MAPE
+error of 38.5\%, the offline: 15.5\%, LEO: 19.7\%, POET: 21\%, and \SYSTEM{}:
+18\%. \SYSTEM{} is also more energy efficient than the baseline algorithms. Across
+all applications and targets, the average normalized energy for online model is 22\%, the offline: 13.5\%, LEO: 18\%, POET: 15\%, and \SYSTEM{}: 14\%. But, the main benefits of \SYSTEM{} can be seen in terms of worst case scenarios where \SYSTEM{} is significantly better than the baselines. The online approach has a highest MAPE
+of 863\%, for  Offline: 307\%,  LEO: 747\%, POET: 158.7\% and \SYSTEM{}: 110\%.  \SYSTEM{} is also more energy efficient in the worst case scenario. And the worst case energy consumption for online approach is 84\%, for offline: 72\%, for LEO: 84\%, for POET: 37\% and for \SYSTEM{}: 30\%. POET and \SYSTEM{} both produce better outcomes in the
+dynamic scenario because they are specifically designed to handle
+system dynamics.  \SYSTEM{}, however, does significantly better in the
+worst case than POET because the HBM produces more robust models.
+ %In this case the average numbers skew \SYSTEM{}'s benefit as no approach does very well with the 90\% target and all but online do well at the 10\% target.  So, we also consider worst case behavior for all targets.
+\PUNT{
+The online approach has a highest MAPE
 of 80\% for LUD at the 70\% target.  Offline's highest MAPE is 71\%
 for STREAM at the 30\% target.  LEO's highest MAPE is 70\%, also for
 STREAM at 30\%. POET's highest MAPE of 35\% also occurs for STREAM at
@@ -215,7 +220,7 @@ target.  POET and \SYSTEM{} both produce better outcomes in the
 dynamic scenario because they are specifically designed to handle
 system dynamics.  \SYSTEM{}, however, does significantly better in the
 worst case than POET because the HBM produces more robust models.
-
+}
 The energy consumption results are not as meaningful for this
 experiment, but they are included for completeness.  Because there is
 another application running that is not under control, it consumes
@@ -227,14 +232,14 @@ actually save energy, but do so by missing the performance target..
 \begin{figure*}[htp!]
   \input{img/multi-app-performance.tex}
    \vskip -1em
-  \caption{Multi Applications MAPE}
+  \caption{Multiple applications MAPE}
   \label{fig:multi-perf}
 \end{figure*}
 
 \begin{figure*}[t]
   \input{img/multi-app-energy.tex}
    \vskip -1em
-  \caption{Multi Applications Energy}
+  \caption{Multiple applications Energy}
   \label{fig:multi-energy}
 \end{figure*}
 
@@ -248,7 +253,7 @@ target.  There is a curve for each of LEO, POET, and \SYSTEM{}.
 \begin{figure}[t]
   \input{img/bodytrack-multiapp.tex}
    \vskip -1em
-  \caption{bodytrack multiapp}
+  \caption{Bodytrack multiapp}
   \label{fig:bodytrack-multiapp}
 \end{figure}
 
@@ -270,8 +275,7 @@ the optimal configuration once at the beginning of the application.
 Overall, LEO produces a MAPE of 13\%, POET's is 9\%, and \SYSTEM{}'s
 is 4\%.  \SYSTEM{} produces better results than LEO because it reacts
 to the change; it produces better results than POET because it has
-captured the complex behavior specific to this application on this
-system.
+captured the complex application-specific behavior on this system.
 
 
 
@@ -372,6 +376,7 @@ asking each of them to contribute samples for estimation. Once the
 sampling phase is over, the HBM is quite fast and can generate an
 estimate as fast as 500 ms which is significantly smaller than the
 time required for sampling the applications. 
+
 
 The LCS requires only a few floating point operations to execute, plus
 the table lookups in the PHT.  To evaluate the LCS' overhead, we time

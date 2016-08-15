@@ -5,8 +5,8 @@ goals and reduce energy.
 
 \subsection{Machine Learning}
 There are a huge array of different learning techniques that are
-applicable to different problems.  As discussed in in \secref{framework:HBM}
-we break learning for resource management into three categories:
+applicable to different problems.  As discussed in \secref{framework:HBM}
+we break learning for resource management into 3 categories:
 offline, online, and hybrid approaches.  
 
 \subsubsection{Offline Learning}
@@ -15,16 +15,9 @@ those fixed models to allocate resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  In
 these approaches, the model-building phase is generally very expensive,
 requiring both a large number of samples and substantial computation
-to turn those samples into a model that accurately captures the
-relationship between the observed features and the behavior to be
-estimated.  Applying the model online, however, tends to be low
-overhead.  The main drawback is that the models are not updated as the
-system runs, so there is no chance to correct mistakes or adapt to
-specific workloads.
-
-A good example of an offline approach applies learning to render web
-pages on mobile systems with low energy \cite{reddiHPCA2013}.  This
-system is similar in spirit to \SYSTEM{}.  It builds an offline model
+to turn those samples into accurate predictive models.  Applying the model online, however, tends to be low overhead.  The main drawback is that the models are not updated as the
+system runs which is a problem for adapting workloads. A good example of an offline approach applies learning to render web
+pages on mobile systems with low energy \cite{reddiHPCA2013}. It builds an offline model
 mapping web page features into estimations of performance for
 different core types.  When a new page is downloaded, the system
 quickly estimates the resource need to render the web page and uses the
@@ -57,23 +50,22 @@ the operating systems level to manage system energy consumption \cite{Koala,Cind
 \cite{wu2012inferred}.
 
 
-Still other approaches combine offline modeling with online
+Many other approaches combine offline modeling with online
 updates \cite{JouleGuard,Bitirgen2008,Ipek}.  Bitirgen et
 al use an artificial neural network to allocate resources to multiple
 applications in a multicore \cite{Bitirgen2008}.  The neural network
 is trained offline and then adapted online using measured feedback.
 This approach optimizes performance but does not consider power or
-energy minimization.  LEO, the system we extend in this paper, also
+energy minimization. \PUNT{ LEO, the system we extend in this paper, also
 uses a combination of offline and online approaches.  LEO collects
 data about a number of apps offline and combines that with a
 small number of observations made online for the current application
-\cite{LEO}.
+\cite{LEO}.}
 
 \subsection{Control}
 Almost all control solutions can be thought of as a combination of
 offline model building with online adaptation.  Usually the model
-building involves substantial empirical measurement and statistical
-regression to build a model that is then used to synthesize a control
+building involves substantial empirical measurement and modelling to build a model that is then used to synthesize a control
 system
 \cite{Wu2004,TCST,Chen2011,PTRADE,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
 The combination of offline
@@ -107,9 +99,7 @@ configurations.  \SYSTEM{} is unique in that a remote server generates
 an application-specific model automatically.  By offloading the
 learning task, we are able to (1) combine data from many applications
 and systems and (2) apply computationally expensive, but highly accurate
-learning techniques.
-
-Perhaps the most similar approach to \SYSTEM{} is Carat \cite{carat}.
+learning techniques. Perhaps the most similar approach to \SYSTEM{} is Carat \cite{carat}.
 Carat aggregates data across many mobile devices and sends a report to
 human users about how to configure their device to increase battery
 life.  While both Carat and \SYSTEM{} learn across devices, they have
