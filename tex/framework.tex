@@ -11,12 +11,12 @@ taken on other devices and with measurements of other applications.
 Using this large volume of data, the HBM produces an
 application-specific model of performance and power for all resource
 configurations.  The model is sent to a lightweight control system
-(LCS) that manages the device, adjusting resource usage to meet
-application performance requirements with minimal energy.  The learned
-models are stored a performance hash table (PHT), which is the
-interface between the remote HBM and the LCS that manages the device.
-The expensive process of constructing the PHT is done by the server.
-Once built, the PHT allows the LCS to apply the learned models in
+(LCS) that manages the device's resources to meet application
+performance requirements with minimal energy.  The learned models are
+stored in a performance hash table (PHT), a data structure which
+serves as the interface between the remote HBM and the LCS.  The
+expensive process of constructing the PHT is done by the server, and
+once built, the PHT allows the LCS to apply the learned models in
 constant ($O(1)$) time.  This section provides a brief overview of the
 relevant learning and control techniques used in \SYSTEM{}, and then
 describes the interface that combines them.
