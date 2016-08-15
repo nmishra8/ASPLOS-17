@@ -93,7 +93,7 @@ trend.
 \end{figure}
 
 
-The HBM is a combination of the \emph{online} and \emph{offline})
+The HBM is a combination of the \emph{online} and \emph{offline}
 approaches. The HBM incorporates both (1) observations of the current
 application and (2) the previously observed applications to learn
 correlations between different configurations.  The HBM's correlation
@@ -131,7 +131,7 @@ at runtime.
 
 \SYSTEM{} addresses this problem using the classic computer science
 approach of adding a layer of indirection, as illustrated in
-\figref{ig:framework:lcs}.  Instead of directly controlling resources
+\figref{fig:framework:lcs}.  Instead of directly controlling resources
 using an application-dependent model, \SYSTEM{} controls
 \emph{speedup} and a separate module uses the learned models to
 optimize energy while respecting this speedup constraint.  Similar
@@ -194,11 +194,11 @@ schedules that meet a required speedup.  To extend battery life,
 a workload $W$ to complete in that interval, and a set of $C$
 configurations, we formalize this problem as:
 \begin{eqnarray}
-  \argmin_{\tau} && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
+  \minimize_{\tau \in \mathbb{R}^C} && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
   \text{such that} %&& \nonumber\\
   && \sum_{c=0}^{C-1} \tau_c \cdot s_c \cdot b =  W \label{eqn:work} \\
   && \sum_{c=0}^{C-1} \tau_c =  T \label{eqn:deadline} \\
-  && 0 \le \tau_c \le \tau, \qquad \forall c \in \{0,\ldots,C-1\} \label{eqn:time}
+  && 0 \le \tau_c \le T, \qquad \forall c \in \{0,\ldots,C-1\} \label{eqn:time}
 \end{eqnarray}
 where $p_c$ and $s_c$ are the estimated powerup and speedup of
 configuration $c$ and $\tau_c$ is the amount of time to spend in
