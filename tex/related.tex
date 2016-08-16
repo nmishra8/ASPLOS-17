@@ -65,7 +65,7 @@ small number of observations made online for the current application
 \subsection{Control}
 Almost all control solutions can be thought of as a combination of
 offline model building with online adaptation.  Usually the model
-building involves substantial empirical measurement and modelling to build a model that is then used to synthesize a control
+building involves substantial empirical measurement and modeling to build a model that is then used to synthesize a control
 system
 \cite{Wu2004,TCST,Chen2011,PTRADE,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
 The combination of offline
@@ -83,14 +83,14 @@ control for computing systems.  It is always possible to build a
 controller for a specific application and system by extensively
 modeling that pair.  More general controllers which work with a range
 of applications have addressed this issue with models in several ways.
-Some provide control libraries that encapsulate control
-functionality and require users to input a model
-\cite{ControlWare,Sojka,Rajkumar,POET}.  Others
-automatically synthesize both a model and a controller for either
-hardware \cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.
-JouleGuard combines learning for energy efficiency with control for
-managing application parameters \cite{JouleGuard}.  In JouleGuard, a
-learner adapts the controller's coefficients to model certainty, but
+Some provide control libraries that encapsulate control functionality
+and require users to input a model
+\cite{ControlWare,Sojka,Rajkumar,POET}.  Others automatically
+synthesize both a model and a controller for either hardware
+\cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.  JouleGuard
+combines learning for energy efficiency with control for managing
+application parameters \cite{JouleGuard}.  In JouleGuard, a learner
+adapts the controller's coefficients to model certainty, but
 JouleGuard's learner does not produce a new model for the controller.
 Because JouleGuard's learner runs on the same device as the controlled
 application, it must be computationally efficient and thus it cannot
@@ -98,13 +98,15 @@ identify correlations across applications or even different resource
 configurations.  \SYSTEM{} is unique in that a remote server generates
 an application-specific model automatically.  By offloading the
 learning task, we are able to (1) combine data from many applications
-and systems and (2) apply computationally expensive, but highly accurate
-learning techniques. Perhaps the most similar approach to \SYSTEM{} is Carat \cite{carat}.
-Carat aggregates data across many mobile devices and sends a report to
-human users about how to configure their device to increase battery
-life.  While both Carat and \SYSTEM{} learn across devices, they have
-very different goals.  Carat's goal is to return very high-level
-information to human users; \eg{} you should update a driver to extend
-battery life.  \SYSTEM{} returns lower-level models to another
-automated system that will apply those models to save energy.
+and systems and (2) apply computationally expensive, but highly
+accurate learning techniques. 
+
+Carat also aggregates data across multiple devices \cite{carat}.
+Carat uses learning to generate a report for human users about how to
+configure their device to increase battery life.  While both Carat and
+\SYSTEM{} learn across devices, they have very different goals.
+Carat's goal is to return very high-level information to human users;
+\eg{} you should update a driver to extend battery life.  \SYSTEM{}
+returns lower-level models to another automated system that will apply
+those models to save energy.
 
