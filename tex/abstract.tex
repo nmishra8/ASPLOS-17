@@ -1,8 +1,8 @@
 \begin{abstract}
   Mobile systems must deliver performance to interactive applications
-  and conserve resources to extend battery life.  There are two
+  while simultaneously conserving resources to extend battery life.  There are two
   central challenges to meeting these conflicting goals: (1) the
-  complicated optimization spaces arising from hardware heterogeneity
+  complicated performance/power trade-off spaces arising from hardware heterogeneity
   and (2) dynamic changes in application behavior and resource
   availability.  Machine learning techniques handle complicated
   optimization spaces, but do not incorporate models of system
@@ -21,8 +21,10 @@
   reliable performance -- only 2\% error compared to 4.5-5.4\% for
   learning and 4.7\% for control -- and lower energy -- within 7\% of
   optimal on average as compared to 25-52\% for learning and 26\% for
-  control.  When multiple applications compete for resources, these
-  numbers improve\PUNT{: 7\% error compared to 11-15\% for learning
+  control. Furthermore, we demonstrate \SYSTEM{}'s ability to meet performance and energy goals in dynamic systems with phase changes and multiple applications running on the same system.
+
+  \PUNT{ When multiple applications compete for resources, these
+  numbers improve: 7\% error compared to 11-15\% for learning
     and 9\% for control and improvements of 2-20\% and 3\%,
-    respectively, in energy efficiency}.
+    respectively, in energy efficiency.}
 \end{abstract}

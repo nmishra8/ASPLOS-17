@@ -1,17 +1,17 @@
 \section{Introduction}
 Mobile systems have clear requirements for user satisfaction: they
 must meet performance goals necessary for interacting with sensors and
-human users and must conserve energy to maximize battery life.  To
+human users while simultaneously conserving energy to maximize battery life.  To
 address these conflicting requirements, mobile processors have become
 increasingly diverse, exposing heterogeneous resources that must be
 managed by software. Meeting performance requirements is further
 complicated by the dynamic nature of these systems: application
-resource demands can vary widely as a function of input or application
-phase and multiple applications may compete for resources.
+resource demands can vary widely as a function of input, application
+phase, and multiple applications may compete for resources.
 
-Thus, two challenges arise to meeting performance requirements with
-minimal energy on mobile systems: (1) complexity and (2) dynamics.
-Machine learning approaches handle the complex power/performance
+Meeting performance requirements with
+minimal energy on mobile systems poses two challenges; \emph{complexity} and \emph{dynamics}.
+Machine learning approaches can handle the complex performance/power
 tradeoff spaces that arise on heterogeneous mobile systems
 \cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev},
 but they have no established mechanisms for reacting to environmental
@@ -27,7 +27,7 @@ hardware.  \PUNT{Control techniques provide a formal basis for
   and weaknesses.  Learning handle complexity but have no established
   mechanism for managing system dynamics.  Control approaches handle
   dynamics but rely on linear models that do not capture the diversity
-  of modern hardware. } Individually, neither control nor learning
+  of modern hardware. } Independently, neither control nor learning
 meet the challenges of modern mobile resource management.
 
 \begin{figure}
@@ -50,8 +50,10 @@ learns application-specific relationships between performance/power
 and resource usage, (2) a lightweight control system (LCS) that
 dynamically tunes resource usage to meet performance requirements with
 minimal energy, and (3) a performance hash table (PHT), which is the
-interface between learning and control.  \SYSTEM{}'s design has two
-unique features:
+interface between learning and control.  
+
+\PUNT{
+\SYSTEM{}'s design has two unique features:
 \begin{itemize}
 \item \textit{Remote Learning:} Sophisticated learning techniques
   produce accurate models of complicated systems but they are
@@ -67,6 +69,20 @@ unique features:
   While building the PHT is expensive, it allows the LCS to solve the
   constrained optimization problem in constant ($O(1)$) time.
 \end{itemize}
+}
+
+\SYSTEM{}'s design has two unique features; \textit{Remote Learning} and \textit{Fast Control}. First, Sophisticated learning techniques
+  produce accurate models of complicated systems but they are
+  computationally expensive.  \SYSTEM{} mitigates this expense by
+  running the learner on a remote server. This approach not only
+  addresses overhead, it allows the learner to aggregate data from
+  multiple devices, improving learning accuracy. Second, the controller must not significantly
+  impact performance or energy on the mobile device.  Yet, the
+  controller must solve a constrained optimization problem to meet the
+  performance goal with minimal energy.  To overcome this difficulty,
+  \SYSTEM{}'s remote learner constructs a PHT for each application.
+  While building the PHT is expensive, it allows the LCS to solve the
+  constrained optimization problem in constant ($O(1)$) time.
 
 \PUNT{
 \SYSTEM{} overcomes three difficulties of combining learning and
@@ -136,41 +152,34 @@ systems exist, their combination requires an appropriate interface.
   the ability to adapt to the unknown by running each application with
   other, random applications.} 
 
-This paper makes the following contributions:
-\begin{itemize}
-\item The combination of a hierarchical Bayesian model with a
-  lightweight control system to deliver performance with minimal
-  energy on mobile systems.
-\item An interface for combining learned models of discrete resource
-  usage with continuous control models of resource dynamics.
-\item Comparison to independent learning and control techniques to
-  evaluate performance and energy.
-\end{itemize}
 
-We implement the HBM on an x86 server and the LCS for ARM big.LITTLE
-devices and evaluate across 20 benchmarks.  We find that \SYSTEM{}:
+
+We run HBM on an x86 server and the LCS on ARM big.LITTLE
+devices and evaluate across 20 parallel benchmarks that exhibit a variety of power nd performance trade-off behaviors.  We find that \SYSTEM{} delivers:
 \begin{itemize}
-\item \textbf{Delivers Reliable Performance: } We calculate the error
-  between the desired and delivered performance.  When running one
-  application at a time, \SYSTEM{} achieves an average error of 2\%,
+\item \textbf{Reliable Performance: } \SYSTEM{} achieves an average error of 2\%,
   compared to 4.5-5.4\% for existing learning methods and 4.7\% for
   existing control approaches.
-\item \textbf{Uses Lower Average Energy:} When running one application
-  at a time, \SYSTEM{} achieves an average energy consumption of 7\%,
-  greater than optimal compared to 25-52\% for existing learning
+\item \textbf{Lower Average Energy:} \SYSTEM{} achieves an average energy consumption of  only 7\%
+  over optimal, compared to 25-52\% for existing learning
   methods and 26\% for existing control approaches.
-\item \textbf{Provides Better Worst Case Behavior:} In the single
-  application case, \SYSTEM{} worst observed error across all
-  applications and targets is 9\% compared to 19-73\% for prior
+\item \textbf{Better Worst Case Behavior:}  \SYSTEM{}'s worst observed error across all
+  applications and targets is 9\%, compared to 19-73\% for prior
   learning methods and 25\% for existing control methods.  The worst
   observed energy for \SYSTEM{} is 1.82$\times$ greater than optimal,
   while it is 4-12$\times$ greater for learning and 2.9 $\times$
   greater for control.
-\item \textbf{Adapts to Dynamics:} We test \SYSTEM{}'s ability to deal
-  with changing environments by running each benchmark with a
-  performance target and then randomly starting another application on
-  one core.  Even though the available resources fluctuate
-  dynamically, \SYSTEM{}'s worst performance error is 30\%, while it
-  is 71-84\% for prior learning approaches and 35\% for prior control
+\item \textbf{Adaptability to Dynamics:} We test \SYSTEM{}'s ability to deal
+  with changing environments by introducing resource contention with other processes.  In a dynamically fluctuating environment, \SYSTEM{}'s worst performance error is 30\%, as compared to
+  71-84\% for prior learning approaches and 35\% for prior control
   approaches.
+\end{itemize}
+
+In summary, this paper makes the following contributions:
+\begin{itemize}
+\item Proposes \SYSTEM{}, a combination of a hierarchical Bayesian model with a
+  lightweight control system, which addresses the twin challenges of \emph{complexity} and \emph{dynamics} to meet application performance goals with minimal energy on heterogeneous mobile systems.
+\item An interface for combining learned models of discrete resource
+  usage with continuous control models of resource dynamics that allows the lightweight controller to run in constant (O(1)) time.
+\item Demonstrates that \SYSTEM{} achieves both smaller error and higher energy savings compared to independent learning and control techniques.
 \end{itemize}

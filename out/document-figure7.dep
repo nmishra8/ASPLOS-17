@@ -1,0 +1,6 @@
+out/document-figure7.pdf: img/bodytrack/poet-BODYTRACK.txt
+out/document-figure7.pdf: img/bodytrack/leo-BODYTRACK.txt
+out/document-figure7.pdf: img/bodytrack/leopoet-BODYTRACK.txt
+out/document-figure7.pdf: img/bodytrack/poet-BODYTRACK.txt
+out/document-figure7.pdf: img/bodytrack/leo-BODYTRACK.txt
+out/document-figure7.pdf: img/bodytrack/leopoet-BODYTRACK.txt
