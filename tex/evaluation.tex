@@ -1,14 +1,14 @@
 \section{Experimental Setup}
 
 \subsection{Platform and Benchmarks}
-We perform our experiments on four ODROID-XU3 devices which are
-small mobile devices with Ubuntu 14.04 running on them. The ODROID
-boards have Samsung Exynos 5 Octa processors based on the ARM
-big.LITTLE architecture.  Each processor has 19 speed settings for its
-4 big cores and 13 for 4 LITTLE cores.  Each board has a power meter
-updated at 1/4 \ms intervals.  Each resource configuration
-(combination of big/LITTLE cores and clock-speeds) has a different
-performance and power, which is, itself, application-dependent.
+We perform our experiments on four ODROID-XU3 devices which are small
+mobile devices running Ubuntu 14.04. The ODROID boards have Samsung
+Exynos 5 Octa processors based on the ARM big.LITTLE architecture.
+Each processor has 19 speed settings for its 4 big cores and 13 for 4
+LITTLE cores.  Each board has an on-board power meter updated at 1/4
+\ms intervals.  Each resource configuration (combination of big/LITTLE
+cores and clock-speeds) has a different performance and power, which
+is, itself, application-dependent.
 
 We use 20 different benchmarks from different suites including PARSEC
 \PUNT{ (\texttt{blackscholes}, \texttt{facesim}, \texttt{ferret},
@@ -124,24 +124,24 @@ for different applications.  In the next section, we will compare
 
 \section{Experimental Evaluation}
 We evaluate \SYSTEM{}'s ability to deliver requested performance with
-near-optimal energy.  We first examine performance accuracy and energy
-in a single-application scenario, where each application is run by
-itself.  We then consider a multi-application scenario where each
-application is run and then, halfway through, a second random
-application is launched, testing the ability to deliver performance in
-a changing environment.  We then examine other dynamic scenarios where
-application inputs or behavior changes during application execution.
+near-optimal energy.  We first examine a single-application scenario,
+where each application is run by itself.  We then consider a
+multi-application scenario where each application is run and then,
+halfway through, a second random application is launched, testing the
+ability to deliver performance in a changing environment.  We then
+examine other dynamic scenarios where application inputs or behavior
+changes during application execution.
 
 \subsection{Performance and Energy for Single App}
 %Setup
 To test the ability to deliver performance and minimize energy, we set
-a range of targets ranging from 10-90\% of the maximum achievable
-performance on our system. The extreme targets are generally easy to
-hit. The most interesting performance targets are around 30\%-70\%,
-where there are not obvious choices for configuration settings. These
-intermediate targets require a blend of big and LITTLE cores and
-getting that blend to both meet the performance and reduce energy is
-dependent on accurate models of performance and power.
+a range of targets from 10-90\% of the maximum achievable performance
+on our system. The extreme targets are generally easy to hit. The most
+interesting performance targets are around 30\%-70\%, where there are
+not obvious choices for configuration settings. These intermediate
+targets require a blend of big and LITTLE cores and getting that blend
+to both meet the performance and reduce energy is dependent on
+accurate models of performance and power.
 
 % Results
 The results for these single-application tests are shown in
@@ -189,8 +189,8 @@ the prior study).  Halfway through execution, we start another
 application randomly drawn from our benchmark set.  We bind this
 application to one big core.  Launching this second application
 clearly changes performance and power consumption.  Delivering
-performance to the original application in this dynamic scenario
-clearly tests the ability to react to environmental changes.
+performance to the original application in this dynamic scenario tests
+the ability to react to environmental changes.
 
 The results for the multi-application tests are shown in
 \figsref{fig:multi-perf}{fig:multi-energy}.  The benchmarks are shown
@@ -202,17 +202,23 @@ have exclusive use of all big cores.
 
 \SYSTEM{} again has lower MAPE than the baseline algorithms. Across
 all applications and targets, the online model produces an average
-error of 38.5\%, the offline: 15.5\%, LEO: 19.7\%, POET: 21\%, and \SYSTEM{}:
-18\%. \SYSTEM{} is also more energy efficient than the baseline algorithms. Across
-all applications and targets, the average normalized energy for online model is 22\%, the offline: 13.5\%, LEO: 18\%, POET: 15\%, and \SYSTEM{}: 14\%. But, the main benefits of \SYSTEM{} can be seen in terms of worst case scenarios where \SYSTEM{} is significantly better than the baselines. The online approach has a highest MAPE
-of 84\%, for offline: 72\%, for LEO: 84\%, for POET: 37\% and for \SYSTEM{}: 30\%.  
+error of 38.5\%, the offline: 15.5\%, LEO: 19.7\%, POET: 21\%, and
+\SYSTEM{}: 18\%. \SYSTEM{} is also more energy efficient than the
+baseline algorithms. Across all applications and targets, the average
+normalized energy for online model is 22\%, the offline: 13.5\%, LEO:
+18\%, POET: 15\%, and \SYSTEM{}: 14\%. But, the main benefits of
+\SYSTEM{} can be seen in terms of worst case scenarios where \SYSTEM{}
+is significantly better than the baselines. The online approach has a
+highest MAPE of 84\%, for offline: 72\%, for LEO: 84\%, for POET: 37\%
+and for \SYSTEM{}: 30\%. \SYSTEM{} is also more energy efficient in
+the worst case scenario; the worst case energy consumption for online
+approach is 863\%, for Offline: 307\%, LEO: 747\%, POET: 158.7\% and
+\SYSTEM{}: 110\%
 
-\SYSTEM{} is also more energy efficient in the worst case scenario. And the worst case energy consumption for online approach is 863\%, for  Offline: 307\%,  LEO: 747\%, POET: 158.7\% and \SYSTEM{}: 110\%
-
-. POET and \SYSTEM{} both produce better outcomes in the
-dynamic scenario because they are specifically designed to handle
-system dynamics.  \SYSTEM{}, however, does significantly better in the
-worst case than POET because the HBM produces more robust models.
+POET and \SYSTEM{} both produce better outcomes in the dynamic
+scenario because they are specifically designed to handle system
+dynamics.  \SYSTEM{}, however, does significantly better in the worst
+case than POET because the HBM produces more robust models.
  %In this case the average numbers skew \SYSTEM{}'s benefit as no approach does very well with the 90\% target and all but online do well at the 10\% target.  So, we also consider worst case behavior for all targets.
 \PUNT{
 The online approach has a highest MAPE
