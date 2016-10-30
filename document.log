@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  15 AUG 2016 21:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  30 OCT 2016 12:52
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1918,42 +1918,45 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
  [2])
 (./tex/framework.tex [3 <./figures/lavamd.png (PNG copy)> <./out/document-figur
 e0.pdf> <./figures/kmeans.png (PNG copy)> <./out/document-figure1.pdf>]
-<figures/Online.pdf, id=474, 208.78pt x 144.54pt>
+<figures/Online.pdf, id=474, 254.9525pt x 166.6225pt>
 File: figures/Online.pdf Graphic file (type pdf)
  <use figures/Online.pdf>
 Package pdftex.def Info: figures/Online.pdf used on input line 70.
-(pdftex.def)             Requested size: 74.52884pt x 51.59766pt.
+(pdftex.def)             Requested size: 74.52884pt x 48.70827pt.
 
-<figures/Offline.pdf, id=475, 178.6675pt x 142.5325pt>
+<figures/Offline.pdf, id=475, 216.81pt x 164.615pt>
 File: figures/Offline.pdf Graphic file (type pdf)
-
-<use figures/Offline.pdf>
+ <use figures/Offline.pdf>
 Package pdftex.def Info: figures/Offline.pdf used on input line 77.
-(pdftex.def)             Requested size: 74.52884pt x 59.45653pt.
- <figures/HBM.pdf, id=476, 172.645pt x 204.765pt>
-File: figures/HBM.pdf Graphic file (type pdf)
+(pdftex.def)             Requested size: 74.52884pt x 56.58626pt.
 
-<use figures/HBM.pdf>
+<figures/HBM.pdf, id=476, 209.78375pt x 233.87375pt>
+File: figures/HBM.pdf Graphic file (type pdf)
+ <use figures/HBM.pdf>
 Package pdftex.def Info: figures/HBM.pdf used on input line 84.
-(pdftex.def)             Requested size: 74.52884pt x 88.39403pt.
+(pdftex.def)             Requested size: 74.52884pt x 83.08463pt.
 
 Overfull \hbox (12.74277pt too wide) in paragraph at lines 70--89
 [][][][][][] 
  []
 
 
+Underfull \vbox (badness 2150) has occurred while \output is active []
+
+
+
 LaTeX Warning: Reference `ig:framework:lcs' on page 4 undefined on input line 1
 32.
 
-<figures/LCS.pdf, id=479, 615.29875pt x 215.80624pt>
+<figures/LCS.pdf, id=479, 615.29875pt x 219.82124pt>
 File: figures/LCS.pdf Graphic file (type pdf)
  <use figures/LCS.pdf>
 Package pdftex.def Info: figures/LCS.pdf used on input line 143.
-(pdftex.def)             Requested size: 225.84375pt x 79.20822pt.
+(pdftex.def)             Requested size: 225.84375pt x 80.68185pt.
 
 [4 <./figures/Online.pdf> <./figures/Offline.pdf> <./figures/HBM.pdf> <./figure
 s/LCS.pdf>]
-<figures/performance-hash-table.pdf, id=787, 751.80875pt x 553.06625pt>
+<figures/performance-hash-table.pdf, id=790, 751.80875pt x 553.06625pt>
 File: figures/performance-hash-table.pdf Graphic file (type pdf)
 
 <use figures/performance-hash-table.pdf>
@@ -1961,10 +1964,10 @@ Package pdftex.def Info: figures/performance-hash-table.pdf used on input line
 254.
 (pdftex.def)             Requested size: 225.84375pt x 166.14056pt.
 
-Underfull \vbox (badness 4024) has occurred while \output is active []
+Underfull \vbox (badness 8094) has occurred while \output is active []
 
- [5 <./figures/performance-hash-table.pdf>]) (./tex/evaluation.tex (./img/mem-c
-ompute.tex
+ [5])
+(./tex/evaluation.tex (./img/mem-compute.tex
 ===== Image 'out/document-figure2' is up-to-date. ======
 )
 Overfull \hbox (4.02303pt too wide) in paragraph at lines 1--34
@@ -1976,7 +1979,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--34
 
  []
 
-[6 <./out/document-figure2.pdf>] (./img/single-app-performance.tex
+[6 <./figures/performance-hash-table.pdf> <./out/document-figure2.pdf>]
+(./img/single-app-performance.tex
 ===== Image 'out/document-figure3' is up-to-date. ======
 ) (./img/single-app-energy.tex
 ===== Image 'out/document-figure4' is up-to-date. ======
@@ -1986,26 +1990,29 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 (./img/multi-app-performance.tex
 ===== Image 'out/document-figure5' is up-to-date. ======
-) (./img/multi-app-energy.tex
-===== Image 'out/document-figure6' is up-to-date. ======
-) (./img/bodytrack-multiapp.tex
-===== Image 'out/document-figure7' is up-to-date. ======
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8 <./out/document-figure3.pdf> <./out/document-figure4.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9 <./out/document-figure5.pdf> <./out/document-figure6.pdf> <./out/document-f
-igure7.pdf>] (./img/x264-phases2.tex
+ [8 <./out/document-figure3.pdf> <./out/document-figure4.pdf>] (./img/multi-app
+-energy.tex
+===== Image 'out/document-figure6' is up-to-date. ======
+) (./img/bodytrack-multiapp.tex
+===== Image 'out/document-figure7' is up-to-date. ======
+) (./img/x264-phases2.tex
 ===== Image 'out/document-figure8' is up-to-date. ======
 ) (./img/sample-accuracy.tex
 ===== Image 'out/document-figure9' is up-to-date. ======
-)) (./tex/related.tex [10 <./out/document-figure8.pdf> <./out/document-figure9.
-pdf>]) (./tex/conclusion.tex) [11]
+)) (./tex/related.tex [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10 <./out/document-figure5.pdf> <./out/document-figure6.pdf> <./out/document-
+figure7.pdf> <./out/document-figure8.pdf>]) (./tex/conclusion.tex) [11 <./out/d
+ocument-figure9.pdf>] [12
+
+]
 Underfull \hbox (badness 1189) in paragraph at lines 173--173
 \T1/ptm/m/it/10 (+20) Sys-tems\T1/ptm/m/n/10 (+20) . John Wi-ley & Sons, 2004. 
 \T1/ptm/m/sc/10 (+20) isbn\T1/ptm/m/n/10 (+20) :
@@ -2016,11 +2023,11 @@ Underfull \hbox (badness 3417) in paragraph at lines 173--173
 []\T1/ptm/m/n/10 (+20) J. Li and J. Mar-tinez. ``Dy-namic power-
  []
 
-[12
+[13
 
-] [13]
+] [14]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 173.
- [14
+ [15
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 173.
@@ -2041,11 +2048,11 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40563 strings out of 493304
- 821506 string characters out of 6139871
+ 40555 strings out of 493304
+ 821423 string characters out of 6139871
  1260572 words of memory out of 5000000
  42768 multiletter control sequences out of 15000+600000
- 99211 words of font info for 305 fonts, out of 8000000 for 9000
+ 98536 words of font info for 299 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,11n,85p,770b,1160s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -2064,10 +2071,10 @@ usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on document.pdf (14 pages, 871812 bytes).
+Output written on document.pdf (15 pages, 877985 bytes).
 PDF statistics:
- 1184 PDF objects out of 1200 (max. 8388607)
- 916 compressed objects within 10 object streams
- 124 named destinations out of 1000 (max. 500000)
+ 1203 PDF objects out of 1440 (max. 8388607)
+ 929 compressed objects within 10 object streams
+ 125 named destinations out of 1000 (max. 500000)
  51519 words of extra memory for PDF output out of 51595 (max. 10000000)
 
