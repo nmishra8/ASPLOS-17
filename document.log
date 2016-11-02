@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  30 OCT 2016 12:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  2 NOV 2016 12:33
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1822,65 +1822,59 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 (./tex/abstract.tex) (./tex/intro.tex
-<figures/mobile-leo-poet2.pdf, id=130, 459.7175pt x 381.425pt>
-File: figures/mobile-leo-poet2.pdf Graphic file (type pdf)
 
-<use figures/mobile-leo-poet2.pdf>
-Package pdftex.def Info: figures/mobile-leo-poet2.pdf used on input line 35.
-(pdftex.def)             Requested size: 225.84375pt x 187.38293pt.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 41.
+LaTeX Warning: Citation 'grace' on page 1 undefined on input line 13.
+
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 13.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 47.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 47.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 64.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 1571) in paragraph at lines 116--123
+[]\T1/ptm/m/n/10 (+20) In the \T1/ptm/m/it/10 (+20) multi-app \T1/ptm/m/n/10 (+
+20) case, prior learn-ing ap-
+ []
+
+) (./tex/example.tex <figures/lavamd.png, id=139, 1377.145pt x 1369.115pt>
+File: figures/lavamd.png Graphic file (type png)
+
+<use figures/lavamd.png>
+Package pdftex.def Info: figures/lavamd.png used on input line 39.
+(pdftex.def)             Requested size: 117.43874pt x 116.73882pt.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 39.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.32993pt on input line 41.
+(Font)              scaled to size 7.49693pt on input line 39.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 41.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.32993pt on input line 41.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 46.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 46.
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
- <./figures/mobile-leo-poet2.pdf>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 160.
-
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 160.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 160.
-) (./tex/example.tex
-<figures/lavamd.png, id=397, 1377.145pt x 1369.115pt>
-File: figures/lavamd.png Graphic file (type png)
- <use figures/lavamd.png>
-Package pdftex.def Info: figures/lavamd.png used on input line 39.
-(pdftex.def)             Requested size: 117.43874pt x 116.73882pt.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.49693pt on input line 39.
 
 (./img/lavamd-example-resized.tex
 ===== Image 'out/document-figure0' is up-to-date. ======
-) <figures/kmeans.png, id=399, 1439.3775pt x 1397.22pt>
+) <figures/kmeans.png, id=141, 1439.3775pt x 1397.22pt>
 File: figures/kmeans.png Graphic file (type png)
 
 <use figures/kmeans.png>
@@ -1889,10 +1883,16 @@ Package pdftex.def Info: figures/kmeans.png used on input line 49.
  (./img/kmeans-example-resized.tex
 ===== Image 'out/document-figure1' is up-to-date. ======
 )
-Overfull \hbox (22.88808pt too wide) in paragraph at lines 39--62
+Overfull \hbox (25.38808pt too wide) in paragraph at lines 39--62
 [][][][][][][][] 
  []
 
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.32993pt on input line 62.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 62.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.32993pt on input line 62.
 LaTeX Font Info:    Try loading font information for T1+pcrs on input line 62.
 (/usr/share/texlive/texmf-dist/tex/latex/courier-scaled/t1pcrs.fd
 File: t1pcrs.fd 2004/07/09 scalable font definitions for T1/pcrs.
@@ -1911,62 +1911,64 @@ LaTeX Font Info:    Font shape `T1/phv/b/it' in size <10> not available
 (Font)              Font shape `T1/phv/b/sl' tried instead on input line 62.
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
 (Font)              scaled to size 8.32993pt on input line 62.
+ [2]
 LaTeX Font Info:    Font shape `T1/pcrs/m/n' will be
 (Font)              scaled to size 8.75pt on input line 85.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 108.
- [2])
-(./tex/framework.tex [3 <./figures/lavamd.png (PNG copy)> <./out/document-figur
-e0.pdf> <./figures/kmeans.png (PNG copy)> <./out/document-figure1.pdf>]
-<figures/Online.pdf, id=474, 254.9525pt x 166.6225pt>
+ [3 <./figures/lavamd.png (PNG copy)> <./out/document-figure0.pdf> <./figures/k
+means.png (PNG copy)> <./out/document-figure1.pdf>]) (./tex/framework.tex
+
+LaTeX Warning: Reference `fig:overview' on page 4 undefined on input line 8.
+
+<figures/Online.pdf, id=215, 254.9525pt x 166.6225pt>
 File: figures/Online.pdf Graphic file (type pdf)
  <use figures/Online.pdf>
-Package pdftex.def Info: figures/Online.pdf used on input line 70.
+Package pdftex.def Info: figures/Online.pdf used on input line 80.
 (pdftex.def)             Requested size: 74.52884pt x 48.70827pt.
 
-<figures/Offline.pdf, id=475, 216.81pt x 164.615pt>
+<figures/Offline.pdf, id=216, 216.81pt x 164.615pt>
 File: figures/Offline.pdf Graphic file (type pdf)
  <use figures/Offline.pdf>
-Package pdftex.def Info: figures/Offline.pdf used on input line 77.
+Package pdftex.def Info: figures/Offline.pdf used on input line 87.
 (pdftex.def)             Requested size: 74.52884pt x 56.58626pt.
 
-<figures/HBM.pdf, id=476, 209.78375pt x 233.87375pt>
+<figures/HBM.pdf, id=217, 209.78375pt x 233.87375pt>
 File: figures/HBM.pdf Graphic file (type pdf)
  <use figures/HBM.pdf>
-Package pdftex.def Info: figures/HBM.pdf used on input line 84.
+Package pdftex.def Info: figures/HBM.pdf used on input line 94.
 (pdftex.def)             Requested size: 74.52884pt x 83.08463pt.
 
-Overfull \hbox (12.74277pt too wide) in paragraph at lines 70--89
+Overfull \hbox (12.74277pt too wide) in paragraph at lines 80--99
 [][][][][][] 
  []
 
 
-Underfull \vbox (badness 2150) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
+ [4 <./figures/Online.pdf> <./figures/Offline.pdf> <./figures/HBM.pdf>]
 
+LaTeX Warning: Reference `ig:framework:lcs' on page 5 undefined on input line 1
+42.
 
-LaTeX Warning: Reference `ig:framework:lcs' on page 4 undefined on input line 1
-32.
-
-<figures/LCS.pdf, id=479, 615.29875pt x 219.82124pt>
+<figures/LCS.pdf, id=269, 615.29875pt x 219.82124pt>
 File: figures/LCS.pdf Graphic file (type pdf)
  <use figures/LCS.pdf>
-Package pdftex.def Info: figures/LCS.pdf used on input line 143.
+Package pdftex.def Info: figures/LCS.pdf used on input line 153.
 (pdftex.def)             Requested size: 225.84375pt x 80.68185pt.
 
-[4 <./figures/Online.pdf> <./figures/Offline.pdf> <./figures/HBM.pdf> <./figure
-s/LCS.pdf>]
-<figures/performance-hash-table.pdf, id=790, 751.80875pt x 553.06625pt>
+[5 <./figures/LCS.pdf>]
+<figures/performance-hash-table.pdf, id=545, 751.80875pt x 553.06625pt>
 File: figures/performance-hash-table.pdf Graphic file (type pdf)
 
 <use figures/performance-hash-table.pdf>
 Package pdftex.def Info: figures/performance-hash-table.pdf used on input line 
-254.
+264.
 (pdftex.def)             Requested size: 225.84375pt x 166.14056pt.
 
-Underfull \vbox (badness 8094) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5])
+)
 (./tex/evaluation.tex (./img/mem-compute.tex
 ===== Image 'out/document-figure2' is up-to-date. ======
 )
@@ -1979,38 +1981,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--34
 
  []
 
-[6 <./figures/performance-hash-table.pdf> <./out/document-figure2.pdf>]
+[6 <./figures/performance-hash-table.pdf>] [7 <./out/document-figure2.pdf>]
 (./img/single-app-performance.tex
 ===== Image 'out/document-figure3' is up-to-date. ======
 ) (./img/single-app-energy.tex
 ===== Image 'out/document-figure4' is up-to-date. ======
-) [7]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-(./img/multi-app-performance.tex
+) (./img/multi-app-performance.tex
 ===== Image 'out/document-figure5' is up-to-date. ======
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8 <./out/document-figure3.pdf> <./out/document-figure4.pdf>] (./img/multi-app
--energy.tex
+) (./img/multi-app-energy.tex
 ===== Image 'out/document-figure6' is up-to-date. ======
 ) (./img/bodytrack-multiapp.tex
 ===== Image 'out/document-figure7' is up-to-date. ======
-) (./img/x264-phases2.tex
+) [8] (./img/x264-phases2.tex
 ===== Image 'out/document-figure8' is up-to-date. ======
-) (./img/sample-accuracy.tex
-===== Image 'out/document-figure9' is up-to-date. ======
-)) (./tex/related.tex [9]
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./out/document-figure3.pdf> <./out/document-figure4.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+(./img/sample-accuracy.tex
+===== Image 'out/document-figure9' is up-to-date. ======
+)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10 <./out/document-figure5.pdf> <./out/document-figure6.pdf> <./out/document-
-figure7.pdf> <./out/document-figure8.pdf>]) (./tex/conclusion.tex) [11 <./out/d
-ocument-figure9.pdf>] [12
+figure7.pdf> <./out/document-figure8.pdf>]) (./tex/related.tex [11 <./out/docum
+ent-figure9.pdf>]) (./tex/conclusion.tex) [12
 
 ]
 Underfull \hbox (badness 1189) in paragraph at lines 173--173
@@ -2043,16 +2041,21 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
+
+Package biblatex Warning: Please (re)run BibTeX on the file(s):
+(biblatex)                document
+(biblatex)                and rerun LaTeX afterwards.
+
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 40555 strings out of 493304
- 821423 string characters out of 6139871
+ 40575 strings out of 493304
+ 821507 string characters out of 6139871
  1260572 words of memory out of 5000000
- 42768 multiletter control sequences out of 15000+600000
- 98536 words of font info for 299 fonts, out of 8000000 for 9000
+ 42766 multiletter control sequences out of 15000+600000
+ 100336 words of font info for 315 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,11n,85p,770b,1160s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -2071,10 +2074,10 @@ usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on document.pdf (15 pages, 877985 bytes).
+Output written on document.pdf (15 pages, 805225 bytes).
 PDF statistics:
- 1203 PDF objects out of 1440 (max. 8388607)
- 929 compressed objects within 10 object streams
- 125 named destinations out of 1000 (max. 500000)
- 51519 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 953 PDF objects out of 1000 (max. 8388607)
+ 777 compressed objects within 8 object streams
+ 124 named destinations out of 1000 (max. 500000)
+ 51514 words of extra memory for PDF output out of 51595 (max. 10000000)
 

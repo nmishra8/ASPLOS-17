@@ -1,6 +1,65 @@
 \begin{abstract}
 
+  Streaming sensor processing forms a foundational workload for
+  embedded and mobile devices.  Control theoretic resource managers
+  have demonstrated ability to meet streaming applications'
+  performance requirements with minimal energy. Their designs, are
+  brittle, however; they require \emph{a priori} models mapping
+  applications' performance and energy to system resource allocation.
+  Thus, a controller designed for one application and system will have
+  to be redesigned and reimplemented to work in another deployment.
+  We would like the benefits of control theoretic design -- \ie
+  formal, bounded convergence to required performance in dynamic
+  environments -- without \emph{a priori} models.  We therefore
+  propose CALOREE, a generalized control theoretic resource manager
+  that requires no \emph{a priori} model of controlled applications.
+  CALOREE combines a generalized control system (GCS) that runs on a
+  local device with a hierarchical Bayesian model (HBM) that runs on a
+  remote server. The HBM aggregates data from multiple applications
+  and devices to produce highly accurate models that are sent to the
+  generalized control system, customizing control to the particular
+  application and device. We extend standard control theoretic formal
+  analysis to show that CALOREE provides probabilistic convergence
+  guarantees despite having no prior model of the controlled
+  application.
 
+  We implement CALOREE using ARM big.LITTLE systems to run streaming
+  applications and an x86 server to implement the HBM.  We test in
+  both single-app and multi-app environments (where new applications
+  enter the system and compete for resources).  We evaluate CALOREE's
+  ability to both provide reliable performance and low energy and
+  compare to state-of-the-art learning and control techniques.  We
+  find that CALOREE's unique combination of control and learning
+  consistently provides the most reliable performance, with a worst
+  case error (in the multi-app case) between desired and delivered
+  performance of only 12\% compared to 70-80\% for prior approaches.
+  Additionally, CALOREE consistently provides the lowest energy with
+  average savings anywhere from 8-47\%.
+
+
+  \PUNT{CALOREE has three main components: (1) a remote learner that
+    aggregates data across devices and applications to model
+    application performance and energy, (2) a lightweight control
+    system that uses the learned models to customize control for a
+    particular application, and (3) the interfaces that map non-convex
+    learned models to the continuous linear models used by the
+    controllers.
+
+  We implement CALOREE's learning on an x86 server and stream
+  processing on heterogeneous ARM big.LITTLE devices. We test in both
+  \emph{stable} and \emph{unstable} environments (where available
+  resources change over time) and we compare to state-of-the-art
+  learning and control-based resource managers.  In all test
+  scenarios, \SYSTEM{} provides the lowest error between the required
+  and delivered performance. Depending on the scenario, \SYSTEM{}
+  provides 12-25\% average energy reduction compared to
+  state-of-the-art approaches.  Additionally, \SYSTEM{}'s worst case
+  performance and energy is uniformly better than prior approaches, by
+  factors as high as $2\times$.
+}
+
+
+\PUNT{
   Streaming sensor processing forms a foundational workload for
   embedded, mobile, and internet-of-things. Stream processing on these
   platforms requires both reliable performance and low energy, and two
@@ -35,7 +94,7 @@
   approaches.  Thus, \SYSTEM{}'s unique combination of learning and
   control is well-suited to supporting streaming sensor processing in
   embedded, mobile, and IoT platforms.
-
+}
 
 
   \PUNT{ Mobile systems must deliver performance to interactive
