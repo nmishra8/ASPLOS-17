@@ -46,7 +46,7 @@ There are several challenges that must be addressed to meet this goal:
 \begin{itemize}
 \item \textit{System complexity:} Heterogeneous processor designs
   expose multiple resources that interact in complex ways, often
-  leading to non-convex optimization problems.
+  leading to difficult optimization problems.
 \item \textit{Overhead:} We have limited resources to devote to
   exploring these tradeoff spaces -- certainly, we cannot spend more
   energy learning the tradeoff spaces than we would save by knowing
@@ -87,14 +87,9 @@ complexity challenge.  The HBM is, however, computationally expenisve
 and requires samples of several different applications to produce
 accurate models.  Therefore, we offload it to a remote server to
 address the overhead challenge.  Finally, because the HBM communicates
-the model's variance, we are able to derive probabilistic control
-theoretical guarantees.  These are not quite as strong as traditional
-control theoretic guarantees that assume the model is fixed and known,
-but they still provide some mechanisms for formal reasoning.  While a
-traditional control system guarantees convergence, \SYSTEM{} allows
-the user to specify a lower bound on the probability that the system
-will converge to the desired performance.  For example, a user can
-specify that the system will converge with at least 95\% probability.
+the model's variance and confidence interval, we derive probabilistic
+control theoretical guarantees that the system will converge to the
+desired performance.
 
 % We implement CALOREE... and our results show...
 We implement CALOREE and test its ability to control streaming
@@ -110,40 +105,38 @@ enter the system and compete for resources. Overall we find that
   \begin{itemize} 
   \item In the \emph{single-app} case, all methods achieve average
     performance close to the requirement.  \SYSTEM{}'s worst case
-    performance is still within 4\% of the target, while prior
-    techinqiues achieve worst case performance anywhere between 28\%
-    to 75\% lower than the requirement.
+    performance error is only 8\% of the target, while prior
+    techinqiues achieve worst case performance error between 28\%
+    to 81\% lower than the requirement.
   \item In the \emph{multi-app} case, prior learning approaches
-    average at least 10\% performance error, prior control approaches
-    average 5\% error, and \SYSTEM{} achieves just 2.7\% average
-    error, almost half the next best competitor.  All prior approaches
-    have a worst case performance at least 70\% below the target,
-    while \SYSTEM{}'s worst case performance is within 13\% of the
-    target.
+    average at least 18\% performance error, prior control approaches
+    average 7\% error, and \SYSTEM{} achieves just 2.9\% average
+    error, less than half the next best competitor.  All prior
+    approaches have a worst case performance at least 70\% below the
+    target, while \SYSTEM{}'s worst case performance is within 22\% of
+    the target.
     \end{itemize}
-  \item \textit{Best energy savings:}
+  \item \textit{Best energy savings:} We compare to an \emph{oracle}
+    control system with a perfect model of the application, system,
+    and future events.  
     \begin{itemize}
-    \item In the \emph{single-app} case, \SYSTEM{} reduces average
-      energy by 23-47\% compared to prior learning approaches and by
-      24\% compared to prior control approaches.  For the most
-      complicated applications, \SYSTEM{} provides energy savings of
-      more the $2\times$ compared to the best prior approaches.
-    \item In the \emph{multi-app} case, \SYSTEM{} reduces average
-      energy by 31\% compared to prior control approaches and by 8\%
-      compared to prior learning approaches.  While, the savings
-      compared to learning approaches may look small, in this case the
-      learning approaches are saving energy by missing their
-      performance goal.  
+    \item In the \emph{single-app} case, prior learning approaches
+      average 14-21\% more energy use than the oracle, while the
+      control system uses 24\% more (the learners save energy by
+      failing to meet the performance requirements).  In contrast,
+      CALOREE uses only 5\% more despite providing more reliable
+      performance.  In the worst case, prior approaches can use
+      75-90\% more energy than the oracle, while CALOREE's worst case
+      is only 24\% more than the oracle -- more than $3\times$ the
+      savings.
+    \item In the \emph{multi-app} case, prior learning approaches use
+      17-20\% more energy than the oracle.  Prior control approaches
+      use 34\% more (again learning saves energy by missing
+      deadlines).  CALOREE, in contrast, provides significant energy
+      savings, consuming only 8.5\% more energy than the oracle, even
+      though the oracle has a prior knowledge of a correct model for
+      application interference.
     \end{itemize}
-  \item \textit{Competitiveness with custom control:} We compare
-    CALOREE to a control system with rigorous \emph{a priori} per
-    application models -- including models of application interference
-    in the multi-app case -- something that would be impractical to
-    deploy in the real world.  We find that CALOREE's average
-    performance error across all cases is only 2\% worse than this
-    ideal contoller and its average energy is only 7.5\% higher.  This
-    result shows that CALOREE's considerable increase in generality
-    comes with only minor reductions in performance and energy.
 \end{itemize}
 
 % Contributions, but I decided against bulleted llist for thsi paper
