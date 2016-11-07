@@ -100,20 +100,20 @@ machine learning approaches that can estimate the energy efficiency
 for different applications.  In the next section, we will compare
 \SYSTEM{}'s delivered performance and energy savings with:
 \begin{enumerate}
-\item \textit{Online-P2I} -- This strategy observes the
+\item \textit{Online} -- This strategy observes the
   application at small number of configurations then performs
   polynomial multivariate regression for the performance and
   power of unobserved configurations. \PUNT{We use the \textit{Online}
     learning model in combination with \emph{Pace-to-idle (P2I)}
     heuristic.}
-\item \textit{Offline-P2I} -- This is our zero-sample policy, used
+\item \textit{Offline} -- This is our zero-sample policy, used
   when we do not observe any values for the current application. This
   method takes the mean over all known applications and uses that to
   estimate power and performance for new applications. This strategy
   only uses prior information and does not update the model based on
   runtime observations. \PUNT{We use the \textit{Offline} learning
     model in combination with \emph{Pace-to-idle (P2I)} heuristic.}
-\item \textit{LEO-P2I} -- We use the \textit{LEO} learning model in
+\item \textit{LEO} -- We use the \textit{LEO} learning model in
   combination with \emph{Pace-to-idle (P2I)} heuristic.
 \item \textit{POET} -- A state-of-the-art, open source control system
   designed to meet application performance with minimal energy
@@ -321,13 +321,13 @@ with time. In \figref{fig:x264-phase-change} we see \texttt{x264}, a
 video encoder application with 2 different phases, where the phase
 change occurs at the $180^{th}$ frame. The first scene is difficult
 and the second one becomes significantly easier. In the first phase,
-\SYSTEM{} and the baseline LEO-P2I seem to have lower MAPE as compared
+\SYSTEM{} and the baseline LEO seem to have lower MAPE as compared
 to POET.  At the same time, these two algorithms seem to consume less
 energy than POET indicating that POET is operating at a configuration
 not on the Pareto frontier of power and performance.  When we change
-phase, \SYSTEM{} and LEO-P2I both algorithms are still able to meet
+phase, \SYSTEM{} and LEO both algorithms are still able to meet
 the performance target with far less fluctuations as compared to POET.
-But, \SYSTEM{} provides better energy savings as compared to LEO-P2I.
+But, \SYSTEM{} provides better energy savings as compared to LEO.
 
 \begin{figure}[t]
   \input{img/x264-phases2.tex}
@@ -335,6 +335,17 @@ But, \SYSTEM{} provides better energy savings as compared to LEO-P2I.
   \caption{Time series of \texttt{X264} with phase change caused by different inputs.}
   \label{fig:x264-phase-change}
 \end{figure}
+
+\subsubsection{Pole estimation}
+\TODO{}
+
+\begin{figure}[t]
+  \input{img/LAVA-pole.tex}
+   \vskip -1em
+  \caption{Pole}
+  \label{fig:lavamd-pole}
+\end{figure}
+
 
 
 
