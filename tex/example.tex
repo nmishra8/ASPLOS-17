@@ -33,7 +33,7 @@
 }
 
 
-\begin{figure*}
+\begin{figure}
   \subfloat[]
   {
     \includegraphics[width=.25\textwidth]{figures/lavamd.png}
@@ -41,29 +41,11 @@
   }
   \subfloat[]
   {
-    \input{img/lavamd-example-resized.tex}
-    \label{fig:lavamd_timeline}
-  }
-  \subfloat[]
-  {
-    \includegraphics[width=.25\textwidth]{figures/kmeans.png}
+    \includegraphics[width=.25\textwidth]{figures/lavamd_dvfs.png}
     \label{fig:kmeans_contour}
   }
-  \subfloat[]
-  {
-    \input{img/kmeans-example-resized.tex}
-    \label{fig:kmeans_timeline}    
-  }
-  \caption{(a) Performance for \texttt{lavamd} as a function of
-    configuration. (b) Managing \texttt{lavamd}'s performance:
-    \emph{Learning} navigates the complicated configuration space, but
-    \emph{control}'s simple model leads to oscillation. (c)
-    Performance for \texttt{kmeans} as a function of configuration.
-    (d) Managing \texttt{kmeans}' performance when another application
-    starts: \emph{Control} detects the change and adapts, but
-    \emph{learning} has no mechanism to handle these dynamics.}
-  \label{fig:learning-models}
-\end{figure*}
+ \label{fig:learning-models}
+\end{figure}
 
 
 
