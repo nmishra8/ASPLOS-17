@@ -6,13 +6,13 @@ streaming application, but we do have prior knowledge of other
 applications.  Our goal is to quickly build a model of the new
 application and then control its resource usage such that it meets a
 desired performance target with minimal energy.
-\PUNT{
+
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/ControlLearning.png}
 \caption{Overview of \SYSTEM{}.} 
 \label{fig:overview}
 \end{figure}
-}
+
 
 \figref{fig:overview} shows \SYSTEM{}'s approach to this problem.  On
 the local device, a generalized control system (GCS) allocates
@@ -376,18 +376,18 @@ example in \figref{pht} has a resolution of .1.  Each pointer in the
 first table points to the configuration in the second array that has
 the largest speedup less than or equal to the index.
 
-To use the table, the translator receives a speedup $s(t)$ from the
+To use the table, the translator receives a speedup $speedup(t)$ from the
 controller.  It needs to convert this into two configurations referred
 to as $hi$ and $lo$.  To find the $hi$ configuration, the translator
-clamps the desired speedup to the largest index lower than $s(t)$ and
+clamps the desired speedup to the largest index lower than $speedup(t)$ and
 then walks forward until it finds the first configuration with a
-speedup higher than $s(t)$.  This configuration is $hi$.  To find the
+speedup higher than $speedup(t)$.  This configuration is $hi$.  To find the
 $lo$ configuration, the translator clamps the desired speedup to the
-smallest index higher than $s(t)$ and then walks backwards until it
-finds the configuration with the largest speedup less than $s(t)$.
+smallest index higher than $speedup(t)$ and then walks backwards until it
+finds the configuration with the largest speedup less than $speedup(t)$.
 
 For example, consider the PHT in \figref{pht} and a translator trying
-to meet a speedup $s(t) = .65$.  To find $hi$, the translator indexes
+to meet a speedup $speedup(t) = .65$.  To find $hi$, the translator indexes
 at .6 and walks up to find $c=2$ with $s_c=.8$, setting $hi = 2$.  To
 find $lo$, the translator indexes the table at .7 and walks backward
 to find $c=1$ with $s_c=.2$, setting $lo = 1$.
@@ -395,10 +395,11 @@ to find $c=1$ with $s_c=.2$, setting $lo = 1$.
 Finally, the translator sets $\tau_{hi}$ and $\tau_{lo}$ by solving the
 following set of equations:
 \begin{eqnarray}
-  \tau &=& \tau_{hi} + \tau_{lo}    \label{eqn:s1} \\
-  s(t) &=& s_{hi} \cdot \tau_{hi} + s_{lo} \cdot \tau_{lo} \label{eqn:s2} \\
+  T &=& \tau_{hi} + \tau_{lo}    \label{eqn:s1} \\
+  speedup(t) &=& s_{hi} \cdot \tau_{hi} + s_{lo} \cdot \tau_{lo} \label{eqn:s2} \\
+  \label{eq:pht}
 \end{eqnarray}
-In these equations, $s(t)$ is the speedup requested by the translator
+In these equations, $speedup(t)$ is the speedup requested by the translator
 and $s_c$ are speedups estimated by the learner. 
 
 By solving \eqnsref{s1}{s2}, the translator has turned the speedup
@@ -427,10 +428,41 @@ resolution and is not too wasteful of space.
 \subsection{Control Theoretic Formal Guarantees}
 As we discussed in section \secref{}, a \emph{pole} acts as a damper in the control system equation \eqref{}. In this section, We would connect the concept of pole with the estimation procedure and obtain more sophisticated control system equations which take the estimation error into account.
 The pole of a control system equation can be thought of as inversely proportional to "step-size" in gradient descent procedures. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
+We introduce a notation $\Floor{x}_0 = \max(x,0)$.
 
-Suppose we allow the following multiplicative error in $response(t)$ or in our particular case $speedup(t)$, $\frac{speedup(t)}{\hat{speedup(t)}} \leq \Delta$. According to \cite{}, the value of pole $p$ can vary as much as, $\max(0,1-\frac{2}{\Delta}) \leq p \leq 1$, where $\Delta$ is the multiplicative error in the control equation. Using the lowest value of pole would offer the fastest convergence. We prove the following guarantees for the value of $\Delta$,
+Suppose we allow the following multiplicative error in $response(t)$ or in our particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$. According to \cite{}, the value of pole $p$ can vary as much as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative error in the control equation. Using the lowest value of pole would offer the fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
 
-\begin{equation}
-\Delta = 
-\end{equation}
+\begin{theorem}
+Let $\mathbf{s}$ denote the speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ 
+Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ for all $i \in C$. We can show that with probability greater than 99.7\%, 
+$$
+\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0
+$$ 
+Hence, the pole $p$ can be chosen to lie between, $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$$
+\end{theorem}
 
+\begin{proof}
+We have shown in Equation \ref{eq:pht} that any speedup can be written as a linear combination of two configuration speedups as, 
+%$$
+%speedup(t) = %s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
+%$$
+\begin{align}
+speedup(t) = \hat{s}_{hi} \cdot \tau_{hi} + \hat{s}_{lo} \cdot (T - \tau_{lo})
+\end{align}
+\begin{align}
+\hat{speedup}(t) = s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
+\end{align}
+
+We can upper bound and lower bound each of these terms, 
+\begin{align}
+speedup(t) \leq T \hat{s}_{hi} 
+\end{align}
+\begin{align}
+\hat{speedup}(t) \geq T s_{lo} 
+\end{align}
+The estimates of speedups are close to the actual speedups since $\hat{s} \sim N(s, \sigma^2)$. Therefore,  with probability greater than 99.7\% and the speedups can be given by, $s_{lo} \geq \hat{s}_{lo} - 3 \sigma$, hence, $\hat{speedup}(t) \geq T (\hat{s}_{lo} -3 \sigma)$. Hence over all configurations $\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0$ and since the pole can be chosen as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$ and similarly for the pole $p$, $\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$.
+%\begin{align}
+%\Delta \leq max(\frac{max(\hat{speedup})}{min(\hat{speedup}) -  3\sigma},0)
+%\end{align}
+
+\end{proof}
