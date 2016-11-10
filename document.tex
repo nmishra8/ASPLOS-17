@@ -21,7 +21,11 @@
 %\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \usepackage[natbib=true,backend=bibtex,firstinits=true,style=numeric-comp,sorting=nyt,defernumbers,maxnames=99,maxcitenames=99]{biblatex}
 \usepackage{fancyhdr}
-
+%\usepackage[
+%top    = 1in,
+%bottom = 1in,
+%left   = 0.75in,
+%right  = 0.75in]{geometry}
 
 \fancypagestyle{firstpage}{
   \fancyhf{}
@@ -40,6 +44,7 @@
 %\setlength{\columnsep}{0.25in}
 %\setlength{\textwidth}{6.50in}
 %\setlength{\topmargin}{0.0in}
+%\setlength{\botmargin}{1.0in}
 %\setlength{\headheight}{0.0in}
 %\setlength{\headsep}{0.0in}
 %
@@ -167,10 +172,11 @@ tick label style={font=\footnotesize},
 \begin{document}
 
 \title{Big Data for LITTLE Cores \\ {\large Combining Control and Learning for
-  Energy Efficiency}} \author{Anonymous Submission} \date{}
+  Energy Efficiency}} \date{}
 
 \maketitle
-\thispagestyle{empty}
+\thispagestyle{firstpage}
+\pagestyle{plain}
 
 
 \input{tex/abstract}
