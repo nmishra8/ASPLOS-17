@@ -9,7 +9,7 @@ desired performance target with minimal energy.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{figures/ControlLearning.png}
-\caption{Overview of \SYSTEM{}.} 
+\caption{Overview of \SYSTEM{}.}
 \label{fig:overview}
 \end{figure}
 
@@ -70,7 +70,7 @@ use relatively simple difference models\footnote{Continuous time
   systems would use differential equations, but as time in computers
   is inherently discretized we restrict ourselves to discussion of
   difference equations which are appropriate for discrete time
-  systems.}. 
+  systems.}.
 
 %example difference model -- built into the controller
 Continuing the example of controlling performance with clockspeed, a
@@ -90,7 +90,7 @@ simple controller that is provably convergent to the desired
 performance:
 \begin{eqnarray}
   error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clock(t) &=& clock(t-1) - \frac{error(t)}{k}
+  clock(t) &=& clock(t-1) - \frac{error(t)}{\alpha}
   \label{eqn:clock-control}
 \end{eqnarray}
 
@@ -155,7 +155,7 @@ which states that the speedup to apply at time $t$ is a function of
 the previous speedup, the error at time $t$ and the base speed $\alpha$.
 This is a very simple \emph{deadbeat} \TODO{need to add a pole -- so
   it will no longer be a deadbeat controller} controller that provides
-all the standard control theoretic formal guarantees.  
+all the standard control theoretic formal guarantees.
 
 By measuring
 base speed online while the application runs, we can tune the control
@@ -207,11 +207,24 @@ configuration $c$ and $\tau_c$ is the amount of time to spend in
 configuration $c$.  \eqnref{power} simply states that the objective is
 to minimize energy (power times time).  \eqnref{work} states that the
 work must be done, while \eqnref{deadline} requires the work to be
-done on time.  \eqnref{time} simply avoids negative time.  
+done on time.  \eqnref{time} simply avoids negative time.
 
 
 \section{Learning Power/Performance Tradeoffs}
-
+\begin{figure}
+\centering
+  \subfloat[]
+  {
+    \includegraphics[width=.2\textwidth]{figures/HBM.png}
+  }
+  \caption{ A Hierarchical Bayesian model.  The arrows represent dependences, circles
+    are random variables, white circles are hidden variables that
+    cannot be observed and must be learned, solid circles represent
+    fully observed data, and shaded circles represent partially
+    observed data.}
+\label{fig:learning-models}
+\end{figure}
+\PUNT{
 \begin{figure*}
 
   \subfloat[]
@@ -242,13 +255,13 @@ done on time.  \eqnref{time} simply avoids negative time.
     the model built for application N.}
 \label{fig:learning-models}
 \end{figure*}
-
+}
 In general, all machine learning techniques take observations of some
 phenomena and turn them into a model to predict future outcomes.  In
 our specific case, we want to take observations about application's
 performance and power given a resource allocation and predict how
 future application's will perform or how different resource
-allocations will affect the current application.  
+allocations will affect the current application.
 
 In this work, we use a hierarchical Bayesian model (HBM) to turn
 observations of applications' performance and power into predictions
@@ -273,28 +286,10 @@ refer to application-specific models as \emph{online} because they
 build models for the current application and do not incorporate
 knowledge of other applications.  We refer to general models as
 \emph{offline} as they use prior observations of other applications to
-predict the behavior of a new application.  
+predict the behavior of a new application.
 
-The HBM provides a good balance between the online and offline
-approaches.  The key differences between these three approaches are
-illustrated in \figref{learning-models}. In this figure, circles
-represent random variables, directed edges show conditionally
-dependent relationships, and shading represents observability.  A dark
-circle means we have seen all the data, a shaded circle means we have
-some partial observations, and the white circle means that the
-variable is unobservable.  The models we are trying to learn
-are unobservable.  A strictly online approach will handle each new
-application completely separately and ignore observations of previous
-applications.  This approach never risks contaminating a model with
-unrelated observations, but it may take many observations of the
-current application to converge because it starts with no prior
-knowledge. The offline approach uses all observations from prior
-applications and will therefore converge very quickly; however, it is
-overly general and cannot learn features specific to a single
-application.
-
-The HBM (illustrated in \figref{HBM}) is a good compromise.  Each
-application has its own model, allowing specificity, but these models
+The HBM (illustrated in \figref{HBM}) provides a good balance between the online and offline
+approaches. Each application has its own model, allowing specificity, but these models
 are conditionally dependent on some underlying probability
 distribution with a hidden mean and co-variance matrix.  In practice,
 the HBM will estimate a model for a new application using a small
@@ -350,11 +345,11 @@ properties:
   performance tradeoff space.
 \end{itemize}
 We use these two facts to construct a constant time algorithm for
-finding the optimal solution online.  
+finding the optimal solution online.
 
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures/SpeedupHashTable.png}
+\includegraphics[width=\columnwidth]{figures/perforamance-hash-table.pdf}
 \caption{Data structure to efficiently convert required speedup into a
   configuration.}
   \label{fig:pht}
@@ -400,7 +395,7 @@ following set of equations:
   \label{eq:pht}
 \end{eqnarray}
 In these equations, $speedup(t)$ is the speedup requested by the translator
-and $s_c$ are speedups estimated by the learner. 
+and $s_c$ are speedups estimated by the learner.
 
 By solving \eqnsref{s1}{s2}, the translator has turned the speedup
 requested by the controller into a schedule of resource allocations
@@ -433,16 +428,16 @@ We introduce a notation $\Floor{x}_0 = \max(x,0)$.
 Suppose we allow the following multiplicative error in $response(t)$ or in our particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$. According to \cite{}, the value of pole $p$ can vary as much as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative error in the control equation. Using the lowest value of pole would offer the fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
 
 \begin{theorem}
-Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using Bayesian model such that 
-Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ for all $i \in C$. We can show that with probability greater than 99.7\%, 
+Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using Bayesian model such that
+Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ for all $i \in C$. We can show that with probability greater than 99.7\%,
 $$
 \Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0
-$$ 
+$$
 Hence, the pole $p$ can be chosen to lie between, $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$$
 \end{theorem}
 
 \begin{proof}
-We have shown in Equation \ref{eq:pht} that any speedup can be written as a linear combination of two configuration speedups as, 
+We have shown in Equation \ref{eq:pht} that any speedup can be written as a linear combination of two configuration speedups as,
 %$$
 %speedup(t) = %s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
 %$$
@@ -453,12 +448,12 @@ speedup(t) = \hat{s}_{hi} \cdot \tau_{hi} + \hat{s}_{lo} \cdot (T - \tau_{lo})
 \hat{speedup}(t) = s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
 \end{align}
 
-We can upper bound and lower bound each of these terms, 
+We can upper bound and lower bound each of these terms,
 \begin{align}
-speedup(t) \leq T \hat{s}_{hi} 
+speedup(t) \leq T \hat{s}_{hi}
 \end{align}
 \begin{align}
-\hat{speedup}(t) \geq T s_{lo} 
+\hat{speedup}(t) \geq T s_{lo}
 \end{align}
 The estimates of speedups are close to the actual speedups since $\hat{s} \sim N(s, \sigma^2)$. Therefore,  with probability greater than 99.7\% and the speedups can be given by, $s_{lo} \geq \hat{s}_{lo} - 3 \sigma$, hence, $\hat{speedup}(t) \geq T (\hat{s}_{lo} -3 \sigma)$. Hence over all configurations $\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0$ and since the pole can be chosen as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$ and similarly for the pole $p$, $\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$.
 %\begin{align}
