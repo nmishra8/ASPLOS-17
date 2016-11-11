@@ -433,7 +433,7 @@ We introduce a notation $\Floor{x}_0 = \max(x,0)$.
 Suppose we allow the following multiplicative error in $response(t)$ or in our particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$. According to \cite{}, the value of pole $p$ can vary as much as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative error in the control equation. Using the lowest value of pole would offer the fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
 
 \begin{theorem}
-Let $\mathbf{s}$ denote the speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ 
+Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using Bayesian model such that 
 Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ for all $i \in C$. We can show that with probability greater than 99.7\%, 
 $$
 \Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0
