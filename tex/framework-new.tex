@@ -46,7 +46,7 @@ with some brief analysis of the approach, with detailed analysis
 provided in an appendix.
 
 
-\section{Traditional Control Design for Computing Systems}
+\subsection{Traditional Control Design for Computing Systems}
 A controller has a performance goal (corresponding to a
 quality-of-service or real-time constraint) and adjusts system resource
 usage to see that the goal is met. Following is the general formulation for a controller, where the response is assumed to be linearly related to the effect.
@@ -114,7 +114,7 @@ meaning that the controller will take many time steps to react to some
 dynamic events.  It would clearly be beneficial to tune the control
 models to individual applications.
 
-\section{Generalized Control Design}
+\subsection{Generalized Control Design}
 We would like to use control and learning to solve the problem of
 meeting an application's performance requirements while minimizing
 energy consumption.  The difficulty is that classical control
@@ -175,7 +175,7 @@ Of course, we still have the challenging problem of converting an
 abstract speedup into an actual resource allocation.
 
 
-\section{Allocating Resources with a General Control Signal}
+\subsection{Allocating Resources with a General Control Signal}
 We need to map the speedup produced by \eqnref{speedup-control} into a
 resource allocation.  On our target system, an ARM big.LITTLE
 architecture, that specifically means mapping speedup into a number of
@@ -210,7 +210,8 @@ work must be done, while \eqnref{deadline} requires the work to be
 done on time.  \eqnref{time} simply avoids negative time.
 
 
-\section{Learning Power/Performance Tradeoffs}
+\subsection[Learning Power/Performance Tradeoffs]{Learning Power/Performance \\Tradeoffs}
+
 \begin{figure}
 \centering
   \subfloat[]
@@ -287,6 +288,60 @@ build models for the current application and do not incorporate
 knowledge of other applications.  We refer to general models as
 \emph{offline} as they use prior observations of other applications to
 predict the behavior of a new application.
+Suppose we have $n = |\mathcal{C}|$ configurations in our system.  We
+have a \textit{target application} whose energy we wish to minimize,
+while meeting a performance requirement (as in \eqref{eq:controller}).
+Additionally, we have a set of $M-1$ applications whose performance
+and power are known (as they have been measured offline).
+
+Let the vector $\y_i \in \R^{n}$ represent the performance(or power) estimate of application $i$ in all $n$ configurations of the
+system; \ie the $c$th component of $\y_i$ is the power for application
+$i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let $\{\y_i\}_{i =1}^M$ be the shorthand for the power estimates for all applications.  Without loss of generality, we assume that the first $M-1$
+columns, \ie $\{\y_i\}_{i =1}^{M-1}$ represent the data for those
+applications whose power consumption is known (this data is collected
+offline).  The $M$th column, $\y_M$ represents the power consumption
+for the new, unknown application.  We have some small number of
+observations for this application.  Specifically, for the $M$th application we have observed
+configurations belonging to the set $\Omega_M$ where $|\Omega_M| \ll
+n$; \ie we have a very small number of observations for this
+application.  Our objective is to estimate the power for application
+$M$ for all configurations that we have not observed.
+The model is described in terms of statistical equations below,
+
+\begin{equation}
+\begin{aligned}
+\y_i \vert \z_i  &\sim N( \z_i, \sigma^2 \I),\\
+\z_i \vert \mu,\Sigma &\sim N(\mu, \Sigma),\\
+\mu, \Sigma &\sim N(\mu_0,\Sigma / \pi)IW(\Sigma | \nu, \Psi),
+\end{aligned}
+\label{eq:HBN}
+\end{equation}
+
+where $\y_i \in \R^n, \;
+\z_i \in \R^n, \;
+\mu \in \R^{n}, \;
+\Sigma \in \R^{n\times n}$. It describes that the power (denoted by $\y_i$)
+for each of the $i^{th}$ application,  is drawn from multivariate-Gaussian
+distribution with mean $\z_i$ and a diagonal covariance matrix $\sigma^2\I$.
+Similarly, $\z_i$ is from multivariate-Gaussian distribution with mean $\mu$
+and covariance $\Sigma$. And, $\mu$ and $\Sigma$ are jointly drawn from
+normal-inverse-Wishart distribution with parameters  $\mu_0, \pi,\Psi, \nu$.
+The parameters for our model are $\mu,\Sigma$, whereas,  $\mu_0, \pi,\Psi, \nu$
+are the hyper-parameters, which we set as $\mu_0 = 0, \pi = 1,\Psi = \I, \nu = 1$. 
+\PUNT{
+The first layer in this model as described in \figref{fig:HBN}, is the filtration layer and accounts for the measurement error for each application. Interestingly, even if we have just a single measurement of each configuration for each application, this layer plays a crucial role as it creates a shrinkage effect. The shrinkage effect penalizes large variations in the application and essentially help in reducing the risk of the model (See \cite{efron1975data} for  shrinkage effect and \cite{morris1983parametric} for shrinkage in hierarchical models). The second layer on the other hand binds the variable $\z_i$ for each application and
+enforces that they are drawn from the same distribution with unknown
+mean and covariance. We work with a normal-inverse-Wishart distribution as described in \cite{gelman2013bayesian} as our hyper prior on $\mu, \Sigma$, since this distribution is the conjugate prior for a multivariate Gaussian distribution.
+Thus, we essentially have a normal means model at
+the first level of our hierarchy for each of the different apps and we
+have a Gaussian prior on the parameter of this model. Now, if the mean
+$\mu$, covariance $\Sigma$ and noise $\sigma$ were known, $\y_i$ are
+conditionally independent given these parameters. Since they are
+unknown we have introduced a dependence amongst all the $\y_i$s. This
+is a similar situation to our coin flipping example in \figref{fig:BN}, where the value of one coin influences our prediction
+about the other coin. $\Sigma$ captures the correlation between different configurations as depicted in \figref{fig:Sigma}.
+}
+
 
 The HBM (illustrated in \figref{HBM}) provides a good balance between the online and offline
 approaches. Each application has its own model, allowing specificity, but these models
@@ -323,7 +378,7 @@ practice, the HBM can learn much more complicated tradeoffs by
 combining observations of the new application with prior knowledge of
 different types of behavior.
 
-\section{Encoding Learned Models}
+\subsection{Encoding Learned Models}
 
 
 \TODO{This needs to be brief, and we can put any details in an
@@ -349,7 +404,7 @@ finding the optimal solution online.
 
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures/perforamance-hash-table.pdf}
+\includegraphics[width=\columnwidth]{figures/performance-hash-table.pdf}
 \caption{Data structure to efficiently convert required speedup into a
   configuration.}
   \label{fig:pht}
@@ -419,13 +474,26 @@ resolution and is not too wasteful of space.
 \subsubsection{Control System Complexity}
 
 \subsubsection{Learning System Complexity}
+Algorithm listing
+1. Running HBM
+2. Creating convex hull
+3. Creating PHT
 
 \subsection{Control Theoretic Formal Guarantees}
-As we discussed in section \secref{}, a \emph{pole} acts as a damper in the control system equation \eqref{}. In this section, We would connect the concept of pole with the estimation procedure and obtain more sophisticated control system equations which take the estimation error into account.
-The pole of a control system equation can be thought of as inversely proportional to "step-size" in gradient descent procedures. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
+As we discussed in section \secref{}, a \emph{pole} acts as a damper in the
+control system equation \eqref{}. In this section, We would connect the concept
+of pole with the estimation procedure and obtain more sophisticated control
+system equations which take the estimation error into account.
+The pole of a control system equation can be thought of as inversely proportional
+to "step-size" in gradient descent procedures. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
 We introduce a notation $\Floor{x}_0 = \max(x,0)$.
 
-Suppose we allow the following multiplicative error in $response(t)$ or in our particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$. According to \cite{}, the value of pole $p$ can vary as much as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative error in the control equation. Using the lowest value of pole would offer the fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
+Suppose we allow the following multiplicative error in $response(t)$ or in our
+particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$.
+According to \cite{}, the value of pole $p$ can vary as much as,
+$\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative
+error in the control equation. Using the lowest value of pole would offer the
+fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
 
 \begin{theorem}
 Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using Bayesian model such that
@@ -437,7 +505,8 @@ Hence, the pole $p$ can be chosen to lie between, $$\Floor{1- \Floor{max(\hat{s}
 \end{theorem}
 
 \begin{proof}
-We have shown in Equation \ref{eq:pht} that any speedup can be written as a linear combination of two configuration speedups as,
+We have shown in Equation \ref{eq:pht} that any speedup can be written as a
+linear combination of two configuration speedups as,
 %$$
 %speedup(t) = %s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
 %$$
@@ -455,7 +524,14 @@ speedup(t) \leq T \hat{s}_{hi}
 \begin{align}
 \hat{speedup}(t) \geq T s_{lo}
 \end{align}
-The estimates of speedups are close to the actual speedups since $\hat{s} \sim N(s, \sigma^2)$. Therefore,  with probability greater than 99.7\% and the speedups can be given by, $s_{lo} \geq \hat{s}_{lo} - 3 \sigma$, hence, $\hat{speedup}(t) \geq T (\hat{s}_{lo} -3 \sigma)$. Hence over all configurations $\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0$ and since the pole can be chosen as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$ and similarly for the pole $p$, $\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$.
+The estimates of speedups are close to the actual speedups since
+$\hat{s} \sim N(s, \sigma^2)$. Therefore,  with probability greater than 99.7\%
+and the speedups can be given by, $s_{lo} \geq \hat{s}_{lo} - 3 \sigma$,
+hence, $\hat{speedup}(t) \geq T (\hat{s}_{lo} -3 \sigma)$. Hence over all
+configurations $\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0$
+and since the pole can be chosen as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$
+and similarly for the pole $p$,
+$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$.
 %\begin{align}
 %\Delta \leq max(\frac{max(\hat{speedup})}{min(\hat{speedup}) -  3\sigma},0)
 %\end{align}
