@@ -2,47 +2,45 @@
 
 % Streaming apps on embedded and mobile -- performance and energy
 Streaming sensor processing forms an important workload for embedded
-and mobile devices. Supporting these applications on these platforms
-requires delivering reliable performance -- to keep up with the sensor
-data -- and minimizing energy.
+and mobile devices. Supporting these applications requires delivering
+reliable performance -- to keep up with the sensor -- with minimal
+energy.
 
 % Control systems handle streaming sensor processing well -- formal
 % guarantees in the face of dynamics
-Control theoretic resource managers have proven effective at
-delivering streaming applications reliable performance with minimal
-energy; \eg{} in mobile multimedia \cite{grace,grace2,Agilos} and
-webservers \cite{}.  Control systems are not only effective in
-practice, they provide formal guarantees that the desired performance
-will be achieved \cite{ICSE2014,Hellerstein2004a}. These guarantees
-hold true even in the face of unpredictable system dynamics, like
-changing application workload or changing resource availability.
+Control theoretic resource managers deliver reliable performance to
+streaming applications with minimal energy.  Examples include mobile
+multimedia \cite{grace,grace2,Agilos} and webservers
+\cite{Horvarth,Verma,sha2002queuefeedback}.  These systems are not
+only effective in practice, they provide formal guarantees that the
+desired performance will be achieved despite unpredictable system
+dynamics; \eg{} changing application workload or changing resource
+availability \cite{ICSE2014,Hellerstein2004a,KaramanolisEtAl-2005a}.
 
 % Unfortunately, control solutions are brittle, especially challenged
 % by diversity of applications and modern heterogeneous processors
 While control theory is a general technique, implementations are
 problem-specific because traditional control design directly
-incorporates application- and system-specifc models.  For example, a
-controller that manages video encoding on a phone using processor
-speed will be of no use to a wireless receiver on an embedded system.
-This brittleness of control design is further exacerbated by growing
-application diversity and hardware complexity.  For example,
-heterogeneous processors expose a huge range of performance and energy
-tradeoffs, which vary from application to application.  Several
-research projects create control theoretic libraries that users
-customize for specific applications and sysetms by providing models
-\cite{POET,ControlWare}.  While these approaches are a step in the
-direction of generality, they still require significant user input and
-prior knowledge of the application to be controlled.  \emph{This
-  paper's goal is to provide the benefits of control theoretic
-  techniques even for applications we have not encountered before and
-  with minimal input from users.}
+incorporates application- and system-specific models into controller
+implementations.  The requirement that models are known at design time
+leads to brittle designs that cannot be reused; a problem exacerbated
+by growing application diversity and hardware complexity.  For
+example, heterogeneous processors expose a huge range of performance
+and energy tradeoffs, which vary from application to application.
+Several researchers propose control theoretic libraries that users
+customize by providing models \cite{POET,ControlWare,SWiFT}.  While
+these approaches are a step in the direction of generality, they still
+require significant user input and prior knowledge of the application
+to be controlled.  \emph{This paper's goal is to provide the benefits
+  of control theoretic techniques even for applications we have not
+  encountered before and with minimal input from users.}
 
 % Challenges?  
 %  We would like to take unseen streaming applications and control them.
 %  1) Complexity of system -- non-convex tradeoff spaces
 %  2) Cost of learning
 %  3) Maintain control theoretic guarantees
-There are several challenges that must be addressed to meet this goal:
+Several challenges must be addressed to meet this goal:
 \begin{itemize}
 \item \textit{System complexity:} Heterogeneous processor designs
   expose multiple resources that interact in complex ways, often
@@ -51,9 +49,9 @@ There are several challenges that must be addressed to meet this goal:
   exploring these tradeoff spaces -- certainly, we cannot spend more
   energy learning the tradeoff spaces than we would save by knowing
   them.
-\item \textit{Guarantees:} We would like to maintain the ability to
-  formally reason about the controlled system's dynamic behavior
-  despite working without \emph{a priori} knowledge.
+\item \textit{Guarantees:} We must maintain formal guarantees about
+  the controlled system's dynamic behavior despite working without
+  \emph{a priori} knowledge.
 \end{itemize}
 
 
@@ -66,48 +64,46 @@ machine learning.  \SYSTEM{} dynamically manages resources for
 streaming applications to ensure their performance needs are met while
 minimizing their energy consumption.  \SYSTEM{} has two components.
 The first is a generalized control system (GCS) that runs on the
-embedded or mobile device and manages resoureces.  The second
-component is a hierarchical Bayesian model (HBM) that runs on a remote
-server.  When the GCS encounters a new application, it takes a small
-sample of the performance and energy in different resource
+embedded or mobile device and assigns resources to applications.  The
+second component is a hierarchical Bayesian model (HBM) that runs on a
+remote server.  When the GCS encounters a new application, it takes a
+small sample of the performance and energy in different resource
 configurations and sends those samples to the HBM.  The HBM aggregates
-samples across devices and applications to produce an estimate of the
-performance and energy tradeoffs of each application and device.  This
-estimate is stored in a performance hash table (PHT) that is sent to
-the GCS, which uses it to control its local application.
+samples across devices and applications to produce an estimate of an
+application's performance and energy tradeoffs.  This estimate is
+stored in a performance hash table (PHT) that is sent to the GCS.
 Additionally, the HBM sends the GCS each application's estimated
-variance so that the controller tune its behavior not just to the
-model, but also to the potential range in the model's output.
+variance so that the controller tunes its behavior not just to the
+estimated model, but also to the error in the model's output.
 
 % Why CALOREE meets the challenges
 CALOREE addresses the three challenges listed above.  The HBM is
 well-suited to learning non-convex optimization spaces that arise in
 systems with many configurable resources \cite{LEO}, addressing the
-complexity challenge.  The HBM is, however, computationally expenisve
+complexity challenge.  The HBM is, however, computationally expensive
 and requires samples of several different applications to produce
-accurate models.  Therefore, we offload it to a remote server to
-address the overhead challenge.  Finally, because the HBM communicates
-the model's variance and confidence interval, we derive probabilistic
-control theoretical guarantees that the system will converge to the
-desired performance.
+accurate models, so we offload it to a remote server to address the
+overhead challenge.  Finally, because the HBM communicates the model's
+variance and confidence interval, we derive probabilistic control
+theoretical guarantees that the system will converge to the desired
+performance.
 
 % We implement CALOREE... and our results show...
 We implement CALOREE and test its ability to control streaming
 applications on heterogeneous ARM big.LITTLE devices, with the HBM
 implemented on an x86 server.  We compare to state-of-the-art learning
-and control systems.  We also test \SYSTEM{} in both \emph{single-app}
-environments, where the streaming application runs by itself, and
-\emph{multi-app} environments where other applications unpredictably
-enter the system and compete for resources. Overall we find that
-\SYSTEM{} achieves the:
+and control systems in both \emph{single-app} environments, where the
+streaming application runs by itself, and \emph{multi-app}
+environments where other applications unpredictably enter the system
+and compete for resources. We find that \SYSTEM{} achieves the:
 \begin{itemize}
 \item \textit{Most reliable performance:} 
   \begin{itemize} 
   \item In the \emph{single-app} case, all methods achieve average
     performance close to the requirement.  \SYSTEM{}'s worst case
-    performance error is only 8\% of the target, while prior
-    techinqiues achieve worst case performance error between 28\%
-    to 81\% lower than the requirement.
+    performance error is within 8\% of the target, while prior
+    techniques achieve worst case performance 28\% to 81\% lower than
+    the requirement.
   \item In the \emph{multi-app} case, prior learning approaches
     average at least 19\% performance error, prior control approaches
     average 7\% error, and \SYSTEM{} achieves just 3\% average
@@ -117,25 +113,23 @@ enter the system and compete for resources. Overall we find that
     the target.
     \end{itemize}
   \item \textit{Best energy savings:} We compare to an \emph{oracle}
-    control system with a perfect model of the application, system,
-    and future events.  
+    with a perfect model of the application, system, and future
+    events.
     \begin{itemize}
     \item In the \emph{single-app} case, prior learning approaches
-      average 14-21\% more energy use than the oracle, while the
-      control system uses 24\% more (the learners save energy by
-      failing to meet the performance requirements).  In contrast,
-      CALOREE uses only 5\% more despite providing more reliable
-      performance.  In the worst case, prior approaches can use
-      75-90\% more energy than the oracle, while CALOREE's worst case
-      is only 24\% more than the oracle -- more than $3\times$ the
-      savings.
+      average 14-21\% more energy than the oracle, while the prior
+      controller uses 24\% more (the learners save energy by failing
+      to meet the performance requirements).  In contrast, CALOREE
+      uses only 5\% more despite providing more reliable performance.
+      In the worst case, prior approaches can use 75-90\% more energy
+      than the oracle, while CALOREE's worst case is only 24\% more
+      than the oracle -- more than $3\times$ energy savings.
     \item In the \emph{multi-app} case, prior learning approaches use
       17-22\% more energy than the oracle.  Prior control approaches
       use 34\% more (again learning saves energy by missing
-      deadlines).  CALOREE, in contrast, provides significant energy
-      savings, consuming only 8.5\% more energy than the oracle, even
-      though the oracle has a prior knowledge of a correct model for
-      application interference.
+      deadlines).  CALOREE, in contrast, consumes only 8.5\% more
+      energy than the oracle without the oracle's {\em a priori}
+      knowledge.
     \end{itemize}
 \end{itemize}
 
@@ -146,12 +140,12 @@ produce accurate models of complex processors.  \emph{To the best of
   our knowledge, this is the first work to propose combining the two
   at runtime to control resource usage for a streaming application
   with no prior knowledge.}  Describing the interfaces and design
-choices that make this combination work is the primary contribution of
-the paper.  Additional contributions include formal analysis showing
-how to incorporate learned variance into the control theoretic
-guarantees of existing systems and the empirical evaluation that shows
-the combined control and learning system outperforms individual,
-state-of-the-art control or learning solutions.
+choices that make this combination work is the paper's primary
+contribution.  Additional contributions include formal analysis
+showing how to incorporate learned variance into the control theoretic
+guarantees and the empirical evaluation showing the combined control
+and learning system outperforms individual, state-of-the-art control
+or learning solutions.
 
 %%Old intro from ASPLOS 17
 \PUNT{

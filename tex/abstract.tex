@@ -1,36 +1,34 @@
 \begin{abstract}
 
-  Streaming sensor processing forms a foundational workload for
-  embedded and mobile devices.  Control theoretic resource managers
-  have demonstrated ability to meet streaming applications'
-  performance requirements with minimal energy. Their designs, are
-  brittle, however; they require \emph{a priori} models mapping
-  applications' performance and energy to system resource allocation.
-  Thus, a controller designed for one application and system will have
-  to be redesigned and reimplemented to work in another deployment.
-  We propose CALOREE to achieve the benefits of control theoretic
-  design -- \ie formal, bounded convergence to required performance in
-  dynamic environments -- without \emph{a priori} models.  CALOREE
-  combines a generalized control system (GCS) that runs on a local
-  device with a hierarchical Bayesian model (HBM) that runs on a
-  remote server. The HBM aggregates data from multiple applications
-  and devices to produce highly accurate models that are sent to the
-  GCS, customizing control to the particular application and device.
-  We extend standard control theoretic formal analysis to show that
-  CALOREE provides probabilistic convergence guarantees despite having
-  no prior model of the controlled application.
+  Embedded and mobile devices must process streaming data from
+  sensors.  Control theoretic resource managers adjust resource usage
+  to meet streaming applications' performance requirements with
+  minimal energy. Their designs, however, require \emph{a priori}
+  models to map system resource allocation to application performance
+  and energy.  Thus, a controller designed for one application and
+  system must be redesigned to work in a new deployment.  We propose
+  CALOREE to achieve control theoretic design benefits -- \ie formal,
+  bounded convergence to required performance in dynamic environments
+  -- without \emph{a priori} models.  CALOREE combines a generalized
+  control system (GCS) that runs on a local device with a hierarchical
+  Bayesian model (HBM) that runs on a remote server. The HBM
+  aggregates data from multiple applications and devices to produce
+  highly accurate models that are sent to the GCS, customizing control
+  to the particular application and device.  We extend standard
+  control theoretic formal analysis to show that CALOREE provides
+  probabilistic convergence guarantees despite having no prior model
+  of the controlled application.
 
   We implement CALOREE using ARM big.LITTLE systems to run streaming
   applications and an x86 server to implement the HBM.  We test in
   both single-app and multi-app environments (where new applications
-  enter the system and compete for resources).  We evaluate CALOREE's
-  performance and energy compared to state-of-the-art learning and
-  control techniques.  We find that CALOREE's unique combination of
-  control and learning consistently provides the most reliable
-  performance, with a worst case error (in the multi-app case) between
-  desired and delivered performance of only 12\% compared to 70-80\%
-  for prior approaches.  Additionally, CALOREE consistently provides
-  the lowest energy with average savings anywhere from 8-47\%.
+  enter the system and compete for resources).  Compared to
+  state-of-the-art learning and control techniques, CALOREE's
+  consistently provides the most reliable performance, with a worst
+  case error (in the multi-app case) between desired and delivered
+  performance of only 12\% compared to 70-80\% for prior approaches.
+  Additionally, CALOREE provides the lowest energy with average
+  savings anywhere from 8-47\%.
 
 
   \PUNT{CALOREE has three main components: (1) a remote learner that
