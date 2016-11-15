@@ -1,0 +1,115 @@
+\usepackage{times}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amstext,amssymb,amsmath,amsthm}
+\usepackage{verbatim}
+\usepackage{subfigure}
+\usepackage{color}
+\usepackage{paralist}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{array}
+\usepackage{graphicx,color}
+\usepackage{moreverb}
+\usepackage{xspace}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{times}
+\usepackage{relsize}
+\newcolumntype{x}[1]{>{\centering\arraybackslash}p{#1}}
+\newlength\SUBSIZE
+\newcommand{\ONECOLFIGMUL}{0.81}
+\newcommand{\TALLFIGMUL}{0.75}
+\newcommand{\ie}{\textit{i.e.},~}
+\newcommand{\eg}{\textit{e.g.},~}
+\usepackage{caption}
+%\usepackage{subcaption}
+
+\newcounter{cnt}
+% \def\full{0}
+\newtheorem{lem}[cnt]{Lemma}
+\newtheorem{thm}[cnt]{Theorem}
+\newtheorem{problem}[cnt]{Problem}
+\newtheorem{defn}[cnt]{Definition}
+\newtheorem{fact}[cnt]{Fact}
+\newtheorem{example}[cnt]{Example}
+\newtheorem{corollary}[cnt]{Corollary}
+\newtheorem{assumption}[cnt]{Assumption}
+\newtheorem{claim}[cnt]{Claim}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\nptheta}{\hat\theta}
+\newcommand{\symdiff}{\Delta}
+\newcommand{\noise}{{\sf Noise}}
+\newcommand{\privtheta}{\theta_{priv}}
+\renewcommand{\paragraph}[1]{\vspace{3pt}\noindent\textbf{#1}}
+\newcommand{\scrX}{\ensuremath{\mathcal{X}}}
+\newcommand{\scrZ}{\ensuremath{\mathcal{Z}}}
+\newcommand{\rA}{\ensuremath{\rightarrow}}
+\newcommand{\rrA}{\ensuremath{\longrightarrow}}
+\newcommand{\qB}{\ensuremath{\mathbf{q}}}
+\newcommand{\XB}{\ensuremath{\mathbf{X}}}
+\newcommand{\zeroB}{\ensuremath{\mathbf{0}}}
+\newcommand{\sm}{\mbox{\textendash}}
+\newcommand{\ltwo}[1]{\left\|#1\right\|_2}
+\newcommand{\lone}[1]{\left\|#1\right\|_1}
+\newcommand{\eps}{\epsilon}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\mineig}{\eta}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\F}{\mathcal{C}}
+\newcommand{\hatw}{\hat{w}}
+\newcommand{\hatv}{{\hat{v}}}
+\newcommand{\hatV}{{\hat{V}}}
+\newcommand{\hatW}{{\hat{W}}}
+\newcommand{\kl}{{\sf KL}}
+\newcommand{\dagw}{w^\dagger}
+\newcommand{\tildew}{\tilde{w}}
+\newcommand{\tildeF}{\tilde{F}}
+\newcommand{\tildef}{\tilde{f}}
+\newcommand{\re}{\mathbb{R}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\bP}{\mathbb{P}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\grad}{\bigtriangledown}
+\newcommand{\mypar}[1]{\smallskip
+\noindent{\bf\em {#1}.}}
+\newcommand{\etal}{\emph{et al.}}
+\newcommand{\negl}{\text{negl}}
+\newcommand{\mynote}[3]{\marginpar{\parbox{0.7in}{\tiny {\color{#2} {\sc #1}: {\sf #3}}}}}
+\newcommand{\atnote}[1]{\mynote{at}{blue}{#1}}
+\newcommand{\nmnote}[1]{\mynote{prmohan}{red}{#1}}
+\newcommand{\ignore}[1]{}
+\newcommand{\rpm}{\sbox0{$1$}\sbox2{$\scriptstyle\pm$}  \raise\dimexpr(\ht0-\ht2)/2\relax\box2 }
+\newcommand{\TODO}[1]{{\bf TODO: #1}}
+\newcommand{\NOTE}[1]{{\bf NOTE: #1}}
+
+\newcommand{\name}{\textsc{GUPT}\xspace}
+\newcommand{\nameplain}{GUPT\xspace}
+\newcommand{\aname}{a \textsc{GUPT}\xspace}
+\newcommand{\Aname}{A \textsc{GUPT}\xspace}
+\newcommand{\C}{\mathcal{C}}
+\newcommand{\hatd}{{\hat d}}
+\newcommand{\hatf}{{\hat f}}
+\newcommand{\tr}{{\sf tr}}
+\newcommand{\Lap}{\mathsf{Lap}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\besta}{a_{{\sf best}}}
+\newcommand{\Vect}{\text{vec}}
+\newcommand{\Vech}{\text{vech}}
+\newcommand{\rank}{\text{rank}}
+\newcommand{\diag}{\text{diag}}
+\newcommand{\nnz}{\text{nnz}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\z}{\mathbf{z}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
