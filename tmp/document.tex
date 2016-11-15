@@ -1,0 +1,192 @@
+%\documentclass[10pt,twocolumn]{article}
+%\documentclass[pageno]{jpaper}
+\documentclass{sig-alternate}
+\usepackage{mathptmx} % This is Times font
+
+%\newcommand{\asplossubmissionnumber}{209}
+\newcommand{\iscasubmissionnumber}{NaN}
+
+%\input{csmathmacro}
+\usepackage{balance}
+%\usepackage{times}
+%\usepackage{fullpage}
+\usepackage{enumitem}
+%\usepackage[shortlabels]{enumitem}
+%\usepackage{mathtools}
+\usepackage[normalem]{ulem}
+\usepackage{todonotes}
+\usepackage{subfig}
+\usepackage{mathtools}
+\newtheorem{theorem}{Theorem}
+%\usepackage{amstext,amssymb,amsmath,amsthm}
+%\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+%\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage[natbib=true,backend=bibtex,firstinits=true,style=numeric-comp,sorting=nyt,defernumbers,maxnames=99,maxcitenames=99]{biblatex}
+\usepackage{fancyhdr}
+
+
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+\setlength{\headheight}{50pt}
+\renewcommand{\headrulewidth}{0pt}
+  \fancyhead[C]{\normalsize{ISCA 2017 Submission
+      \textbf{\#\iscasubmissionnumber} \\ Confidential Draft: DO NOT DISTRIBUTE}}
+  \pagenumbering{arabic}
+}
+
+
+\setlist{noitemsep,topsep=0pt}
+
+%\setlength{\itemsep}{0pt}
+%\setlength{\textheight}{9.0in}
+%\setlength{\columnsep}{0.25in}
+%\setlength{\textwidth}{6.50in}
+%\setlength{\topmargin}{0.0in}
+%\setlength{\headheight}{0.0in}
+%\setlength{\headsep}{0.0in}
+%
+%\setlength{\abovecaptionskip}{1pt plus 2pt minus 2pt}
+%\setlength{\textfloatsep}{3pt}
+
+
+
+%--------
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\usepackage{listings}
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\scriptsize\ttfamily, % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=leftline,                  % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{black},     % string literal style
+  tabsize=1,                       % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\usepackage{pgfplots}
+% options for pgfplots
+\pgfplotsset{compat=1.8,compat/show suggested version=false}
+\usetikzlibrary{calc,trees,arrows,patterns,plotmarks,shapes,snakes,er,3d,automata,backgrounds,topaths,decorations.pathmorphing,decorations.markings}
+%\pgfplotsset{compat=newest}
+\pgfplotsset{
+   /pgfplots/bar  cycle  list/.style={/pgfplots/cycle  list={%
+        {black,fill=black!30!white,mark=none},%
+        {black,fill=red!30!white,mark=none},%
+        {black,fill=green!30!white,mark=none},%
+        {black,fill=yellow!30!white,mark=none},%
+        {black,fill=brown!30!white,mark=none},%
+     }
+   },
+}
+% begin of externalization
+\usetikzlibrary{external}
+\tikzexternalize[prefix=out/]
+\tikzexternalize
+\usetikzlibrary{patterns}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{
+every axis label/.append style={font=\footnotesize},
+tick label style={font=\footnotesize},
+}
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{4pt plus 2pt minus 1pt}
+  \setlength\belowdisplayskip{4pt plus 2pt minus 1pt}
+  \setlength\abovedisplayshortskip{4pt plus 2pt minus 1pt}
+  \setlength\belowdisplayshortskip{4pt plus 2pt minus 1pt}
+}
+\makeatother
+
+\newif{\ifanonymous}
+\anonymoustrue
+
+\newcommand{\cutout}[1]{}
+\newcommand{\smallcaption}[1]{\caption[#1]{{\protect\small \protect\bf #1}}}
+\newcommand{\dids}{{\sc dids}}
+\newcommand{\us}{\,$\mu$s}
+\newcommand{\ms}{\,ms}
+\newcommand{\KB}{\,KB}
+\newcommand{\MB}{\,MB}
+\newcommand{\GB}{\,GB}
+\newcommand{\MHz}{\,MHz}
+\newcommand{\GHz}{\,GHz}
+\newcommand{\eg}{\emph{e.g.},}
+\newcommand{\ie}{\emph{i.e.},}
+\newcommand{\y}{\mathbf{y}}
+
+\newcommand{\SYSTEM}{CALOREE}
+%\newcommand{\TODO}[1]{\textbf{TODO: 1}}
+\definecolor{gray}{gray}{0.75}
+\newcommand{\TODO}[1]{\textcolor{gray}{\textbf{\ [TODO:\ #1]\ }}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\Secref}[1]{Section~\ref{#1}}
+\newcommand{\PUNT}[1]{}
+\newcommand{\figref}[2][{}]{{Figure~\ref{#2}#1}}
+\newcommand{\figsref}[2]{Figures~\ref{#1} and~\ref{#2}}
+\newcommand{\tblref}[1]{Table~\ref{tbl:#1}}
+\newcommand{\algref}[1]{Algorithm~\ref{alg:#1}}
+\renewcommand{\textfraction}{0.05}
+%\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+%\newcommand{\figsref}[2]{Figures~\ref{fig:#1} and~\ref{fig:#2}}
+\newcommand{\figrref}[2]{Figures~\ref{#1}--\ref{#2}}
+%\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\secsref}[2]{Sections~\ref{sec:#1} and~\ref{sec:#2}}
+\newcommand{\eqnref}[1]{Eqn.~\ref{eqn:#1}}
+\newcommand{\eqnsref}[2]{Eqns.~\ref{eqn:#1} and~\ref{eqn:#2}}
+\newcommand{\eqnrref}[2]{Eqns.~\ref{eqn:#1}--\ref{eqn:#2}}
+%\newcommand{\insref}[1]{Instruction~\ref{ins:#1}}
+%\newcommand{\tblref}[1]{Table~\ref{tbl:#1}}
+\newcommand{\appref}[1]{Appendix~\ref{app:#1}}
+
+\DeclarePairedDelimiter\Floor\lfloor\rfloor
+\DeclarePairedDelimiter\Ceil\lceil\rceil
+%\newcommand{\minimize}{minimize}
+\newcommand{\st}{s.t.}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\minimize}{minimize}
+\bibliography{reference}
+
+\begin{document}
+
+\title{Big Data for LITTLE Cores \\ {\large Combining Control and Learning for
+  Energy Efficiency}} \date{}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{plain}
+
+\input{tex/abstract}
+\input{tex/intro}
+%\input{tex/example}
+\input{tex/framework-new}
+%\input{tex/evaluation}
+%\input{tex/related}
+%\input{tex/conclusion}
+
+\newpage
+\clearpage
+%\bibliographystyle{abbrv}
+%\bibliography{reference}
+\printbibliography
+\end{document}

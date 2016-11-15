@@ -1,4 +1,4 @@
-\section{\SYSTEM{}: Learning Control}
+\section{\SYSTEM{}: Combining Control and Learning}
 \label{sec:framework}
 A mobile device or embedded system runs a streaming application on a
 heterogeneous processor.  We assume no prior knowledge of this
@@ -6,13 +6,13 @@ streaming application, but we do have prior knowledge of other
 applications.  Our goal is to quickly build a model of the new
 application and then control its resource usage such that it meets a
 desired performance target with minimal energy.
-
+\PUNT{
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures/ControlLearning2.pdf}
-\caption{Overview of \SYSTEM{}.}
+\includegraphics[width=\columnwidth]{figures/ControlLearning.png}
+\caption{Overview of \SYSTEM{}.} 
 \label{fig:overview}
 \end{figure}
-
+}
 
 \figref{fig:overview} shows \SYSTEM{}'s approach to this problem.  On
 the local device, a generalized control system (GCS) allocates
@@ -46,20 +46,21 @@ with some brief analysis of the approach, with detailed analysis
 provided in an appendix.
 
 
-\subsection{Traditional Control Design for Computing Systems}
+\section{Traditional Control Design for Computing Systems}
 A controller has a performance goal (corresponding to a
 quality-of-service or real-time constraint) and adjusts system resource
 usage to see that the goal is met. Following is the general formulation for a controller, where the response is assumed to be linearly related to the effect.
 \begin{equation}
   effect(t) = \alpha \cdot response(t-1) + \delta \label{eqn:clock}
 \end{equation}
-A control system might adjust processor frequency to ensure that a performance
+In a simple example, a control
+system might adjust processor frequency to ensure that a performance
 goal is met \cite{lefurgy}.  Even better, an optimal controller would
 use the minimal clockspeed to meet the performance requirement.
 
 
 To turn clockspeed into performance a controller needs a model
-relating these two values.  A physical model, directly mapping clockspeed to performance
+relating these two values.  Directly mapping clockspeed to performance
 is difficult -- a hypothetical model might account for instruction
 mixes, memory hierarchy, memory latency, synchronization overheads,
 etc.  Building such a model is tedious and error-prone process and
@@ -69,7 +70,7 @@ use relatively simple difference models\footnote{Continuous time
   systems would use differential equations, but as time in computers
   is inherently discretized we restrict ourselves to discussion of
   difference equations which are appropriate for discrete time
-  systems.}.
+  systems.}. 
 
 %example difference model -- built into the controller
 Continuing the example of controlling performance with clockspeed, a
@@ -79,7 +80,7 @@ performance is a linear function of the clockspeed:
   perf(t) = \alpha \cdot clock(t-1) + \delta \label{eqn:clock}
 \end{equation}
 Here, the observed performance $perf(t)$ is predicted as some constant
-$\alpha$ times the clockspeed applied at the previous time step,
+$alpha$ times the clockspeed applied at the previous time step,
 $clock(t-1)$, plus some noise, $\delta$ drawn from a Gaussian
 distribution.  This simple linear difference model ignores low-level
 details like instruction mix, and instead uses feedback, predicting
@@ -89,7 +90,7 @@ simple controller that is provably convergent to the desired
 performance:
 \begin{eqnarray}
   error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clock(t) &=& clock(t-1) - \frac{error(t)}{\alpha}
+  clock(t) &=& clock(t-1) - \frac{error(t)}{k}
   \label{eqn:clock-control}
 \end{eqnarray}
 
@@ -99,21 +100,21 @@ The controller of \eqnref{clock-control} provides formal guarantees
 that it will converge to the desired performance ($goal$ in
 \eqnref{clock-error}) and it bounds the time taken to converge.  All
 these guarantees, however, are predicated on the accuracy of the
-model; \ie on the value $\alpha$ in this simple example.  This value is
+model; \ie on the value $alpha$ in this simple example.  This value is
 highly dependent on the particular application under control.  More
 complicated examples that control multiple resources are relatively
 straightforward extensions of the example shown here that use matrix
 equations instead of the scalar equations presented here
 \cite{METE,others}.  Either way, the control system is highly
-dependent on the value of $\alpha$ -- we could set $\alpha$ to be
+dependent on the value of $alpha$ -- we could set $alpha$ to be
 application specific, but that controller will fail on some
-applications.  If we choose a value of $\alpha$ such that performance still
+applications.  If we choose a value of $alpha$ such that performance still
 converges to the goal for all applications it will be very slow,
 meaning that the controller will take many time steps to react to some
 dynamic events.  It would clearly be beneficial to tune the control
 models to individual applications.
 
-\subsection{Generalized Control Design}
+\section{Generalized Control Design}
 We would like to use control and learning to solve the problem of
 meeting an application's performance requirements while minimizing
 energy consumption.  The difficulty is that classical control
@@ -122,7 +123,7 @@ the controller; \ie the application-dependent relationship between
 performance and resource usage is directly used in the control
 equations.  We propose to address this problem using the classic
 computer science trick of adding a layer of indirection.  This idea is
-illustrated in \figref{fig:overview}.  Instead of directly controlling
+illustrated in \figref{overview}.  Instead of directly controlling
 resources using an application-dependent model, we will control
 \emph{speedup} and pass that speedup value to a separate module that
 translates speedup into a desired resource configuration using the
@@ -134,7 +135,7 @@ that speedup into resource allocations.
 Analogous to \eqnref{clock} we write a simple difference model
 relating speedup to performance:
 \begin{equation}
-  perf(t) = b \cdot speedup(t-1) + \delta \label{eqn:speedup}
+  perf(t) = \alpha \cdot speedup(t-1) + \delta \label{eqn:speedup}
 \end{equation}
 where $b$ is the \emph{base speed} of the application, here defined as
 the speed when all resources are available.  While $b$ is application
@@ -147,21 +148,21 @@ constraints.
 With this model, the control law is simply:
 \begin{eqnarray}
   error(t) &=& goal - perf(t) \label{eqn:speedup-error} \\
-  speedup(t) &=& speedup(t-1) - \frac{error(t)}{b}
+  speedup(t) &=& speedup(t-1) - \frac{error(t)}{\alpha}
   \label{eqn:speedup-control}
 \end{eqnarray}
 which states that the speedup to apply at time $t$ is a function of
 the previous speedup, the error at time $t$ and the base speed $\alpha$.
 This is a very simple \emph{deadbeat} \TODO{need to add a pole -- so
   it will no longer be a deadbeat controller} controller that provides
-all the standard control theoretic formal guarantees.
+all the standard control theoretic formal guarantees.  
 
 By measuring
 base speed online while the application runs, we can tune the control
 to a specific application.  We note that using this definition of base
 speed, most speedups will be less than one.  Another modification to \eqref{eqn:speedup-control} which gives a more general formulation,
 \begin{equation}
-speedup(t) = speedup(t-1) - \frac{1 - p}{b}.error(t)
+speedup(t) = speedup(t-1) - \frac{1 - p}{\alpha}.error(t)
 \end{equation}
 This equation represents a less aggressive approach with a damping factor $1-p$, known as $pole$, to control the step-size taken to minimize the error term. The damping factor or the $pole$ guards the system from additional noise in the response. Additional details on the $pole$ and our new results connecting the value of pole with estimation error in the learning model are discussed in Section \secref{}.
 
@@ -174,7 +175,7 @@ Of course, we still have the challenging problem of converting an
 abstract speedup into an actual resource allocation.
 
 
-\subsection{Allocating Resources with a General Control Signal}
+\section{Allocating Resources with a General Control Signal}
 We need to map the speedup produced by \eqnref{speedup-control} into a
 resource allocation.  On our target system, an ARM big.LITTLE
 architecture, that specifically means mapping speedup into a number of
@@ -191,13 +192,13 @@ average speedup over a control interval is that produced by
 We call an assignment of time to resources a schedule.  Not
 surprisingly, there are typically many schedules that meet a
 particular performance requirement.  We would like to find a minimal
-energy schedule. Given a time interval $T$, a speedup requirement of $speedup(t)$ to
-complete in that interval, and a configuration set of size $C$ , we
+energy schedule. Given a time interval $T$, a workload $W$ to
+complete in that interval, and a set of $C$ configurations, we
 formalize this problem as:
 \begin{eqnarray}
   \minimize && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
   \st %&& \nonumber\\
-  && \sum_{c=0}^{C-1} \tau_c \cdot s_c =  speedup(t)T \label{eqn:work} \\
+  && \sum_{c=0}^{C-1} \tau_c \cdot s_c \cdot b =  W \label{eqn:work} \\
   && \sum_{c=0}^{C-1} \tau_c =  T \label{eqn:deadline} \\
   && 0 \le \tau_c \le T, \qquad \forall c \in \{0,\ldots,C-1\} \label{eqn:time}
 \end{eqnarray}
@@ -205,24 +206,11 @@ where $p_c$ and $s_c$ are the estimated powerup and speedup of
 configuration $c$ and $\tau_c$ is the amount of time to spend in
 configuration $c$.  \eqnref{power} simply states that the objective is
 to minimize energy (power times time).  \eqnref{work} states that the
-average speedup must be maintained, while \eqnref{deadline} requires the time to be fully utilized.  \eqnref{time} simply avoids negative time.
+work must be done, while \eqnref{deadline} requires the work to be
+done on time.  \eqnref{time} simply avoids negative time.  
 
 
-\subsection[Learning Power/Performance Tradeoffs]{Learning Power/Performance \\Tradeoffs}
-\PUNT{
-\begin{figure}
-\centering
-  \subfloat[]
-  {
-    \includegraphics[width=.2\textwidth]{figures/HBM.png}
-  }
-  \caption{ A Hierarchical Bayesian model.  The arrows represent dependences, circles
-    are random variables, white circles are hidden variables that
-    cannot be observed and must be learned, solid circles represent
-    fully observed data, and shaded circles represent partially
-    observed data.}
-\label{fig:learning-models}
-\end{figure}
+\section{Learning Power/Performance Tradeoffs}
 
 \begin{figure*}
 
@@ -254,13 +242,15 @@ average speedup must be maintained, while \eqnref{deadline} requires the time to
     the model built for application N.}
 \label{fig:learning-models}
 \end{figure*}
-}
-In this section we describe the algorithm we use in order to predict the power ($p_c$) and performance($r_c$) values for an application. In general, all machine learning techniques take observations of some
+
+In general, all machine learning techniques take observations of some
 phenomena and turn them into a model to predict future outcomes.  In
 our specific case, we want to take observations about application's
 performance and power given a resource allocation and predict how
 future application's will perform or how different resource
-allocations will affect the current application. In this work, we use a hierarchical Bayesian model (HBM) to turn
+allocations will affect the current application.  
+
+In this work, we use a hierarchical Bayesian model (HBM) to turn
 observations of applications' performance and power into predictions
 about how other, unobserved resource allocations will alter that
 performance and power.  We use a HBM because it provides a
@@ -283,64 +273,28 @@ refer to application-specific models as \emph{online} because they
 build models for the current application and do not incorporate
 knowledge of other applications.  We refer to general models as
 \emph{offline} as they use prior observations of other applications to
-predict the behavior of a new application.
-Suppose we have $n = |\mathcal{C}|$ configurations in our system.  We
-have a \textit{target application} whose energy we wish to minimize,
-while meeting a performance requirement (as in \eqref{eq:controller}).
-Additionally, we have a set of $M-1$ applications whose performance
-and power are known (as they have been measured offline).
-
-Let the vector $\y_i \in \R^{n}$ represent the performance(or power) estimate of application $i$ in all $n$ configurations of the
-system; \ie the $c$th component of $\y_i$ is the power for application
-$i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let $\{\y_i\}_{i =1}^M$ be the shorthand for the power estimates for all applications.  Without loss of generality, we assume that the first $M-1$
-columns, \ie $\{\y_i\}_{i =1}^{M-1}$ represent the data for those
-applications whose power consumption is known (this data is collected
-offline).  The $M$th column, $\y_M$ represents the power consumption
-for the new, unknown application.  We have some small number of
-observations for this application.  Specifically, for the $M$th application we have observed
-configurations belonging to the set $\Omega_M$ where $|\Omega_M| \ll
-n$; \ie we have a very small number of observations for this
-application.  Our objective is to estimate the power for application
-$M$ for all configurations that we have not observed.
-The model is described in terms of statistical equations below,
-
-\begin{equation}
-\begin{aligned}
-\y_i \vert \z_i  &\sim N( \z_i, \sigma^2 \I),\\
-\z_i \vert \mu,\Sigma &\sim N(\mu, \Sigma),\\
-\mu, \Sigma &\sim N(\mu_0,\Sigma / \pi)IW(\Sigma | \nu, \Psi),
-\end{aligned}
-\label{eq:HBN}
-\end{equation}
-
-where $\y_i \in \R^n, \;
-\z_i \in \R^n, \;
-\mu \in \R^{n}, \;
-\Sigma \in \R^{n\times n}$. It describes that the power (denoted by $\y_i$)
-for each of the $i^{th}$ application,  is drawn from multivariate-Gaussian
-distribution with mean $\z_i$ and a diagonal covariance matrix $\sigma^2\I$.
-Similarly, $\z_i$ is from multivariate-Gaussian distribution with mean $\mu$
-and covariance $\Sigma$. And, $\mu$ and $\Sigma$ are jointly drawn from
-normal-inverse-Wishart distribution with parameters  $\mu_0, \pi,\Psi, \nu$.
-The parameters for our model are $\mu,\Sigma$, whereas,  $\mu_0, \pi,\Psi, \nu$
-are the hyper-parameters, which we set as $\mu_0 = 0, \pi = 1,\Psi = \I, \nu = 1$. 
-\PUNT{
-The first layer in this model as described in \figref{fig:HBN}, is the filtration layer and accounts for the measurement error for each application. Interestingly, even if we have just a single measurement of each configuration for each application, this layer plays a crucial role as it creates a shrinkage effect. The shrinkage effect penalizes large variations in the application and essentially help in reducing the risk of the model (See \cite{efron1975data} for  shrinkage effect and \cite{morris1983parametric} for shrinkage in hierarchical models). The second layer on the other hand binds the variable $\z_i$ for each application and
-enforces that they are drawn from the same distribution with unknown
-mean and covariance. We work with a normal-inverse-Wishart distribution as described in \cite{gelman2013bayesian} as our hyper prior on $\mu, \Sigma$, since this distribution is the conjugate prior for a multivariate Gaussian distribution.
-Thus, we essentially have a normal means model at
-the first level of our hierarchy for each of the different apps and we
-have a Gaussian prior on the parameter of this model. Now, if the mean
-$\mu$, covariance $\Sigma$ and noise $\sigma$ were known, $\y_i$ are
-conditionally independent given these parameters. Since they are
-unknown we have introduced a dependence amongst all the $\y_i$s. This
-is a similar situation to our coin flipping example in \figref{fig:BN}, where the value of one coin influences our prediction
-about the other coin. $\Sigma$ captures the correlation between different configurations as depicted in \figref{fig:Sigma}.
-}
-
+predict the behavior of a new application.  
 
 The HBM provides a good balance between the online and offline
-approaches. Each application has its own model, allowing specificity, but these models
+approaches.  The key differences between these three approaches are
+illustrated in \figref{learning-models}. In this figure, circles
+represent random variables, directed edges show conditionally
+dependent relationships, and shading represents observability.  A dark
+circle means we have seen all the data, a shaded circle means we have
+some partial observations, and the white circle means that the
+variable is unobservable.  The models we are trying to learn
+are unobservable.  A strictly online approach will handle each new
+application completely separately and ignore observations of previous
+applications.  This approach never risks contaminating a model with
+unrelated observations, but it may take many observations of the
+current application to converge because it starts with no prior
+knowledge. The offline approach uses all observations from prior
+applications and will therefore converge very quickly; however, it is
+overly general and cannot learn features specific to a single
+application.
+
+The HBM (illustrated in \figref{HBM}) is a good compromise.  Each
+application has its own model, allowing specificity, but these models
 are conditionally dependent on some underlying probability
 distribution with a hidden mean and co-variance matrix.  In practice,
 the HBM will estimate a model for a new application using a small
@@ -374,7 +328,7 @@ practice, the HBM can learn much more complicated tradeoffs by
 combining observations of the new application with prior knowledge of
 different types of behavior.
 
-\subsection{Encoding Learned Models}
+\section{Encoding Learned Models}
 
 
 \TODO{This needs to be brief, and we can put any details in an
@@ -396,11 +350,11 @@ properties:
   performance tradeoff space.
 \end{itemize}
 We use these two facts to construct a constant time algorithm for
-finding the optimal solution online.
+finding the optimal solution online.  
 
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures/performance-hash-table.pdf}
+\includegraphics[width=\columnwidth]{figures/SpeedupHashTable.png}
 \caption{Data structure to efficiently convert required speedup into a
   configuration.}
   \label{fig:pht}
@@ -422,18 +376,18 @@ example in \figref{pht} has a resolution of .1.  Each pointer in the
 first table points to the configuration in the second array that has
 the largest speedup less than or equal to the index.
 
-To use the table, the translator receives a speedup $speedup(t)$ from the
+To use the table, the translator receives a speedup $s(t)$ from the
 controller.  It needs to convert this into two configurations referred
 to as $hi$ and $lo$.  To find the $hi$ configuration, the translator
-clamps the desired speedup to the largest index lower than $speedup(t)$ and
+clamps the desired speedup to the largest index lower than $s(t)$ and
 then walks forward until it finds the first configuration with a
-speedup higher than $speedup(t)$.  This configuration is $hi$.  To find the
+speedup higher than $s(t)$.  This configuration is $hi$.  To find the
 $lo$ configuration, the translator clamps the desired speedup to the
-smallest index higher than $speedup(t)$ and then walks backwards until it
-finds the configuration with the largest speedup less than $speedup(t)$.
+smallest index higher than $s(t)$ and then walks backwards until it
+finds the configuration with the largest speedup less than $s(t)$.
 
 For example, consider the PHT in \figref{pht} and a translator trying
-to meet a speedup $speedup(t) = .65$.  To find $hi$, the translator indexes
+to meet a speedup $s(t) = .65$.  To find $hi$, the translator indexes
 at .6 and walks up to find $c=2$ with $s_c=.8$, setting $hi = 2$.  To
 find $lo$, the translator indexes the table at .7 and walks backward
 to find $c=1$ with $s_c=.2$, setting $lo = 1$.
@@ -441,12 +395,11 @@ to find $c=1$ with $s_c=.2$, setting $lo = 1$.
 Finally, the translator sets $\tau_{hi}$ and $\tau_{lo}$ by solving the
 following set of equations:
 \begin{eqnarray}
-  T &=& \tau_{hi} + \tau_{lo}    \label{eqn:s1} \\
-  speedup(t) &=& \frac{s_{hi} \cdot \tau_{hi} + s_{lo} \cdot \tau_{lo}}{T} \label{eqn:s2} \\
-  \label{eq:pht}
+  \tau &=& \tau_{hi} + \tau_{lo}    \label{eqn:s1} \\
+  s(t) &=& s_{hi} \cdot \tau_{hi} + s_{lo} \cdot \tau_{lo} \label{eqn:s2} \\
 \end{eqnarray}
-In these equations, $speedup(t)$ is the speedup requested by the translator
-and $s_c$ are speedups estimated by the learner.
+In these equations, $s(t)$ is the speedup requested by the translator
+and $s_c$ are speedups estimated by the learner. 
 
 By solving \eqnsref{s1}{s2}, the translator has turned the speedup
 requested by the controller into a schedule of resource allocations
@@ -470,61 +423,14 @@ resolution and is not too wasteful of space.
 \subsubsection{Control System Complexity}
 
 \subsubsection{Learning System Complexity}
-We run our learning system on a server machine because the Hierarchical Bayesian Model(HBM) is a relatively complex algorithm and it utilizes data from other applications which can be stored in advance on the server machines. It would also allow the server machines to consolidate data across similar phones. The time complexity for running HBM is $O(mn^3)$ where $m$ is the number of applications and $n$ is the number of applications. Second step, creating convex hull would take $O(n log(n))$. Performance Hash Table is linear in the number of points on the convex hull which is less than  or equal to $n$. 
 
 \subsection{Control Theoretic Formal Guarantees}
-As we discussed in section \secref{}, a \emph{pole} acts as a damper in the
-control system equation \eqref{}. In this section, We would connect the concept
-of pole with the estimation procedure and obtain more sophisticated control
-system equations which take the estimation error into account.
-The pole of a control system equation can be thought of as inversely proportional
-to "step-size" in gradient descent procedures. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
-We introduce a notation $\Floor{x}_0 = \max(x,0)$.
+As we discussed in section \secref{}, a \emph{pole} acts as a damper in the control system equation \eqref{}. In this section, We would connect the concept of pole with the estimation procedure and obtain more sophisticated control system equations which take the estimation error into account.
+The pole of a control system equation can be thought of as inversely proportional to "step-size" in gradient descent procedures. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
 
-Suppose we allow the following multiplicative error in $response(t)$ or in our
-particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$.
-According to \cite{}, the value of pole $p$ can vary as much as,
-$\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative
-error in the control equation. Using the lowest value of pole would offer the
-fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
+Suppose we allow the following multiplicative error in $response(t)$ or in our particular case $speedup(t)$, $\frac{speedup(t)}{\hat{speedup(t)}} \leq \Delta$. According to \cite{}, the value of pole $p$ can vary as much as, $\max(0,1-\frac{2}{\Delta}) \leq p \leq 1$, where $\Delta$ is the multiplicative error in the control equation. Using the lowest value of pole would offer the fastest convergence. We prove the following guarantees for the value of $\Delta$,
 
-\begin{theorem}
-Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using Bayesian model such that
-Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ for all $i \in C$. We can show that with probability greater than 99.7\%,
-$$
-\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0
-$$
-Hence, the pole $p$ can be chosen to lie between, $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$$
-\end{theorem}
+\begin{equation}
+\Delta = 
+\end{equation}
 
-\begin{proof}
-We have shown in Equation \ref{eq:pht} that any speedup can be written as a
-linear combination of two configuration speedups as,
-%$$
-%speedup(t) = %s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
-%$$
-\begin{align}
-speedup(t) = \hat{s}_{hi} \cdot \tau_{hi} + \hat{s}_{lo} \cdot (T - \tau_{hi})
-\end{align}
-\begin{align}
-\widehat{speedup}(t) = s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{hi})
-\end{align}
-
-We can upper bound and lower bound each of these terms,
-\begin{align}
-speedup(t) \leq T \hat{s}_{hi} \;\; \text{and} \;\; \widehat{speedup}(t) \geq T s_{lo}
-\end{align}
-
-The estimates of speedups are close to the actual speedups since
-$\hat{s} \sim N(s, \sigma^2)$. Therefore,  with probability greater than 99.7\%
-and the speedups can be given by, $s_{lo} \geq \hat{s}_{lo} - 3 \sigma$,
-hence, $\hat{speedup}(t) \geq T (\hat{s}_{lo} -3 \sigma)$. Hence over all
-configurations $\Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0$
-and since the pole can be chosen as, $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$
-and similarly for the pole $p$,
-$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0 \leq p \leq 1$.
-%\begin{align}
-%\Delta \leq max(\frac{max(\hat{speedup})}{min(\hat{speedup}) -  3\sigma},0)
-%\end{align}
-
-\end{proof}
