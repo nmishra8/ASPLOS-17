@@ -468,7 +468,22 @@ resolution and is not too wasteful of space.
 \subsection{Algorithmic Analysis}
 
 \subsubsection{Control System Complexity}
+The control system runs on the mobile or embedded device. Its a lightweight system which only takes constant number operations.
 
+\begin{algorithm}
+\caption{Generalized control system}
+\begin{algorithmic}
+\REQUIRE Initialize the controller with random configurations. Send power and performance samples to server and get performance hash table(PHT) from the server.
+\WHILE{$True$}
+    \STATE    Measure performance and compute required speedup using Equation \eqref{eqn:speedup}.
+    \STATE    Lookup $s_{hi}$ and $s_{lo}$ with PHT.
+    \STATE    Compute configurations $hi$ and $lo$ with Equation \eqref{eq:pht}.
+    \STATE    Configure to $hi$ $\&$ Sleep $hi$.
+    \STATE    Configure to $lo$ $\&$ Sleep $lo$.
+\ENDWHILE
+\STATE Application is finished.
+\end{algorithmic}
+\end{algorithm}
 \subsubsection{Learning System Complexity}
 We run our learning system on a server machine because the Hierarchical Bayesian Model(HBM) is a relatively complex algorithm and it utilizes data from other applications which can be stored in advance on the server machines. It would also allow the server machines to consolidate data across similar phones. The time complexity for running HBM is $O(mn^3)$ where $m$ is the number of applications and $n$ is the number of applications. Second step, creating convex hull would take $O(n log(n))$. Performance Hash Table is linear in the number of points on the convex hull which is less than  or equal to $n$. 
 
