@@ -8,30 +8,30 @@ energy.
 
 % Control systems handle streaming sensor processing well -- formal
 % guarantees in the face of dynamics
-Control theoretic resource managers deliver reliable performance to
-streaming applications with minimal energy.  Examples include mobile
+Control theoretic resource managers have proven to meet the need for
+reliable performance with minimal energy.  Examples include mobile
 multimedia \cite{grace,grace2,Agilos} and webservers
-\cite{Horvarth,Verma,sha2002queuefeedback}.  These systems are not
-only effective in practice, they provide formal guarantees that the
-desired performance will be achieved despite unpredictable system
-dynamics; \eg{} changing application workload or changing resource
+\cite{Horvarth,Verma,sha2002queuefeedback}.  In addition to their
+practical benefits, these control solutions provide formal guarantees
+that they will meet the desired performance despite unpredictable
+system dynamics; \eg{} changing application workload or resource
 availability \cite{ICSE2014,Hellerstein2004a,KaramanolisEtAl-2005a}.
 
 % Unfortunately, control solutions are brittle, especially challenged
 % by diversity of applications and modern heterogeneous processors
 While control theory is a general technique, implementations are
 problem-specific because traditional control design directly
-incorporates application- and system-specific models into controller
-implementations.  The requirement that models are known at design time
-leads to brittle designs that cannot be reused; a problem exacerbated
-by growing application diversity and hardware complexity.  For
-example, heterogeneous processors expose a huge range of performance
-and energy tradeoffs, which vary from application to application.
-Several researchers propose control theoretic libraries that users
-customize by providing models \cite{POET,ControlWare,SWiFT}.  While
-these approaches are a step in the direction of generality, they still
-require significant user input and prior knowledge of the application
-to be controlled.  \emph{This paper's goal is to provide the benefits
+incorporates application- and system-specific models into
+implementations.  This requirement -- to provide models at design time
+-- leads to brittle designs that only work for limited cases; a
+problem exacerbated by growing application diversity and hardware
+complexity.  For example, heterogeneous processors expose a huge range
+of performance and energy tradeoffs, which vary from application to
+application.  Several researchers propose control theoretic libraries
+that users customize by providing models
+\cite{POET,ControlWare,SWiFT}.  These approaches are a step in the
+direction of generality but still require significant user input and
+prior knowledge.  \emph{This paper's goal is to provide the benefits
   of control theoretic techniques even for applications we have not
   encountered before and with minimal input from users.}
 
@@ -41,18 +41,16 @@ to be controlled.  \emph{This paper's goal is to provide the benefits
 %  2) Cost of learning
 %  3) Maintain control theoretic guarantees
 Several challenges must be addressed to meet this goal:
-\begin{itemize}
+\begin{enumerate}
 \item \textit{System complexity:} Heterogeneous processor designs
   expose multiple resources that interact in complex ways, often
   leading to difficult optimization problems.
-\item \textit{Overhead:} We have limited resources to devote to
-  exploring these tradeoff spaces -- certainly, we cannot spend more
-  energy learning the tradeoff spaces than we would save by knowing
-  them.
+\item \textit{Overhead:} We have limited resources to exploring these
+  resources -- certainly, we cannot spend more energy learning their
+  properties than we will save once we know them.
 \item \textit{Guarantees:} We must maintain formal guarantees about
-  the controlled system's dynamic behavior despite working without
-  \emph{a priori} knowledge.
-\end{itemize}
+  the controlled system's dynamic behavior.
+\end{enumerate}
 
 
 % Therefore we propose CALOREE
@@ -62,31 +60,30 @@ To meet these challenges, we propose
   \textbf{E}fficiency}, a unique combination of control theory and
 machine learning.  \SYSTEM{} dynamically manages resources for
 streaming applications to ensure their performance needs are met while
-minimizing their energy consumption.  \SYSTEM{} has two components.
-The first is a generalized control system (GCS) that runs on the
-embedded or mobile device and assigns resources to applications.  The
-second component is a hierarchical Bayesian model (HBM) that runs on a
-remote server.  When the GCS encounters a new application, it takes a
-small sample of the performance and energy in different resource
-configurations and sends those samples to the HBM.  The HBM aggregates
-samples across devices and applications to produce an estimate of an
-application's performance and energy tradeoffs.  This estimate is
-stored in a performance hash table (PHT) that is sent to the GCS.
-Additionally, the HBM sends the GCS each application's estimated
-variance so that the controller tunes its behavior not just to the
-estimated model, but also to the error in the model's output.
+minimizing their energy.  \SYSTEM{} has two components.  The first is
+a generalized control system (GCS) that runs on the embedded or mobile
+device and dynamically assigns resources to applications.  The second
+component is a hierarchical Bayesian model (HBM) that runs on a remote
+server.  When the GCS encounters a new application, it takes al sample
+of the application's performance and energy in different resource
+configurations and sends that data to the HBM.  The HBM aggregates
+data across devices and applications to estimate the application's
+performance and energy tradeoffs.  This estimate is stored in a
+performance hash table (PHT) that is sent to the GCS.  Additionally,
+the HBM sends the estimated variance so that the GCS tunes its
+behavior not just to the estimated model, but also to the error in the
+model's output.
 
 % Why CALOREE meets the challenges
 CALOREE addresses the three challenges listed above.  The HBM is
-well-suited to learning non-convex optimization spaces that arise in
-systems with many configurable resources \cite{LEO}, addressing the
-complexity challenge.  The HBM is, however, computationally expensive
-and requires samples of several different applications to produce
-accurate models, so we offload it to a remote server to address the
-overhead challenge.  Finally, because the HBM communicates the model's
-variance and confidence interval, we derive probabilistic control
-theoretical guarantees that the system will converge to the desired
-performance.
+robust to non-convex optimization spaces common to systems with many
+configurable resources \cite{LEO}, addressing the complexity
+challenge.  The HBM is, however, computationally expensive and
+requires samples of several different applications to produce accurate
+models, so we offload it to a remote server to address the overhead
+challenge.  Finally, because the HBM communicates the model's variance
+and confidence interval, we derive probabilistic control theoretical
+guarantees that the system will converge to the desired performance.
 
 % We implement CALOREE... and our results show...
 We implement CALOREE and test its ability to control streaming
@@ -101,16 +98,16 @@ and compete for resources. We find that \SYSTEM{} achieves the:
   \begin{itemize} 
   \item In the \emph{single-app} case, all methods achieve average
     performance close to the requirement.  \SYSTEM{}'s worst case
-    performance error is within 8\% of the target, while prior
-    techniques achieve worst case performance 28\% to 81\% lower than
-    the requirement.
+    performance is within 8\% of the target, while prior techniques
+    achieve worst case performance 28\% to 81\% lower than the
+    requirement.
   \item In the \emph{multi-app} case, prior learning approaches
     average at least 19\% performance error, prior control approaches
-    average 7\% error, and \SYSTEM{} achieves just 3\% average
-    error, less than half the next best competitor.  All prior
-    approaches have a worst case performance at least 70\% below the
-    target, while \SYSTEM{}'s worst case performance is within 22\% of
-    the target.
+    average 7\% error, and \SYSTEM{} achieves just 3\% average error,
+    less than half the next best competitor.  All prior approaches
+    have a worst case performance at least 70\% below the target,
+    while \SYSTEM{}'s worst case performance is within 22\% of the
+    target.
     \end{itemize}
   \item \textit{Best energy savings:} We compare to an \emph{oracle}
     with a perfect model of the application, system, and future

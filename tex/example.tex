@@ -8,20 +8,19 @@ condition, incline, tire pressure, and many other details.  In fact,
 those details are not incorporated into the cruise control model at
 all; instead, the controller uses a difference model that relates the
 current speed to the past speed and the past fuel
-flow.\footnote{Continuous time systems would use \emph{differential}
-  equations, but since computer systems are discretized we restrict
+flow.\footnote{Continuous time systems use \emph{differential}
+  equations, but computer systems are discretized so we restrict
   ourselves to \emph{difference} equations.}
 
-We present a brief example using control theory to provide reliable
-performance to the LAVAMD application running on a heterogeneous ARM
-big.LITTLE architecture with four big cores and four LITTLE cores.
-Our goal is to maintain application-specified performance despite
-unpredictable events such as another application entering the system
-and competing for resources.  We show how this problem is a
-straightforward application of control theory when the only
-controllable resource is clockspeed, but the complexity jumps
-dramatically when we consider available cores, core types, and
-clockspeed together.
+We present a brief example controlling the performance of the LAVAMD
+application running on a heterogeneous ARM big.LITTLE architecture
+with four big cores and four LITTLE cores.  Our goal is to maintain
+application-specified performance despite unpredictable events such as
+another application entering the system and competing for resources.
+We show how this problem is a straightforward application of control
+theory when the only controllable resource is clockspeed, but the
+complexity jumps dramatically when we consider available cores, core
+types, and clockspeed together.
 
 \PUNT{We first show how this problem can be a straightforward
   application of classic control techniques if we only consider
@@ -53,34 +52,28 @@ clockspeed together.
    easy to control even when another application interferes (b).}
 \end{figure}
 
-We would like to construct a controller that adjusts processor
-frequency to ensure that a performance goal is met
-\cite{lefurgy2008power}.  As \figref{fig:lavamd_model} demonstrates
-that it is quite simple to map clock frequency to LAVAMD performance.
-we can see that the data follows a fairly linear fit. Our simplest
-form of controller simply measures the error between the desired
-application performance and current performance, divides by the slope
-of the linear fit, and then adds that to the previous frequency --
-just like the cruise control in the car.  This process repeats at
-discrete time intervals The process repeats at discrete time
-intervals, allowing the controller to adjust to harder or easier
-phases of LAVAMD and to adjust to external events.
+We construct a controller that adjusts processor frequency to ensure
+that a performance goal is met \cite{lefurgy2008power}.
+\figref{fig:lavamd_model} demonstrates that it is quite simple to map
+clock frequency maps linearly to LAVAMD's performance.  A simple
+control design measures the error between the desired performance and
+current performance, divides by the slope of the linear fit, and then
+adds that to the previous frequency -- just like the cruise control in
+the car. The process repeats at discrete time intervals allowing the
+controller to adjust to application phases or other events.
 
-We demonstrate this ability to adapt to dynamics in
-\figref{fig:lavamd_control}.  Suppose, the $goal$ performance is 0.5,
-meaning that we are happy achieving 50\% of the maximum possible
-performance. After 10 iterations, we launch a second application on a
-single big core and it competes for resources.
-\figref{fig:lavamd_control} shows LAVAMD's behavior in this scenario
-when we run both without and with a controller.  Without a controller,
-the system maintains the original clockspeed necessary to hit the
-target, but that speed is no longer sufficient.  In contrast, even
-though the controller does not have a model of application
-interference it detects the difference in speed and adjusts the
-frequency up to return LAVAMD to the desired performance. In fact,
-even this simple controller provides formal guarantees that it will
-converge to the desired performance after external changes like the
-one we introduced here \cite{Hellerstein2004a}.
+\figref{fig:lavamd_control} demonstrates this adaptability to
+dynamics.  Suppose the $goal$ performance is 0.5; \ie{} we want LAVAMD
+to execute at 50\% of the maximum possible performance. After 10
+iterations, we launch a second application on a single big core and it
+competes for resources.  \figref{fig:lavamd_control} shows LAVAMD's
+behavior when we run both without and with a controller.  Without a
+controller, the system maintains the original clockspeed, but that is
+no longer sufficient.  In contrast, the controller detects the
+difference in speed and adjusts the frequency up to return LAVAMD to
+the desired performance.  In fact, even this simple controller
+provides formal guarantees that it will converge to the desired
+performance after external changes \cite{Hellerstein2004a}.
 
 \PUNT{
 We can use the same approach to construct a controller that adjusts
@@ -157,12 +150,12 @@ The simple system described above has its limitations; first, it only
 works for clockspeed, but our test system also has different core
 types.  We could save substantial energy by controlling application
 performance with a combination of frequency and core scheduling
-\cite{Carroll2013,kim-cpsna}.  When we consider core number, core
-type, and frequency we get a much more complicated relationship with
-performance. \figref{fig:lavamd_contour} shows that, for LAVAMD, the
-relationship between a resource \emph{configuration} -- \ie{} an
-assignment of resources -- and performance is non-convex -- \ie{}
-there are multiple local maxima.
+\cite{Carroll2013,kim-cpsna}.  The combination of core number, core
+type, and frequency has a complicated relationship with performance.
+\figref{fig:lavamd_contour} shows that, for LAVAMD, the relationship
+between a resource \emph{configuration} -- \ie{} an assignment of
+cores and clockspeed -- and performance is non-convex -- \ie{} there
+are multiple local maxima.
 
 \PUNT{The combination of non-convexity and non-linearity is usually dealt
 with in two steps. First, we find the convex hull of the tradeoff
@@ -171,11 +164,11 @@ combination to approximate the non-linear response.  This process of
 dealing with complicated interactions between resources is one of the
 difficulties of controlling computing systems.  }
 
-Several different approaches have addressed this issue by:
-specializing control for a particular platform and class of
-application \cite{grace,Agilos,METE}, automatically synthesizing
-controllers \cite{josep-isca2016,FSE2015}, or building control
-libraries that users specialize by providing appropriate models
+Several approaches address this complexity by: specializing control
+for a particular platform and class of application
+\cite{grace,Agilos,METE}, automatically synthesizing controllers
+\cite{josep-isca2016,FSE2015}, or building control libraries that
+users specialize by providing appropriate models
 \cite{POET,ControlWare,SWiFT}. These approaches have two related
 drawbacks.  First, all require prior knowledge of the application and
 systems under control; while control theoretic designs provide formal
@@ -183,7 +176,7 @@ guarantees of their behavior, those guarantees are predicated on the
 control models being known {\em a priori}. Second, since these
 approaches require the models to be known ahead of time, they create
 specialized controllers that are appropriate only for the given
-application-class and system for which the model applies.  
+application-class and system for which the model applies.
 
 \PUNT{This
   specialization can clearly be seen in \eqnref{clock-control}, as the
@@ -192,19 +185,19 @@ application-class and system for which the model applies.
   the same resources, a new controller will have to be designed and
   implemented.}
 
-We illustrate this problem in \figref{fig:lavamd_control2}.  We again
-attempt to control LAVAMD to deliver reliable performance at 50\% of
-the maximum achievable.  This time we use two different control
-models, the first is a general control model representing average
-response to resources across a number of test applications.  The
-second model is specific to LAVAMD.  The general model produces wildly
-oscillating performance, alternating between using all big cores at
-the highest frequency and one little core at a low frequency.  In
-contrast, the LAVAMD-specific model provides perfectly steady control.
-In addition, the steady model provides much greater energy savings
-(over 3$\times$) because it uses a combination of big and LITTLE cores
-to meet the performance target, while the general model ends up
-running all the big cores at maximum speed about half the time.
+\figref{fig:lavamd_control2} illustrates this problem.  We again
+control LAVAMD to deliver reliable performance at 50\% the maximum
+achievable.  We use two different control models, the first is a
+general model representing average response to resources across a
+number of test applications.  The second is specific to LAVAMD.  The
+general model produces wildly oscillating performance, alternating
+between using all big cores at the highest frequency and one little
+core at a low frequency.  In contrast, the LAVAMD-specific model
+provides perfectly steady control.  In addition, the steady model
+provides much greater energy savings (over 3$\times$) because it uses
+a combination of big and LITTLE cores to meet the performance target,
+while the general model ends up running all the big cores at maximum
+speed about half the time.
 
 \PUNT{
 \subsection{Motivation}
