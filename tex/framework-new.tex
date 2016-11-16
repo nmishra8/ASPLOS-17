@@ -76,11 +76,11 @@ Continuing the example of controlling performance with clockspeed, a
 simple model appropriate for control would be to assume that the
 performance is a linear function of the clockspeed:
 \begin{equation}
-  perf(t) = \alpha \cdot clock(t-1) + \delta \label{eqn:clock}
+  perf(t) = \alpha \cdot clockspeed(t-1) + \delta \label{eqn:clock}
 \end{equation}
 Here, the observed performance $perf(t)$ is predicted as some constant
 $\alpha$ times the clockspeed applied at the previous time step,
-$clock(t-1)$, plus some noise, $\delta$ drawn from a Gaussian
+$clockspeed(t-1)$, plus some noise, $\delta$ drawn from a Gaussian
 distribution.  This simple linear difference model ignores low-level
 details like instruction mix, and instead uses feedback, predicting
 behavior of the next time step as a function of the previous time
@@ -89,7 +89,7 @@ simple controller that is provably convergent to the desired
 performance:
 \begin{eqnarray}
   error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clock(t) &=& clock(t-1) - \frac{error(t)}{\alpha}
+  clockspeed(t) &=& clockspeed(t-1) - \frac{error(t)}{\alpha}
   \label{eqn:clock-control}
 \end{eqnarray}
 
@@ -163,14 +163,9 @@ speed, most speedups will be less than one.  Another modification to \eqref{eqn:
 \begin{equation}
 speedup(t) = speedup(t-1) - \frac{1 - p}{b}.error(t)
 \end{equation}
-This equation represents a less aggressive approach with a damping factor $1-p$, known as $pole$, to control the step-size taken to minimize the error term. The damping factor or the $pole$ guards the system from additional noise in the response. Additional details on the $pole$ and our new results connecting the value of pole with estimation error in the learning model are discussed in Section \secref{}.
-
-\TODO{ Note sure}In addition to making
+This equation represents a less aggressive approach with a damping factor $1-p$, known as $pole$, to control the step-size taken to minimize the error term. The damping factor or the $pole$ guards the system from additional noise in the response. Additional details on the $pole$ and our new results connecting the value of pole with estimation error in the learning model are discussed in \secref{}. In addition to making
 base speed easier to measure, this has the nice property of bounding
-the learner's output, making for more robust learning \TODO{Nikita,
-  what am I trying to say here? Or should we just put a forward
-  reference because the next section benefits from a max speedup of 1}
-Of course, we still have the challenging problem of converting an
+the learner's output, making for more robust learning. Of course, we still have the challenging problem of converting an
 abstract speedup into an actual resource allocation.
 
 
@@ -195,7 +190,7 @@ energy schedule. Given a time interval $T$, a speedup requirement of $speedup(t)
 complete in that interval, and a configuration set of size $C$ , we
 formalize this problem as:
 \begin{eqnarray}
-  \minimize && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power} \\
+  \minimize_{\mathbf{\tau} \in \R^{C}} && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power}  \\
   \st %&& \nonumber\\
   && \sum_{c=0}^{C-1} \tau_c \cdot s_c =  speedup(t)T \label{eqn:work} \\
   && \sum_{c=0}^{C-1} \tau_c =  T \label{eqn:deadline} \\
@@ -284,24 +279,23 @@ build models for the current application and do not incorporate
 knowledge of other applications.  We refer to general models as
 \emph{offline} as they use prior observations of other applications to
 predict the behavior of a new application.
+
 Suppose we have $n = |\mathcal{C}|$ configurations in our system.  We
 have a \textit{target application} whose energy we wish to minimize,
 while meeting a performance requirement (as in \eqref{eq:controller}).
-Additionally, we have a set of $M-1$ applications whose performance
-and power are known (as they have been measured offline).
-
-Let the vector $\y_i \in \R^{n}$ represent the performance(or power) estimate of application $i$ in all $n$ configurations of the
+Additionally, we have a set of $m-1$ applications whose performance
+and power are known (as they have been measured offline). Let the vector $\y_i \in \R^{n}$ represent the performance(or power) estimate of application $i$ in all $n$ configurations of the
 system; \ie the $c$th component of $\y_i$ is the power for application
-$i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let $\{\y_i\}_{i =1}^M$ be the shorthand for the power estimates for all applications.  Without loss of generality, we assume that the first $M-1$
-columns, \ie $\{\y_i\}_{i =1}^{M-1}$ represent the data for those
+$i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let $\{\y_i\}_{i =1}^m$ be the shorthand for the power estimates for all applications.  Without loss of generality, we assume that the first $m-1$
+columns, \ie $\{\y_i\}_{i =1}^{m-1}$ represent the data for those
 applications whose power consumption is known (this data is collected
-offline).  The $M$th column, $\y_M$ represents the power consumption
+offline).  The $m$th column, $\y_m$ represents the power consumption
 for the new, unknown application.  We have some small number of
-observations for this application.  Specifically, for the $M$th application we have observed
-configurations belonging to the set $\Omega_M$ where $|\Omega_M| \ll
+observations for this application.  Specifically, for the $m$th application we have observed
+configurations belonging to the set $\Omega_m$ where $|\Omega_m| \ll
 n$; \ie we have a very small number of observations for this
 application.  Our objective is to estimate the power for application
-$M$ for all configurations that we have not observed.
+$m$ for all configurations that we have not observed.
 The model is described in terms of statistical equations below,
 
 \begin{equation}
@@ -324,19 +318,7 @@ and covariance $\Sigma$. And, $\mu$ and $\Sigma$ are jointly drawn from
 normal-inverse-Wishart distribution with parameters  $\mu_0, \pi,\Psi, \nu$.
 The parameters for our model are $\mu,\Sigma$, whereas,  $\mu_0, \pi,\Psi, \nu$
 are the hyper-parameters, which we set as $\mu_0 = 0, \pi = 1,\Psi = \I, \nu = 1$. 
-\PUNT{
-The first layer in this model as described in \figref{fig:HBN}, is the filtration layer and accounts for the measurement error for each application. Interestingly, even if we have just a single measurement of each configuration for each application, this layer plays a crucial role as it creates a shrinkage effect. The shrinkage effect penalizes large variations in the application and essentially help in reducing the risk of the model (See \cite{efron1975data} for  shrinkage effect and \cite{morris1983parametric} for shrinkage in hierarchical models). The second layer on the other hand binds the variable $\z_i$ for each application and
-enforces that they are drawn from the same distribution with unknown
-mean and covariance. We work with a normal-inverse-Wishart distribution as described in \cite{gelman2013bayesian} as our hyper prior on $\mu, \Sigma$, since this distribution is the conjugate prior for a multivariate Gaussian distribution.
-Thus, we essentially have a normal means model at
-the first level of our hierarchy for each of the different apps and we
-have a Gaussian prior on the parameter of this model. Now, if the mean
-$\mu$, covariance $\Sigma$ and noise $\sigma$ were known, $\y_i$ are
-conditionally independent given these parameters. Since they are
-unknown we have introduced a dependence amongst all the $\y_i$s. This
-is a similar situation to our coin flipping example in \figref{fig:BN}, where the value of one coin influences our prediction
-about the other coin. $\Sigma$ captures the correlation between different configurations as depicted in \figref{fig:Sigma}.
-}
+We solve the above equations using EM algorithm to get a value for expected value of $z_M$, which we can be used as an estimator for the target application. 
 
 
 The HBM provides a good balance between the online and offline
@@ -464,11 +446,11 @@ fast or we risk wasting energy while trying to save energy.  In
 practice, we recommend a table of size 100 which provides a sufficient
 resolution and is not too wasteful of space.
 
-\section{Analysis}
-\subsection{Algorithmic Analysis}
+\subsection{Analysis}
+\subsubsection{Algorithmic Analysis}
 
-\subsubsection{Control System Complexity}
-The control system runs on the mobile or embedded device. Its a lightweight system which only takes constant number operations.
+%\subsubsection{Control System Complexity}
+The control system runs on the mobile or embedded device. It is a lightweight system which only takes constant $O(1)$ number operations.
 
 \begin{algorithm}
 \caption{Generalized control system}
@@ -484,8 +466,8 @@ The control system runs on the mobile or embedded device. Its a lightweight syst
 \STATE Application is finished.
 \end{algorithmic}
 \end{algorithm}
-\subsubsection{Learning System Complexity}
-We run our learning system on a server machine because the Hierarchical Bayesian Model(HBM) is a relatively complex algorithm and it utilizes data from other applications which can be stored in advance on the server machines. It would also allow the server machines to consolidate data across similar phones. The time complexity for running HBM is $O(mn^3)$ where $m$ is the number of applications and $n$ is the number of applications. Second step, creating convex hull would take $O(n log(n))$. Performance Hash Table is linear in the number of points on the convex hull which is less than  or equal to $n$. 
+%\subsubsection{Learning System Complexity}
+We run our learning system on a server machine because the Hierarchical Bayesian Model(HBM) is a relatively complex algorithm and it utilizes data from other applications which can be stored in advance on the server machines. It would also allow the server machines to consolidate data across similar phones. The time complexity for running HBM is $O(mn^3)$ where $m$ is the number of applications and $n$ is the number of applications. Second step, creating convex hull for PHT would take $O(n log(n))$.  
 
 \subsection{Control Theoretic Formal Guarantees}
 \label{sec:guarantees}
@@ -494,19 +476,16 @@ control system equation \eqref{}. In this section, We would connect the concept
 of pole with the estimation procedure and obtain more sophisticated control
 system equations which take the estimation error into account.
 The pole of a control system equation can be thought of as inversely proportional
-to "step-size" in gradient descent procedures. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
-We introduce a notation $\Floor{x}_0 = \max(x,0)$.
-
-Suppose we allow the following multiplicative error in $response(t)$ or in our
+to "step-size" in gradient descent procedures. Taking smaller steps in the direction of reducing the error can make the algorithm more resilient in case of stochastic models. In our case, since we know the model variance $\sigma$ from the HBM that we ran on the server earlier, we can use that information to derive a better lower bound for pole which can guarantee convergence for the speedup. \TODO{more explanation}% When the system is deterministic, usually pole is chosen to be 0 since it leads to fastest convergence. But when the system
+Throughout this section we use a new notation for thresholding operator as, $\Floor{x}_0 = \max(x,0)$. Suppose we allow the following multiplicative error in $response(t)$ or in our
 particular case speedup at time $t$, $speedup(t) \leq  \hat{speedup(t)} \Delta$.
-According to \cite{}, the value of pole $p$ can vary as much as,
+According to \cite{}, in order to guarantee convergence the value of pole $p$ can vary as much as,
 $\Floor{1-\frac{2}{\Delta})}_0\leq p \leq 1$, where $\Delta$ is the multiplicative
 error in the control equation. Using the lowest value of pole would offer the
 fastest convergence. We prove the following guarantees for the value of perturbation $\Delta$,
 
 \begin{theorem}
-Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using Bayesian model such that
-Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ for all $i \in C$. We can show that with probability greater than 99.7\%,
+Let $\mathbf{s}$ denote the true speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$; Let $\hat{\mathbf{s}}$ denote the estimated speedups using HBM. Let $\Delta$ denote the multiplicative error over speedups, such that $speedup(t) \leq \hat{speedup(t)}\Delta $; let $\sigma$ denote the estimation error for speedups of various configurations set of size $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$ such that, $\hat{s_i} \sim N(s_i, \sigma^2)$ $\forall$ $i$. We can show that with probability greater than 99.7\%,
 $$
 \Delta \leq \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0
 $$
