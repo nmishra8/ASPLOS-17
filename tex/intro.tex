@@ -10,12 +10,13 @@ energy.
 % guarantees in the face of dynamics
 Control theoretic resource managers have proven to meet the need for
 reliable performance with minimal energy.  Examples include mobile
-multimedia \cite{grace,grace2,Agilos} and webservers
-\cite{Horvarth,Verma,sha2002queuefeedback}.  In addition to their
-practical benefits, these control solutions provide formal guarantees
-that they will meet the desired performance despite unpredictable
-system dynamics; \eg{} changing application workload or resource
-availability \cite{ICSE2014,Hellerstein2004a,KaramanolisEtAl-2005a}.
+multimedia \cite{grace,grace2,Agilos,flinn2004,xtune,} and webservers
+\cite{Horvarth,Verma,LuEtAl-2006a,sha2002queuefeedback}.  In addition
+to their practical benefits, these control solutions provide formal
+guarantees that they will meet the desired performance despite
+unpredictable system dynamics; \eg{} changing application workload or
+resource availability
+\cite{ICSE2014,Hellerstein2004a,KaramanolisEtAl-2005a}.
 
 % Unfortunately, control solutions are brittle, especially challenged
 % by diversity of applications and modern heterogeneous processors
@@ -117,7 +118,7 @@ and compete for resources. We find that \SYSTEM{} achieves the:
       average 14-21\% more energy than the oracle, while the prior
       controller uses 24\% more (the learners save energy by failing
       to meet the performance requirements).  In contrast, CALOREE
-      uses only 5\% more despite providing more reliable performance.
+      uses only 4\% more despite providing more reliable performance.
       In the worst case, prior approaches can use 75-90\% more energy
       than the oracle, while CALOREE's worst case is only 24\% more
       than the oracle -- more than $3\times$ energy savings.

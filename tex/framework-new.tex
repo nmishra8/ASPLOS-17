@@ -488,6 +488,7 @@ The control system runs on the mobile or embedded device. Its a lightweight syst
 We run our learning system on a server machine because the Hierarchical Bayesian Model(HBM) is a relatively complex algorithm and it utilizes data from other applications which can be stored in advance on the server machines. It would also allow the server machines to consolidate data across similar phones. The time complexity for running HBM is $O(mn^3)$ where $m$ is the number of applications and $n$ is the number of applications. Second step, creating convex hull would take $O(n log(n))$. Performance Hash Table is linear in the number of points on the convex hull which is less than  or equal to $n$. 
 
 \subsection{Control Theoretic Formal Guarantees}
+\label{sec:guarantees}
 As we discussed in section \secref{}, a \emph{pole} acts as a damper in the
 control system equation \eqref{}. In this section, We would connect the concept
 of pole with the estimation procedure and obtain more sophisticated control
