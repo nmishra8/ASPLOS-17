@@ -64,7 +64,7 @@ streaming applications to ensure their performance needs are met while
 minimizing their energy.  \SYSTEM{} has two components.  The first is
 a generalized control system (GCS) that runs on the embedded or mobile
 device and dynamically assigns resources to applications.  The second
-component is a hierarchical Bayesian model (HBM) that runs on a remote
+component is a hierarchical Bayes\-ian model (HBM) that runs on a remote
 server.  When the GCS encounters a new application, it takes al sample
 of the application's performance and energy in different resource
 configurations and sends that data to the HBM.  The HBM aggregates
@@ -104,11 +104,10 @@ and compete for resources. We find that \SYSTEM{} achieves the:
     requirement.
   \item In the \emph{multi-app} case, prior learning approaches
     average at least 19\% performance error, prior control approaches
-    average 7\% error, and \SYSTEM{} achieves just 3\% average error,
-    less than half the next best competitor.  All prior approaches
-    have a worst case performance at least 70\% below the target,
-    while \SYSTEM{}'s worst case performance is within 22\% of the
-    target.
+    average 7\% error, and \SYSTEM{} achieves just 3\% average error
+    -- less than half the next best.  All prior approaches have a
+    worst case performance at least 70\% below the target, while
+    \SYSTEM{}'s worst case performance is within 22\% of the target.
     \end{itemize}
   \item \textit{Best energy savings:} We compare to an \emph{oracle}
     with a perfect model of the application, system, and future
