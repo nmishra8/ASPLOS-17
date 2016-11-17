@@ -30,6 +30,8 @@
 \usepackage{fancyhdr}
 
 
+
+
 \fancypagestyle{firstpage}{
   \fancyhf{}
 \setlength{\headheight}{50pt}
@@ -114,6 +116,7 @@
 every axis label/.append style={font=\footnotesize},
 tick label style={font=\footnotesize},
 }
+
 \makeatletter
 \g@addto@macro\normalsize{%
   \setlength\abovedisplayskip{4pt plus 2pt minus 1pt}
@@ -195,7 +198,8 @@ tick label style={font=\footnotesize},
 \input{tex/evaluation}
 \input{tex/related}
 \input{tex/conclusion}
-
+\appendix
+\input{tex/appendix}
 \newpage
 \clearpage
 %\bibliographystyle{abbrv}
