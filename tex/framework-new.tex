@@ -511,7 +511,7 @@ applications which can be stored in advance on the server machines,
 allowing consolidation of data across similar devices.  The time
 complexity for the HBM is $O(mn^3)$ where $m$ is the number of
 applications and $n$ is the number of configurations.  Second step,
-creating convex hull for the PHT is take $O(n log(n))$.
+creating convex hull for the PHT takes $O(n log(n))$.
 
 \subsection{Control Theoretic Formal Guarantees}
 \label{sec:guarantees}
@@ -521,18 +521,17 @@ system of Equation \ref{eqn:speedup} to the HBM of Equation
 the HBM so we use that information to derive a lower bound for the
 pole which guarantees probabilistic convergence to the desired
 performance. Specifically, we prove that with probability 99.7\% the
-system will converge to the desired performance if the pole is set to
+system will converge to the desired performance if the pole is set to,
 $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0 \leq p
-\leq 1$$, where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the
-estimated speedup.  In principle, users who need higher confidence
+\leq 1,$$ where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the
+estimated speedup. We include the proof of this claim in the appendix. In principle, users who need higher confidence
 could set the scalar multiplier on $\sigma$ higher, using $6$ for
-example provides a 99.99966\% probability of convergence.  We leave
-the proof of this claim to the appendix.
+example provides a 99.99966\% probability of convergence.  
 
-This proof provides a lower-bound on the value of $p$ required for a
+Thus we provide a lower-bound on the value of $p$ required for a
 user to be confident that CALOREE will converge to the desired
 performance.  This value for the pole only considers performance,
-though and not energy efficiency.  In practice, we find that it is
+and not energy efficiency.  In practice, we find that it is
 often better to use a higher pole based on the \emph{uncertainty}
 between the controller's observed energy efficiency and that predicted
 by the model.  We follow prior work in quantifying uncertainty as
