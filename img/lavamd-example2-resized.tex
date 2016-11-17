@@ -1,12 +1,5 @@
 \begin{tikzpicture}
 \begin{centering}
-
-\definecolor{s1}{RGB}{228, 26, 28}
-\definecolor{s2}{RGB}{55, 126, 184}
-\definecolor{s3}{RGB}{77, 175, 74}
-\definecolor{s4}{RGB}{152, 78, 163}
-\definecolor{s5}{RGB}{255, 127, 0}
-
 \begin{groupplot}[
     group style={
         group name=plots,
@@ -34,12 +27,8 @@ unbounded coords=jump,
 ]
 
 \nextgroupplot[ylabel={\scriptsize Performance (Normalized)}, % Performance
-%xtick={0,500,1000,1500,2000,2500,3000,3500,4000,4500},
 ytick={0.0,0.5,1.0,1.5,2.0},
 yticklabels={,0.25,0.5,1.0,1.5},
-%xtick={0,30,60,120,160,200,240,280,320,480},
-%xticklabels={,0,30,60,120,160,200,240,280,320,480},
-%yticklabel style={font=\footnotesize},
 xlabel={\footnotesize Iteration},
 ymin=0,
 ymax=1.5,
@@ -48,11 +37,8 @@ legend style={fill=none,draw=none,at={(0.5,1.4)},anchor=north,legend columns=1,
 line width=3pt},
 ]
 \addplot[thick, dashed, black] coordinates {(10,0) (10,1.5)};
-\addplot[thick, solid, color=s4] table[x index=0,y index=1,col sep=tab] {img/image_text/kmeans-example.txt};
-\addplot[thick, solid, color=s5] table[x index=0,y index=2,col sep=tab] {img/image_text/kmeans-example.txt};
-
-%\addplot[thick, dashed, black] coordinates {(130,0) (130, 2)};
+\addplot[thick, solid, color=leo] table[x index=0,y index=1,col sep=tab] {img/image_text/kmeans-example.txt};
+\addplot[thick, solid, color=cal] table[x index=0,y index=2,col sep=tab] {img/image_text/kmeans-example.txt};
 \end{groupplot}
 \end{centering}
-
 \end{tikzpicture}

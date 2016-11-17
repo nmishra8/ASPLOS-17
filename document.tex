@@ -32,6 +32,7 @@
 
 
 
+
 \fancypagestyle{firstpage}{
   \fancyhf{}
 \setlength{\headheight}{50pt}
@@ -63,6 +64,14 @@
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
+% red, pink, blue, green already exist
+\definecolor{on}{RGB}{255, 0, 0} %red
+\definecolor{off}{RGB}{255,105,180} %pink
+\definecolor{leo}{RGB}{0,0,128} %blue
+\definecolor{poet}{RGB}{152, 78, 163} %purple2
+\definecolor{calnp}{RGB}{255, 127, 0} %orange2
+\definecolor{cal}{RGB}{77, 175, 74} %green2
+
 \usepackage{listings}
 \lstset{ %
   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
@@ -91,8 +100,16 @@
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
-\usepackage{pgfplots}
+\usepackage{pgfplots, pgfplotstable}
 % options for pgfplots
+\pgfplotscreateplotcyclelist{colorbrewer-ylgnbu}{
+{fill=on, draw=black},
+{fill=off, draw=black},
+{fill=leo, draw=black},
+{fill=poet, draw=black},
+{fill=calnp, draw=black},
+{fill=cal, draw=black},
+}
 \pgfplotsset{compat=1.8,compat/show suggested version=false}
 \usetikzlibrary{calc,trees,arrows,patterns,plotmarks,shapes,snakes,er,3d,automata,backgrounds,topaths,decorations.pathmorphing,decorations.markings}
 %\pgfplotsset{compat=newest}
