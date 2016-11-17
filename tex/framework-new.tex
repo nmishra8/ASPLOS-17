@@ -279,12 +279,12 @@ fully utilized.  \eqnref{time} simply avoids negative time.
 \end{figure*}
 }
 
-Assuming no prior knowledge of the application, we estimate
-configuration $c$'s power ($p_c$) and performance ($r_c$).
-Specifically, we take observations about how resources affect
-performance and power and predict how future applications will perform
-or how different resource allocations will affect the current
-application. \SYSTEM{} uses a hierarchical Bayesian model (HBM) to
+Assuming no prior knowledge of the application, we estimate its power
+($p_c$) and performance ($r_c$) in configuration $c$.
+\PUNT{Specifically, we take observations of performance and power in a
+  resource configuration and predict (1) how future applications will
+  perform or (2) how different resource allocations affect the current
+  application.}  \SYSTEM{} uses a hierarchical Bayesian model (HBM) to
 turn observations of an application's performance and power into
 predictions about how other, unobserved resource allocations will
 affect performance and power.  The HBM provides a statistically sound
@@ -292,40 +292,40 @@ framework for learning across applications and devices; \ie{} it
 handles the non-convex tradeoff spaces heterogeneity produces (\eg{}
 \figref{fig:lavamd_contour}).
 
-The HBM provides balance between completely online -- which consider
-only the current application -- and offline -- which consider only
-prior applications approaches.  \PUNT{ Each application has its own
-  model, allowing specificity, but these models are conditionally
-  dependent on some underlying probability distribution with a hidden
-  mean and co-variance matrix.  In practice, the HBM will estimate a
-  model for a new application using a small number of observations and
-  combining those observations with the large number of observations
-  previously made of similar applications.  Rather than
-  over-generalizing, the HBM will use only similar applications to
-  learn models.  In addition, the HBM's accuracy increases as more
-  applications are observed because more different types of behavior
-  are represented in the pool of prior knowledge.  Of course, the
-  computational complexity of learning also increases with increasing
-  applications, but this is why we offload the learning to a remote
-  server.  } Consider a simplified example.  Suppose we have observed
-many prior applications, all of which are either completely
-compute-bound or completely memory-bound, and we have an equal number
-of both.  The only resource we can allocate is clockspeed, which will
-increase the performance of compute-bound applications, but not
-memory-bound ones.  When we need to work with a new application, we
-need to estimate its response to clockspeed.  The online model does
-not use prior knowledge, but will observe many different clock speeds
-for the new application, leading to high overhead.  A fully offline
-model predicts the mean response of prior applications, meaning it
-will over-allocate speed to memory-bound applications and
-under-allocate to compute-bound ones.  The HBM takes a small number of
-observations and combines those with prior knowledge: if the new
-observations show that clockspeed has no effect on performance the HBM
-will use only the prior memory bound applications to build its model,
-otherwise, it will use the compute-bound applications.  In practice,
-the HBM can learn much more complicated tradeoffs by combining
-observations of the new application with prior knowledge of different
-types of behavior.
+The HBM provides balance between completely online approaches -- which
+consider only the current application -- and offline approaches --
+which consider only prior applications approaches.  \PUNT{ Each
+  application has its own model, allowing specificity, but these
+  models are conditionally dependent on some underlying probability
+  distribution with a hidden mean and co-variance matrix.  In
+  practice, the HBM will estimate a model for a new application using
+  a small number of observations and combining those observations with
+  the large number of observations previously made of similar
+  applications.  Rather than over-generalizing, the HBM will use only
+  similar applications to learn models.  In addition, the HBM's
+  accuracy increases as more applications are observed because more
+  different types of behavior are represented in the pool of prior
+  knowledge.  Of course, the computational complexity of learning also
+  increases with increasing applications, but this is why we offload
+  the learning to a remote server.  } Consider a simplified example.
+Suppose we have observed many prior applications, all of which are
+either completely compute-bound or completely memory-bound, and we
+have an equal number of both.  The only resource we can allocate is
+clockspeed, which will increase the performance of compute-bound
+applications, but not memory-bound ones.  When we need to work with a
+new application, we need to estimate its response to clockspeed.  The
+online model does not use prior knowledge, but will observe many
+different clock speeds for the new application, leading to high
+overhead.  A fully offline model predicts the mean response of prior
+applications, meaning it will over-allocate speed to memory-bound
+applications and under-allocate to compute-bound ones.  The HBM takes
+a small number of observations and combines those with prior
+knowledge: if the new observations show that clockspeed has no effect
+on performance the HBM will use only the prior memory bound
+applications to build its model, otherwise, it will use the
+compute-bound applications.  In practice, the HBM can learn much more
+complicated tradeoffs by combining observations of the new application
+with prior knowledge of different types of behavior.
 
 \PUNT{
 When selecting a learning framework we must find a tradeoff between
@@ -443,11 +443,11 @@ translator clamps the desired speedup to the smallest index higher
 than $speedup(t)$ and then walks backwards until it finds the
 configuration with the largest speedup less than $speedup(t)$.
 
-For example, consider the PHT in \figref{fig:pht} and a translator trying
-to meet a speedup $speedup(t) = .65$.  To find $hi$, the translator
-indexes at .6 and walks up to find $c=2$ with $s_c=.8$, setting $hi =
-2$.  To find $lo$, the translator indexes the table at .7 and walks
-backward to find $c=1$ with $s_c=.2$, setting $lo = 1$.
+For example, consider the PHT in \figref{fig:pht} and an optimizer
+meeting $speedup(t) = .65$.  To find $hi$, the optimizer indexes at .6
+and walks up to find $c=2$ with $s_c=.8$, setting $hi = 2$.  To find
+$lo$, the optimizer indexes the table at .7 and walks backward to find
+$c=1$ with $s_c=.2$, setting $lo = 1$.
 
 Finally, the optimizer sets $\tau_{hi}$ and $\tau_{lo}$ by solving the
 following set of equations:
@@ -484,7 +484,7 @@ provided by the HBM.
 invocation is $O(1)$ .  The only part that is not obviously constant
 time is the PHT lookups.  Provided the PHT resolution is sufficiently
 high to avoid collisions, then each PHT lookup requires constant time.
-\begin{algorithm}
+\begin{algorithm}[t]
 \caption{Generalized control system}
 \label{alg:gcs}
 \begin{algorithmic}

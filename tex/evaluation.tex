@@ -111,23 +111,23 @@ the next job is ready.  We compare \SYSTEM{}'s performance and energy
 with:
 \begin{enumerate}
 \item \textit{Online}: observes the new application in small number of
-  configurations then performs polynomial multivariate regression for
-  the performance and power of unobserved configurations. \PUNT{We use
-    the \textit{Online} learning model in combination with
+  configurations then performs polynomial multivariate regression to
+  estimate unobserved configurations' performance and power. \PUNT{We
+    use the \textit{Online} learning model in combination with
     \emph{Pace-to-idle (P2I)} heuristic.}
 \item \textit{Offline}: does not observe any values for the current
-  application -- instead using information on previously observed
-  applications to estimate power and performance as a linear
-  regression. \PUNT{We use the \textit{Offline} learning model in
-    combination with \emph{Pace-to-idle (P2I)} heuristic.}
+  application -- instead using previously observed applications to
+  estimate power and performance as a linear regression. \PUNT{We use
+    the \textit{Offline} learning model in combination with
+    \emph{Pace-to-idle (P2I)} heuristic.}
 \item \textit{LEO}: is a hierarchical Bayesian learner \cite{LEO}.
 \item \textit{POET}: a state-of-the-art, control system designed to
   meet application performance with minimal energy \cite{POET}.  POET
   requires users to specify a model.  We use POET with the model
   produced by the \emph{Offline} learner.
 \item \textit{CALOREE-NP}: is CALOREE without the pole, which we
-  include to demonstrate the importance of informing the controller of
-  both the confidence interval and model variance.
+  include to show the importance of informing the controller of the
+  confidence interval and model variance.
 \end{enumerate}
 
 In all cases that require prior knowledge, we ensure that knowledge of
@@ -174,8 +174,8 @@ normalized energy, respectively.  \SYSTEM{} has lower MAPE and energy
 consumption than the baseline algorithms. Across all applications and
 targets, the online model produces an average error of 9.8\%, the
 offline: 3.6\%, LEO: 8.0\%, POET: 10.4\%, CALOREE-NP: 6.4\% and
-\SYSTEM{}: 0.5\%.  These results show \SYSTEM{} produces a dramatic
-error reduction compared to prior approaches.
+\SYSTEM{}: 0.5\%.  \SYSTEM{} clearly produces a dramatic error
+reduction compared to prior approaches.
 
 Regarding energy consumption, the online model requires an average of
 21\% more energy than optimal, offline: 15\%, LEO: 14\%, POET: 24\%,
@@ -229,12 +229,11 @@ targets, the average normalized energy for online model is 22\%, the
 offline: 21\%, LEO: 17\%, POET: 34\%, CALOREE-NP: 13\%, and \SYSTEM{}:
 8.5\%.
 
-POET and \SYSTEM{} both produce better outcomes in the dynamic
-scenario because they are specifically designed to handle system
-dynamics.  \SYSTEM{}, however, does significantly better in the worst
-case than POET because the HBM produces more robust models.  Again,
-the results show the benefits of incorporating model variance into the
-controller's pole calculation.
+POET and \SYSTEM{} provide more reliable performance because they are
+specifically designed to handle system dynamics.  \SYSTEM{}, however,
+does significantly better than POET in the worst case because the HBM
+produces more robust models.  Again, the results show the benefits of
+incorporating model variance into the controller's pole calculation.
 
 To demonstrate \SYSTEM{} in this dynamic environment we look at the
 specific example of \texttt{bodytrack} with a 70\% target, shown in

@@ -7,26 +7,25 @@ goals and reduce energy.
 We break learning for resource management into 3 categories: offline,
 online, and hybrid approaches.
 
-\noindent \textbf{Offline Learning}
-The offline approaches build models before deployment and then use
-those fixed models to allocate resources
+\noindent \textbf{Offline Learning} The offline approaches build
+models before deployment and then use those fixed models to allocate
+resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  In
 these approaches, the model-building phase is generally very
 expensive, requiring both a large number of samples and substantial
-computation to produce accurate predictive models.  Applying the model
-online, however, tends to be low overhead.  The main drawback is that
-the models are not updated as the system runs which is a problem for
-adapting workloads. A good example of an offline approach applies
-learning to render web pages on mobile systems with low energy
-\cite{reddiHPCA2013}. It builds an offline model mapping web page
-features into estimations of performance for different core types.
-When a new page is downloaded, the system quickly estimates the
-resource need to render the web page and uses the lowest energy
-resources that will still maintain user satisfaction.  The mapping of
-web pages to resource use is very complicated and this approach deals
-with that complication.  It does not, however, address system
-dynamics; \eg{} when other apps are running concurrently with the web
-browser.
+computation to produce accurate models.  Applying the model online,
+however, is low overhead.  The main drawback is that the models are
+not updated as the system runs: a problem for adapting workloads. A
+good example of an offline approach applies learning to render web
+pages on mobile systems with low energy \cite{reddiHPCA2013}. It
+builds an offline model mapping web page features into estimations of
+performance for different core types.  When a new page is downloaded,
+the system quickly estimates the resource need to render the web page
+and uses the lowest energy resources that will still maintain user
+satisfaction.  The mapping of web pages to resource use is very
+complicated and this approach deals with that complication.  It does
+not, however, address system dynamics; \eg{} when other apps are
+running concurrently with the web browser.
 
 Carat also aggregates data across multiple devices \cite{carat}.
 Carat uses learning to generate a report for human users about how to
