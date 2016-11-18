@@ -165,17 +165,30 @@ the models, and then test on $x$.
 
 \subsection{Performance and Energy for Single App}
 %Setup
+\begin{figure}[htp!]
+\centering
+  \input{img/single-app-summary.tex}
+   \vskip -.5em
+  \caption{Summary data for single-app scenario.}
+  \label{fig:single-sum}
+\end{figure}
+
+
 We set a range of performance targets from 40-90\% of the maximum
 achievable performance and measure the MAPE (performance error) and
 energy efficiency (energy over optimal) for all points of comparison.
-\figsref{fig:single-perf}{fig:single-energy} shows the results.  The
+\figsref{fig:single-perf}{fig:single-energy} shows the results for the
+50, 70, and 90\% targets\footnote{We would happily provide that data
+  anonymously through the PC chair if a reviewer finds it important to
+  the evaluation}, others are similar but elided for space.  The
 benchmarks are shown on the x-axis; the y-axes show MAPE and the
 normalized energy, respectively.  \SYSTEM{} has lower MAPE and energy
 consumption than the baseline algorithms. Across all applications and
 targets, the online model produces an average error of 9.8\%, the
 offline: 3.6\%, LEO: 8.0\%, POET: 10.4\%, CALOREE-NP: 6.4\% and
 \SYSTEM{}: 0.5\%.  \SYSTEM{} clearly produces a dramatic error
-reduction compared to prior approaches.
+reduction compared to prior approaches -- in fact, \SYSTEM{} MAPE is
+generally not visible on the charts.
 
 Regarding energy consumption, the online model requires an average of
 21\% more energy than optimal, offline: 15\%, LEO: 14\%, POET: 24\%,
