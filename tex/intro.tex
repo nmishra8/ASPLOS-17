@@ -8,33 +8,32 @@ energy.
 
 % Control systems handle streaming sensor processing well -- formal
 % guarantees in the face of dynamics
-Control theoretic resource managers have proven to meet the need for
+Control theoretic resource managers have proven ability to deliver
 reliable performance with minimal energy.  Examples include mobile
-multimedia \cite{grace,grace2,Agilos,flinn2004,xtune,} and webservers
-\cite{Horvarth,Verma,LuEtAl-2006a,sha2002queuefeedback}.  In addition
-to their practical benefits, these control solutions provide formal
-guarantees that they will meet the desired performance despite
-unpredictable system dynamics; \eg{} changing application workload or
-resource availability
+multimedia \cite{grace,grace2,Agilos,flinn2004,xtune,TCST} and
+webservers \cite{Horvarth,Verma,LuEtAl-2006a,sha2002queuefeedback}.
+In addition to their practical benefits, these control solutions
+provide formal guarantees that they will meet the desired performance
+despite unpredictable system dynamics; \eg{} changing application
+workload or resource availability
 \cite{ICSE2014,Hellerstein2004a,KaramanolisEtAl-2005a}.
 
 % Unfortunately, control solutions are brittle, especially challenged
 % by diversity of applications and modern heterogeneous processors
-While control theory is a general technique, implementations are
-problem-specific because traditional control design directly
-incorporates application- and system-specific models into
-implementations.  This requirement -- to provide models at design time
--- leads to brittle designs that only work for limited cases; a
-problem exacerbated by growing application diversity and hardware
-complexity.  For example, heterogeneous processors expose a huge range
-of performance and energy tradeoffs, which vary from application to
-application.  Several researchers propose control theoretic libraries
-that users customize by providing models
-\cite{POET,ControlWare,SWiFT}.  These approaches are a step in the
-direction of generality but still require significant user input and
-prior knowledge.  \emph{This paper's goal is to provide the benefits
-  of control theoretic techniques even for applications we have not
-  encountered before and with minimal input from users.}
+While control theory is a general technique, control designs are
+problem-specific. Traditional control design directly incorporates
+application- and system-specific models that estimate performance and
+energy as a function of resource usage.  This requirement -- to
+provide specific models at design time -- leads to brittle designs
+that only work for limited cases; a problem exacerbated by growing
+application diversity and hardware complexity.  For example, modern
+embedded and mobile systems rely on heterogeneous processors that
+expose a huge range of performance and energy tradeoffs, which vary
+from application to application.  \emph{This paper's goal is to
+  provide the benefits of control theoretic techniques in a general
+  design that provides reliable performance and minimal energy -- even
+  for applications we have not encountered before and with minimal
+  input from users.}
 
 % Challenges?  
 %  We would like to take unseen streaming applications and control them.
@@ -43,12 +42,11 @@ prior knowledge.  \emph{This paper's goal is to provide the benefits
 %  3) Maintain control theoretic guarantees
 Several challenges must be addressed to meet this goal:
 \begin{itemize}
-\item \textit{System complexity:} Heterogeneous processor designs
-  expose multiple resources that interact in complex ways, often
-  leading to difficult optimization problems.
-\item \textit{Overhead:} We have limited resources to exploring these
-  resources -- certainly, we cannot spend more energy learning their
-  properties than we will save once we know them.
+\item \textit{System complexity:} Heterogeneous processor designs in
+  embedded and mobile systems expose multiple resources that interact
+  in complex ways, leading to difficult optimization problems.
+\item \textit{Overhead:} We cannot spend more energy solving these
+  optimization problems than we would save by knowing the answer.
 \item \textit{Guarantees:} We must maintain formal guarantees about
   the controlled system's dynamic behavior.
 \end{itemize}
@@ -58,15 +56,19 @@ Several challenges must be addressed to meet this goal:
 To meet these challenges, we propose
 \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning for
   \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
-  \textbf{E}fficiency}, a unique combination of control theory and
-machine learning.  \SYSTEM{} dynamically manages resources for
-streaming applications to ensure their performance needs are met while
-minimizing their energy.  \SYSTEM{} has two components.  The first is
-a generalized control system (GCS) that runs on the embedded or mobile
-device and dynamically assigns resources to applications.  The second
-component is a hierarchical Bayes\-ian model (HBM) that runs on a remote
-server.  When the GCS encounters a new application, it takes al sample
-of the application's performance and energy in different resource
+  \textbf{E}fficiency} to dynamically manage resources for streaming
+applications: ensuring their performance needs are met while
+minimizing their energy.  While all control-based solutions have a
+model-building phase, \SYSTEM{} is unique in that it builds models
+online, eliminating the requirement for design-time model
+specification.
+
+\SYSTEM{} has two components.  The first is a generalized control
+system (GCS) that runs on the embedded or mobile device and
+dynamically assigns resources to applications.  The second component
+is a hierarchical Bayes\-ian model (HBM) that runs on a remote server.
+When the GCS encounters a new application, it samples the
+application's performance and energy in a small number of resource
 configurations and sends that data to the HBM.  The HBM aggregates
 data across devices and applications to estimate the application's
 performance and energy tradeoffs.  This estimate is stored in a
@@ -76,24 +78,25 @@ behavior not just to the estimated model, but also to the error in the
 model's output.
 
 % Why CALOREE meets the challenges
-CALOREE addresses the three challenges listed above.  The HBM is
-robust to non-convex optimization spaces common to systems with many
-configurable resources \cite{LEO}, addressing the complexity
-challenge.  The HBM is, however, computationally expensive and
-requires samples of several different applications to produce accurate
-models, so we offload it to a remote server to address the overhead
-challenge.  Finally, because the HBM communicates the model's variance
-and confidence interval, we derive probabilistic control theoretical
+\SYSTEM{} addresses the three challenges listed above.  The HBM is
+robust to non-convex optimization spaces common to heterogeneous
+embedded and mobile processors, addressing the complexity challenge.
+The HBM is, however, computationally expensive and requires samples of
+several different applications to produce accurate models, so we
+offload it to a remote server to address the overhead challenge.
+Finally, because the HBM communicates the model's variance and
+confidence interval, we derive probabilistic control theoretical
 guarantees that the system will converge to the desired performance.
 
 % We implement CALOREE... and our results show...
-We implement CALOREE and test its ability to control streaming
-applications on heterogeneous ARM big.LITTLE devices, with the HBM
-implemented on an x86 server.  We compare to state-of-the-art learning
-and control systems in both \emph{single-app} environments, where the
-streaming application runs by itself, and \emph{multi-app}
-environments where other applications unpredictably enter the system
-and compete for resources. We find that \SYSTEM{} achieves the:
+We test CALOREE controlling streaming applications on heterogeneous ARM
+big.LITTLE devices, with the HBM implemented on an x86 server.  As
+\SYSTEM{} combines learning and control we evaluate it against
+individual state-of-the-art learning and control systems.  We consider
+both \emph{single-app} environments, where the streaming application
+runs by itself, and \emph{multi-app} environments where other
+applications unpredictably enter the system and compete for resources.
+We find that \SYSTEM{} achieves the:
 \begin{itemize}
 \item \textit{Most reliable performance:} 
   \begin{itemize} 
@@ -164,7 +167,7 @@ spaces that arise on heterogeneous mobile systems
 \cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev},
 but they have no established mechanisms for reacting to environmental
 fluctuations.  \PUNT{Such approaches can learn complex models,
-  identifying and avoiding local extrema that lead to inefficient
+  identifying and avoiding local extreme that lead to inefficient
   resource usage.}  Control theoretic techniques explicitly address
 system and resource dynamics
 \cite{Hellerstein2004a,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2},
@@ -258,7 +261,7 @@ between the HBM and LCS, allows the learner to be executed remotely,
 and enables fast scheduling on the local device.  } \PUNT{ The main
 challenge in combining a learning system with a control system is that
 the learner produces non-linear models of resources (\eg cores and
-clockspeeds) which are discrete, while the control system is based on
+clock speeds) which are discrete, while the control system is based on
 continuous linear models.  \SYSTEM{} bridges this gap by scheduling
 resources in time to meet a performance requirement with minimal
 energy.
