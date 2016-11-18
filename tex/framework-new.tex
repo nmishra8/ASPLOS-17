@@ -179,7 +179,7 @@ control theoretic formal guarantees.
 
 
 By measuring base speed online while the application runs, we tune the
-control to a specific application; using this definition of base
+controller to a specific application; using this definition of base
 speed, most speedups will be less than one.  We can further generalize
 \eqref{eqn:speedup-control} as:
 \begin{equation}
@@ -203,8 +203,8 @@ specifically means mapping speedup into an allocation of big and small
 as well as a speed for both (on our system clocks big and little cores
 separately).
 
-The primary challenge is that the HBM produces a discrete non-linear
-function of resource usage into speedup and powerup, while
+The primary challenge is that speedups and powerups in real systems are a discrete non-linear
+function of resource usage, while
 \eqnref{speedup-control} is a continuous linear function.  We bridge
 this divide by assigning time to resource allocations such that the
 average speedup over a control interval is that produced by
@@ -280,7 +280,7 @@ fully utilized.  \eqnref{time} simply avoids negative time.
 }
 
 Assuming no prior knowledge of the application, we estimate its power
-($p_c$) and performance ($r_c$) in configuration $c$.
+($p_c$) and performance ($s_c$) in configuration $c$.
 \PUNT{Specifically, we take observations of performance and power in a
   resource configuration and predict (1) how future applications will
   perform or (2) how different resource allocations affect the current
@@ -345,7 +345,7 @@ knowledge of other applications.  We refer to general models as
 predict the behavior of a new application.
 }
 
-Suppose our system has $n = |\mathcal{C}|$ configurations.  \PUNT{We
+Now we describe our HBM model in details. Suppose our system has $n = |\mathcal{C}|$ configurations.  \PUNT{We
   have a \textit{target application} whose energy we wish to minimize,
   while meeting a performance requirement (as in
   \eqref{eq:controller}).}  Additionally, we have a set of $m-1$
@@ -391,14 +391,14 @@ which serves as an estimator for the target application.
 
 
 \subsection{Encoding Learned Models}
-Given the HBM's estimates of speedup and power, we know need to solve
+Given the HBM's estimates of speedup and power, we now need to solve
 \eqnrref{power}{time}.  The GCS solves this on the local device, so
 solution must be found efficiently.  To achieve this efficiency we (1)
 exploit the structure of this particular optimization and (2) encode
 the HBM's model in a performance hash table (PHT).  Combining these
 two ideas we solve \eqnrref{power}{time} in constant ($O(1)$) time.
 
-Kim et al. analyze heuristic solutions to the problem of minimizing
+Kim et al. analyze solutions to the problem of minimizing
 energy while meeting a performance constraint \cite{kim-cpsna}.  They
 observe that there must be an optimal solution with the following
 properties:
