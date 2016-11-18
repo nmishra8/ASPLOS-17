@@ -80,8 +80,8 @@ grid style={dashed},
  ytick={0,5,10,15,20,25},
  yticklabels={,5,10,15,20,25},
  ymax=25,
- %point meta=y,
- nodes near coords/.style={font=\tiny,color=black},
+ point meta=y,
+ %nodes near coords/.style={color=black},
  nodes near coords,
  % nodes style={font=\tiny},
  xticklabels={
@@ -91,12 +91,12 @@ grid style={dashed},
 legend entries = {{\tiny $\mathsf{Online}$},{\tiny $\mathsf{Offline}$},{\tiny $\mathsf{LEO}$},{\tiny $\mathsf{POET}$},{\tiny $\mathsf{\SYSTEM{}-NP}$},{\tiny $\mathsf{\SYSTEM{}}$}},
 legend style={draw=none,legend columns=6,at={(.5,1.7)},anchor=north},
  ]
- \addplot[color=on,fill=on]           table[x index=0,y index=2, col sep=space] {img/single-app-data.txt};
- \addplot[color=off,fill=off]         table[x index=0,y index=3, col sep=space] {img/single-app-data.txt};
- \addplot[color=leo,fill=leo]         table[x index=0,y index=4, col sep=space] {img/single-app-data.txt};
- \addplot[color=poet,fill=poet]       table[x index=0,y index=5, col sep=space] {img/single-app-data.txt};
- \addplot[color=calnp,fill=calnp]     table[x index=0,y index=6, col sep=space] {img/single-app-data.txt};
- \addplot[color=cal,fill=cal]         table[x index=0,y index=7, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=off]           table[x index=0,y index=2, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=off]         table[x index=0,y index=3, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=leo]         table[x index=0,y index=4, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=poet]       table[x index=0,y index=5, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=calnp]     table[x index=0,y index=6, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=cal]         table[x index=0,y index=7, col sep=space] {img/single-app-data.txt};
 
 % %\node at (axis cs:1,10.99) [rotate=0] {\tiny{$9.8$}};
 % %\node at (axis cs:2,4.79) [rotate=0] {\tiny{$3.6$}};
