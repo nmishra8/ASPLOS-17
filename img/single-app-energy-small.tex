@@ -11,7 +11,7 @@
 axis x line* = top,
 xlabel near ticks,
 major x tick style = transparent,
-height=2.5cm,
+height=3cm,
 width=0.88\textwidth,
 xmin=0,
 xmax=9,
@@ -26,23 +26,10 @@ yticklabels={},
 ymin=0,
 ymax=1,
 ]
-\nextgroupplot[ylabel={$\mathsf{40\%}$},
-y label style={rotate=270},
-ylabel shift={12mm},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
 \nextgroupplot[
 ylabel shift={12mm},
 y label style={rotate=270},
 ylabel={$\mathsf{50\%}$},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-\nextgroupplot[
-ylabel shift={12mm},
-y label style={rotate=270},
-ylabel={$\mathsf{60\%}$},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
@@ -54,12 +41,6 @@ y label style={rotate=270},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{80\%}$},
-y label style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
 \nextgroupplot[
 ylabel shift={12mm},
@@ -73,7 +54,7 @@ y label style={rotate=270},
 \begin{groupplot}[
     group style={
         group name=plots,
-        group size=1 by 6,
+        group size=1 by 3,
         xlabels at=edge bottom,
         xticklabels at=edge bottom,
         vertical sep=5pt
@@ -82,7 +63,7 @@ axis x line* = bottom,
 xlabel near ticks,
 major x tick style = transparent,
 xlabel={},
-height=2.5cm,
+height=3cm,
 width=0.88\textwidth,
 xmin=0,
 xmax=23,
@@ -101,32 +82,13 @@ ymajorgrids,
 grid style={dashed},
 ]
 
+
+
 \nextgroupplot[ybar=\pgflinewidth,
+ylabel shift={0mm},
 bar width=2.0pt,
 legend entries = {{$\mathsf{Online}$},{$\mathsf{Offline}$},{$\mathsf{LEO}$},{$\mathsf{POET}$},{$\mathsf{\SYSTEM{}-NP}$},{$\mathsf{\SYSTEM{}}$}},
 legend style={draw=none,legend columns=6,at={(.5,1.7)},anchor=north},
-ylabel shift={0mm},
-%ymin=0,
-%ymax=2,
-%ytick={0,50,150,200},
-%yticklabels={,50,150,200},
-]
-
-\addplot[fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.4-v2.txt};
-\addplot[fill=off]  table[x index=0,y index=4, col sep=space] {img/image_text/dyn-eff-0.4-v2.txt};
-\addplot[fill=leo]  table[x index=0,y index=5, col sep=space] {img/image_text/dyn-eff-0.4-v2.txt};
-\addplot[fill=poet]  table[x index=0,y index=6, col sep=space] {img/image_text/dyn-eff-0.4-v2.txt};
-\addplot[fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/dyn-eff-0.4-v2.txt};
-\addplot[fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/dyn-eff-0.4-v2.txt};
-
-
-\nextgroupplot[ybar=\pgflinewidth,
-ylabel shift={0mm},
-bar width=2.0pt,
-%ymin=0,
-%ymax=20,
-%ytick={0.0,5.0,10.0,15.0,20.0},
-%yticklabels={,5.0,10.0,15.0},
 ]
 
 \addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.5-v2.txt};
@@ -137,29 +99,9 @@ bar width=2.0pt,
 \addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/dyn-eff-0.5-v2.txt};
 
 \nextgroupplot[ybar=\pgflinewidth,
-ylabel={\footnotesize Energy Above Optimal {\scriptsize (lower is better)}},
 ylabel shift={0mm},
+ylabel={\footnotesize Energy Above Optimal  {\scriptsize (lower is better)}},
 bar width=2.0pt,
-%ymin=0,
-%ymax=30,
-%ytick={0.0,10.0,20.0,30.0},
-%yticklabels={,10.0,20.0,30.0},
-]
-
-\addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.6-v2.txt};
-\addplot[color=off,fill=off]  table[x index=0,y index=4, col sep=space] {img/image_text/dyn-eff-0.6-v2.txt};
-\addplot[color=leo,fill=leo]  table[x index=0,y index=5, col sep=space] {img/image_text/dyn-eff-0.6-v2.txt};
-\addplot[color=poet,fill=poet]  table[x index=0,y index=6, col sep=space] {img/image_text/dyn-eff-0.6-v2.txt};
-\addplot[color=calnp,fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/dyn-eff-0.6-v2.txt};
-\addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/dyn-eff-0.6-v2.txt};
-
-\nextgroupplot[ybar=\pgflinewidth,
-ylabel shift={0mm},
-bar width=2.0pt,
-%ymin=0,
-%ymax=30,
-%ytick={0.0,10.0,20.0,30.0},
-%yticklabels={,10.0,20.0,30.0},
 ]
 
 \addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.7-v2.txt};
@@ -169,21 +111,6 @@ bar width=2.0pt,
 \addplot[color=calnp,fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/dyn-eff-0.7-v2.txt};
 \addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/dyn-eff-0.7-v2.txt};
 
-\nextgroupplot[ybar=\pgflinewidth,
-ylabel shift={0mm},
-bar width=2.0pt,
-ymin=0,
-ymax=45,
-ytick={0,15,30,45},
-yticklabels={,15,30,45},
-]
-
-\addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/dyn-eff-0.8-v2.txt};
-\addplot[color=off,fill=off]  table[x index=0,y index=4, col sep=space] {img/image_text/dyn-eff-0.8-v2.txt};
-\addplot[color=leo,fill=leo]  table[x index=0,y index=5, col sep=space] {img/image_text/dyn-eff-0.8-v2.txt};
-\addplot[color=poet,fill=poet]  table[x index=0,y index=6, col sep=space] {img/image_text/dyn-eff-0.8-v2.txt};
-\addplot[color=calnp,fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/dyn-eff-0.8-v2.txt};
-\addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/dyn-eff-0.8-v2.txt};
 
 \nextgroupplot[ybar=\pgflinewidth,
 bar width=2.0pt,

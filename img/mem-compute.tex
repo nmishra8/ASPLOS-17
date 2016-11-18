@@ -37,34 +37,6 @@ ylabel shift={12mm},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
-\nextgroupplot[
-ylabel shift={12mm},
-y label style={rotate=270},
-ylabel={$\mathsf{30\%}$},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-\nextgroupplot[
-ylabel shift={12mm},
-y label style={rotate=270},
-ylabel={$\mathsf{50\%}$},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{70\%}$},
-y label style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{90\%}$},
-y label style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
 \end{groupplot}
 
@@ -129,7 +101,7 @@ xticklabels={
 {\scriptsize $\mathsf{x264-ducks}$},
 {\scriptsize $\mathsf{x264-native}$}},
 ]
-\addplot table[x index=0,y index=1, col sep=space] {img/image_text/mem-compute.txt};
+\addplot[color=blue,fill=blue] table[x index=0,y index=1, col sep=space] {img/image_text/mem-compute.txt};
 
 \end{groupplot}
 \end{tikzpicture}
