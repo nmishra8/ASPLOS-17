@@ -183,12 +183,12 @@ control to a specific application; using this definition of base
 speed, most speedups will be less than one.  We can further generalize
 \eqref{eqn:speedup-control} as:
 \begin{equation}
-speedup(t) = speedup(t-1) - \frac{1 - p}{b}.error(t)
+speedup(t) = speedup(t-1) - \frac{1 - \rho(t)}{b}.error(t)
 \end{equation}
-where $0 \le p < 1$ is a pole of the controller's characteristic
-equation.  At small values of $p$ the controller will work to
+where $0 \le \rho(t) < 1$ is a pole of the controller's characteristic
+equation.  At small values of $\rho(t)$ the controller will work to
 eliminate error very quickly, but it may overreact to noise or
-inaccuracies in the model.  Larger values of $p$ make the system more
+inaccuracies in the model.  Larger values of $\rho(t)$ make the system more
 robust at the cost of reduced convergence time.  \emph{Dynamically
   setting the pole to the HBM's output will be a key of combining
   control and learning.} First, however, we address the challenging
@@ -512,20 +512,20 @@ creating convex hull for the PHT takes $O(n log(n))$.
 
 \subsection{Control Theoretic Formal Guarantees}
 \label{sec:guarantees}
-As mention above, the pole $p$ is critical to connecting the control
+As mention above, the pole $\rho(t)$ is critical to connecting the control
 system of Equation \ref{eqn:speedup} to the HBM of Equation
 \ref{eq:HBN}.  In \SYSTEM{}, we know the model variance $\sigma$ from
 the HBM so we use that information to derive a lower bound for the
 pole which guarantees probabilistic convergence to the desired
 performance. Specifically, we prove that with probability 99.7\% the
 system will converge to the desired performance if the pole is set to,
-$$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0 \leq p
-\leq 1,$$ where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the
+$$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0 \leq \rho(t)
+< 1,$$ where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the
 estimated speedup. We include the proof of this claim in the appendix. In principle, users who need higher confidence
 could set the scalar multiplier on $\sigma$ higher, using $6$ for
 example provides a 99.99966\% probability of convergence.  
 
-Thus we provide a lower-bound on the value of $p$ required for a
+Thus we provide a lower-bound on the value of $\rho(t)$ required for a
 user to be confident that CALOREE will converge to the desired
 performance.  This value for the pole only considers performance,
 and not energy efficiency.  In practice, we find that it is
@@ -535,8 +535,8 @@ by the model.  We follow prior work in quantifying uncertainty as
 $\rho$ \cite{Tokic2010}:
 \begin{equation}
   \begin{array}{rcl}
-    temp(t) &=& e^{\frac{- \left| (\frac{\bar{s}(t)}{\bar{p}(t)}  -\frac{ \hat{s}(t)}{\hat{p}_(t)} \right| }{5}} \\
-    \rho(t) &=& \frac{1-temp(t)}{1+temp(t)} 
+    \beta(t) &=&  \text{exp}{\left(- \left( \left|   \frac{\bar{s}(t)}{\bar{p}(t)}  -\frac{ \hat{s}(t)}{\hat{p}_(t)} \right| \right) /5\right)} \\
+    \rho(t) &=& \frac{1-\beta(t)}{1+\beta(t)} 
   \end{array}
   \label{eqn:uncer}
 \end{equation}
