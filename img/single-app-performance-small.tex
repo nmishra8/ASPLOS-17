@@ -1,55 +1,4 @@
 \begin{tikzpicture}
-\begin{groupplot}[
-    group style={
-        group name=plots,
-        group size=1 by 6,
-        xlabels at=edge top,
-        xticklabels at=edge top,
-        vertical sep=5pt
-    },
-axis x line* = top,
-xlabel near ticks,
-major x tick style = transparent,
-height=3cm,
-width=0.88\textwidth,
-xmin=0,
-xmax=9,
-enlargelimits=false,
-tick align = outside,
-tick style={white},
-ylabel style={align=center},
-ytick=\empty,
-xtick=\empty,
-xticklabels={},
-yticklabels={},
-ymin=0,
-ymax=1,
-]
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel style={rotate=270},
-ylabel={$\mathsf{50\%}$},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{70\%}$},
-ylabel style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{90\%}$},
-y label style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-\end{groupplot}
 
 \begin{groupplot}[
     group style={
@@ -63,7 +12,7 @@ axis x line* = bottom,
 xlabel near ticks,
 major x tick style = transparent,
 xlabel={},
-height=3cm,
+height=2.9cm,
 width=0.88\textwidth,
 xmin=0,
 xmax=23,
@@ -163,4 +112,56 @@ xticklabels={
 \addplot[color=cal,fill=cal]        table[x index=0,y index=8, col sep=space] {img/image_text/dyn-mape-0.9-v2.txt};
 
 \end{groupplot}
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 6,
+        xlabels at=edge top,
+        xticklabels at=edge top,
+        vertical sep=5pt
+    },
+axis x line* = top,
+xlabel near ticks,
+major x tick style = transparent,
+height=2.9cm,
+width=0.88\textwidth,
+xmin=0,
+xmax=9,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+ylabel style={align=center},
+ytick=\empty,
+xtick=\empty,
+xticklabels={},
+yticklabels={},
+ymin=0,
+ymax=1,
+]
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel style={rotate=270},
+ylabel={$\mathsf{50\%}$},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel={$\mathsf{70\%}$},
+ylabel style={rotate=270},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+
+\nextgroupplot[
+ylabel shift={12mm},
+ylabel={$\mathsf{90\%}$},
+y label style={rotate=270},
+]
+\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
+\end{groupplot}
+
 \end{tikzpicture}

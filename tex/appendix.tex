@@ -2,7 +2,7 @@
 
 
 \begin{theorem}
-  Let $\mathbf{s}$ and $\hat{\mathbf{s}}$ denote the true speedups and the estimated speedup of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$. Let $\sigma$ denote the
+  Let $\mathbf{s}$ and $\hat{\mathbf{s}}$ denote the true speedups and the estimated speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$. Let $\sigma$ denote the
   estimation error for speedups such that, $\hat{s_i} \sim
   N(s_i, \sigma^2)$ $\forall$ $i$. We can show that with probability
   greater than 99.7\%, the pole $\rho(t)$ can be chosen to lie in the range, $[\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0, 1)$, where $\Floor{x}_0 = \max(x,0)$.
@@ -10,16 +10,9 @@
 
 \begin{proof}
 Let $\Delta$ denote the multiplicative error over speedups, such that $ \widehat{speedup(t)}\Delta = speedup(t) $. To
-guarantee convergence the value of pole $\rho(t)$ can vary as much as
-$\Floor{1-\frac{2}{\Delta})}_0\leq \rho(t) < 1$, where $\Delta$ is the
-multiplicative error in the control equation \cite{ICSE2014}. The lowest value of $\rho(t)$ offer the fastest convergence. We prove the
-following guarantees for the value of perturbation $\Delta$.
-  We have shown in Equations \ref{eqn:s1} \& \ref{eqn:s2} that any
-  speedup can be written as a linear combination of two configuration
-  speedups as,
-%$$
-%speedup(t) = %s_{hi} \cdot \tau_{hi} + s_{lo} \cdot (T - \tau_{lo})
-%$$
+guarantee convergence the value of pole, $\rho(t)$ can vary in the range
+$\Floor{1-\frac{2}{\Delta})}_0, 1)$\cite{ICSE2014}. The lowest value of $\rho(t)$ offer the fastest convergence. We have described in Equations \ref{eqn:s1} \& \ref{eqn:s2} that any speedup can be written as a linear combination of two configuration speedups as,
+
 \begin{align}
 speedup(t) = \hat{s}_{hi} \cdot \tau_{hi} + \hat{s}_{lo} \cdot (T - \tau_{hi})
 \end{align}
@@ -32,16 +25,12 @@ We can upper bound and lower bound each of these terms,
 speedup(t) \leq T \hat{s}_{hi} \;\; \text{and} \;\; \widehat{speedup}(t) \geq T s_{lo}
 \end{align}
 
-The estimates of speedups are close to the actual speedups since
-$\hat{s} \sim N(s, \sigma^2)$. Therefore with probability greater
+Since, the estimates of speedups are close to the actual speedups since
+$\hat{s} \sim N(s, \sigma^2)$; with probability greater
 than 99.7\% and the speedups can be given by, $s_{lo} \geq
-\hat{s}_{lo} - 3 \sigma$, hence, $\widehat{speedup}(t) \geq T
-(\hat{s}_{lo} -3 \sigma)$. Hence over all configurations $\Delta \leq
-\Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0$ and since the pole
-can be chosen as, $\Floor{1-\frac{2}{\Delta})}_0\leq \rho(t) \leq 1$ we can choose the pole from the range,  $[\Floor{1-
-  \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0, 1)$.
-%\begin{align}
-%\Delta \leq max(\frac{max(\hat{speedup})}{min(\hat{speedup}) -  3\sigma},0)
-%\end{align}
+\hat{s}_{lo} - 3 \sigma$. Hence, $\widehat{speedup}(t) \geq T
+(\hat{s}_{lo} -3 \sigma)$. Since, over all configurations $\Delta \leq
+\Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0$,  we can choose the pole from the range,  $([\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0, 1)$.
+
 
 \end{proof}
