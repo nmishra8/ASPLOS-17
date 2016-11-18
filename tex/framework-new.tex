@@ -127,12 +127,12 @@ controller that is provably convergent to the $goal$ performance
 The controller design in \eqnref{clock-control} provides formal
 guarantees that it will converge to the desired performance ($goal$ in
 \eqnref{clock-error}) and it bounds convergence time.  These
-guarantees, however, are predicated on the model's accuracy; \ie how
+guarantees, however, are predicated on the model's accuracy; \ie{} how
 well the slope in \figref{fig:lavamd_model} approximates measured
 performance.  This value is highly dependent on the particular
 application under control.  This model will not work for applications
 that are memory-bound and do not speed up with increasing clockspeed.
-As we add more resources to the controller we turn the scalara
+As we add more resources to the controller we turn the scalar
 equations of this example into matrix equations
 \cite{METE,josep-isca2016}.  Whether scalar or matrix, the equations
 and the formal guarantees they embody are reliant on accurate models
@@ -179,7 +179,7 @@ control theoretic formal guarantees.
 
 
 By measuring base speed online while the application runs, we tune the
-control to a specific application; using this definition of base
+controller to a specific application; using this definition of base
 speed, most speedups will be less than one.  We can further generalize
 \eqref{eqn:speedup-control} as:
 \begin{equation}
@@ -203,8 +203,8 @@ specifically means mapping speedup into an allocation of big and small
 as well as a speed for both (on our system clocks big and little cores
 separately).
 
-The primary challenge is that the HBM produces a discrete non-linear
-function of resource usage into speedup and powerup, while
+The primary challenge is that speedups and powerups in real systems are a discrete non-linear
+function of resource usage, while
 \eqnref{speedup-control} is a continuous linear function.  We bridge
 this divide by assigning time to resource allocations such that the
 average speedup over a control interval is that produced by
@@ -280,7 +280,7 @@ fully utilized.  \eqnref{time} simply avoids negative time.
 }
 
 Assuming no prior knowledge of the application, we estimate its power
-($p_c$) and performance ($r_c$) in configuration $c$.
+($p_c$) and performance ($s_c$) in configuration $c$.
 \PUNT{Specifically, we take observations of performance and power in a
   resource configuration and predict (1) how future applications will
   perform or (2) how different resource allocations affect the current
@@ -329,7 +329,7 @@ with prior knowledge of different types of behavior.
 
 \PUNT{
 When selecting a learning framework we must find a tradeoff between
-the specific and the general; \ie between frameworks that build
+the specific and the general; \ie{} between frameworks that build
 application-specific models and frameworks that combine observations
 across applications.  For example, the key to energy efficiency on
 heterogeneous mobile systems is knowing when to make use of the
@@ -345,18 +345,18 @@ knowledge of other applications.  We refer to general models as
 predict the behavior of a new application.
 }
 
-Suppose our system has $n = |\mathcal{C}|$ configurations.  \PUNT{We
+Now we describe our HBM model in details. Suppose our system has $n = |\mathcal{C}|$ configurations.  \PUNT{We
   have a \textit{target application} whose energy we wish to minimize,
   while meeting a performance requirement (as in
   \eqref{eq:controller}).}  Additionally, we have a set of $m-1$
 applications whose performance and power are known (\ie{} they have
 been measured offline). Let the vector $\y_i \in \R^{n}$ represent
-appplication $i$'s power or (performance) estimate in all $n$
-configurations; \ie the $c$th component of $\y_i$ is the power for
+application $i$'s power or (performance) estimate in all $n$
+configurations; \ie{} the $c$th component of $\y_i$ is the power for
 application $i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let
 $\{\y_i\}_{i =1}^m$ be shorthand for the power estimates of all
 applications.  Without loss of generality, we assume the first $m-1$
-columns, \ie $\{\y_i\}_{i =1}^{m-1}$ represent the data for those
+columns, \ie{} $\{\y_i\}_{i =1}^{m-1}$ represent the data for those
 applications whose power consumption is collected offline.  The $m$th
 column, $\y_m$ represents the power consumption for the new, unknown
 application.  We have a few observations for this application.
@@ -391,14 +391,14 @@ which serves as an estimator for the target application.
 
 
 \subsection{Encoding Learned Models}
-Given the HBM's estimates of speedup and power, we know need to solve
+Given the HBM's estimates of speedup and power, we now need to solve
 \eqnrref{power}{time}.  The GCS solves this on the local device, so
 solution must be found efficiently.  To achieve this efficiency we (1)
 exploit the structure of this particular optimization and (2) encode
 the HBM's model in a performance hash table (PHT).  Combining these
 two ideas we solve \eqnrref{power}{time} in constant ($O(1)$) time.
 
-Kim et al. analyze heuristic solutions to the problem of minimizing
+Kim et al. analyze solutions to the problem of minimizing
 energy while meeting a performance constraint \cite{kim-cpsna}.  They
 observe that there must be an optimal solution with the following
 properties:
