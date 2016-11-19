@@ -167,7 +167,7 @@ the models, and then test on $x$.
 %Setup
 \begin{figure}[htp!]
 \centering
-  \input{img/single-app-summary.tex}
+  \input{img/single-app-summary2.tex}
    \vskip -.5em
   \caption{Summary data for single-app scenario.}
   \label{fig:single-sum}
@@ -183,7 +183,10 @@ energy efficiency (energy over optimal) for all points of comparison.
   the evaluation}, others are similar but elided for space.  The
 benchmarks are shown on the x-axis; the y-axes show MAPE and the
 normalized energy, respectively.  \SYSTEM{} has lower MAPE and energy
-consumption than the baseline algorithms. Across all applications and
+consumption than the baseline algorithms. Figure \figref{single-sum}
+represents the summary results as an average error across all targets for single application scenario.
+
+\PUNT{Across all applications and
 targets, the online model produces an average error of 9.8\%, the
 offline: 3.6\%, LEO: 8.0\%, POET: 10.4\%, CALOREE-NP: 6.4\% and
 \SYSTEM{}: 0.5\%.  \SYSTEM{} clearly produces a dramatic error
@@ -192,7 +195,8 @@ generally not visible on the charts.
 
 Regarding energy consumption, the online model requires an average of
 21\% more energy than optimal, offline: 15\%, LEO: 14\%, POET: 24\%,
-CALOREE-NP: 9.5\%, and \SYSTEM{}: 4.1\%.  \SYSTEM{} provides a
+CALOREE-NP: 9.5\%, and \SYSTEM{}: 4.1\%.  }
+\SYSTEM{} provides a
 significant energy savings even compared to state-of-the-art learning
 or control approaches.  The reason is that the combination is
 complementary: LEO produces accurate models while control both can
@@ -222,6 +226,14 @@ significant improvement.
 
 
 \subsection{Performance and Energy for Multiple Apps}
+\begin{figure}[htp!]
+\centering
+  \input{img/multi-app-summary2.tex}
+   \vskip -.5em
+  \caption{Summary data for multi-app scenario.}
+  \label{fig:multi-sum}
+\end{figure}
+
 We again launch each benchmark with a performance target (using the
 same targets as the prior study).  Halfway through execution, we start
 another application randomly drawn from our benchmark set, which we
@@ -234,6 +246,10 @@ react to environmental changes.
 90\% target is generally not reachable in this scenario as it would
 require the controlled application to have exclusive use of all big
 cores.  \SYSTEM{} again has lower MAPE than the baseline algorithms.
+Figure \figref{single-sum}
+represents the summary results as an average error across all targets for multiple application scenario.
+
+\PUNT{
 Across all applications and targets, the online model produces an
 average error of 21\%, the offline: 24\%, LEO: 19\%, POET: 7.4\%,
 CALOREE-NP: 11\%, and \SYSTEM{}: 2.8\%. \SYSTEM{} is also more energy
@@ -241,7 +257,7 @@ efficient than the baseline algorithms. Across all applications and
 targets, the average normalized energy for online model is 22\%, the
 offline: 21\%, LEO: 17\%, POET: 34\%, CALOREE-NP: 13\%, and \SYSTEM{}:
 8.5\%.
-
+}
 POET and \SYSTEM{} provide more reliable performance because they are
 specifically designed to handle system dynamics.  \SYSTEM{}, however,
 does significantly better than POET in the worst case because the HBM
@@ -326,13 +342,14 @@ phase, \SYSTEM{} and LEO both algorithms are still able to meet the
 performance target with far less fluctuations as compared to POET.
 But, \SYSTEM{} provides better energy savings as compared to LEO.
 
-\begin{figure}[t]
-  \input{img/x264-phases.tex}
-   \vskip -.5em
-  \caption{Time series of \texttt{x264} with phase change caused by different inputs.}
-  \label{fig:x264-phase-change}
-\end{figure}
+
 %}
+\begin{figure}[t]
+  \input{img/LAVA-pole.tex}
+   \vskip -.5em
+   \caption{The pole's effects on LAVAMD behavior.}
+  \label{fig:lavamd-pole}
+\end{figure}
 
 \subsection{The Pole's Importance}
 
@@ -357,10 +374,10 @@ big and LITTLE cores to keep energy near minimal.
 %   right?}
 
 \begin{figure}[t]
-  \input{img/LAVA-pole.tex}
+  \input{img/x264-phases.tex}
    \vskip -.5em
-   \caption{The pole's effects on LAVAMD behavior.}
-  \label{fig:lavamd-pole}
+  \caption{Time series of \texttt{x264} with phase change caused by different inputs.}
+  \label{fig:x264-phase-change}
 \end{figure}
 
 

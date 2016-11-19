@@ -1,61 +1,21 @@
 \begin{tikzpicture}
-\definecolor{s1}{RGB}{228, 26, 28}
-\definecolor{s2}{RGB}{55, 126, 184}
-\definecolor{s3}{RGB}{77, 175, 74}
-\definecolor{s4}{RGB}{152, 78, 163}
-\definecolor{s5}{RGB}{255, 127, 0}
-
-% \begin{groupplot}[
-%     group style={
-%         group name=plots,
-%         group size=1 by 1,
-%         xlabels at=edge top,
-%         xticklabels at=edge top,
-%         vertical sep=5pt
-%     },
-% axis x line* = top,
-% xlabel near ticks,
-% major x tick style = transparent,
-% height=3cm,
-% width=.47\columnwidth,
-% xmin=0,
-% xmax=7,
-% enlargelimits=false,
-% tick align = outside,
-% tick style={white},
-% ylabel style={align=center},
-% ytick=\empty,
-% xtick=\empty,
-% xticklabels={},
-% yticklabels={},
-% ymin=0,
-% ymax=1,
-% ]
-% \nextgroupplot[ylabel={},
-% y label style={rotate=270},
-% ylabel shift={12mm},
-% ]
-% \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
-% \end{groupplot}
-
 \begin{groupplot}[
+% ymin=0,
     group style={
         group name=plots,
-        group size=1 by 1,
+        group size=2 by 1,
         xlabels at=edge bottom,
         xticklabels at=edge bottom,
-        horizontal sep=55pt
+        %horizontal sep=55pt
     },
 axis x line* = bottom,
 xlabel near ticks,
 major x tick style = transparent,
 xlabel={},
 height=3cm,
-width=\columnwidth,
+width=0.45\columnwidth,
 xmin=0,
-xmax=3,
+xmax=6,
 enlargelimits=false,
 tick align = outside,
 tick style={white},
@@ -72,11 +32,11 @@ grid style={dashed},
 
  \nextgroupplot[ybar=8.0pt,
  bar width=3.0pt,
- ylabel={\footnotesize \emph{\% (lower is better}}, 
+ ylabel={\footnotesize \emph{\% MAPE(lower is better}}, 
  ylabel shift={0mm},
- xticklabel shift={1pt},
+ %xticklabel shift={1pt},
  x tick label style={rotate=35, anchor=east},
- xtick={1,2},
+ %xtick={1,2,3,4,5,6},
  ytick={0,5,10,15,20,25},
  yticklabels={,5,10,15,20,25},
  ymax=25,
@@ -85,19 +45,55 @@ grid style={dashed},
  nodes near coords,
  % nodes style={font=\tiny},
  xticklabels={
-  {\tiny $\mathsf{MAPE}$},
-  {\tiny $\mathsf{Energy}$},
+   {\tiny $\mathsf{Online}$},
+  {\tiny $\mathsf{Offline}$},
+  {\tiny $\mathsf{LEO}$},
+  {\tiny $\mathsf{POET}$},
+  {\tiny $\mathsf{CALOREE-NP}$},
+  {\tiny $\mathsf{CALOREE}$},
  },
 legend entries = {{\tiny $\mathsf{Online}$},{\tiny $\mathsf{Offline}$},{\tiny $\mathsf{LEO}$},{\tiny $\mathsf{POET}$},{\tiny $\mathsf{\SYSTEM{}-NP}$},{\tiny $\mathsf{\SYSTEM{}}$}},
 legend style={draw=none,legend columns=6,at={(.5,1.7)},anchor=north},
  ]
- \addplot[color=black,fill=off]           table[x index=0,y index=2, col sep=space] {img/single-app-data.txt};
- \addplot[color=black,fill=off]         table[x index=0,y index=3, col sep=space] {img/single-app-data.txt};
- \addplot[color=black,fill=leo]         table[x index=0,y index=4, col sep=space] {img/single-app-data.txt};
- \addplot[color=black,fill=poet]       table[x index=0,y index=5, col sep=space] {img/single-app-data.txt};
- \addplot[color=black,fill=calnp]     table[x index=0,y index=6, col sep=space] {img/single-app-data.txt};
- \addplot[color=black,fill=cal]         table[x index=0,y index=7, col sep=space] {img/single-app-data.txt};
+ \addplot[color=black,fill=off]           table[x index=0,y index=2, col sep=space] {img/single-app-data-perf.txt};
+ \addplot[color=black,fill=on]         table[x index=0,y index=3, col sep=space] {img/single-app-data-perf.txt};
+ \addplot[color=black,fill=leo]         table[x index=0,y index=4, col sep=space] {img/single-app-data-perf.txt};
+ \addplot[color=black,fill=poet]       table[x index=0,y index=5, col sep=space] {img/single-app-data-perf.txt};
+ \addplot[color=black,fill=calnp]     table[x index=0,y index=6, col sep=space] {img/single-app-data-perf.txt};
+ \addplot[color=black,fill=cal]         table[x index=0,y index=7, col sep=space] {img/single-app-data-perf.txt};
 
+
+\nextgroupplot[ybar=8.0pt,
+ bar width=3.0pt,
+ ylabel={\footnotesize \emph{\% Energy (lower is better}}, 
+ ylabel shift={0mm},
+ %xticklabel shift={1pt},
+ x tick label style={rotate=35, anchor=east},
+ %xtick={1,2,3,4,5,6},
+ ytick={0,5,10,15,20,25},
+ yticklabels={,5,10,15,20,25},
+ ymax=25,
+ point meta=y,
+ %nodes near coords/.style={color=black},
+ nodes near coords,
+ % nodes style={font=\tiny},
+ xticklabels={
+  {\tiny $\mathsf{Online}$},
+  {\tiny $\mathsf{Offline}$},
+  {\tiny $\mathsf{LEO}$},
+  {\tiny $\mathsf{POET}$},
+  {\tiny $\mathsf{CALOREE-NP}$},
+  {\tiny $\mathsf{CALOREE}$},
+ },
+%legend entries = {{\tiny $\mathsf{Online}$},{\tiny $\mathsf{Offline}$},{\tiny $\mathsf{LEO}$},{\tiny $\mathsf{POET}$},{\tiny $\mathsf{\SYSTEM{}-NP}$},{\tiny $\mathsf{\SYSTEM{}}$}},
+%legend style={draw=none,legend columns=6,at={(.5,1.7)},anchor=north},
+ ]
+ \addplot[color=black,fill=off]           table[x index=0,y index=2, col sep=space] {img/single-app-data-power.txt};
+ \addplot[color=black,fill=on]         table[x index=0,y index=3, col sep=space] {img/single-app-data-power.txt};
+ \addplot[color=black,fill=leo]         table[x index=0,y index=4, col sep=space] {img/single-app-data-power.txt};
+ \addplot[color=black,fill=poet]       table[x index=0,y index=5, col sep=space] {img/single-app-data-power.txt};
+ \addplot[color=black,fill=calnp]     table[x index=0,y index=6, col sep=space] {img/single-app-data-power.txt};
+ \addplot[color=black,fill=cal]         table[x index=0,y index=7, col sep=space] {img/single-app-data-power.txt};
 % %\node at (axis cs:1,10.99) [rotate=0] {\tiny{$9.8$}};
 % %\node at (axis cs:2,4.79) [rotate=0] {\tiny{$3.6$}};
 % %\node at (axis cs:3,9.29) [rotate=0] {\tiny{$8.2$}};

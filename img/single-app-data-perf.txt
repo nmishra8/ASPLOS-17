@@ -1,0 +1,2 @@
+ID Metric Online Offline LEO POET CALOREE-NP CALOREE
+1 MAPE   9.8 3.6 8.1 10.4 6.4 0.57
