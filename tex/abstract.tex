@@ -1,24 +1,23 @@
 \begin{abstract}
 
   
-  Control systems are proven method for allocating resources to meet
+  Control systems are a proven method for allocating resources to meet
   streaming applications' performance requirements with minimal energy
   on mobile and embedded devices. Control designs, however, require
   \emph{a priori} models to estimate an application's performance and
-  energy based on the resources allocated to it -- a controller
-  designed for one application and system must be redesigned for a new
-  deployment.  We propose CALOREE to achieve control theoretic
-  benefits -- \ie{} formal, bounded convergence to required performance
-  in dynamic environments -- without \emph{a priori} models.  CALOREE
-  combines a generalized control system (GCS) \PUNT{that runs on a
-    local device} with a hierarchical Bayesian model (HBM)\PUNT{that
-    runs on a remote server}. The HBM runs on a remote server and
-  aggregates data from multiple applications and devices to produce a
-  highly accurate model that it sends to the GCS to customize control
-  to the local device and application. We extend standard control
-  analysis to show that CALOREE provides probabilistic convergence
-  guarantees despite having no prior model of the controlled
-  application.
+  energy based on its resource usage -- a controller designed for one
+  application and system must be redesigned for a new deployment.  We
+  propose CALOREE to achieve control theoretic benefits -- \ie{}
+  formal, bounded convergence to required performance in dynamic
+  environments -- without \emph{a priori} models.  CALOREE combines a
+  generalized control system (GCS) \PUNT{that runs on a local device}
+  with a hierarchical Bayesian model (HBM)\PUNT{that runs on a remote
+    server}. The HBM runs on a remote server and aggregates data from
+  multiple applications and devices to produce a highly accurate model
+  that it sends to the GCS to customize control for the local device
+  and application. We extend standard control analysis to show that
+  CALOREE provides probabilistic convergence guarantees despite having
+  no prior model of the controlled application.
 
   We implement CALOREE using ARM big.LITTLE boards for streaming
   applications and an x86 server for the HBM.  We test in both single-

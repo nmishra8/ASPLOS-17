@@ -107,7 +107,7 @@ directly from the linear fit:
 \begin{equation}
   perf(t) = 2.95 \times 10^{-6} \cdot clock(t-1) + \delta \label{eqn:clock}
 \end{equation}
-This model states the observed $perf(t)$ is the slope of our model
+This model states the observed $perf(t)$ is the model's slope
 times the clockspeed applied at the previous time step, $clock(t-1)$,
 plus some Gaussian noise $\delta$.  This simple linear difference
 model ignores low-level details like instruction mix, and instead uses
@@ -494,6 +494,7 @@ high to avoid collisions, then each PHT lookup requires constant time.
     \STATE    Configure to system to $hi$ $\&$ sleep $\tau_hi$.
     \STATE    Configure to $lo$ $\&$ sleep $\tau_lo$.
 \ENDWHILE
+\vskip -1.5em
 \end{algorithmic}
 \end{algorithm}
 

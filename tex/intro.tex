@@ -28,12 +28,11 @@ provide specific models at design time -- leads to brittle designs
 that only work for limited cases; a problem exacerbated by growing
 application diversity and hardware complexity.  For example, modern
 embedded and mobile systems rely on heterogeneous processors that
-expose a huge range of performance and energy tradeoffs, which vary
-from application to application.  \emph{This paper's goal is to
-  provide the benefits of control theoretic techniques in a general
-  design that provides reliable performance and minimal energy -- even
-  for applications we have not encountered before and with minimal
-  input from users.}
+expose a huge range of application-dependent performance and energy
+tradeoffs.  \emph{This paper's goal is to provide the benefits of
+  control theoretic techniques in a general design that provides
+  reliable performance and minimal energy -- even for applications we
+  have not encountered before and with minimal input from users.}
 
 % Challenges?  
 %  We would like to take unseen streaming applications and control them.
@@ -45,8 +44,8 @@ Several challenges must be addressed to meet this goal:
 \item \textit{System complexity:} Heterogeneous processor designs in
   embedded and mobile systems expose multiple resources that interact
   in complex ways, leading to difficult optimization problems.
-\item \textit{Overhead:} We cannot spend more energy solving these
-  optimization problems than we would save by knowing the answer.
+\item \textit{Overhead:} We cannot use more energy solving these
+  optimization problems than we save knowing the answer.
 \item \textit{Guarantees:} We must maintain formal guarantees about
   the controlled system's dynamic behavior.
 \end{itemize}
@@ -84,7 +83,7 @@ embedded and mobile processors, addressing the complexity challenge.
 The HBM is, however, computationally expensive and requires samples of
 several different applications to produce accurate models, so we
 offload it to a remote server to address the overhead challenge.
-Finally, because the HBM communicates the model's variance as well which can provide
+Finally, because the HBM communicates the model's variance and
 confidence intervals; we derive probabilistic control theoretical
 guarantees that the system will converge to the desired performance.
 
@@ -120,10 +119,10 @@ We find that \SYSTEM{} achieves the:
       average 14-21\% more energy than the oracle, while the prior
       controller uses 24\% more (the learners save energy by failing
       to meet the performance requirements).  In contrast, CALOREE
-      uses only 4\% more despite providing more reliable performance.
-      In the worst case, prior approaches can use 75-90\% more energy
-      than the oracle, while CALOREE's worst case is only 24\% more
-      than the oracle -- more than $3\times$ energy savings.
+      uses only 4\% more energy while providing more reliable
+      performance.  In the worst case, prior approaches can use
+      75-90\% more energy than the oracle, while CALOREE's worst case
+      is only 24\% more -- greater than $3\times$ energy savings.
     \item In the \emph{multi-app} case, prior learning approaches use
       17-22\% more energy than the oracle.  Prior control approaches
       use 34\% more (again learning saves energy by missing
