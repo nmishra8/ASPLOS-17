@@ -25,11 +25,11 @@ We can upper bound and lower bound each of these terms,
 speedup(t) \leq T \hat{s}_{hi} \;\; \text{and} \;\; \widehat{speedup}(t) \geq T s_{lo}
 \end{align}
 
-Since, the estimates of speedups are close to the actual speedups since
-$\hat{s} \sim N(s, \sigma^2)$; with probability greater
+The estimates of speedups are close to the actual speedups since
+$\hat{s} \sim N(s, \sigma^2)$, therefore with probability greater
 than 99.7\% and the speedups can be given by, $s_{lo} \geq
 \hat{s}_{lo} - 3 \sigma$. Hence, $\widehat{speedup}(t) \geq T
-(\hat{s}_{lo} -3 \sigma)$. Since, over all configurations $\Delta \leq
+(\hat{s}_{lo} -3 \sigma)$. Since, over all configurations, $\Delta \leq
 \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0$,  we can choose the pole from the range,  $([\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0, 1)$.
 
 

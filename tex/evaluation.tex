@@ -77,7 +77,7 @@ application. We run our applications from 50\% to 90\% performance
 targets and evaluate \SYSTEM{} under each constraint. We quantify the
 performance reliability using the standard control metric \emph{mean
   absolute percentage error} (MAPE).  If the application processes $n$
-stream elements while maintaining a speed of $S_r$, then its MAPE is:
+stream elements while maintaining a speed of $S$, then its MAPE is:
 \begin{equation}
 MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S - s(i)}{S},0 \right)
 \end{equation}
@@ -92,9 +92,9 @@ data we determine the optimal configuration for stream iteration and
 performance target. To compare across applications, we normalize
 energy:
 \begin{equation}
-  normalized\,energy = 100\% . (e / e_{optimal} - 1)
+  normalized\,energy = 100\% . \left( \frac{e_{measured}}{e_{optimal}} - 1 \right)
 \end{equation}
-where $e$ is measured energy and $e_{optimal}$ is the optimal energy
+where $e_{measured}$ is measured energy and $e_{optimal}$ is the optimal energy
 produced by our oracle. We subtract 1, so that this metric shows the
 percentage of energy over optimal.  \PUNT{ \TODO{Should we multiply
     this by 100, so that it is also a \%?  That seems like a good idea
@@ -104,7 +104,7 @@ percentage of energy over optimal.  \PUNT{ \TODO{Should we multiply
 
 
 \subsection{Points of Comparison}
-We compare \SYSTEM{}'s to a combination of different learning models
+We compare \SYSTEM{} to a combination of different learning models
 and a state-of-art controller based on the \emph{Pace-to-idle (P2I)}
 heuristic \cite{kim-cpsna}.  Pace-to-idle is proven never to be worse
 than race-to-idle and often provides as much as $2\times$ energy
@@ -129,7 +129,7 @@ with:
   meet application performance with minimal energy \cite{POET}.  POET
   requires users to specify a model.  We use POET with the model
   produced by the \emph{Offline} learner.
-\item \textit{CALOREE-NP}: is CALOREE without the pole, which we
+\item \textit{CALOREE-NP}: is CALOREE with pole set to 0, which we
   include to show the importance of informing the controller of the
   confidence interval and model variance.
 \end{enumerate}
@@ -171,7 +171,7 @@ error across all targets for single application scenario.
 for the 50, 70, and 90\% targets\footnote{We would happily provide
   that data anonymously through the PC chair if a reviewer finds it
   important to the evaluation}, others are similar but elided for
-space.  The benchmarks are shown on the x-axis; the y-axes show MAPE
+space.  The benchmarks are shown on the x-axis; the y-axis show MAPE
 and the normalized energy, respectively.  \SYSTEM{} has lower MAPE and
 energy consumption than the baseline algorithms.
 
@@ -203,7 +203,7 @@ Regarding energy consumption, the online model requires an average of
 21\% more energy than optimal, offline: 15\%, LEO: 14\%, POET: 24\%,
 CALOREE-NP: 9.5\%, and \SYSTEM{}: 4.1\%.  }
 \SYSTEM{} provides a
-significant energy savings even compared to state-of-the-art learning
+significant energy savings even when compared to state-of-the-art learning
 or control approaches.  The reason is that the combination is
 complementary: LEO produces accurate models while control both can
 correct small errors in those models and adapt to dynamic changes in
@@ -279,7 +279,7 @@ incorporating model variance into the controller's pole calculation.
 To demonstrate \SYSTEM{} in this dynamic environment we look at the
 specific example of \texttt{bodytrack} with a 70\% target, shown in
 \figref{fig:bodytrack-multiapp} with time on the x-axis and
-performance/power on the y-axes.  Performance is normalized to the
+performance/power on the y-axis.  Performance is normalized to the
 target.  There is a curve for each of LEO, POET, and \SYSTEM{}. The
 vertical dashed line shows the point where the second application
 starts.
@@ -375,7 +375,7 @@ empirically by showing LAVAMD's single-app behavior controlled by both
 CALOREE-NP and \SYSTEM{} to meet the 80\% target.
 
 \figref{fig:lavamd-pole} shows the results, with time on the x-axis
-and normalized performance and power on the respective y-axes.  As is
+and normalized performance and power on the respective y-axis.  As is
 clear from the figure, CALOREE-NP oscillates around the desired
 performance and causes wide fluctuations in power consumption.  In
 contrast, after a brief period of oscillation to adjust to the new
@@ -431,7 +431,7 @@ the HBM is quite fast and can generate an estimate as fast as 500 ms
 which is significantly smaller than the time required for sampling the
 applications.  Using four ODROIDs, each board only needs to contribute
 4 samples to achieve 90\% accuracy.  In this worst case
-(\texttt{facesim}, this sampling overhead is less than 2\%.  For all
+(\texttt{facesim}), this sampling overhead is less than 2\%.  For all
 other benchmarks it is lower, and for most it is negligible.
 
 The GCS requires only a few floating point operations to execute, plus
