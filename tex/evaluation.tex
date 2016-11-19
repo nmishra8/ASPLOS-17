@@ -79,10 +79,10 @@ performance reliability using the standard control metric \emph{mean
   absolute percentage error} (MAPE).  If the application processes $n$
 stream elements while maintaining a speed of $S_r$, then its MAPE is:
 \begin{equation}
-MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S_{r} - s_m(i)}{S_r},0 \right)
+MAPE = 100\% \cdot \frac{1}{n} \sum\limits_{i=1}^{n} max \left( \frac{S - s(i)}{S},0 \right)
 \end{equation}
-where $S_{r}$ is the performance target and $s_m(i)$ is the
-performance observed for $i$th heartbeat.
+where $S$ is the performance target and $s(i)$ is the performance
+observed for $i$th control iteration.
 
 
 %We evaluate energy savings by constructing an oracle.  
@@ -92,9 +92,9 @@ data we determine the optimal configuration for stream iteration and
 performance target. To compare across applications, we normalize
 energy:
 \begin{equation}
-  normalized\,energy = 100\% . (e_m / e_{optimal} - 1)
+  normalized\,energy = 100\% . (e / e_{optimal} - 1)
 \end{equation}
-where $e_m$ is measured energy and $e_{optimal}$ is the optimal energy
+where $e$ is measured energy and $e_{optimal}$ is the optimal energy
 produced by our oracle. We subtract 1, so that this metric shows the
 percentage of energy over optimal.  \PUNT{ \TODO{Should we multiply
     this by 100, so that it is also a \%?  That seems like a good idea
