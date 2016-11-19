@@ -351,18 +351,18 @@ Now we describe our HBM model in details. Suppose our system has $n = |\mathcal{
   \eqref{eq:controller}).}  Additionally, we have a set of $m-1$
 applications whose performance and power are known (\ie{} they have
 been measured offline). Let the vector $\y_i \in \R^{n}$ represent
-application $i$'s power or (performance) estimate in all $n$
+application $i$'s performance (or power) estimate in all $n$
 configurations; \ie{} the $c$th component of $\y_i$ is the power for
 application $i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let
 $\{\y_i\}_{i =1}^m$ be shorthand for the power estimates of all
 applications.  Without loss of generality, we assume the first $m-1$
 columns, \ie{} $\{\y_i\}_{i =1}^{m-1}$ represent the data for those
-applications whose power consumption is collected offline.  The $m$th
-column, $\y_m$ represents the power consumption for the new, unknown
+applications whose performance measurement is collected offline.  The $m$th
+column, $\y_m$ represents the performance measurement for the new, unknown
 application.  We have a few observations for this application.
 Specifically, for the $m$th application we have observed
 configurations belonging to the set $\Omega_m$ where $|\Omega_m| \ll
-n$.  The HBM estimates application $m$'s power for all unobserved
+n$.  The HBM estimates application $m$'s performance for all unobserved
 configurations using the following statistical model:
 \begin{equation}
 \begin{aligned}
@@ -374,7 +374,7 @@ configurations using the following statistical model:
 \end{equation}
 
 where $\y_i \in \R^n, \; \z_i \in \R^n, \; \mu \in \R^{n}, \; \Sigma
-\in \R^{n\times n}$. In this model the power (denoted by $\y_i$) of
+\in \R^{n\times n}$. In this model the performance (denoted by $\y_i$) of
 the $i^{th}$ application, is drawn from multivariate-Gaussian
 distribution with mean $\z_i$ and a diagonal covariance matrix
 $\sigma^2\I$.  Similarly, $\z_i$ is from multi\-variate-Gaussian
