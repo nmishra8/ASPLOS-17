@@ -345,16 +345,13 @@ knowledge of other applications.  We refer to general models as
 predict the behavior of a new application.
 }
 
-Now we describe our HBM model in details. Suppose our system has $n = |\mathcal{C}|$ configurations.  \PUNT{We
-  have a \textit{target application} whose energy we wish to minimize,
-  while meeting a performance requirement (as in
-  \eqref{eq:controller}).}  Additionally, we have a set of $m-1$
+Now we describe our HBM model in details. Suppose our system has $n = |\mathcal{C}|$ configurations and we have a set of $m-1$
 applications whose performance and power are known (\ie{} they have
 been measured offline). Let the vector $\y_i \in \R^{n}$ represent
 application $i$'s performance (or power) estimate in all $n$
-configurations; \ie{} the $c$th component of $\y_i$ is the power for
+configurations; \ie{} the $c$th component of $\y_i$ is the performance for
 application $i$ in configuration $c$ (or $\y_i[c] = p_c$).  Also, let
-$\{\y_i\}_{i =1}^m$ be shorthand for the power estimates of all
+$\{\y_i\}_{i =1}^m$ be shorthand for the performance estimates of all
 applications.  Without loss of generality, we assume the first $m-1$
 columns, \ie{} $\{\y_i\}_{i =1}^{m-1}$ represent the data for those
 applications whose performance measurement is collected offline.  The $m$th
@@ -384,7 +381,7 @@ with parameters $\mu_0, \pi,\Psi, \nu$.  Our model's parameters are
 $\mu,\Sigma$, whereas, $\mu_0, \pi,\Psi, \nu$ are the
 hyper-para\-meters, which we set as $\mu_0 = 0, \pi = 1,\Psi = \I, \nu =
 1$.  We solve the above equations using an
-\emph{estimation-maximization} algorithm to get a value of $z_M$,
+\emph{estimation-maximization} algorithm to get a value of $\z_M$,
 which serves as an estimator for the target application.
 
 
