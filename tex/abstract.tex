@@ -1,92 +1,36 @@
 \begin{abstract}
-
+  Intelligent resource management is essential for modern computing
+  systems that must provide reliable performance with minimal energy.
+  There are two central challenges to allocating system resources to
+  meet these conflicting goals: (1) \emph{complexity}---modern
+  hardware exposes diverse resources that interact in complicated
+  ways---and (2) \emph{dynamics}---goals must be met despite
+  unpredictable changes in operating environment or input.  Machine
+  learning handles complicated optimization spaces, but does not model
+  system dynamics; control theory provides formal guarantees of
+  dynamic behavior, but struggles with complex, non-convex resource
+  interaction. We therefore propose \SYSTEM{}, a combination of
+  learning and control techniques that automatically adjusts resource
+  usage to meet performance requirements in complex, dynamic
+  environments.  \SYSTEM{}'s key contribution is the interface that
+  allows control to use learned models with low overhead while
+  preserving control theoretic formal guarantees.  In fact,
+  \SYSTEM{}'s principled combination of learning and control makes it
+  the first approach to provide formal guarantees of convergence to
+  the required performance without prior knowledge of application
+  behavior. We implement \SYSTEM{} and test its ability to meet an
+  application's performance requirement on a heterogeneous ARM
+  big.LITTLE architecture both individually and when other
+  applications dynamically enter the system to compete for resources.
+  We compare \SYSTEM{} to several state-of-the-art learning and
+  control solutions, including a naive combination of existing
+  learning and control that does not use the \SYSTEM{} interface. We
+  find that \SYSTEM{} provides the most reliable performance (\ie{}
+  the lowest percentage of missed deadlines) and the best energy
+  efficiency, while the naive combination of learning and control is
+  uniformly worse than prior approaches in both metrics.
   
-  Control systems are a proven method for allocating resources to meet
-  streaming applications' performance requirements with minimal energy
-  on mobile and embedded devices. Control designs, however, require
-  \emph{a priori} models to estimate an application's performance and
-  energy based on its resource usage -- a controller designed for one
-  application and system must be redesigned for a new deployment.  We
-  propose CALOREE to achieve control theoretic benefits -- \ie{}
-  formal, bounded convergence to required performance in dynamic
-  environments -- without \emph{a priori} models.  CALOREE combines a
-  generalized control system (GCS) \PUNT{that runs on a local device}
-  with a hierarchical Bayesian model (HBM)\PUNT{that runs on a remote
-    server}. The HBM runs on a remote server and aggregates data from
-  multiple applications and devices to produce a highly accurate model
-  that it sends to the GCS to customize control for the local device
-  and application. We extend standard control analysis to show that
-  CALOREE provides probabilistic convergence guarantees despite having
-  no prior model of the controlled application.
 
-  We implement CALOREE using ARM big.LITTLE boards for streaming
-  applications and an x86 server for the HBM.  We test in both single-
-  and multi-application environments (where applications compete for
-  resources).  Compared to state-of-the-art learning and control
-  techniques, CALOREE consistently provides the most reliable
-  performance: a worst case performance error of only 12\% compared to
-  70-80\% for prior approaches.  Additionally, CALOREE provides the
-  lowest energy: delivering average savings from 8-47\%.
-
-
-  \PUNT{CALOREE has three main components: (1) a remote learner that
-    aggregates data across devices and applications to model
-    application performance and energy, (2) a lightweight control
-    system that uses the learned models to customize control for a
-    particular application, and (3) the interfaces that map non-convex
-    learned models to the continuous linear models used by the
-    controllers.
-
-  We implement CALOREE's learning on an x86 server and stream
-  processing on heterogeneous ARM big.LITTLE devices. We test in both
-  \emph{stable} and \emph{unstable} environments (where available
-  resources change over time) and we compare to state-of-the-art
-  learning and control-based resource managers.  In all test
-  scenarios, \SYSTEM{} provides the lowest error between the required
-  and delivered performance. Depending on the scenario, \SYSTEM{}
-  provides 12-25\% average energy reduction compared to
-  state-of-the-art approaches.  Additionally, \SYSTEM{}'s worst case
-  performance and energy is uniformly better than prior approaches, by
-  factors as high as $2\times$.
-}
-
-
-\PUNT{
-  Streaming sensor processing forms a foundational workload for
-  embedded, mobile, and Internet-of-things. Stream processing on these
-  platforms requires both reliable performance and low energy, and two
-  challenges must be addressed to meet these conflicting requirements.
-  The first is \emph{complexity}: hardware exposes heterogeneous
-  resources which interact in complicated ways. The second is
-  \emph{dynamics}: performance must keep up with the data stream
-  despite unpredictable changes in operating environment.  Prior work
-  shows that machine learning addresses the complexity challenge and
-  control systems tackle dynamics, but streaming sensor processing on
-  energy-limited devices requires that both challenges be met
-  simultaneously.
-
-  To address both complexity and dynamics, we propose \SYSTEM{}, a
-  resource management system that integrates hierarchical Bayesian
-  learning with a lightweight control system.  The learning framework
-  runs on a remote server aggregating data from multiple applications
-  and devices to estimate performance/energy models for different
-  resource configurations.  The controller runs on energy-limited
-  devices using the learned models to deliver required performance for
-  streaming processing with minimal energy.  We test \SYSTEM{} by
-  implementing its learning on an x86 server and stream processing on
-  four heterogeneous ARM big.LITTLE devices. We test in both
-  \emph{stable} and \emph{unstable} environments (where available
-  resources change over time) and we compare to state-of-the-art
-  learning and control approaches.  In all test scenarios, \SYSTEM{}
-  provides the lowest error between the required and delivered
-  performance. Depending on the scenario, \SYSTEM{} also provides
-  12-25\% average energy reduction compared to state-of-the-art
-  learning and control approaches.  Additionally, \SYSTEM{}'s worst
-  case performance and energy is uniformly better than prior
-  approaches.  Thus, \SYSTEM{}'s unique combination of learning and
-  control is well-suited to supporting streaming sensor processing in
-  embedded, mobile, and IoT platforms.
-}
 
 
   \PUNT{ Mobile systems must deliver performance to interactive
