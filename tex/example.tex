@@ -1,12 +1,11 @@
 \section{Background and Motivation}
 \label{sec:example}
 
-We motivate the need to combine learning and control techniques. We
-first demonstrate how learning overcomes the challenge of complexity,
-while even advanced adaptive control problems can struggle.  We then
-show how control systems can adapt to dynamics, while learning
-mechanisms cannot.  We conclude by showing how a naive combination of
-learning and control can lead to worse behavior than either.
+We first demonstrate how learning overcomes the challenge of
+complexity, while even advanced learning systems cannot.  We then show
+how control theory handles system dynamics.  We conclude by showing
+how a naive combination of learning and control can lead to worse
+behavior than either approach.
 
 \subsection{\emph{Learning} Complexity}
 \PUNT{
@@ -60,12 +59,11 @@ learning and control can lead to worse behavior than either.
   \caption{\small \bf (a) Performance for \texttt{STREAM} as a
     function of configuration.  (b) Managing \texttt{STREAM}'s
     performance: \emph{Learning} navigates the complicated
-    configuration space, but \emph{control}'s simple model leads to
-    oscillation.}
+    configuration space, but \emph{control} leads to oscillation.}
   \label{fig:learning-models1}
 \end{figure}
 
-Many machine learning approaches determine the most energy efficient
+Many machine learning approaches estimate the most energy efficient
 set of resources to allocate to an application.  These include
 \emph{offline} techniques that build models using a training set and
 then apply those models to new applications
@@ -73,30 +71,29 @@ then apply those models to new applications
 Other approaches use \emph{online} techniques that construct models
 dynamically as an application runs
 \cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.  Finally,
-\emph{hybrid} techniques combine offline modeling techniques with
-online model updates
-\cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
+\emph{hybrid} techniques combine offline modeling with online model
+updates \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
   wu2012inferred}.  Machine learning is well suited to building models
 of complicated systems like those shown in
 \figsref{fig:STREAM_contour}{fig:BODYTRACK_contour}.
 
 To demonstrate how well learning manages complexity, we consider
-meeting a performance requirement for \texttt{STREAM}, which has the
-complicated configuration space illustrates in
-\figref{fig:STREAM_contour}.  This is a simple memory-bound
-application, but it has complicated behavior on our test system.
-Because of the memory pressure in this application, the LITTLE cores'
-memory hierarchy is not powerful enough to deliver the performance.
-The big cores more powerful memory hierarchy delivers much greater
-performance, but the peak performance occurs with 3 big cores.
-Furthermore, at low clockspeeds, these three big cores cannot saturate
-the memory bandwidth, while at high clockspeeds the performance
-actually drops as the processor overheats and triggers thermal
-management.  For \texttt{STREAM}, then, the peak speed occurs using 3
-big cores at 1.2 GHz, and it is not energy efficient to spend any time
-on the LITTLE cores.  This application, however, does not have
-distinct phases, so once a resource allocator can find the most energy
-efficient configuration, it simply needs to maintain it.
+meeting a performance requirement for \texttt{STREAM} on an ARM
+big.LITTLE processor, which has the complicated configuration space
+illustrates in \figref{fig:STREAM_contour}.  This simple memory-bound
+application has complicated behavior on our test system.  Because of
+the application's memory pressure, the LITTLE cores' memory hierarchy
+cannot deliver the required performance.  The big cores' more powerful
+memory hierarchy delivers much greater performance, but the peak
+performance occurs with 3 big cores.  Furthermore, at low clockspeeds,
+these three big cores cannot saturate the memory bandwidth, while at
+high clockspeeds the performance actually drops as the processor
+overheats and triggers thermal management.  For \texttt{STREAM}, then,
+the peak speed occurs using 3 big cores at 1.2 GHz, and it is not
+energy efficient to spend any time on the LITTLE cores.  This
+application, however, does not have distinct phases, so once a
+resource allocator finds the most energy efficient configuration, it
+simply needs to maintain it.
 
 We launch the application and use both a hierarchical Bayesian
 \emph{learning} model \cite{LEO} and an \emph{adaptive control} system
@@ -105,13 +102,13 @@ The \emph{learning} approach estimates the application's performance
 and power for all configurations and then uses the lowest power
 configuration that delivers the required performance.  The
 \emph{adaptive control} approach begins with a generic model of
-power/performance tradeoffs.  As the controller runs it continually
+power/performance tradeoffs.  As the controller runs, it continually
 measures performance and adjusts both allocated resources and its
-internal models to adapt control to the current application.  While
-many controllers use linear models, this adaptive controller
+internal models to tailor its response to the current application.
+While many controllers use linear models, this adaptive controller
 dynamically adjusts to non-linearities with a series of linear
-approximations; however, this approach is sensitive to local maxima,
-which can cause it to oscillate.
+approximations; however, the adaptive controller is sensitive to local
+maxima, which can cause it to oscillate.
 
 \figref{STREAM_timeline} shows the results of controlling 20
 iterations of \texttt{STEAM} to meet the performance requirement.  The
@@ -190,19 +187,19 @@ achieves its best performance on 4 big cores at the maximum
 clockspeed.  The toughest part of allocating resources for this
 application is determining how much work to do on the LITTLE cores (to
 conserve energy) while still meeting the performance requirements.
-The relationship betweeen LITTLE and big core performance is
+The relationship between LITTLE and big core performance is
 non-linear.
 
 \figref{bodytrack_timeline} shows the results of this experiment.  The
 vertical dashed line---at frame 99---represents when the second
 application begins.  The figure clearly shows the benefits of the
 adaptive control system in this dynamic scenario.  When the second
-application starts, the controller detects the change in bodytrack's
+application starts, the controller detects the change in \texttt{bodytrack}'s
 performance and then changes resource allocation (increasing
 clockspeed and moving bodytrack from 4 to 3 big cores).  The
-controller is not aware of the second application, it just observes
-\texttt{bodytrack}'s performance drop at frame 99 and immediately act
-to restor performance in the next frame. The learning system however,
+controller is not aware of the second application, rather it observes
+\texttt{bodytrack}'s performance drop at frame 99 and immediately
+restores performance in the next frame. The learning system however,
 does not have any inherent mechanism to measure the change or adapt to
 the altered performance.  While we could theoretically add feedback to
 the learner and re-estimate the configuration space whenever the
@@ -217,22 +214,21 @@ with fluctuating request rates
 applications with dynamically varying inputs
 \cite{TCST,Agilos,grace2}.  These prior control solutions, however,
 are always highly application dependent---with application-specific
-models designed into the control system itself---making a controller
-for video playback unsuitable for controlling GPS navigation.  The
-main drawback of even adaptive control is that it can fail in the
-presence of unmodeled non-convexity in the relationship between
-resources and performance.  This limitation is why existing adaptive
-control approaches are built for specific classes of
-applications---specializing for the class allows them to identify
-common non-convexities for that class.
+models encoded in the controller's design---making a controller for
+video playback unsuitable for controlling GPS navigation.  The main
+drawback of even adaptive control is that it can fail given unmodeled
+non-convexity in the relationship between resources and performance.
+This limitation is why existing adaptive control approaches are built
+for specific classes of applications---specializing for the class
+accounts for common non-convexities of that class.
 
 \subsection{Combining Control and Learning}
 The above examples highlight the complementary advantages of both
 learning and control.  Since sophisticated learning systems can
 identify non-convexities and control system can adapt to dynamic
 changes, it seems natural to combine the two.  All control systems are
-designed based on models of resource behavior (a process called
-\emph{system identification} \cite{ControlHandbook}).  It therefore
+designed based on models of resource behavior---a process called
+\emph{system identification} \cite{ControlHandbook}.  It therefore
 seems that a straightforward solution would simply use the learned
 models to devise a controller on a per application basis.
 %The only complication is turning the typically absolute models
@@ -251,16 +247,18 @@ spaces like those shown above are computationally very expensive.
 \tblref{} shows the time required to produce a model for each of three
 representative learning approaches.  We can see from these timings
 that learning overhead is a serious consideration, especially for
-embedded systems.
+energy-limited mobile and embedded systems. \TODO{Need to add learning
+  overhead table.}
 
-The second complication is that controller design assumes that models
-are built knowing ground truth.  The typical model building approach
-used in control design is far more expensive than the above learning
-methods---rather than sample the space and estimate unobserved
-resource configurations, control system identification takes multiple
-measurements of each configuration.  The difference between the
-learned models and the typical models used for control design, is that
-the learned models have a much higher possible margin of error.  
+The second complication is that controller design assumes the models
+on which they are built represent ground truth.  The typical model
+building approach used in control design is far more expensive than
+the above learning methods---rather than sample the space and estimate
+unobserved resource configurations, control system identification
+takes multiple measurements of each configuration
+\cite{ICSE2014,ControlHandbook}.  The difference between the learned
+models and the typical models used for control design, is that the
+learned models have a much higher possible margin of error.
 
 
 \begin{figure}
@@ -273,17 +271,17 @@ the learned models have a much higher possible margin of error.
 
 To demonstrate this difficulty, we use the model produced by the
 hierarchical Bayesian learner to synthesize an adaptive controller for
-\texttt{bodytrack}, but assuming the learner's model is free of
-errors.  We rerun the experiment from the previous subsection, the
-results are shown in \figref{fig:not-simple}.  This combination of
-learning and control actually produces worse results than either
-learning or control by themselves.  As shown in the figure, before the
-second application starts, the combined approach oscillates around the
-target.  When the second application begins, the oscillations
-continue.  In this case, the learning method failed to identify a
-local optima, but the controller takes the model as ground truth and,
-although it is an adaptive control system, it cannot distinguish
-between application noise and actual error.
+\texttt{bodytrack} assuming the learner's model is error free.  We
+rerun the previous experiment; the results are shown in
+\figref{fig:not-simple}.  This combination of learning and control
+actually produces worse results than either learning or control by
+themselves.  As shown in the figure, before the second application
+starts, the combined approach oscillates around the target.  When the
+second application begins, the oscillations continue.  In this case,
+the learning method failed to identify a local optima, but the
+controller takes the model as ground truth. Although it is an adaptive
+control system, it cannot distinguish between application noise and
+actual error and cannot cancel the oscillations.
 
 The next section describes our approach to combining learning and
 control that amortizes the learner's overhead and incorporates the
