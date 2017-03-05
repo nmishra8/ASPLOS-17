@@ -1,34 +1,33 @@
 \begin{abstract}
   Intelligent resource management is essential for modern computing
   systems that must provide reliable performance with minimal energy.
-  There are two central challenges to allocating system resources to
+  Two central challenges arise when allocating system resources to
   meet these conflicting goals: (1) \emph{complexity}---modern
-  hardware exposes diverse resources that interact in complicated
-  ways---and (2) \emph{dynamics}---goals must be met despite
-  unpredictable changes in operating environment or input.  Machine
-  learning handles complicated optimization spaces, but does not model
-  system dynamics; control theory provides formal guarantees of
-  dynamic behavior, but struggles with complex, non-convex resource
-  interaction. We therefore propose \SYSTEM{}, a combination of
-  learning and control techniques that automatically adjusts resource
-  usage to meet performance requirements in complex, dynamic
-  environments.  \SYSTEM{}'s key contribution is the interface that
-  allows control to use learned models with low overhead while
+  hardware exposes diverse resources with complicated
+  interactions---and (2) \emph{dynamics}---performance must be
+  reliable despite unpredictable changes in operating environment or
+  input.  Machine learning handles complicated optimization spaces,
+  but does not model system dynamics; control theory provides formal
+  guarantees of dynamic behavior, but struggles with complex,
+  non-convex resource interaction. We therefore propose \SYSTEM{}, a
+  combination of learning and control techniques that automatically
+  adjusts resource usage to meet performance requirements in complex,
+  dynamic environments.  \SYSTEM{}'s key contribution is the interface
+  that allows control to use learned models with low overhead while
   preserving control theoretic formal guarantees.  In fact,
   \SYSTEM{}'s principled combination of learning and control makes it
   the first approach to provide formal guarantees of convergence to
   the required performance without prior knowledge of application
-  behavior. We implement \SYSTEM{} and test its ability to meet an
-  application's performance requirement on a heterogeneous ARM
-  big.LITTLE architecture both individually and when other
-  applications dynamically enter the system to compete for resources.
-  We compare \SYSTEM{} to several state-of-the-art learning and
-  control solutions, including a naive combination of existing
-  learning and control that does not use the \SYSTEM{} interface. We
-  find that \SYSTEM{} provides the most reliable performance (\ie{}
-  the lowest percentage of missed deadlines) and the best energy
-  efficiency, while the naive combination of learning and control is
-  uniformly worse than prior approaches in both metrics.
+  behavior. We implement \SYSTEM{} and test its ability to meet
+  application performance requirements heterogeneous ARM big.LITTLE
+  architectures both individually and when other applications
+  dynamically enter the system to compete for resources.  We compare
+  \SYSTEM{} to several state-of-the-art learning and control solutions
+  and to a naive combination of existing methods that does not use the
+  \SYSTEM{} interface. We find that \SYSTEM{} provides the most
+  reliable performance and the best energy efficiency, while the naive
+  combination of learning and control is uniformly worse than prior
+  approaches in both metrics.
   
 
 

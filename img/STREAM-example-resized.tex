@@ -1,0 +1,50 @@
+\begin{tikzpicture}
+\begin{centering}
+
+\definecolor{s1}{RGB}{228, 26, 28}
+\definecolor{s2}{RGB}{55, 126, 184}
+\definecolor{s3}{RGB}{77, 175, 74}
+\definecolor{s4}{RGB}{152, 78, 163}
+\definecolor{s5}{RGB}{255, 127, 0}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=1 by 1,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=5pt
+    },
+height=4.1cm,
+width=0.45\columnwidth,
+xmajorgrids,
+ymajorgrids,
+grid style={dashed},
+xmax=20,
+yticklabel pos=left,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+xticklabel shift={-5pt},
+yticklabel shift={-5pt},
+ylabel shift={-2pt},
+ylabel style={align=center},
+unbounded coords=jump,
+]
+
+\nextgroupplot[ylabel={\scriptsize Performance (Normalized)}, % Performance
+xlabel={\footnotesize Iteration},
+ymin=0,
+ymax=1.5,
+ytick={0.0,0.5,1.0,1.5},
+yticklabels={,0.5,1.0,1.5},
+legend entries={{\scriptsize $\mathsf{Performance Requirement}$},{\scriptsize $\mathsf{Learning}$},{\scriptsize $\mathsf{Adaptive Control}$},},
+legend style={fill=none,draw=none,at={(0.5,1.4)},anchor=north,legend columns=1,line width=3pt},
+]
+
+\addplot[thick, solid, black] coordinates {(0,1) (20,1)};
+\addplot[thick, solid, color=s4] table[x index=0,y index=1,col sep=space] {img/complexity-example-leo.txt};
+\addplot[thick, solid, color=s5] table[x index=0,y index=1,col sep=space] {img/complexity-example-poet.txt};
+\end{groupplot}
+\end{centering}
+\end{tikzpicture}

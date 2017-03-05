@@ -4,13 +4,13 @@
 % software management.  For a wide range of applications, need to meet
 % performance goals with minimal energy.
 Large classes of computing systems---from embedded to cloud---must
-deliver reliable performance with minimal energy to increase battery
-life or decrease operating costs.  To address these conflicting
-requirements, hardware architects have begun to expose increasingly
-diverse, heterogeneous resources with an array of different
-performance and energy tradeoffs.  It is then software's
-responsibility to determine how to allocate these reources to ensure
-performance requirements are met with minimal energy.
+deliver reliable performance to users while minimizing energy to
+increase battery life or decrease operating costs.  To address these
+conflicting requirements, hardware architects have begun to expose
+increasingly diverse, heterogeneous resources with an array of
+different performance and energy tradeoffs.  It is then software's
+responsibility to allocate these reources such that performance
+requirements are met with minimal energy.
 
 
 % Difficulties of meeting performance with minimal energy. (1)
@@ -19,10 +19,10 @@ performance requirements are met with minimal energy.
 There are two primary difficulties in determining how to allocate
 heterogeneous resources.  The first is \emph{complexity}---these
 resources interact in complicated ways, leading to non-convex
-optimization spaces.  The second is \emph{dynamics}---performance
+optimization spaces.  The second is \emph{dynamics}---perfor\-mance
 requirements must be met despite unpredictable disturbances; \eg{}
-phases in input or changes in operating environment.  Prior work has
-addressed each of these difficulties individually.
+phases in input or changes in operating environment.  Prior work
+addresses each of these difficulties individually.
 
 % Prior approaches addressed each of these difficulties individually.
 % ML---can handle complexity.  ML advantages: can handle
@@ -31,35 +31,32 @@ addressed each of these difficulties individually.
 % dynamics.  Control---handles dynamics.  Control advantages: formally
 % analyzable guarantees despite dynamics.  Control disadvantages:
 % relies on good models---no local optima, bounded error.
-A number of machine learning approaches can accurately model the
-complex performance/power tradeoff spaces that arise on heterogeneous
-computing systems
+Many machine learning approaches accurately model the complex
+performance/power tradeoff spaces inherent to heterogeneous computing
+systems
 \cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev}.
-Such ML approaches have the advantage of being able to handle
-non-convexity, avoiding local optima to find globally optimal
-solutions.  Such approaches have the drawbacks, however, of being
-computationally expensive and lacking support for dynamics; \ie{} when
+Such ML approaches handle non-convexity, indentifying local optima to
+find globally optimal solutions; however, these techniques are
+computationally expensive and lack support for dynamics; \ie{} when
 the environment changes the expensive model building process must be
-restarted.  At the same time, control theoretic solutions have been
-proposed to allocate resources effciently in the presence of system
-dynamics
+restarted.  Control theoretic solutions perform efficient resource
+allocation in the presence of system dynamics
 \cite{Hellerstein2004a,Chen2011,PTRADE,POET,ControlWare,Agilos,grace2}.
-These approaches provide formally analyzable guarantees that they will
-deliver the required performance, but these guarnatees are subject to
-accurate models and do not support non-convexity or complicated
-interactions between the resources to be allocated.
+Control provides formally analyzable guarantees that the system will
+deliver the required performance, but these guarnatees require
+accurate models and do not support the non-convexity arising from
+complicated interactions between heterogeneous resources.
 
 
 % Want to combine learning and control to address both difficulties
 % simultaneously.  Need an interface that allows learned models to be
 % used by control system.  Challenges: (1) overhead and (2) formal
 % guarantees.  
-Our goal is to combine learning and control techniques to ensure
-performance requirements are met with minimal energy in complex and
-dynamic environments.  The challenges to combining these techniques
-are (1) mitigating the overhead of the learning techniques and (2)
-preserving the controller's formal guarantees in the presence of the
-learned models.
+Our goal is to combine learning and control to ensure performance
+requirements are met with minimal energy in complex and dynamic
+environments.  The challenges to combining these techniques are (1)
+mitigating learning's overhead and (2) preserving the controller's
+formal guarantees in the presence of the learned models.
 
 % Combine learning and control through CALOREE.  Describe it.
 We address these challenges with \SYSTEM{}, \footnote{\textbf{C}ontrol
@@ -71,18 +68,23 @@ requirements with minimal energy.  The two key components of this
 interface are (1) a data structure (called the performance hash table)
 that allows the controller to access the learned model in constant
 ($O(1)$) time and (2) a confidence interval and estimated standard
-deviation that allow us to provide formal guarantees that the combined
+deviation that provide probabilistic guarantees that the combined
 learning and control system will converge to the desired performance.
-The \SYSTEM{} interface not only allows us to combine control and
-learning techniques, but it allows us to do so while keeping the two
-physically separate.  Such physical separation allows us to run the
-computationally expensive learning engines on a remote server while
-the constant time control systems run on the device to be managed.  In
-addition to amortizing the cost of learning, moving it to a remote
-server allows us to take advantage of learning techniques that work
-across devices and applications; \ie{} those that can learn
-similarities between different applications and systems.
+The \SYSTEM{} interface not only combines control and learning
+techniques, but allows the learning and control software to run on
+physically separate devices.  This physical separation further
+mitigates the cost of expensive learning techniques by running them on
+a remote server while the constant time control systems run on the
+device to be managed.  In addition to amortizing the cost of learning,
+moving it to a remote server allows us to take advantage of learning
+techniques that work across devices and applications; \ie{} those that
+can learn similarities between different applications and systems.
 
+In fact, the \SYSTEM{} interface is general enough to allow a wide
+range of learning techniques to be paired with control systems.  So,
+this approach not only provides an advantage over existing individual
+learnign and control techniques, it allows us to explore different
+combinations of learning and control to find the best combination.
 
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
@@ -90,19 +92,46 @@ To demonstrate \SYSTEM{}, we implement it with learning running on an
 x86 server and the control systems working to manage heterogeneous ARM
 big.LITTLE devices.  We compare \SYSTEM{} to existing,
 state-of-the-art learning (including multivariate polynomial
-regression, the Netflix algorithm, and a hierarchical bayesian model)
-and control (including proportional-integral-derivative and adaptive,
-or self-tuning) techniques.  Additionally, we compare to a naive
-combination of learning and control that does not account for the
-confidence interval and standard deviation of the learned model.  We
-set performance goals (in terms of latency requirements) for a set of
+regression \cite{}, the Netflix algorithm \cite{}, and a hierarchical
+bayesian model \cite{}) and control (including
+proportional-integral-derivative \cite{} and adaptive, or self-tuning
+\cite{}) techniques.  Additionally, we compare to a naive combination
+of learning and control that does not account for the confidence
+interval and standard deviation of the learned model.  We set
+performance goals (in terms of latency requirements) for a set of
 benchmark applications and then measure the percentage of time the
 requirements are violated as well as the energy for each application.
 We test both \emph{single-app} environments, where on application runs
 alone, and \emph{multi-app} environments where other applications
 unpredictably enter the system and compete for resources.  We find
 that \SYSTEM{} achieves the:
-
+\begin{itemize} 
+\item \textit{Most reliable performance:} 
+ \begin{itemize} 
+ \item In the \emph{single-app} case, the best prior learning and
+   control techniques miss about 12\% of deadlines on average, the
+   naive combination of learning and control misses 45\% of deadlines
+   on average, but \SYSTEM{} misses only 5\% on average, reducing
+   deadline misses by 50\% compared to prior approaches.
+ \item In the \emph{multi-app} case, the best prior approach averages
+   30\% deadline misses, the naive combination of learning and control
+   averages 31\%, but \SYSTEM{} misses just 5.6\% of deadlines, a huge
+   reduction compared to prior approaches.
+\end{itemize}
+  \item \textit{Best energy savings:} We compare to an \emph{oracle}
+    with a perfect model of the application, system, and future
+    events.
+    \begin{itemize}
+    \item In the \emph{single-app} case, the best prior approach
+      averages 12\% more energy consumption than the oracle, the naive
+      combination of control and learning consumes 11\% more, and
+      \SYSTEM{} consumes 5\% more.  
+    \item In the \emph{multi-app} case, the best prior approach
+      averages 18\% more energy than the oracle, the naive combination
+      of control and learning consumes 11\% more, and \SYSTEM{}
+      consumes 7\% more.
+    \end{itemize}
+\end{itemize}
 
 % Key contributions.
 % Contributions, but I decided against bulleted llist for thsi paper
@@ -114,11 +143,10 @@ produce accurate models of complex processors.  \emph{To the best of
   knowledge of the controlled application.}  We demonstrate this
 contribution by implementing a resource manage that can meet
 performance requirements on mobile/embedded processors with mininmal
-energy.  The primary contribution of this p.  Additional
-contributions include formal analysis showing how to incorporate
-learned variance into the control theoretic guarantees and the
-empirical evaluation showing the combined control and learning system
-outperforms individual, state-of-the-art control or learning
+energy.  Additional contributions include formal analysis showing how
+to incorporate learned variance into the control theoretic guarantees
+and the empirical evaluation showing the combined control and learning
+system outperforms individual, state-of-the-art control or learning
 solutions.
 
 

@@ -1,233 +1,294 @@
 \section{Background and Motivation}
 \label{sec:example}
 
-Control theoretic designs provide formal guarantees that systems
-achieve desired behavior despite dynamic environments. For example, a
-car's cruise control regulates fuel flow into the engine to maintain
-the driver's desired speed despite changes in wind condition, road
-condition, incline, tire pressure, and many other details.  In fact,
-those details are not incorporated into the cruise control model at
-all; instead, the controller uses a difference model that relates the
-current speed to the past speed and the past fuel
-flow.\footnote{Continuous time systems use \emph{differential}
-  equations, but computer systems are discretized so we restrict
-  ourselves to \emph{difference} equations.}
+We motivate the need to combine learning and control techniques. We
+first demonstrate how learning overcomes the challenge of complexity,
+while even advanced adaptive control problems can struggle.  We then
+show how control systems can adapt to dynamics, while learning
+mechanisms cannot.  We conclude by showing how a naive combination of
+learning and control can lead to worse behavior than either.
 
-We present a brief example controlling the performance of the LAVAMD
-application running on a heterogeneous ARM big.LITTLE architecture
-with four big cores and four LITTLE cores.  Our goal is to maintain
-application-specified performance despite unpredictable events such as
-another application entering the system and competing for resources.
-We show how this problem is a straightforward application of control
-theory when the only controllable resource is clockspeed, but the
-complexity jumps dramatically when we consider available cores, core
-types, and clockspeed together.
-
-\PUNT{We first show how this problem can be a straightforward
-  application of classic control techniques if we only consider
-  clockspeed as the controllable resource.  We then show how the
-  problem's complexity jumps dramatically when we consider not only
-  clockspeed but allocating combinations of big and LITTLE cores.
-  While this more complex problem is solvable using advanced control
-  techniques, the solutions require {\em a priori} models of the
-  applications' response to configurations of big and LITTLE cores and
-  their respective frequencies.\TODO{cite??}  We conclude by arguing
-  for a combination of control theory and machine learning that
-  provides control theoretic performance guarantees without requiring
-  {\em a priori} models of the controlled application.}
-
-\subsection{Controlling Clockspeed}
-\label{sec:clock-example}
-\begin{figure}
-  \subfloat[]
-  {
-    \includegraphics[width=.25\textwidth]{figures/lavamd_dvfs.png}
-    \label{fig:lavamd_model}
-  }
-  \subfloat[]
-  {
-    \input{img/lavamd-example2-resized.tex}
-    \label{fig:lavamd_control}
-  }
- \label{fig:freq-control}
- \caption{LAVAMD's performance is linear in DVFS setting (a) making it
-   easy to control even when another application interferes (b).}
-\end{figure}
-
-We construct a controller that adjusts processor frequency to ensure
-that a performance goal is met \cite{lefurgy2008power}.
-\figref{fig:lavamd_model} demonstrates that it is quite simple to map
-clock frequency maps linearly to LAVAMD's performance.  A simple
-control design measures the error between the desired performance and
-current performance, divides by the slope of the linear fit, and then
-adds that to the previous frequency -- just like the cruise control in
-the car. The process repeats at discrete time intervals allowing the
-controller to adjust to application phases or other events.
-
-\figref{fig:lavamd_control} demonstrates this adaptability to
-dynamics.  Suppose the $goal$ performance is 0.5; \ie{} we want LAVAMD
-to execute at 50\% of the maximum possible performance. After 10
-iterations, we launch a second application on a single big core and it
-competes for resources.  \figref{fig:lavamd_control} shows LAVAMD's
-behavior when we run both without and with a controller.  Without a
-controller, the system maintains the original clockspeed, but that is
-no longer sufficient.  In contrast, the controller detects the
-difference in speed and adjusts the frequency up to return LAVAMD to
-the desired performance.  In fact, even this simple controller
-provides formal guarantees that it will converge to the desired
-performance after external changes \cite{Hellerstein2004a}.
-
+\subsection{\emph{Learning} Complexity}
 \PUNT{
-We can use the same approach to construct a controller that adjusts
-processor frequency to ensure that a performance goal is met
-\cite{lefurgy}.  While it is statically quite simple to map clock
-frequency to program performance, we want to build a system that
-constantly adjusts frequency to maintain performance even if resource
-availability changes or the application input changes. 
-
-We can profile the application running
-on all four big cores and a number of frequencies to determine the
-relationship between frequency setting and performance as shown in
-\figref{fig:lavamd_model}.  By fitting a line to this data we obtain
-the model:
-\begin{equation}
-  perf(t) = 2.95 \times 10^{-6} \cdot clock(t-1) + \delta \label{eqn:clock}
-\end{equation}
-This model states the observed $perf(t)$ is some constant (the slope
-of our model) times the clockspeed applied at the previous time step,
-$clock(t-1)$, plus some noise, $\delta$ drawn from a Gaussian
-distribution.  This simple linear difference model ignores low-level
-details like instruction mix, and instead uses feedback, predicting
-behavior of the next time step as a function of the previous time
-step.  Using the relationship of \eqnref{clock}, we synthesize a
-simple controller that is provably convergent to the performance
-$goal$ performance \cite{ICSE2014}:
-\begin{eqnarray}
-  error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clock(t) &=& clock(t-1) - \frac{error(t)}{ 2.95 \times 10^{-6}}
-  \label{eqn:clock-control}
-\end{eqnarray}
-
-
-
-
-\subsection{Benefits of Control}
-To demonstrate the benefits of applying control to manage LAVAMD's
-performance, we run it in an unpredictable environment.  The $goal$
-performance is 0.5, meaning that we are happy achieving 50\% of the
-maximum possible performance. After 10 iterations, we launch a second
-application on a single big core and it competes for resources.
-\figref{fig:lavamd_control} shows LAVAMD's behavior in this scenario
-when we run both without and with a controller.  Without a controller,
-the system maintains the clockspeed necessary to hit the target, but
-that speed is no longer sufficient.  In contrast, even though the
-controller does not have a model of application interference it
-detects the difference in speed and adjusts the frequency up to return
-LAVAMD to the desired performance. In fact, the simple controller in
-\eqnsref{clock-error}{clock-control} provides formal guarantees that
-it will converge to the desired performance after external changes
-like the one we introduced here \cite{Hellerstein2004a}.  
+\begin{figure*}
+\centering
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figures/STREAM-contour.png}
+    \label{fig:STREAM_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/STREAM-example-resized.tex}
+    \label{fig:STREAM_timeline}
+  }
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figures/BODYTRACK-contour.png}
+    \label{fig:BODYTRACK_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/BODYTRACK-example-resized.tex}
+    \label{fig:BODYTRACK_timeline}    
+  }
+  \caption{\small \bf (a) Performance for \texttt{STREAM} as a
+    function of configuration.  (b) Managing \texttt{STREAM}'s
+    performance: \emph{Learning} navigates the complicated
+    configuration space, but \emph{control}'s simple model leads to
+    oscillation.  (c) Performance for \texttt{bodytrack} as a function
+    of configuration. (d) Managing \texttt{bodytrack}'s performance
+    when another application starts: \emph{Adaptive Control} detects
+    the change and adjusts, but \emph{Learning} has no mechanism to
+    handle these dynamics. }
+  \label{fig:learning-models1}
+\end{figure*}
 }
 
 \begin{figure}
+\centering
   \subfloat[]
   {
-    \includegraphics[width=.25\textwidth]{figures/lavamd.png}
-    \label{fig:lavamd_contour}
+    \includegraphics[width=.25\textwidth]{figures/STREAM-contour.png}
+    \label{fig:STREAM_contour}
   }
   \subfloat[]
   {
-    \input{img/lavamd-example-resized.tex}
-    \label{fig:lavamd_control2}
+    \input{img/STREAM-example-resized.tex}
+    \label{fig:STREAM_timeline}
   }
-  \caption{LAVAMD's performance is non-convex when considering all
-    resources in the ARM big.LITTLE (a) making it difficult to control
-    with a generic model (b).}
- \label{fig:learning-models}
+  \caption{\small \bf (a) Performance for \texttt{STREAM} as a
+    function of configuration.  (b) Managing \texttt{STREAM}'s
+    performance: \emph{Learning} navigates the complicated
+    configuration space, but \emph{control}'s simple model leads to
+    oscillation.}
+  \label{fig:learning-models1}
+\end{figure}
+
+Many machine learning approaches determine the most energy efficient
+set of resources to allocate to an application.  These include
+\emph{offline} techniques that build models using a training set and
+then apply those models to new applications
+\cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,reddiHPCA2013,Paragon}.
+Other approaches use \emph{online} techniques that construct models
+dynamically as an application runs
+\cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.  Finally,
+\emph{hybrid} techniques combine offline modeling techniques with
+online model updates
+\cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
+  wu2012inferred}.  Machine learning is well suited to building models
+of complicated systems like those shown in
+\figsref{fig:STREAM_contour}{fig:BODYTRACK_contour}.
+
+To demonstrate how well learning manages complexity, we consider
+meeting a performance requirement for \texttt{STREAM}, which has the
+complicated configuration space illustrates in
+\figref{fig:STREAM_contour}.  This is a simple memory-bound
+application, but it has complicated behavior on our test system.
+Because of the memory pressure in this application, the LITTLE cores'
+memory hierarchy is not powerful enough to deliver the performance.
+The big cores more powerful memory hierarchy delivers much greater
+performance, but the peak performance occurs with 3 big cores.
+Furthermore, at low clockspeeds, these three big cores cannot saturate
+the memory bandwidth, while at high clockspeeds the performance
+actually drops as the processor overheats and triggers thermal
+management.  For \texttt{STREAM}, then, the peak speed occurs using 3
+big cores at 1.2 GHz, and it is not energy efficient to spend any time
+on the LITTLE cores.  This application, however, does not have
+distinct phases, so once a resource allocator can find the most energy
+efficient configuration, it simply needs to maintain it.
+
+We launch the application and use both a hierarchical Bayesian
+\emph{learning} model \cite{LEO} and an \emph{adaptive control} system
+\cite{POET} to meet a performance requirement with minimal energy.
+The \emph{learning} approach estimates the application's performance
+and power for all configurations and then uses the lowest power
+configuration that delivers the required performance.  The
+\emph{adaptive control} approach begins with a generic model of
+power/performance tradeoffs.  As the controller runs it continually
+measures performance and adjusts both allocated resources and its
+internal models to adapt control to the current application.  While
+many controllers use linear models, this adaptive controller
+dynamically adjusts to non-linearities with a series of linear
+approximations; however, this approach is sensitive to local maxima,
+which can cause it to oscillate.
+
+\figref{STREAM_timeline} shows the results of controlling 20
+iterations of \texttt{STEAM} to meet the performance requirement.  The
+x-axis shows iteration number and the y-axis shows performance
+normalized to the requirement.  The learning approach achieves the
+goal, but the adaptive controller oscillates wildly around it,
+sometimes not achieving the goal and sometimes delivering performance
+that is too high (and wastes energy). The oscillations occur because
+the controller's adaptive mechanisms cannot handle the non-convexity
+in STREAM's behavior, a known limitation of adaptive control systems
+\cite{LEO,ICSE2014}.  Hence, the \emph{learner}'s ability to handle
+complex behavior is crucial for reliable performance in this example.
+
+% This result may be somewhat counter-intuitive.  The problem is that
+% the controller cannot handle \texttt{STREAM}'s complexity.  One way to
+% address this problem would be to build a custom controller just for
+% this application, but that controller would not be useful for other
+% applications.  In contrast, the learner can find the local maxima in
+% the configuration space, and as this application has no phase changes
+% or other dynamics, the one configuration that the learner finds is
+% suitable for the entire application.
+
+\subsection{\emph{Controlling} Dynamics}
+
+\PUNT{
+\begin{figure*}
+\centering
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figs/kmeans.png}
+    \label{fig:kmeans_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/kmeans-example-resized.tex}
+    \label{fig:kmeans_timeline}    
+  }
+  \caption{\small \bf (a) Performance for \texttt{kmeans} as a function of
+    configuration.  (b) Managing \texttt{kmeans}' performance when
+    another application starts: \emph{Control} detects the change and
+    adapts, but \emph{learning} has no mechanism to handle these
+    dynamics.}
+  \label{fig:learning-models2}
+\end{figure*}
+} 
+
+
+\begin{figure}
+\centering
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figures/BODYTRACK-contour.png}
+    \label{fig:BODYTRACK_contour}
+  }
+  \subfloat[]
+  {
+    \input{img/BODYTRACK-example-resized.tex}
+    \label{fig:BODYTRACK_timeline}    
+  }
+  \caption{\small \bf (a) Performance for \texttt{bodytrack} as a
+    function of configuration. (b) Managing \texttt{bodytrack}'s
+    performance when another application starts: \emph{Adaptive
+      Control} detects the change and adjusts, but \emph{Learning} has
+    no mechanism to handle these dynamics. }
+  \label{fig:control}
 \end{figure}
 
 
-\subsection{Controlling a Heterogeneous System}
-The simple system described above has its limitations; first, it only
-works for clockspeed, but our test system also has different core
-types.  We could save substantial energy by controlling application
-performance with a combination of frequency and core scheduling
-\cite{Carroll2013,kim-cpsna}.  The combination of core number, core
-type, and frequency has a complicated relationship with performance.
-\figref{fig:lavamd_contour} shows that, for LAVAMD, the relationship
-between a resource \emph{configuration} -- \ie{} an assignment of
-cores and clockspeed -- and performance is non-convex -- \ie{} there
-are multiple local maxima.
+We now consider a dynamic environment.  We begin with
+\texttt{bodytrack} as the only application running on the system.
+Halfway through its execution, we launch a second app
+(\texttt{STREAM}) on a single big core, dynamically altering resource
+availability. \texttt{bodytrack}'s behavior is simpler than
+\texttt{STREAM} as shown in \figref{fig:BODYTRACK_contour}; it
+achieves its best performance on 4 big cores at the maximum
+clockspeed.  The toughest part of allocating resources for this
+application is determining how much work to do on the LITTLE cores (to
+conserve energy) while still meeting the performance requirements.
+The relationship betweeen LITTLE and big core performance is
+non-linear.
 
-\PUNT{The combination of non-convexity and non-linearity is usually dealt
-with in two steps. First, we find the convex hull of the tradeoff
-space.  Second, we build several linear controllers and use their
-combination to approximate the non-linear response.  This process of
-dealing with complicated interactions between resources is one of the
-difficulties of controlling computing systems.  }
+\figref{bodytrack_timeline} shows the results of this experiment.  The
+vertical dashed line---at frame 99---represents when the second
+application begins.  The figure clearly shows the benefits of the
+adaptive control system in this dynamic scenario.  When the second
+application starts, the controller detects the change in bodytrack's
+performance and then changes resource allocation (increasing
+clockspeed and moving bodytrack from 4 to 3 big cores).  The
+controller is not aware of the second application, it just observes
+\texttt{bodytrack}'s performance drop at frame 99 and immediately act
+to restor performance in the next frame. The learning system however,
+does not have any inherent mechanism to measure the change or adapt to
+the altered performance.  While we could theoretically add feedback to
+the learner and re-estimate the configuration space whenever the
+environment changes, doing so is clearly impractical.
 
-Several approaches address this complexity by: specializing control
-for a particular platform and class of application
-\cite{grace,Agilos,METE}, automatically synthesizing controllers
-\cite{josep-isca2016,FSE2015}, or building control libraries that
-users specialize by providing appropriate models
-\cite{POET,ControlWare,SWiFT}. These approaches have two related
-drawbacks.  First, all require prior knowledge of the application and
-systems under control; while control theoretic designs provide formal
-guarantees of their behavior, those guarantees are predicated on the
-control models being known {\em a priori}. Second, since these
-approaches require the models to be known ahead of time, they create
-specialized controllers that are appropriate only for the given
-application-class and system for which the model applies.
+Control systems are a light-weight mechanism for managing such
+dynamics \cite{Hellerstein2004a}. Adaptive control systems are
+resilient to many external effects that alter performance.  For this
+reason, control systems have proven especially useful in webservers
+with fluctuating request rates
+\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} and multimedia
+applications with dynamically varying inputs
+\cite{TCST,Agilos,grace2}.  These prior control solutions, however,
+are always highly application dependent---with application-specific
+models designed into the control system itself---making a controller
+for video playback unsuitable for controlling GPS navigation.  The
+main drawback of even adaptive control is that it can fail in the
+presence of unmodeled non-convexity in the relationship between
+resources and performance.  This limitation is why existing adaptive
+control approaches are built for specific classes of
+applications---specializing for the class allows them to identify
+common non-convexities for that class.
 
-\PUNT{This
-  specialization can clearly be seen in \eqnref{clock-control}, as the
-  model parameter appears directly in the definition of the control
-  system.  If new applications arise that have a different response to
-  the same resources, a new controller will have to be designed and
-  implemented.}
+\subsection{Combining Control and Learning}
+The above examples highlight the complementary advantages of both
+learning and control.  Since sophisticated learning systems can
+identify non-convexities and control system can adapt to dynamic
+changes, it seems natural to combine the two.  All control systems are
+designed based on models of resource behavior (a process called
+\emph{system identification} \cite{ControlHandbook}).  It therefore
+seems that a straightforward solution would simply use the learned
+models to devise a controller on a per application basis.
+%The only complication is turning the typically absolute models
+%produced by the learners into \emph{difference} models required by
+%control systems.\footnote{In a continuous system we would use
+%  differential models, as all resources in our system are discrete, we
+%  only use difference models in this paper.} 
+There are two complications to executing this combination: (1) the
+overhead of the learning mechanism and (2) the probabilistic nature of
+the learned models.  
 
-\figref{fig:lavamd_control2} illustrates this problem.  We again
-control LAVAMD to deliver reliable performance at 50\% the maximum
-achievable.  We use two different control models, the first is a
-general model representing average response to resources across a
-number of test applications.  The second is specific to LAVAMD.  The
-general model produces wildly oscillating performance, alternating
-between using all big cores at the highest frequency and one little
-core at a low frequency.  In contrast, the LAVAMD-specific model
-provides perfectly steady control.  In addition, the steady model
-provides much greater energy savings (over 3$\times$) because it uses
-a combination of big and LITTLE cores to meet the performance target,
-while the general model ends up running all the big cores at maximum
-speed about half the time.
+The sophisticated learning methods---including polynomial multivariate
+regression \cite{}, the Netflix algorithm \cite{}, and hierarchical
+Bayesian models \cite{}---that can handle complicated configuration
+spaces like those shown above are computationally very expensive.
+\tblref{} shows the time required to produce a model for each of three
+representative learning approaches.  We can see from these timings
+that learning overhead is a serious consideration, especially for
+embedded systems.
 
-\PUNT{
-\subsection{Motivation}
-In this section we have seen the benefits and drawbacks of applying
-control to computing systems:
-\begin{itemize}
-\item {\bf Benefit:} Provides provably reliable performance with
-  formal guarantees that that performance will be met.
-\item {\bf Drawback:} Both the empirical and formal behavior of the
-  system are predicated on models that must be known in advance and
-  are not generally applicable.
-\end{itemize}
+The second complication is that controller design assumes that models
+are built knowing ground truth.  The typical model building approach
+used in control design is far more expensive than the above learning
+methods---rather than sample the space and estimate unobserved
+resource configurations, control system identification takes multiple
+measurements of each configuration.  The difference between the
+learned models and the typical models used for control design, is that
+the learned models have a much higher possible margin of error.  
 
-Our goal in this paper is to \emph{design and implement a system that
-  provides both empirical and analytical guarantees of convergence to
-  performance goals, even when working with new application without a
-  priori knowledge of their behavior.}  To accomplish this goal we
-combine control theory with machine learning by:
-\begin{itemize}
-\item Creating a generalized control design for resource management
-  that accepts any model at runtime.
-\item Offloading expensive learning techniques to a remote server that
-  aggregates data from multiple applications and devices to quickly
-  and accurately learn models of new applications.
-\item Creating an interface that allows those models to be sent from
-  the server to local devices and accessed efficiently
-\item Combining statistical and control theoretical formal analysis to
-  show that the system will converge to the desired performance.
-\end{itemize}
-The next section details how we accomplish these objectives.
-}
+
+\begin{figure}
+\centering
+\input{img/BODYTRACK-example2-resized.tex}
+\caption{\small \bf Comparison of existing adaptive control and a
+  naive combination of control and learning.}
+\label{fig:not-simple}
+\end{figure}
+
+To demonstrate this difficulty, we use the model produced by the
+hierarchical Bayesian learner to synthesize an adaptive controller for
+\texttt{bodytrack}, but assuming the learner's model is free of
+errors.  We rerun the experiment from the previous subsection, the
+results are shown in \figref{fig:not-simple}.  This combination of
+learning and control actually produces worse results than either
+learning or control by themselves.  As shown in the figure, before the
+second application starts, the combined approach oscillates around the
+target.  When the second application begins, the oscillations
+continue.  In this case, the learning method failed to identify a
+local optima, but the controller takes the model as ground truth and,
+although it is an adaptive control system, it cannot distinguish
+between application noise and actual error.
+
+The next section describes our approach to combining learning and
+control that amortizes the learner's overhead and incorporates the
+learner's confidence interval and estimated variance into the control
+design. Incorporating this information allows us to combine multiple
+different learning approaches with control systems while still
+providing formal guarantees that the control system will converge to
+the desired performance with a user-specified confidence interval.
