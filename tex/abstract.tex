@@ -6,26 +6,25 @@
   hardware exposes diverse resources with complicated
   interactions---and (2) \emph{dynamics}---performance must be
   reliable despite unpredictable changes in operating environment or
-  input.  Machine learning handles complicated optimization spaces,
-  but does not model system dynamics; control theoretic models work well in relatively simple yet dynamic system behavior, but struggles with complex,
-  non-convex resource interaction. We therefore propose \SYSTEM{}, a
-  parameter-free combination of learning and control techniques that automatically
-  adjusts resource usage to meet performance requirements in complex,
-  dynamic environments.  \SYSTEM{}'s key contribution is the self-tuning interface
-  that allows control to use learned models with low overhead while
-  preserving control theoretic formal guarantees.  \SYSTEM{}'s principled combination of learning and control makes it
-  the first approach to provide formal guarantees of convergence to
-  the required performance without prior knowledge of application
-  behavior. We implement \SYSTEM{} and test its ability to meet
-  application performance requirements heterogeneous ARM big.LITTLE
-  architectures both individually and when other applications
-  dynamically enter the system to compete for resources.  We compare
-  \SYSTEM{} to several state-of-the-art learning and control solutions
-  and to a naive combination of existing methods that does not use the
-  \SYSTEM{} interface. We find that \SYSTEM{} provides the most
-  reliable performance and the best energy efficiency, while the naive
-  combination of learning and control is uniformly worse than prior
-  approaches in both metrics. 
+  input.  Machine learning handles complexity, but does not model
+  system dynamics; control theory handles dynamics, but struggles with
+  complex, non-convex resource interaction. We therefore propose
+  \SYSTEM{}, a parameter-free combination of learning and control
+  techniques that automatically adjusts resource usage to meet
+  performance requirements in complex, dynamic environments.
+  \SYSTEM{} includes (1) a control abstraction where key parameters
+  are dynamically estimated by a noisy learning mechanism, (2) an
+  efficient implementation that applies the learned models in constant
+  time, and formal guarantees that the system converges to the
+  required performance. In fact, \SYSTEM{} is the first approach to
+  provide formal convergence guarantees without prior knowledge of
+  application behavior. We implement \SYSTEM{} and test its ability to
+  meet application performance requirements on heterogeneous ARM
+  big.LITTLE architectures---both individually and when other
+  applications dynamically enter the system to compete for resources.
+  Compared to state-of-the-art learning and control solutions, we find
+  that \SYSTEM{} provides the most reliable performance and the best
+  energy efficiency.
   
 
 
