@@ -4,13 +4,12 @@
 % software management.  For a wide range of applications, need to meet
 % performance goals with minimal energy.
 Large classes of computing systems---from embedded to cloud---must
-deliver reliable performance to users while minimizing energy to
+deliver reliable performance to users while minimizing energy---to
 increase battery life or decrease operating costs.  To address these
-conflicting requirements, hardware architects have begun to expose
-increasingly diverse, heterogeneous resources with an array of
-different performance and energy tradeoffs.  It is then software's
-responsibility to allocate these resources such that performance
-requirements are met with minimal energy.
+conflicting requirements, hardware architects expose diverse,
+heterogeneous resources with a wide array of performance and energy
+tradeoffs.  Software is responsible for allocating these resources to
+guarantee performance requirements are met with minimal energy.
 
 
 % Difficulties of meeting performance with minimal energy. (1)
@@ -52,41 +51,37 @@ complexity---including local optima and non-linearities.
 % simultaneously.  Need an interface that allows learned models to be
 % used by control system.  Challenges: (1) overhead and (2) formal
 % guarantees.  
-Our goal is to combine learning and control to ensure performance
-requirements are met with minimal energy in complex and dynamic
-environments.  To meet this goal, we present \SYSTEM{},
-\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning for
-  \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
+We want the benefits of both learning and control to ensure
+performance requirements are met with minimal energy in complex and
+dynamic environments.  Thus, we present
+\SYSTEM{}:\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning
+  for \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
   \textbf{E}fficiency} a \emph{parameter-free} framework for combining
-machine learning and control theory to build resource allocators that
-meet application performance requirements with minimal energy.
+machine learning and control theory to build resource allocators.
 \SYSTEM{} is parameter-free because it automatically tunes all
-internal parameters to customize control to the application under
-management.  In constrast, many solutions require user-specified
-parameters, like learning rate \cite{dubach2010} or poles of
-characteristic equations \cite{ControlWare}.
+internal parameters to customize itself to the application under
+management.  In contrast, parameterized solutions require
+user-specified parameters, like learning rate \cite{dubach2010,more}
+or poles and zeros of characteristic equations
+\cite{ControlWare,more}.
 
-
-\SYSTEM{}'s approach is based on a general abstraction of a control
-system that factors out the parameters that must be learned.  While
-traditional control designs assume all combinations of resource
-configurations have been measured accurately (requiring 100s or 1000s
-of samples \cite{}), \SYSTEM{} assumes that its parameters will be
-tuned by a noisy learning system that estimates key parameters without
-sampling them directly.  The control system's \emph{pole} is a key
-parameter for guaranteeing convergence to the goal.  \SYSTEM{}
-automatically tunes this parameter to guarantee the controller
-converges to the desired performance---even when key parameters are
-estimated rather than directly measured.  Additionally, \SYSTEM{}
-implements its abstractions and self-tuning mechanisms such that the
-expensive learning can be offloaded to another system and the
-controller itself runs in constant---$O(1)$---time.  This separation
-allows the cost of learning to be amortized over multiple devices and
-allows \SYSTEM{} to use \emph{transfer learning} techniques that work
-across devices and applications \cite{transferlearning}; \ie{} those
-that can learn similarities between different applications and
-systems.
-
+\SYSTEM{} creates a general abstraction of a control system that
+factors out the parameters that must be learned.  While traditional
+control designs assume all combinations of resource configurations
+have been measured accurately (requiring 100s or 1000s of samples
+\cite{}), \SYSTEM{} assumes that its parameters will be tuned by a
+noisy learning system that estimates key parameters without directly
+sampling them.  The control system's \emph{pole} is a key parameter
+for guaranteeing convergence to the goal.  \SYSTEM{} automatically
+tunes this parameter to guarantee the controller converges to the
+desired performance---even when key parameters are estimated rather
+than directly measured.  Additionally, \SYSTEM{} implements its
+abstractions and self-tuning mechanisms such that the expensive
+learning can be offloaded to another system and the controller itself
+runs in constant---$O(1)$---time.  Thus, learning's high cost can be
+amortized over multiple devices, while \SYSTEM{} uses \emph{transfer
+  learning} techniques to apply knowledge from multiple devices and
+applications \cite{transferlearning}.
 
 
 \PUNT{
@@ -108,30 +103,29 @@ applications; \ie{} those that can learn similarities between
 different applications and systems.
 }
 
-In fact, the \SYSTEM{} is general enough to allow a wide range of
-learning techniques to be paired with control systems.  So, this
-approach not only provides an advantage over existing individual
-learning and control techniques, it allows us to explore different
-combinations of learning and control to find the best combination.
+\SYSTEM{} is general enough to allow a wide range of learning
+techniques to be paired with control systems.  So, this approach not
+only provides an advantage over existing individual learning and
+control techniques, it allows us to explore different combinations of
+learning and control to find the best combination.
 
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
-To evaluate \SYSTEM{}, we implement it with the learning mechanisms
-running on an x86 server and the control systems working to manage
-heterogeneous ARM big.LITTLE devices.  We compare \SYSTEM{} to
-existing, state-of-the-art learning (including polynomial regression
-\cite{}, the Netflix algorithm \cite{}, and a hierarchical Bayesian
-model \cite{}) and control (including proportional-integral-derivative
-\cite{} and adaptive, or self-tuning \cite{}) techniques.
-Additionally, we compare to a naive combination of learning and
-control that does not account for the confidence interval and standard
-deviation of the learned model.  We set performance goals (in terms of
-latency requirements) for a set of benchmark applications and then
-measure the percentage of time the requirements are violated as well
-as the energy for each application.  We test both \emph{single-app}
-environments, where on application runs alone, and \emph{multi-app}
-environments where other applications unpredictably enter the system
-and compete for resources.  We find that \SYSTEM{} achieves the:
+We evaluate \SYSTEM{} by implementing the learner on an x86 server and
+the controller on heterogeneous ARM big.LITTLE devices.  We compare
+\SYSTEM{} to existing, state-of-the-art learning (including polynomial
+regression \cite{}, the Netflix algorithm \cite{}, and a hierarchical
+Bayesian model \cite{}) and control (including
+proportional-integral-derivative \cite{} and adaptive, or self-tuning
+\cite{}) techniques.  Additionally, we compare to a naive combination
+of learning and control that does not account for the confidence
+interval and standard deviation of the learned model.  We set
+performance goals---as latency requirements---for a set of benchmark
+applications and then measure the percentage of time the requirements
+are violated as well as the energy for each application.  We test both
+\emph{single-app} environments, where an application runs alone, and
+\emph{multi-app} environments where other applications unpredictably
+enter the system and compete for resources.  \SYSTEM{} achieves the:
 \begin{itemize} 
 \item \textit{Most reliable performance:} 
  \begin{itemize} 
@@ -164,15 +158,14 @@ and compete for resources.  We find that \SYSTEM{} achieves the:
 % Contributions, but I decided against bulleted llist for thsi paper
 In summary, control theoretic approaches are well suited to manage
 resources in dynamic environments and machine learning techniques
-accurately model of complex processors.  \emph{To the best of our
-  knowledge, \SYSTEM{} is the first work to combine the two at
+accurately model complex, heterogeneous processors.  \emph{To the best
+  of our knowledge, \SYSTEM{} is the first work to combine the two at
   runtime, ensuring application performance goals without prior
   knowledge of the controlled application.}  Our formal analysis of
-\SYSTEM{}'s convergence guarantees with noisy inputs shows how to
-incorporate learned variance into control theoretic guarantees.  We
-demonstrate the practical benefits of these contributions by
-implementing \SYTSEM{} for mobile/embedded processors to show it
-outperforms individual, state-of-the-art control or learning
-solutions.
+\SYSTEM{}'s convergence despite noisy inputs shows how to incorporate
+learned variance into control theoretic guarantees.  We demonstrate
+the practical benefits of these contributions by implementing
+\SYSTEM{} for mobile/embedded processors to show it outperforms
+individual, state-of-the-art learning or control solutions.
 
 
