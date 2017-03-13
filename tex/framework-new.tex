@@ -7,45 +7,77 @@
   performance target with minimal energy.}
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{figures/ControlLearning.pdf}
-\caption{Overview of \SYSTEM{}.}
-\label{fig:overview}
+  \includegraphics[width=\columnwidth]{figures/Overview.png}
+  \caption{\SYSTEM{} overview.}
+  \label{fig:overview}
 \end{figure}
 
 
-Our goal is control theoretic resource management for streaming
-applications running on embedded or mobile devices, but assuming no
-assume no prior knowledge of the application.  \figref{fig:overview}
-shows \SYSTEM{}'s approach to this problem.  On the local device, a
-generalized control system (GCS) allocates resources to the new
-application to meet its specified performance goal with minimal
-energy.  The GCS starts with a generic resource model, allocates
-resources according to that model, and records performance and power
-for a small number of configurations.  The recorded values are sent to
-a remote server which runs a hierarchical Bayesian model (HBM).  The
-HBM estimates the application's performance and power in all other
-configurations and extracts those that are Pareto-optimal in the
-performance/ power tradeoff space.  These configurations are packaged
-in a special data structure -- the performance hash table (PHT) -- and
-sent to the GCS.  Using the PHT, the GCS selects an energy minimal
-resource configuration in constant time ($O(1)$).  The server also
-sends back the model's variance, which the GCS uses to customize
-control to the model's uncertainty. By communicating variance,
-\SYSTEM{} guarantees convergence to the performance goal even though
-it starts with no prior knowledge of the streaming application.
+We describe \SYSTEM{}'s parmeter-free resource management system,
+which assumes no prior knowledge of the application and requires no
+user-specified parameters.  \figref{fig:overview} shows \SYSTEM{}'s
+approach to this problem.  A generalized adaptive control system (GCS)
+allocates resources to the new application to meet its specified
+performance goal with minimal energy.  The GCS starts with a generic
+resource model, allocates resources according to that model, and
+records performance and power for a small number of configurations.
+The recorded values are sent to a learning system, which estimates the
+application's performance and power in all other configurations and
+extracts those that represent Pareto-optimal tradeoffs in
+performance/power.  These configurations are packaged in a special
+data structure---the performance hash table (PHT).  The learner sends
+the PHT, the estimated variance, and a confidence interval to the
+control system.  Using these values, the GCS selects an energy minimal
+resource configuration in constant time with formal guarnatees that it
+will converge to the desired performance.
 
-\PUNT{
-The remainder of this section details \SYSTEM{}.  We begin by
-describing a typical control design for a computer system and
-illustrate how it fails to generalize.  We then describe \SYSTEM{}'s
-generalized control system.  Next we discuss how \SYSTEM{} turns the
-generalized control signal into specific resource configurations using
-a model.  We then describe how to use a hierarchical Bayesian model to
-estimate resource performance and power tradeoffs.  We then describe
-the performance hash table that encodes the learned model. We conclude
-with some brief analysis of the approach, with detailed analysis
-provided in an appendix.
-}
+\begin{figure}
+  \includegraphics[width=\columnwidth]{figures/Timeline.png}
+  \caption{Temporal relationship of the learning and control system.}
+  \label{fig:timeline}
+\end{figure}
+
+\figref{fig:timeline} illustrates the asynchronous interaction between
+\SYSTEM{}'s learning and control systems over time. The controller
+starts when a new application launches with a performance goal.  Since
+the controller has no prior knowledge of this application it starts
+with a generic system model and allocates resources to the application
+using this model.  At application launch, the controller sends a
+message to the learner (message 1, in the figure) specifying the
+application name and device type.  Based on the application and
+device, the learner determines how many samples it needs for an
+accurate estimate and sends this back to the controller (message 2).
+The controller takes these samples during the course of applying the
+generic model to determine resource configurations.  Once the correct
+number of samples are measured, the controller sends the learner a
+message with the performance and power of each measured configuration
+(message 3).  Computationally expensive learners may require some time
+to build a model from these observations.  Once the learner has a
+model and variance estimate, that data is sent back to the controller
+(message 4). From that point on, the controller uses this learned model.  
+
+\figref{fig:timeline} shows several key points about the relationship
+between learning and control.  First, the controller never waits for
+the learner---it uses a generic model to provide less efficient
+control until the learner can produce a customized model. Second, the
+controller does not need to conintuously communicate with the learner,
+this interaction happens once at application launch.  Third, if the
+learner crashed, the controller would just default to the behavior of
+a generic adaptive control system.  If the learner crashed after
+producing a model, the control might not even need to know.  Finally,
+because the learner and controller have a clearly defined interface,
+they can be run in separate processes or even on physically separate
+devices.
+
+In the remainder of this section, we first describe a typical adaptive
+control system would look like if designed for a heterogeneous
+processor.  We then describe how we generalize this approach and
+separate out parameters to be learned.  Next, we describe the general
+class of learning systems that can work with this approach.  Then, we
+describe how to encode the learned model so that it can be efficiently
+accessed by the controller.  Finally, we discuss the formal guarantees
+provided by the \SYSTEM{} approach.
+
 
 \subsection{Traditional Control for Computing}
 \PUNT{
