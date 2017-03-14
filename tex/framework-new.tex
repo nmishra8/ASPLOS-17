@@ -80,114 +80,90 @@ provided by the \SYSTEM{} approach.
 
 
 \subsection{Traditional Control for Computing}
-\PUNT{
-A controller has a performance goal (corresponding to a
-quality-of-service or real-time constraint) and adjusts system resource
-usage to see that the goal is met. Following is the general formulation for a controller, where the response is assumed to be linearly related to the effect.
+Several researchers have proposed techniques for controlling computing
+systems.  A controller that can manage multiple resources to meet
+multiple goals is known as a multiple-input, multiple-ouput (MIMO)
+controller.  The inputs are measurements, \eg{} performance.  The
+outputs are the resource settings to be used at a particular time,
+\eg{} an allocation of big and LITTLE cores and a clockspeed for each.
+
+The following difference equations describe a generic MIMO controller
+for allocating $n$ resources to meet $m$ goals at time
+$t$:\footnote{We assume discrete time, and thus, use diffference
+  equations rather than differential equations that would be used for
+  continuous systems.}
 \begin{equation}
-  effect(t) = \alpha \cdot response(t-1) + \delta \label{eqn:clock}
+\begin{aligned}
+&\x(t+1) &=& \mathbf{A} \cdot \x(t)& + \mathbf{B} \cdot \mathbf{c}(t)\\
+&\y(t)   &=& \mathbf{C} \cdot \x(t)&
+\end{aligned}
+\label{eqn:system:mimo}
 \end{equation}
-A control system might adjust processor frequency to ensure that a performance
-goal is met \cite{lefurgy2008power}.  Even better, an optimal controller would
-use the minimal clockspeed to meet the performance requirement.
+Where $\x \in \R^{q}$ is the controller's \emph{state}, an abstract
+representation of the relationship between resources.  $\mathbf{c}(t)
+\in \R^n$ is a vector representing the current \emph{configuration} of
+resources; \ie{} the $i$th vector element represents the amount of
+resource $i$ to be allocated at time $t$.  $\y(t) \in \R^{m}$
+represents the current value of the goal dimensions at time $t$. The
+matrices $\mathbf{A} \in \R^{q \times n}$ and $\mathbf{B} \in \R{q
+\times n}$ relate the resource configuration to the controller state.
+The matrix $\mathbf{C}$ relates the controller state to the expected
+behavior.  This model does not assume the states or the resources are
+independent, but it does assume that their relationship is linear.  
 
+For example, to allocate resources to meet performance goals in our
+ARM big.LITTLE system---from \secref{example}---there are four
+resources: the number of big cores, the number of LITTLE cores, and
+the speeds for each of the big and LITTLE cores.  There is also a
+single goal: performance.  Thus, in this example, $n=4$ and $m=1$.
+The matrices $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$.  In this
+example, we know there is a non-linear relationship between the
+resources.  We can overcome this difficulty by tuning the identified
+matrices at each time step---approximating the non-linear system
+through a series of changing linear formulations.  This approximation
+is a form of \emph{adaptive} or \emph{self-tuning} control
+\cite{adaptiveControl}.  Such adaptive controllers provide formal
+guarantees that they will converge to the desired performance even in
+the face of non-linearities, but they still assume convexity.
 
-To turn clockspeed into performance a controller needs a model
-relating these two values.  A physical model, directly mapping clockspeed to performance
-is difficult -- a hypothetical model might account for instruction
-mixes, memory hierarchy, memory latency, synchronization overheads,
-etc.  Building such a model is tedious and error-prone process and
-that is before we address system dynamics (\eg applications
-transitioning from memory to compute bound).  Instead, control systems
-use relatively simple difference models\footnote{Continuous time
-  systems would use differential equations, but as time in computers
-  is inherently discretized we restrict ourselves to discussion of
-  difference equations which are appropriate for discrete time
-  systems.}.
-}
+This control formulation has several drawbacks.  First, because it
+requires matrix computation, its overhead scales linearly in the
+number of resources \cite{Hellerstein2004a,METE}.  Second, the
+adaptive mechanisms are not parameter-free---they require starting
+values of the matrices $\mathbf{A}$, $\mathbf{B}$, and
+$\mathbf{C}$---these inital values must be provided by the user and
+they must account for non-linearity in the relationship between
+resources \cite{POET,METE,AdaptiveControl}.  Therefore, typically 100s
+to 1000s of samples are taken before the controller is designed to
+ensure that the starting matrices are sufficient to prevent the
+controller from getting stuck in a local optima \cite{FSE2015,sysid}.
+Finally, these techniques cannot minimize energy.  While
+\emph{optimal} control techniques exist, they find the minimal change
+in resources that can meet the goal; \ie{} they cannot minimize some
+other function of the resources, like energy consumption
+\cite{josep-isca2016,Hellerstein2004a,optimal-control}.
 
-%example difference model -- built into the controller
+\subsection{\SYSTEM{} Control System}
+To overcome the above issues, \SYSTEM{} abstracts the controller of
+\eqnref{system:mimo} and factors out those parameter that can be
+estimated by a learner.  Specifically, \SYSTEM{} takes three steps to
+transform a standard control system into one that can allocate
+resources to meet a performance goal with minimal energy.  The first
+step is controlling \emph{speedup} rather than directly controlling
+resources.  The second step is to translate speedup into an energy
+minimal \emph{resource schedule}.  The third step is to exploit the
+structure of this scheduling problem so that it can be solved in
+constant time, assuming a separate learner has produced a model of
+resource performance and power.  The result is that \SYSTEM{}'s
+controller runs in constant time without requiring any user-specified
+parameters.
 
-\PUNT{
-
-Continuing the example of controlling performance with clockspeed, a
-simple model appropriate for control would be to assume that the
-performance is a linear function of the clockspeed:
-\begin{equation}
-  perf(t) = \alpha \cdot clockspeed(t-1) + \delta \label{eqn:clock}
-\end{equation}
-Here, the observed performance $perf(t)$ is predicted as some constant
-$\alpha$ times the clockspeed applied at the previous time step,
-$clockspeed(t-1)$, plus some noise, $\delta$ drawn from a Gaussian
-distribution.  This simple linear difference model ignores low-level
-details like instruction mix, and instead uses feedback, predicting
-behavior of the next time step as a function of the previous time
-step.  Using the relationship of \eqnref{clock}, we can synthesize a
-simple controller that is provably convergent to the desired
-performance:
-\begin{eqnarray}
-  error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clockspeed(t) &=& clockspeed(t-1) - \frac{error(t)}{\alpha}
-  \label{eqn:clock-control}
-\end{eqnarray}
-}
-
-
-Using traditional control design, we can turn LAVAMD's model -- from
-\figref{fig:lavamd_model} -- into a controller.  The model follows
-directly from the linear fit:
-\begin{equation}
-  perf(t) = 2.95 \times 10^{-6} \cdot clock(t-1) + \delta \label{eqn:clock}
-\end{equation}
-This model states the observed $perf(t)$ is the model's slope
-times the clockspeed applied at the previous time step, $clock(t-1)$,
-plus some Gaussian noise $\delta$.  This simple linear difference
-model ignores low-level details like instruction mix, and instead uses
-feedback, predicting behavior of the next time step as a function of
-the previous time step.  Using \eqnref{clock}, we synthesize a simple
-controller that is provably convergent to the $goal$ performance
-\cite{ICSE2014}:
-\begin{eqnarray}
-  error(t) &=& goal - perf(t) \label{eqn:clock-error} \\
-  clock(t) &=& clock(t-1) - \frac{error(t)}{ 2.95 \times 10^{-6}}
-  \label{eqn:clock-control}
-\end{eqnarray}
-
-
-
-% Can we make the model a tunable parameter?
-The controller design in \eqnref{clock-control} provides formal
-guarantees that it will converge to the desired performance ($goal$ in
-\eqnref{clock-error}) and it bounds convergence time.  These
-guarantees, however, are predicated on the model's accuracy; \ie{} how
-well the slope in \figref{fig:lavamd_model} approximates measured
-performance.  This value is highly dependent on the particular
-application under control.  This model will not work for applications
-that are memory-bound and do not speed up with increasing clockspeed.
-As we add more resources to the controller we turn the scalar
-equations of this example into matrix equations
-\cite{METE,josep-isca2016}.  Whether scalar or matrix, the equations
-and the formal guarantees they embody are reliant on accurate models
-of resource interaction.  Since we cannot build one model for all
-applications, we want to tune the control models to individual
-applications.
-
-\subsection{Generalized Control System}
-In the above example, the controller is application-specific because
-it directly incorporates the slope of the model into the control
-equations.  Our goal is to build a controller where those key
-parameters can be tuned online.  To do so, we use the classic computer
-science trick of adding a layer of indirection as illustrated in
-\figref{fig:overview}.  Instead of directly controlling resources
-using an application-dependent model, we will control \emph{speedup}
-and pass that speedup value to a separate module that turns desired
-speedup into an energy-minimal resource configuration using the
-learned models.  We first describe our formulation for controlling
-speedup and then converting that speedup into resource allocations.
+% We first describe our formulation for controlling speedup and then
+% converting that speedup into resource allocations.
 
 \subsubsection{Controlling Speedup}
-Analogous to \eqnref{clock} we write a simple difference model
-relating speedup to performance:
+Instead of the matrix equations of \eqnref{system:mimo}, \SYSTEM{}
+uses a scalar difference model relating speedup to performance:
 \begin{equation}
   perf(t) = b \cdot speedup(t-1) + \delta \label{eqn:speedup}
 \end{equation}
@@ -196,9 +172,9 @@ when all resources are available.  While $b$ is application specific,
 it is easy to measure online, by simply allocating all resources. Such
 a configuration should not violate any performance constraints
 (although it is unlikely to be energy efficient) so it is safe to take
-this measurement without risk of violating performance constraints.
+this measurement.
 
-With this model, the control law is simply:
+With this model, \SYSTEM{}'s control law is simply:
 \begin{eqnarray}
   error(t) &=& goal - perf(t) \label{eqn:speedup-error} \\
   speedup(t) &=& speedup(t-1) - \frac{error(t)}{b}
@@ -207,8 +183,7 @@ With this model, the control law is simply:
 which states that the speedup at time $t$ is a function of the
 previous speedup, the error at time $t$ and the base speed.  This is a
 very simple \emph{deadbeat} controller that provides all the standard
-control theoretic formal guarantees.
-
+control theoretic formal guarantees \cite{ControlHandbook}.
 
 By measuring base speed online while the application runs, we tune the
 controller to a specific application; using this definition of base
@@ -218,22 +193,20 @@ speed, most speedups will be less than one.  We can further generalize
 speedup(t) = speedup(t-1) - \frac{1 - \rho(t)}{b}.error(t)
 \end{equation}
 where $0 \le \rho(t) < 1$ is a pole of the controller's characteristic
-equation.  At small values of $\rho(t)$ the controller will work to
-eliminate error very quickly, but it may overreact to noise or
-inaccuracies in the model.  Larger values of $\rho(t)$ make the system more
-robust at the cost of reduced convergence time.  \emph{Dynamically
-  setting the pole to the HBM's output will be a key of combining
-  control and learning.} First, however, we address the challenging
-problem of converting an abstract speedup into an actual resource
-allocation.
-
+equation.  At small values of $\rho(t)$ the controller will eliminate
+error quickly, but may overreact to noise or model inaccuracies.
+Larger $\rho(t)$ makes the system more robust at the cost of reduced
+convergence time.  \emph{Dynamically setting the pole to account for
+  error in the learned models will be a key of combining control and
+  learning.}  First, however, we address the challenging problem of
+converting an abstract speedup into an actual resource allocation.
 
 \subsubsection{Converting Speedup to Resource Allocation}
-We need to map \eqnref{speedup-control}'s speedup into a resource
+\SYSTEM{} must map \eqnref{speedup-control}'s speedup into a resource
 allocation.  On our example ARM big.LITTLE architecture that
-specifically means mapping speedup into an allocation of big and small
-as well as a speed for both (on our system clocks big and little cores
-separately).
+specifically means mapping speedup into an allocation of big and
+LITTLE cores as well as a speed for both (big and LITTLE cores are in
+separate clock domains).
 
 The primary challenge is that speedups and powerups in real systems are a discrete non-linear
 function of resource usage, while
