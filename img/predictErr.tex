@@ -1,0 +1,42 @@
+
+\tikzset{mark options={mark size=0.1 pt}}
+\pgfplotsset{grid style={dashed,gray}}
+\pgfplotsset{minor grid style={dashed,red}}
+\pgfplotsset{major grid style={dotted,green!50!black}}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        scale only axis,
+        grid=both,
+        height=3cm,
+        width=0.90\columnwidth,
+        xlabel near ticks,
+        xlabel = {},
+        xmin = 0,
+        xmax = 12,
+        xticklabel shift={0pt},
+        x tick label style={rotate=90},
+        xtick={1,2,3,4,5,6,7,8,9,10,11},
+        xticklabels={{\scriptsize $\mathsf{Race-to-idle}$},
+        {\scriptsize $\mathsf{Control}$},
+        {\scriptsize $\mathsf{Online}$},
+        {\scriptsize $\mathsf{Offline}$},
+        {\scriptsize $\mathsf{Nuclear}$},
+        {\scriptsize $\mathsf{HBM}$},
+        {\scriptsize $\mathsf{Caloree-NP}$},
+        {\scriptsize $\mathsf{Adapt-Control}$},
+        {\scriptsize $\mathsf{Online-Adapt}$},
+        {\scriptsize $\mathsf{Nuclear-Adapt}$},
+        {\scriptsize $\mathsf{HBM-Adapt}$}},
+        ylabel = Prediction Error (\%),
+        %ymax = 0.15,
+        %ymin = -0.15,
+        %ytick={-0.15,-0.10,-0.05,0,0.05,0.10,0.15},
+        %yticklabels={,-10,,0,,10,},
+        ytick pos=left
+        ]
+        \addplot[color = green,mark=diamond*, only marks ,thick,] table[x index=0,y index=3, col sep=tab] {img/predictErr.txt};
+        \addplot[only marks, blue, mark=diamond*, mark options={green}, error bars/.cd,y dir=minus,  y explicit] table [x index=0, y index=3, y error index=2]  {img/predictErr.txt};
+        \addplot[blue, only marks, mark=diamond*, mark options={green}, error bars/.cd,y dir=plus,  y explicit] table [x index=0, y index=3, y error index=4]  {img/predictErr.txt};
+    \end{axis}
+\end{tikzpicture}

@@ -92,11 +92,7 @@ data we determine the optimal configuration for stream iteration and
 performance target. To compare across applications, we normalize
 energy:
 \begin{equation}
-<<<<<<< HEAD
-  normalized\,energy = 100\% . \lparen  \frac{e_{measured}}{e_{optimal}}  - 1 \rparen
-=======
   normalized\,energy = 100\% . \left( \frac{e_{measured}}{e_{optimal}} - 1 \right)
->>>>>>> 5a87906bd27ff4519722f717b300de4625f6eead
 \end{equation}
 where $e_{measured}$ is measured energy and $e_{optimal}$ is the optimal energy
 produced by our oracle. We subtract 1, so that this metric shows the
@@ -160,7 +156,7 @@ the models, and then test on $x$.
 %Setup
 \begin{figure}[!h]
 \centering
-  \input{img/single-app-summary2.tex}
+  \input{img/single-app-summary2-v3.tex}
    \vskip -.5em
   \caption{Summary data for single-app scenario.}
   \label{fig:single-sum}
@@ -227,7 +223,7 @@ significant improvement.
 \subsection{Performance and Energy for Multiple Apps}
 \begin{figure}[!h]
 \centering
-  \input{img/multi-app-summary2.tex}
+  \input{img/multi-app-summary2-v3.tex}
    \vskip -.5em
   \caption{Summary data for multi-app scenario.}
   \label{fig:multi-sum}
@@ -417,7 +413,7 @@ online model improves but still does not meet \SYSTEM{}'s accuracy for
 the same number of samples.
 
 \begin{figure}[t]
-  \input{img/sample-accuracy.tex}
+  \input{img/sample-accuracy-v3.tex}
    \vskip -.5em
   \caption{Estimation accuracy versus sample size.}
   \label{fig:sensitivity}
