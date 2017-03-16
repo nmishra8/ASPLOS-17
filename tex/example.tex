@@ -1,12 +1,13 @@
 \section{Background and Motivation}
 \label{sec:example}
 
+\PUNT{
 We first demonstrate how learning addresses complexity, while even
 advanced, adaptive controllers cannot.  We then show how control
 theory handles system dynamics.  We conclude this section by
 demonstrating what can go wrong when a controller incorporates a
 learned model without proper tuning.
-
+}
 Many machine learning approaches estimate the most energy efficient
 set of resources to allocate to an application.  These include
 \emph{offline} techniques that build models using a training set and
@@ -17,7 +18,9 @@ dynamically as an application runs
 \cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.  Finally,
 \emph{hybrid} techniques combine offline modeling with online model
 updates \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
-  wu2012inferred,LEO}.  Machine learning is well suited to building
+  wu2012inferred,LEO}.  
+
+Machine learning is well suited to building
 models of complicated systems like heterogeneous ARM big.LITTLE
 systems.  These processors have two different core types including:
 four big high-performance cores and four LITTLE energy efficient
@@ -38,10 +41,8 @@ encoded in the controller's design---making a controller for video
 playback unsuitable for controlling GPS navigation.  Some prior work
 has generalized adaptive control design by exposing key parameters to
 users so that the controller can be customized for a user's needs
-\cite{ControlWare,POET}.  These parameterized models are highly
-sensitive to user specified parameters and can fail to converge to the
-desired performance if there is unmodeled non-convexity in the
-relationship between resources and performance.  \PUNT{This limitation
+\cite{ControlWare,POET}.  
+This provides greater flexibility to the users but the controller can still fail to converge to the desired performance if there is mischaracterization in the relationship between resources and performance.  \PUNT{This limitation
   is why existing adaptive control approaches are built for specific
   classes of applications---specializing for the class accounts for
   common non-convexities of that class.}
