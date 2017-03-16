@@ -42,7 +42,7 @@ playback unsuitable for controlling GPS navigation.  Some prior work
 has generalized adaptive control design by exposing key parameters to
 users so that the controller can be customized for a user's needs
 \cite{ControlWare,POET}.  
-This provides greater flexibility to the users but the controller can still fail to converge to the desired performance if there is mischaracterization in the relationship between resources and performance.  \PUNT{This limitation
+This provides greater flexibility to the users but the controller can still fail to converge to the desired performance if there is mis-characterization in the relationship between resources and performance.  \PUNT{This limitation
   is why existing adaptive control approaches are built for specific
   classes of applications---specializing for the class accounts for
   common non-convexities of that class.}
@@ -103,10 +103,8 @@ This provides greater flexibility to the users but the controller can still fail
   \label{fig:learning-models1}
 \end{figure}
 
-We demonstrate how well learning manages complexity by considering a
-performance requirement for \texttt{STREAM} on our ARM big.LITTLE
-processor, which has the complicated configuration space illustrated
-in \figref{fig:STREAM_contour}.  This memory-bound application has
+We demonstrate how well learning complex performance vs resource relationship for \texttt{STREAM} as illustrated in \figref{fig:STREAM_contour} on our ARM big.LITTLE
+processor, can improve resource management for the application.  This memory-bound application has
 complicated behavior: due to memory pressure, the LITTLE cores' memory
 hierarchy cannot deliver the required performance.  The big cores'
 more powerful memory system delivers much greater performance, but the
@@ -121,22 +119,18 @@ efficient configuration, it simply needs to maintain it.  \TODO{We
   should change the levels in the contour so there is a clear maximum
   at 3 cores and a middle clock speed.}
 
-We use both a hierarchical Bayesian \emph{learning} model \cite{LEO}
-and an \emph{adaptive control} system \cite{POET} to meet a
-performance requirement with minimal energy.  The \emph{learning}
+The \emph{learning}
 approach estimates the application's performance and power for all
 configurations and then uses the lowest power configuration that
 delivers the required performance.  The \emph{adaptive controller}
 begins with a generic model of power/performance tradeoffs.  As the
-controller runs, it continually measures performance and adjusts both
-allocated resources and its internal models to tailor its response to
-the current application.  While many controllers use linear models,
+controller runs, it continually measures performance and adjusts the
+allocated resources and its own parameters in response to
+the running application.  While many controllers use linear models,
 this adaptive controller dynamically adjusts to non-linearities with a
 series of linear approximations; however, the adaptive controller is
 sensitive to local maxima, which can cause oscillations and prevent
-the controller from meeting the requirement.
-
-\figref{STREAM_timeline} shows 20 iterations of \texttt{STREAM}.  The
+the controller from meeting the requirement. \figref{fig:STREAM_timeline} shows 20 iterations of \texttt{STREAM}.  The
 x-axis shows iteration number and the y-axis shows performance
 normalized to the requirement.  The learning approach achieves the
 goal, but the adaptive controller oscillates wildly around it,
@@ -208,15 +202,13 @@ We now consider a dynamic environment.  We begin with
 Halfway through its execution, we launch a second
 application---\texttt{STREAM}---on a single big core, dynamically
 altering resource availability. \texttt{bodytrack}'s behavior is
-simpler than \texttt{STREAM} as shown in
-\figref{fig:BODYTRACK_contour}; it achieves its best performance on 4
-big cores at the maximum clockspeed.  The challenge of allocating
-resources for this application is determining how much work to do on
-the LITTLE cores (to conserve energy) while still meeting the
-performance requirements.  The relationship between LITTLE and big
-core performance is non-linear. 
+shown in \figref{fig:BODYTRACK_contour}; it achieves its best performance on 4
+big cores at the maximum clockspeed. Additionally the 4 LITTLE core 
+can offer high performance at much lower energy consumption.  
+The challenge of allocating resources for this application is determining how to split time between the LITTLE cores and big cores to conserve energy while still meeting the
+performance requirements.  
 
-\figref{bodytrack_timeline} shows the results of this experiment.  The
+\figref{fig:BODYTRACK_timeline} shows the results of this experiment.  The
 vertical dashed line---at frame 99---represents when the second
 application begins.  The figure clearly shows the benefits of the
 adaptive control system in this dynamic scenario.  When the second
@@ -234,9 +226,10 @@ impractical due to high overhead\cite{pargon,LEO}.
 
 
 \subsection{Challenges of Parameter-free Control}
+\PUNT{
 The learner illustrated above is parameter-free; \ie{} it has no
-user-specifed parameters, but estimates all values from measurements.
-The controller, in contrast, requires some user-specified parameters.
+user-specifed parameters, but estimates all values from measurements.}
+The controller as we mentioned in earlier section requires some user-specified parameters.
 \SYSTEM{}'s goal is to provide a parameter-free approach that provides
 the same formal guarantees as a controller with user-specified
 parameters.
@@ -271,7 +264,7 @@ the pole is typically a user-specified parameter.
 
 \figref{fig:not-simple} shows the results.  The system with the
 carefully tuned pole converges because the pole accounts for the error
-in the learned model.  The system with the default pole, however
+in the learned model. The pole parameterizes the inertia of the system as how fast should the system change in presence of dynamic environment. If the estimated model is too noisy, the controller should trust the model less and move less frequently even though that might results in slower convergence. On the other hand, the system with the default pole, however
 oscillates around the performance target, resulting in a number of
 missed deadlines.  In addition, the frames that exceed the desired
 performance waste energy because they spend much more time on the big,
@@ -282,6 +275,6 @@ and control that abstracts the controller's key parameters, so they
 can be learned while the system runs.  Rather than have a user
 carefully tune the pole, \SYSTEM{} incorporates the learner's
 confidence interval and estimated variance to compute a pole that
-provides proabilistic convergence guarantees.  
+provides probabilistic convergence guarantees.  
 
 
