@@ -300,57 +300,15 @@ solving \eqnsref{s1}{s2}, \SYSTEM{} has turned the controller's
 speedup into a schedule of resource allocations using learned models
 of speedup and powerup.
 
-\subsection{\SYSTEM{} Learning Requirements}
+\subsection{\SYSTEM{} Learning Algorithms}
 The previous subsection describes a general control system, which can
 be customized with a number of different learning methods.  The
 requirements on the learner are 1) that it must produce estimates of
 the speedup and powerup values stored in the PHT and 2) that it
-produce an estimate of its own inaccuracy. We also provide a proxy for self tuning parameter in the later sections in case the learning algorithm cannot provide the confidence interval. This section describes the
-general class of learning mechanisms that meet these requirements.
-
-\subsubsection{Regression models}
-In general, all machine learning techniques take observations of some
-phenomena and turn them into a model to predict future outcomes.  In
-our specific case, we want to take observations about application's
-performance and power given a resource allocation and predict how
-future application's will perform or how different resource
-allocations will affect the current application. The most straightforward approach 
-is to create a linear regression model based on the configuration laid 
-out as the input features. In order to learn this model, we require some samples
-for different configurations and performance level. Since the systems are usually non-linear,
-polynomial regression model might give better results which might increase the number of samples
-required to fit the model. Moreover, linear regression models provide confidence interval for their estimates 
-which can be useful information for the pole.
-
-\subsubsection{Netflix Algorithm}
-Our previous algorithm depends on information on features of each 
-configuration to estimate the performance as a function of those features. 
-Another interesting construction can be \textit{transfer learning}; which means 
-we use the knowledge from one scenario to a new similar problem. 
-Netflix problem is a famous challenge posted by Netflix to find what movies 
-their different users are going to like. The trick was to identify 
-the structure that if 2 users like some movies they might also have 
-similar taste in other movies. Thus is allows us to borrow large amount of data from
-other users to answer some questions about a new user.
-One of the 
-solutions in designing this mathematically is to say the the matrix of 
-users vs movies is low rank and solve the problem using mathematical optimization techniques.\cite{delimitrou2013paragon} have used this algorithm to put 
-such structure over different applications configuration space, thereby 
-saying that if two applications behave similarly over one configuration they might have similar behavior over other configurations. 
-
-
-\subsubsection{Bayesian Models}
-
-In this work, we use a hierarchical Bayesian model (HBM) to turn
-observations of applications' performance and power into predictions
-about how other, unobserved resource allocations will alter that
-performance and power.  We use a HBM because it provides a
-statistically sound framework for learning across applications and
-devices.  The HBM is also well suited to learning the complicated
-tradeoff spaces that arise from heterogeneity in modern mobile
-processors.
-
-When selecting a learning framework we must find a tradeoff between
+produce an estimate of its own inaccuracy. 
+%We also provide a proxy for self tuning parameter in the later sections in case the learning algorithm cannot provide the confidence interval. 
+This section describes the
+general class of learning mechanisms that meet these requirements. When selecting a learning framework we must find a tradeoff between
 the specific and the general; \ie between frameworks that build
 application-specific models and frameworks that combine observations
 across applications.  For example, the key to energy efficiency on
@@ -364,17 +322,9 @@ refer to application-specific models as \emph{online} because they
 build models for the current application and do not incorporate
 knowledge of other applications.  We refer to general models as
 \emph{offline} as they use prior observations of other applications to
-predict the behavior of a new application.  
-
-The HBM provides a good balance between the online and offline
-approaches.  The key differences between these three approaches are
-illustrated in \figref{learning-models}. In this figure, circles
-represent random variables, directed edges show conditionally
-dependent relationships, and shading represents observability.  A dark
-circle means we have seen all the data, a shaded circle means we have
-some partial observations, and the white circle means that the
-variable is unobservable.  The models we are trying to learn
-are unobservable.  A strictly online approach will handle each new
+predict the behavior of a new application. The third class of models which take 
+can combine information from the previously seen applications and current application to make the predictions on the application in hand. The HBM provides a good balance between the online and offline
+approaches.   A strictly online approach will handle each new
 application completely separately and ignore observations of previous
 applications.  This approach never risks contaminating a model with
 unrelated observations, but it may take many observations of the
@@ -384,7 +334,64 @@ applications and will therefore converge very quickly; however, it is
 overly general and cannot learn features specific to a single
 application.
 
-The HBM (illustrated in \figref{HBM}) is a good compromise.  Each
+\subsubsection{Regression models}
+In general, all machine learning techniques take observations of some
+phenomena and turn them into a model to predict future outcomes.  In
+our specific case, we want to take observations about application's
+performance and power given a resource allocation and predict how
+future application's will perform or how different resource
+allocations will affect the current application. The most straightforward approach 
+is to create a linear regression model based on the configuration laid 
+out as the input features. In order to learn this model, we require some samples
+for different configurations and performance level. Since the systems are usually non-linear,
+polynomial regression model might give better results which might increase the number of samples
+required to fit the model. Moreover, linear regression models provide confidence interval for their estimates 
+which can be useful information for the pole. 
+
+\subsubsection{Transfer learning}
+
+Our previous algorithm depends on information on features of each 
+configuration to estimate the performance as a function of those features. 
+Another interesting construction can be \textit{transfer learning}; which means 
+we use the knowledge from one scenario to a new similar problem. To provide intuition we offer a simple example.  Suppose we have
+observed many prior applications, all of which are either completely
+compute-bound or completely memory-bound, and we have an equal number
+of both.  The only resource we can allocate is clockspeed, which will
+increase the performance of compute-bound applications, but not
+memory-bound ones.  When we need to work with a new application, we
+need to estimate its response to clockspeed.  The online model will
+not use prior knowledge, but will observe many different clock speeds
+for the new application, leading to high overhead.  The offline model
+will predict the mean response of prior applications, meaning it will
+over-allocate speed to memory-bound applications and under-allocate to
+compute-bound ones.  The transfer learning approach will take a small number of observations
+and then the prediction will combine those with prior knowledge: if
+the new observations show that clockspeed has no effect on performance
+these models will use only the prior memory bound applications to build its
+model, otherwise, it will use the compute-bound applications.  
+
+
+
+\paragraph{Netflix Algorithm:}
+Netflix problem is a famous challenge posted by Netflix to find what movies 
+their different users are going to like. The trick was to identify 
+the structure that if 2 users like some movies they might also have 
+similar taste in other movies. Thus is allows us to borrow large amount of data from
+other users to answer some questions about a new user.
+One of the 
+solutions in designing this mathematically is to say the the matrix of 
+users vs movies is low rank and solve the problem using mathematical optimization techniques.\cite{delimitrou2013paragon} have used this algorithm to put 
+such structure over different applications configuration space, thereby 
+saying that if two applications behave similarly over one configuration they might have similar behavior over other configurations. 
+
+
+\paragraph{ Bayesian Models:} In this work, we use a hierarchical Bayesian model (HBM) to turn observations of applications' performance and power into predictions
+about how other, unobserved resource allocations will alter that
+performance and power.  An HBM provides a
+statistically sound framework for learning across applications and
+devices.  The HBM is also well suited to learning the complicated
+tradeoff spaces that arise from heterogeneity in modern mobile
+processors. In this Bayesian network, each
 application has its own model, allowing specificity, but these models
 are conditionally dependent on some underlying probability
 distribution with a hidden mean and co-variance matrix.  In practice,
@@ -397,24 +404,7 @@ increases as more applications are observed because more different
 types of behavior are represented in the pool of prior knowledge.  Of
 course, the computational complexity of learning also increases with
 increasing applications, but this is why we offload the learning to a
-remote server.
-
-To provide intuition we offer a simple example.  Suppose we have
-observed many prior applications, all of which are either completely
-compute-bound or completely memory-bound, and we have an equal number
-of both.  The only resource we can allocate is clockspeed, which will
-increase the performance of compute-bound applications, but not
-memory-bound ones.  When we need to work with a new application, we
-need to estimate its response to clockspeed.  The online model will
-not use prior knowledge, but will observe many different clock speeds
-for the new application, leading to high overhead.  The offline model
-will predict the mean response of prior applications, meaning it will
-over-allocate speed to memory-bound applications and under-allocate to
-compute-bound ones.  The HBM will take a small number of observations
-and then the prediction will combine those with prior knowledge: if
-the new observations show that clockspeed has no effect on performance
-the HBM will use only the prior memory bound applications to build its
-model, otherwise, it will use the compute-bound applications.  In
+remote server. In
 practice, the HBM can learn much more complicated tradeoffs by
 combining observations of the new application with prior knowledge of
 different types of behavior.
