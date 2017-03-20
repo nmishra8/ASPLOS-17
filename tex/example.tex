@@ -31,7 +31,6 @@ relationship between resources and performance.  This practice means
 users must not only be experts in their application domain, but must
 also have sufficient control knowledge to specify robust models.
 
-
 \subsection{\emph{Learning} Complexity}
 \begin{figure}
 \centering
@@ -75,23 +74,24 @@ energy efficient configuration, it simply needs to maintain it.
   maximum at 3 cores and a middle clock speed.}
 
 \figref{fig:STREAM_timeline} shows 20 iterations of allocating
-resources to \texttt{STREAM} using both learning and adaptive control.
-The x-axis shows iteration number and the y-axis shows performance
-normalized to the requirement.  The \emph{learning} approach estimates
-the application's performance and power for all configurations and
-uses the lowest power configuration that delivers the required
-performance.  The \emph{adaptive controller} begins with a generic
-model of power/performance tradeoffs.  As the controller runs, it
-measures performance and adjusts both the allocated resources and its
-own parameters in response to online measurements.  While many
-controllers use linear models, this adaptive controller dynamically
-adjusts to non-linearities with a series of linear approximations;
-however, the controller is sensitive to model inaccuracies, which
-cause the oscillations that lead to performance violations.  This
-behavior occurs because the controller's adaptive mechanisms cannot
-handle the STREAM's complexity, a known limitation of adaptive control
-systems \cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s
-ability to model complex behavior is crucial in this example.
+resources to \texttt{STREAM} using both learning \cite{LEO} and
+adaptive control \cite{POET}.  The x-axis shows iteration number and
+the y-axis shows performance normalized to the requirement.  The
+\emph{learning} approach estimates the application's performance and
+power for all configurations and uses the lowest power configuration
+that delivers the required performance.  The \emph{adaptive
+  controller} begins with a generic model of power/performance
+tradeoffs.  As the controller runs, it measures performance and
+adjusts both the allocated resources and its own parameters in
+response to online measurements.  While many controllers use linear
+models, this adaptive controller dynamically adjusts to
+non-linearities with a series of linear approximations; however, the
+controller is sensitive to model inaccuracies, which cause the
+oscillations that lead to performance violations.  This behavior
+occurs because the controller's adaptive mechanisms cannot handle the
+STREAM's complexity, a known limitation of adaptive control systems
+\cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s ability
+to model complex behavior is crucial in this example.
 
 \subsection{\emph{Controlling} Dynamics}
 
