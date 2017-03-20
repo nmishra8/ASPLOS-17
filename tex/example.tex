@@ -1,89 +1,38 @@
 \section{Background and Motivation}
 \label{sec:example}
-
-\PUNT{
-We first demonstrate how learning addresses complexity, while even
-advanced, adaptive controllers cannot.  We then show how control
-theory handles system dynamics.  We conclude this section by
-demonstrating what can go wrong when a controller incorporates a
-learned model without proper tuning.
-}
 Many machine learning approaches estimate the most energy efficient
-set of resources to allocate to an application.  These include
-\emph{offline} techniques that build models using a training set and
-then apply those models to new applications
-\cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,reddiHPCA2013,Paragon,PUPiL}.
+resource allocation for an application.  These include \emph{offline}
+techniques that build models using a training set and then apply those
+models to new applications
+\cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,reddiHPCA2013,Paragon,PUPiL,quasar}.
 Other approaches use \emph{online} techniques that construct models
 dynamically as an application runs
 \cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.  Finally,
 \emph{hybrid} techniques combine offline modeling with online model
 updates \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
-  wu2012inferred,LEO}.  
+  wu2012inferred,LEO}.
 
-Machine learning is well suited to building
-models of complicated systems like heterogeneous ARM big.LITTLE
-systems.  These processors have two different core types including:
-four big high-performance cores and four LITTLE energy efficient
-cores.  The big cores support 19 clock speeds, while the LITTLE cores
-support 14.
-
-Control theory is a collection of mechanisms for maintaining required
-behavior in dynamic systems \cite{Hellerstein2004a}. A subset of these
-mechanisms---known as \emph{adaptive control} or \emph{self-tuning
-  regulators}---are highly resilient to external effects that alter
-behavior.  Adaptive controllers are thus especially useful in
-webservers with fluctuating request rates
+Control theory provides techniques for maintaining desired behavior in
+dynamic systems \cite{Hellerstein2004a}. \emph{Adaptive controllers}
+or \emph{self-tuning regulators} adjust their internal models in
+response to dynamic changes; they are especially useful in webservers
+with fluctuating request rates
 \cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} and multimedia
 applications with dynamically varying inputs
-\cite{TCST,Agilos,grace2}.  Prior control solutions, however, are
-always highly application dependent---with application-specific models
-encoded in the controller's design---making a controller for video
-playback unsuitable for controlling GPS navigation.  Some prior work
-has generalized adaptive control design by exposing key parameters to
-users so that the controller can be customized for a user's needs
-\cite{ControlWare,POET}.  
-This provides greater flexibility to the users but the controller can still fail to converge to the desired performance if there is mis-characterization in the relationship between resources and performance.  \PUNT{This limitation
-  is why existing adaptive control approaches are built for specific
-  classes of applications---specializing for the class accounts for
-  common non-convexities of that class.}
+\cite{TCST,Agilos,grace2}.  Prior adaptive control solutions, however,
+incorporate application-specific models into the control
+implementation---making a controller for a web server unsuitable for
+video playback.  Prior work has generalized adaptive control design by
+exposing key parameters to users who customize control to their needs
+\cite{ControlWare,POET}.  User customization provides greater
+flexibility, but the controller will not converge to the desired
+performance if the custom control models do not accurately capture the
+relationship between resources and performance.  This practice means
+users must not only be experts in their application domain, but must
+also have sufficient control knowledge to specify robust models.
+
 
 \subsection{\emph{Learning} Complexity}
-\PUNT{
-\begin{figure*}
-\centering
-  \subfloat[]
-  {
-    \includegraphics[width=.25\textwidth]{figures/STREAM-contour.png}
-    \label{fig:STREAM_contour}
-  }
-  \subfloat[]
-  {
-    \input{img/STREAM-example-resized.tex}
-    \label{fig:STREAM_timeline}
-  }
-  \subfloat[]
-  {
-    \includegraphics[width=.25\textwidth]{figures/BODYTRACK-contour.png}
-    \label{fig:BODYTRACK_contour}
-  }
-  \subfloat[]
-  {
-    \input{img/BODYTRACK-example-resized.tex}
-    \label{fig:BODYTRACK_timeline}    
-  }
-  \caption{\small \bf (a) Performance for \texttt{STREAM} as a
-    function of configuration.  (b) Managing \texttt{STREAM}'s
-    performance: \emph{Learning} navigates the complicated
-    configuration space, but \emph{control}'s simple model leads to
-    oscillation.  (c) Performance for \texttt{bodytrack} as a function
-    of configuration. (d) Managing \texttt{bodytrack}'s performance
-    when another application starts: \emph{Adaptive Control} detects
-    the change and adjusts, but \emph{Learning} has no mechanism to
-    handle these dynamics. }
-  \label{fig:learning-models1}
-\end{figure*}
-}
-
 \begin{figure}
 \centering
   \subfloat[]
@@ -96,85 +45,55 @@ This provides greater flexibility to the users but the controller can still fail
     \input{img/STREAM-example-resized.tex}
     \label{fig:STREAM_timeline}
   }
-  \caption{\small \bf (a) Performance for \texttt{STREAM} as a
-    function of configuration.  (b) Managing \texttt{STREAM}'s
-    performance: \emph{Learning} navigates the complicated
-    configuration space, but \emph{control} leads to oscillation.}
+  \caption{(a) \texttt{STREAM} performance as a function of
+    configuration.  (b) Managing \texttt{STREAM}'s performance:
+    \emph{Learning} handles the complex configuration space, but
+    \emph{control} oscillates.}
   \label{fig:learning-models1}
 \end{figure}
 
-We demonstrate how well learning complex performance vs resource relationship for \texttt{STREAM} as illustrated in \figref{fig:STREAM_contour} on our ARM big.LITTLE
-processor, can improve resource management for the application.  This memory-bound application has
-complicated behavior: due to memory pressure, the LITTLE cores' memory
-hierarchy cannot deliver the required performance.  The big cores'
-more powerful memory system delivers much greater performance, but the
-peak occurs with 3 big cores.  Furthermore, at low clockspeeds, these
-3 big cores cannot saturate the memory bandwidth, while at high
-clockspeeds the performance drops as the processor overheats and
-triggers thermal management.  For \texttt{STREAM}, the peak speed
-occurs with 3 big cores at 1.2 GHz, and it is not efficient to spend
-any time on the LITTLE cores.  \texttt{STREAM}, however, does not have
-distinct phases, so once a resource allocator finds the most energy
-efficient configuration, it simply needs to maintain it.  \TODO{We
-  should change the levels in the contour so there is a clear maximum
-  at 3 cores and a middle clock speed.}
+We demonstrate how well learning handles complex resource interaction
+for \texttt{STREAM} on an ARM big.LITTLE processor with four big,
+high-performance cores and four LITTLE, energy efficient cores.  The
+big cores support 19 clock speeds, while the LITTLE cores support 14.
 
-The \emph{learning}
-approach estimates the application's performance and power for all
-configurations and then uses the lowest power configuration that
-delivers the required performance.  The \emph{adaptive controller}
-begins with a generic model of power/performance tradeoffs.  As the
-controller runs, it continually measures performance and adjusts the
-allocated resources and its own parameters in response to
-the running application.  While many controllers use linear models,
-this adaptive controller dynamically adjusts to non-linearities with a
-series of linear approximations; however, the adaptive controller is
-sensitive to local maxima, which can cause oscillations and prevent
-the controller from meeting the requirement. \figref{fig:STREAM_timeline} shows 20 iterations of \texttt{STREAM}.  The
-x-axis shows iteration number and the y-axis shows performance
-normalized to the requirement.  The learning approach achieves the
-goal, but the adaptive controller oscillates wildly around it,
-sometimes not achieving the goal and sometimes delivering performance
-that is too high (and wastes energy).  The oscillations occur because
-the controller's adaptive mechanisms cannot handle the non-convexity
-in STREAM's behavior, a known limitation of adaptive control systems
-\cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s ability
-to handle complex behavior is crucial for reliable performance in this
-example.
 
-% This result may be somewhat counter-intuitive.  The problem is that
-% the controller cannot handle \texttt{STREAM}'s complexity.  One way to
-% address this problem would be to build a custom controller just for
-% this application, but that controller would not be useful for other
-% applications.  In contrast, the learner can find the local maxima in
-% the configuration space, and as this application has no phase changes
-% or other dynamics, the one configuration that the learner finds is
-% suitable for the entire application.
+\figref{fig:STREAM_contour} shows the relationship between resources
+and performance for \texttt{STREAM}.  This memory-bound application
+has complicated behavior: due to memory pressure, the LITTLE cores'
+memory hierarchy cannot deliver the required performance.  The big
+cores' more powerful memory system delivers much greater performance,
+but the peak occurs with 3 big cores.  Furthermore, at low
+clockspeeds, these 3 big cores cannot saturate the memory bandwidth,
+while at high clockspeeds the performance drops as the processor
+overheats and triggers thermal management.  For \texttt{STREAM}, the
+peak speed occurs with 3 big cores at 1.2 GHz, and it is not efficient
+to spend any time on the LITTLE cores.  \texttt{STREAM}, however, does
+not have distinct phases, so once a resource allocator finds the most
+energy efficient configuration, it simply needs to maintain it.
+\TODO{We should change the levels in the contour so there is a clear
+  maximum at 3 cores and a middle clock speed.}
+
+\figref{fig:STREAM_timeline} shows 20 iterations of allocating
+resources to \texttt{STREAM} using both learning and adaptive control.
+The x-axis shows iteration number and the y-axis shows performance
+normalized to the requirement.  The \emph{learning} approach estimates
+the application's performance and power for all configurations and
+uses the lowest power configuration that delivers the required
+performance.  The \emph{adaptive controller} begins with a generic
+model of power/performance tradeoffs.  As the controller runs, it
+measures performance and adjusts both the allocated resources and its
+own parameters in response to online measurements.  While many
+controllers use linear models, this adaptive controller dynamically
+adjusts to non-linearities with a series of linear approximations;
+however, the controller is sensitive to model inaccuracies, which
+cause the oscillations that lead to performance violations.  This
+behavior occurs because the controller's adaptive mechanisms cannot
+handle the STREAM's complexity, a known limitation of adaptive control
+systems \cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s
+ability to model complex behavior is crucial in this example.
 
 \subsection{\emph{Controlling} Dynamics}
-
-\PUNT{
-\begin{figure*}
-\centering
-  \subfloat[]
-  {
-    \includegraphics[width=.25\textwidth]{figs/kmeans.png}
-    \label{fig:kmeans_contour}
-  }
-  \subfloat[]
-  {
-    \input{img/kmeans-example-resized.tex}
-    \label{fig:kmeans_timeline}    
-  }
-  \caption{\small \bf (a) Performance for \texttt{kmeans} as a function of
-    configuration.  (b) Managing \texttt{kmeans}' performance when
-    another application starts: \emph{Control} detects the change and
-    adapts, but \emph{learning} has no mechanism to handle these
-    dynamics.}
-  \label{fig:learning-models2}
-\end{figure*}
-} 
-
 
 \begin{figure}
 \centering
@@ -188,93 +107,83 @@ example.
     \input{img/BODYTRACK-example-resized.tex}
     \label{fig:BODYTRACK_timeline}    
   }
-  \caption{\small \bf (a) Performance for \texttt{bodytrack} as a
-    function of configuration. (b) Managing \texttt{bodytrack}'s
-    performance when another application starts: \emph{Adaptive
-      Control} detects the change and adjusts, but \emph{Learning} has
-    no mechanism to handle these dynamics. }
+  \caption{(a) \texttt{bodytrack} performance as a function of
+    configuration. (b) Managing \texttt{bodytrack}'s performance with
+    another application: \emph{control} detects the change (at the
+    vertical dashed line) and immediately adjusts, but \emph{learning}
+    has no mechanism to handle these dynamics. }
   \label{fig:control}
 \end{figure}
 
 
 We now consider a dynamic environment.  We begin with
-\texttt{bodytrack} as the only application running on the system.
-Halfway through its execution, we launch a second
-application---\texttt{STREAM}---on a single big core, dynamically
-altering resource availability. \texttt{bodytrack}'s behavior is
-shown in \figref{fig:BODYTRACK_contour}; it achieves its best performance on 4
-big cores at the maximum clockspeed. Additionally the 4 LITTLE core 
-can offer high performance at much lower energy consumption.  
-The challenge of allocating resources for this application is determining how to split time between the LITTLE cores and big cores to conserve energy while still meeting the
-performance requirements.  
+\texttt{bodytrack} running alone on the system.  Halfway through its
+execution, we launch a second application---\texttt{STREAM}---on a
+single big core, dynamically altering resource availability.
+\figref{fig:BODYTRACK_contour} shows \texttt{bodytrack}'s behavior.
+It achieves the best performance on 4 big cores at the maximum
+clockspeed; the 4 LITTLE cores offer more energy-efficient execution
+at the cost of performance.  For \texttt{bodytrack}, the challenge is
+determining how to split time between the LITTLE and big cores to
+conserve energy while still meeting the performance requirements.
 
-\figref{fig:BODYTRACK_timeline} shows the results of this experiment.  The
-vertical dashed line---at frame 99---represents when the second
-application begins.  The figure clearly shows the benefits of the
-adaptive control system in this dynamic scenario.  When the second
-application starts, the controller detects the change in
-\texttt{bodytrack}'s performance and then changes resource allocation
-(increasing clockspeed and moving bodytrack from 4 to 3 big cores).
-The controller is not aware of the second application, rather it
-observes \texttt{bodytrack}'s performance drop at frame 99 and
-immediately restores performance in the next frame. The learning
-system however, does not have any inherent mechanism to measure the
-change or adapt to the altered performance.  While we could
-theoretically add feedback to the learner and re-estimate the
-configuration space whenever the environment changes, doing so is
-impractical due to high overhead\cite{pargon,LEO}.
+\figref{fig:BODYTRACK_timeline} shows the results of this experiment.
+The vertical dashed line---at frame 99---represents when the second
+application begins.  The figure clearly shows adaptive control's
+benefits in this dynamic scenario.  When the second application
+starts, the controller detects \texttt{bodytrack}'s performance
+dip--rather than detecting the new application specifically---and it
+changes resource allocation (increasing clockspeed and moving
+bodytrack from 4 to 3 big cores).  The learning system however, does
+not have any inherent mechanism to measure the change or adapt to the
+altered performance.  While we could theoretically add feedback to the
+learner and re-estimate the configuration space whenever the
+environment changes, doing so is impractical due to high overhead for
+learners capable of handling this complexity
+\cite{Paragon,quasar,LEO}.
 
 
 \subsection{Challenges of Parameter-free Control}
-\PUNT{
-The learner illustrated above is parameter-free; \ie{} it has no
-user-specifed parameters, but estimates all values from measurements.}
-The controller as we mentioned in earlier section requires some user-specified parameters.
-\SYSTEM{}'s goal is to provide a parameter-free approach that provides
-the same formal guarantees as a controller with user-specified
-parameters.
-
-Perhaps the most essential parameter for a control system is the
-\emph{pole} of its characteristic equation.  Control engineers tune
-the pole to trade control response time for noise sensitivity.
-Following standard control design, the pole is tuned based on a known
-model.  This model may be an abstraction of the full system, but it is
-considered to be ``ground truth'' \cite{Hellerstein2004a}. In a
-computing system ground truth means that all possible configurations
-the controller might select have been directly measured.  \SYSTEM{},
-however, must tune the pole based on an estimated model, which may
-have noise and/or errors.
+The adaptive controller requires user-specified parameters and
+\figref{fig:STREAM_timeline} shows what happens if users get those
+parameters wrong. Perhaps the most essential parameter for a
+controller is the \emph{pole} of its characteristic equation.  Control
+engineers tune the pole with a model---trading response time for noise
+sensitivity.  This model may be an abstraction, but it is considered
+\emph{ground truth} \cite{Hellerstein2004a}, meaning that all possible
+configurations the controller might select have been directly measured
+for some input.  \SYSTEM{}, however, tunes the pole based on an
+estimated model, which may have noise and/or errors.
 
 
+
+%\begin{wrapfigure}{r}{0.5\columnwidth} 
 \begin{figure}
 \centering
 \input{img/BODYTRACK-example2-resized.tex}
-\caption{\small \bf Comparison of existing adaptive control and a
-  naive combination of control and learning.}
+\caption{Comparison of carefully tuned and default poles.}
 \label{fig:not-simple}
 \end{figure}
+%\end{wrapfigure}
+To demonstrate the pole's importance when using a learned model, we
+again control \texttt{bodytrack}, this time using the adaptive
+controller from the previous subsection with a model produced by the
+learner from the first subsection.  We compare the results with a
+carefully tuned pole to those using the default pole provided by the
+controller developers \cite{POET}.
 
-To demonstrate the importance of the pole in the presence of a learned
-model, we again show control of \texttt{bodytrack}, this time using
-the adaptive control system from the previous subsection with a model
-produced by the learner from the first subsection.  We compare the
-control system with a carefully tuned pole to the same system using
-the default pole provided by the controller developers---recall that
-the pole is typically a user-specified parameter.  
-
-\figref{fig:not-simple} shows the results.  The system with the
-carefully tuned pole converges because the pole accounts for the error
-in the learned model. The pole parameterizes the inertia of the system as how fast should the system change in presence of dynamic environment. If the estimated model is too noisy, the controller should trust the model less and move less frequently even though that might results in slower convergence. On the other hand, the system with the default pole, however
-oscillates around the performance target, resulting in a number of
-missed deadlines.  In addition, the frames that exceed the desired
-performance waste energy because they spend much more time on the big,
-inefficient cores than necessary.
-
-The next section describes \SYSTEM{}'s approach to combining learning
-and control that abstracts the controller's key parameters, so they
-can be learned while the system runs.  Rather than have a user
-carefully tune the pole, \SYSTEM{} incorporates the learner's
-confidence interval and estimated variance to compute a pole that
-provides probabilistic convergence guarantees.  
+\figref{fig:not-simple} shows the results.  The carefully tuned pole
+converges because the pole accounts for the learned model's error. The
+default pole, however, oscillates around the performance target,
+resulting in a number of missed deadlines.  Additionally, the frames
+that exceed the desired performance waste energy because they spend
+more time on the big, inefficient cores. The pole parameterizes the
+system's \emph{inertia}---dictating how fast it should react to
+environmental changes.  If the estimated model is noisy, the
+controller should trust it less and move slowly. Rather than require
+users with both computing and control knowledge to tune the pole,
+\emph{\SYSTEM{} incorporates the learner's confidence interval and
+  estimated variance to compute a pole that provides probabilistic
+  convergence guarantees.}
 
 

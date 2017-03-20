@@ -5,23 +5,21 @@
   meet these conflicting goals: (1) \emph{complexity}---modern
   hardware exposes diverse resources with complicated
   interactions---and (2) \emph{dynamics}---performance must be
-  reliable despite unpredictable changes in operating environment or
+  maintained despite unpredictable changes in operating environment or
   input.  Machine learning handles complexity, but does not model
   system dynamics; control theory handles dynamics, but struggles with
-  complex, non-convex resource interaction. We therefore propose
-  \SYSTEM{}, a parameter-free combination of learning and control
-  techniques that automatically adjusts resource usage to meet
-  performance requirements in complex, dynamic environments.
-  \SYSTEM{} includes (1) a control abstraction where key parameters
-  are dynamically estimated by a noisy learning mechanism, (2) an
-  efficient implementation that applies the learned models in constant
-  time, and formal guarantees that the system converges to the
-  required performance. In fact, \SYSTEM{} is the first approach to
-  provide formal convergence guarantees without prior knowledge of
-  application behavior. We implement \SYSTEM{} and test its ability to
-  meet application performance requirements on heterogeneous ARM
-  big.LITTLE architectures---both individually and when other
-  applications dynamically enter the system to compete for resources.
+  complex resource interaction. We therefore propose \SYSTEM{}, a
+  parameter-free combination of learning and control that
+  automatically adjusts resource usage to meet performance
+  requirements in complex, dynamic environments.  \SYSTEM{} includes
+  (1) a control abstraction where key parameters are automatically
+  estimated by a noisy learning mechanism, (2) an efficient
+  implementation that applies the learned models in constant time, and
+  (3) formal guarantees that the system converges to the desired
+  performance without prior knowledge of application behavior. We
+  implement \SYSTEM{} and test its ability to meet application
+  performance requirements on heterogeneous ARM big.LITTLE
+  architectures in both single and multi-application scenarios.
   Compared to state-of-the-art learning and control solutions, we find
   that \SYSTEM{} provides the most reliable performance and the best
   energy efficiency.
