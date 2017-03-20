@@ -30,7 +30,7 @@ grid=both,
         ylabel={\footnotesize \% Latency \\ {\scriptsize (lower is better)}},    
         ytick pos=left
         ]
-        \addplot[color = green,mark=diamond*, only marks ,thick,] table[x index=0,y index=3, col sep=tab] {img/single-lat-summary.txt};
+        \addplot[color = green, mark=diamond*, only marks ,thick,] table[x index=0,y index=3, col sep=tab] {img/single-lat-summary.txt};
         \addplot[only marks, blue, mark=diamond*, mark options={green}, error bars/.cd,y dir=minus,  y explicit] table [x index=0, y index=3, y error index=2]  {img/single-lat-summary.txt};
         \addplot[blue, only marks, mark=diamond*, mark options={green}, error bars/.cd,y dir=plus,  y explicit] table [x index=0, y index=3, y error index=4]  {img/single-lat-summary.txt};
 
