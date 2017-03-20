@@ -1,15 +1,15 @@
 \section{Background and Motivation}
 \label{sec:example}
-Many machine learning approaches estimate the most energy efficient
-resource allocation for an application.  These include \emph{offline}
-techniques that build models using a training set and then apply those
-models to new applications
-\cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,reddiHPCA2013,Paragon,PUPiL,quasar}.
-Other approaches use \emph{online} techniques that construct models
-dynamically as an application runs
-\cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.  Finally,
-\emph{hybrid} techniques combine offline modeling with online model
-updates \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
+Many learning approaches estimate an application's most energy
+efficient resource allocation.  These include \emph{offline}
+techniques that train models and then apply those models to new
+applications
+\cite{Yi2003,LeeBrooks2006,CPR,reddiHPCA2013,PUPiL,quasar}.
+\emph{Online} techniques construct models dynamically as an
+application runs
+\cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.
+\emph{Hybrid} techniques combine offline modeling with online model
+updates \cite{packandcap,Winter2010,dubach2010,Koala,Cinder,
   wu2012inferred,LEO}.
 
 Control theory provides techniques for maintaining desired behavior in
@@ -73,25 +73,23 @@ energy efficient configuration, it simply needs to maintain it.
 \TODO{We should change the levels in the contour so there is a clear
   maximum at 3 cores and a middle clock speed.}
 
-\figref{fig:STREAM_timeline} shows 20 iterations of allocating
-resources to \texttt{STREAM} using both learning \cite{LEO} and
-adaptive control \cite{POET}.  The x-axis shows iteration number and
-the y-axis shows performance normalized to the requirement.  The
-\emph{learning} approach estimates the application's performance and
-power for all configurations and uses the lowest power configuration
-that delivers the required performance.  The \emph{adaptive
-  controller} begins with a generic model of power/performance
-tradeoffs.  As the controller runs, it measures performance and
-adjusts both the allocated resources and its own parameters in
-response to online measurements.  While many controllers use linear
-models, this adaptive controller dynamically adjusts to
-non-linearities with a series of linear approximations; however, the
-controller is sensitive to model inaccuracies, which cause the
-oscillations that lead to performance violations.  This behavior
-occurs because the controller's adaptive mechanisms cannot handle the
-STREAM's complexity, a known limitation of adaptive control systems
-\cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s ability
-to model complex behavior is crucial in this example.
+\figref{fig:STREAM_timeline} shows 20 iterations of both learning
+\cite{LEO} and adaptive control \cite{POET} allocating resources to
+\texttt{STREAM}.  The x-axis shows iteration and the y-axis shows
+performance normalized to the requirement.  The \emph{learning}
+approach estimates \texttt{STREAM}'s performance and power for all
+configurations and uses the lowest energy configuration that delivers
+the required performance.  The \emph{adaptive controller} begins with
+a generic model of power/performance tradeoffs.  As the controller
+runs, it measures performance and adjusts both the allocated resources
+and its own parameters using online measurements.  The adaptive
+controller dynamically adjusts to non-linearities with a series of
+linear approximations; however, it is sensitive to model inaccuracies,
+which cause the oscillations that lead to performance violations.
+This behavior occurs because the controller's adaptive mechanisms
+cannot handle the STREAM's complexity, a known limitation of adaptive
+control systems \cite{ControlWare,POET,ICSE2014}.  Hence, the
+\emph{learner}'s ability to model complex behavior is crucial.
 
 \subsection{\emph{Controlling} Dynamics}
 
@@ -119,13 +117,13 @@ to model complex behavior is crucial in this example.
 We now consider a dynamic environment.  We begin with
 \texttt{bodytrack} running alone on the system.  Halfway through its
 execution, we launch a second application---\texttt{STREAM}---on a
-single big core, dynamically altering resource availability.
+single big core, dynamically changing available resources.
 \figref{fig:BODYTRACK_contour} shows \texttt{bodytrack}'s behavior.
-It achieves the best performance on 4 big cores at the maximum
-clockspeed; the 4 LITTLE cores offer more energy-efficient execution
-at the cost of performance.  For \texttt{bodytrack}, the challenge is
-determining how to split time between the LITTLE and big cores to
-conserve energy while still meeting the performance requirements.
+It achieves the best performance on 4 big cores at the highest
+clockspeed; the 4 LITTLE are more energy-efficient but slower.  For
+\texttt{bodytrack}, the challenge is determining how to split time
+between the LITTLE and big cores to conserve energy while still
+meeting the performance requirements.
 
 \figref{fig:BODYTRACK_timeline} shows the results of this experiment.
 The vertical dashed line---at frame 99---represents when the second
@@ -145,15 +143,15 @@ learners capable of handling this complexity
 
 \subsection{Challenges of Parameter-free Control}
 The adaptive controller requires user-specified parameters and
-\figref{fig:STREAM_timeline} shows what happens if users get those
-parameters wrong. Perhaps the most essential parameter for a
-controller is the \emph{pole} of its characteristic equation.  Control
-engineers tune the pole with a model---trading response time for noise
-sensitivity.  This model may be an abstraction, but it is considered
-\emph{ground truth} \cite{Hellerstein2004a}, meaning that all possible
-configurations the controller might select have been directly measured
-for some input.  \SYSTEM{}, however, tunes the pole based on an
-estimated model, which may have noise and/or errors.
+\figref{fig:STREAM_timeline} shows the consequences of getting those
+parameters wrong. The controller's \emph{pole} is a particularly
+important parameter.  Control engineers tune the pole with a model to
+trade response time for noise sensitivity.  This model may be an
+abstraction but is considered \emph{ground truth}
+\cite{Hellerstein2004a}, meaning all possible resource configurations
+the controller might select have been directly measured for some
+input.  \SYSTEM{}, however, tunes the pole based on an estimated
+model, which may have noise and/or errors.
 
 
 
