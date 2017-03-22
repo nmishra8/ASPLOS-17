@@ -1,0 +1,11 @@
+Race-to-idle,
+        {\scriptsize $\mathsf{Control}$},
+        {\scriptsize $\mathsf{Online}$},
+        {\scriptsize $\mathsf{Offline}$}
+        {\scriptsize $\mathsf{Nuclear}$},
+        {\scriptsize $\mathsf{HBM}$},
+        {\scriptsize $\mathsf{Caloree-NP}$},
+        {\scriptsize $\mathsf{Adapt-Control}$},
+        {\scriptsize $\mathsf{Online-Adapt}$},
+        {\scriptsize $\mathsf{Nuclear-Adapt}$},
+        {\scriptsize $\mathsf{HBM-Adapt}$}},
