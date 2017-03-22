@@ -321,9 +321,7 @@ knowledge of other applications.  We refer to general models as
 predict the behavior of a new application. A third class of
 \emph{transfer learning} models combines information from the
 previously seen applications and current application to make the
-predictions on the application in hand. \TODO{I am assuming it is okay
-  to refer to this third class as transfer learning.  IF so, we need a
-  citation.}
+predictions on the application in hand \cite{pan2010survey} . These models allow us to obtain higher prediction accuracies since we are able to augment our data with extra information from other applications.
 
 % The HBM provides a good balance between the online and offline
 % approaches.  A strictly online approach will handle each new
@@ -336,7 +334,7 @@ predictions on the application in hand. \TODO{I am assuming it is okay
 % overly general and cannot learn features specific to a single
 % application.
 
-\subsubsection{Regression models}
+\subsubsection{Online models}
 \TODO{Is this offline or online or both?  The prior paragraph sets up
   this three-legged structure: offline, online, and something which we
   used to call hybrid but sounds like we are now calling transfer
@@ -351,7 +349,7 @@ model based on the configuration laid out as the input features
 \cite{}. Learning in this model requires samples of the performance
 and power for different resource configurations. Since the systems are
 usually non-linear, polynomial regression models often give better
-results, but increase the number of samples required to fit the model
+results, but increases the number of samples required to fit the model
 \cite{}. Regression models provide a confidence interval for their
 estimates which is important for adaptively tuning the pole.
 
