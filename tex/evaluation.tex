@@ -114,6 +114,8 @@ configuration and then transitions to a low-power sleep state until
 the next job is ready.  We compare \SYSTEM{}'s performance and energy
 with:
 \begin{enumerate}
+\item \textit{Race-to-idle}: \TODO{Add description and citation}
+\item \textit{PID-Control}: \TODO{Add description and citation}
 \item \textit{Online}: observes the new application in small number of
   configurations then performs polynomial multivariate regression to
   estimate unobserved configurations' performance and power. \PUNT{We
@@ -124,12 +126,12 @@ with:
   estimate power and performance as a linear regression. \PUNT{We use
     the \textit{Offline} learning model in combination with
     \emph{Pace-to-idle (P2I)} heuristic.}
-\item \textit{LEO}: is a hierarchical Bayesian learner \cite{LEO}.
+\item \textit{HBM}: is a hierarchical Bayesian learner \cite{LEO}.
 \item \textit{POET}: a state-of-the-art, control system designed to
   meet application performance with minimal energy \cite{POET}.  POET
   requires users to specify a model.  We use POET with the model
   produced by the \emph{Offline} learner.
-\item \textit{CALOREE-NP}: is CALOREE with pole set to 0, which we
+\item \textit{CALOREE-NoPole}: is CALOREE with pole set to 0, which we
   include to show the importance of informing the controller of the
   confidence interval and model variance.
 \end{enumerate}
@@ -196,18 +198,18 @@ energy consumption than the baseline algorithms.
 
 \PUNT{Across all applications and
 targets, the online model produces an average error of 9.8\%, the
-offline: 3.6\%, LEO: 8.0\%, POET: 10.4\%, CALOREE-NP: 6.4\% and
+offline: 3.6\%, LEO: 8.0\%, POET: 10.4\%, CALOREE-NoPole: 6.4\% and
 \SYSTEM{}: 0.5\%.  \SYSTEM{} clearly produces a dramatic error
 reduction compared to prior approaches -- in fact, \SYSTEM{} MAPE is
 generally not visible on the charts.
 
 Regarding energy consumption, the online model requires an average of
-21\% more energy than optimal, offline: 15\%, LEO: 14\%, POET: 24\%,
-CALOREE-NP: 9.5\%, and \SYSTEM{}: 4.1\%.  }
+21\% more energy than optimal, offline: 15\%, HBM: 14\%, POET: 24\%,
+CALOREE-NoPole: 9.5\%, and \SYSTEM{}: 4.1\%.  }
 \SYSTEM{} provides a
 significant energy savings even when compared to state-of-the-art learning
 or control approaches.  The reason is that the combination is
-complementary: LEO produces accurate models while control both can
+complementary: HBM produces accurate models while control both can
 correct small errors in those models and adapt to dynamic changes in
 behavior.  Even without a pole, CALOREE would improve over the
 state-of-the-art, but when the pole is included, the results are a
@@ -249,11 +251,11 @@ cores.  \SYSTEM{} again has lower MAPE than the baseline algorithms.
 
 \PUNT{
 Across all applications and targets, the online model produces an
-average error of 21\%, the offline: 24\%, LEO: 19\%, POET: 7.4\%,
-CALOREE-NP: 11\%, and \SYSTEM{}: 2.8\%. \SYSTEM{} is also more energy
+average error of 21\%, the offline: 24\%, HBM: 19\%, POET: 7.4\%,
+CALOREE-NoPole: 11\%, and \SYSTEM{}: 2.8\%. \SYSTEM{} is also more energy
 efficient than the baseline algorithms. Across all applications and
 targets, the average normalized energy for online model is 22\%, the
-offline: 21\%, LEO: 17\%, POET: 34\%, CALOREE-NP: 13\%, and \SYSTEM{}:
+offline: 21\%, HBM: 17\%, POET: 34\%, CALOREE-NoPole: 13\%, and \SYSTEM{}:
 8.5\%.
 }
 POET and \SYSTEM{} provide more reliable performance because they are
@@ -282,7 +284,7 @@ To demonstrate \SYSTEM{} in this dynamic environment we look at the
 specific example of \texttt{bodytrack} with a 70\% target, shown in
 \figref{fig:bodytrack-multiapp} with time on the x-axis and
 performance/power on the y-axis.  Performance is normalized to the
-target.  There is a curve for each of LEO, POET, and \SYSTEM{}. The
+target.  There is a curve for each of HBM, POET, and \SYSTEM{}. The
 vertical dashed line shows the point where the second application
 starts.
 
@@ -292,7 +294,7 @@ starts.
   starts (on the left of the vertical dashed line) and the times after
   (on the right).}  
 
-Before the second application starts (at the dashed line), both LEO
+Before the second application starts (at the dashed line), both HBM
 and \SYSTEM{} do a good job of tracking the target and keeping energy
 low.  In contrast, POET produces oscillating performance (and thus
 power) because it has a bad model of \texttt{bodytrack}'s LITTLE core
@@ -300,10 +302,10 @@ performance.  This oscillation also results in unnecessary power
 consumption.  After the second application starts, POET and \SYSTEM{}
 recognize the performance has changed and adjust resource usage.
 \SYSTEM{} does a slightly better job tracking the change, producing
-fewer oscillations.  LEO cannot adjust to the change as it computes
+fewer oscillations.  HBM cannot adjust to the change as it computes
 the optimal configuration once at the beginning of the application.
-Overall, LEO produces a MAPE of 13\%, POET's is 9\%, and \SYSTEM{}'s
-is 4\%.  \SYSTEM{} produces better results than LEO because it reacts
+Overall, HBM produces a MAPE of 13\%, POET's is 9\%, and \SYSTEM{}'s
+is 4\%.  \SYSTEM{} produces better results than HBM because it reacts
 to the change; it produces better results than POET because it has
 captured the complex application-specific behavior on this system.
 
@@ -320,13 +322,13 @@ captured the complex application-specific behavior on this system.
 
 \PUNT{
 \subsection{Power and performance estimation}
-We use LEO as described in \secref{sec:framework:HBM} to estimate the
+We use HBM as described in \secref{sec:framework:HBM} to estimate the
 power and performance for the applications using only 10 out of 128
 observations.
 
-Our results are summarized in \figref{fig:accuracy}. LEO is 13.4\%
+Our results are summarized in \figref{fig:accuracy}. HBM is 13.4\%
 better than online and 19.1\% better than offline in terms of
-performance estimation and LEO is 3.7\% better than online and 1.5\%
+performance estimation and HBM is 3.7\% better than online and 1.5\%
 better than offline in terms of power estimation, on average over all
 the benchmarks.
 %Infact, LEO uniformly performs well for all applications with the worst accuracy being YY as compared to offline and online algorithm.
@@ -354,13 +356,13 @@ with time. In \figref{fig:x264-phase-change} we see \texttt{x264}, a
 video encoder application with 2 different phases, where the phase
 change occurs at the $500^{th}$ frame. The first scene is difficult
 and the second one becomes significantly easier. In the first phase,
-\SYSTEM{} and the baseline LEO seem to have lower MAPE as compared to
+\SYSTEM{} and the baseline HBM seem to have lower MAPE as compared to
 POET.  At the same time, these two algorithms seem to consume less
 energy than POET indicating that POET is operating at a configuration
 not on the Pareto frontier of power and performance.  When we change
-phase, \SYSTEM{} and LEO both algorithms are still able to meet the
+phase, \SYSTEM{} and HBM both algorithms are still able to meet the
 performance target with far less fluctuations as compared to POET.
-But, \SYSTEM{} provides better energy savings as compared to LEO.
+But, \SYSTEM{} provides better energy savings as compared to HBM.
 
 
 %}
@@ -374,11 +376,11 @@ presents an analytical argument that tuning the controller to model
 variance and confidence interval will prevent oscillation and provide
 probabilistic control theoretic guarantees.  We now demonstrate this
 empirically by showing LAVAMD's single-app behavior controlled by both
-CALOREE-NP and \SYSTEM{} to meet the 80\% target.
+CALOREE-NoPole and \SYSTEM{} to meet the 80\% target.
 
 \figref{fig:lavamd-pole} shows the results, with time on the x-axis
 and normalized performance and power on the respective y-axis.  As is
-clear from the figure, CALOREE-NP oscillates around the desired
+clear from the figure, CALOREE-NoPole oscillates around the desired
 performance and causes wide fluctuations in power consumption.  In
 contrast, after a brief period of oscillation to adjust to the new
 model, \SYSTEM{} provides reliable performance right at the target
