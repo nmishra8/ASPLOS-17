@@ -33,12 +33,12 @@ yticklabels={,0.5,1.0,1.5,2.0},
 yticklabel style={font=\footnotesize},
 ymin=0,
 ymax=2.0,
-legend entries={{$\mathsf{\SYSTEM{}-NP}$},{{$\mathsf{\SYSTEM{}}$}}},
+legend entries={{$\mathsf{\SYSTEM{}-NP}$},{{$\mathsf{HBM-ADAPT}$}}},
 legend style={draw=none,at={(0.5,1.4)},anchor=north,legend columns=4,line width=5pt},
 ]
 
-\addplot[thick, solid, color=calnp, mark=none,each nth point=5] table[x index=0,y index=1,col sep=space] {img/pole/leo-poet-np-LAVAMD.txt};
-\addplot[thick, solid, color=cal, mark=none,each nth point=5] table[x index=0,y index=1,col sep=space] {img/pole/leo-poet-LAVAMD.txt};
+\addplot[thick, solid, color=CALOREE-NP, mark=none,each nth point=5] table[x index=0,y index=1,col sep=space] {img/pole/leo-poet-np-LAVAMD.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none,each nth point=5] table[x index=0,y index=1,col sep=space] {img/pole/leo-poet-LAVAMD.txt};
 %\addplot[thick, dashed, black] coordinates {(250,0) (250, 2)};
 
 
@@ -53,8 +53,8 @@ xlabel near ticks,
 xticklabels={,0,100,200,300,400,500},
 ]
 
-\addplot[thick, solid, color=calnp, mark=none,smooth,each nth point=5] table[x index=0,y index=2,col sep=space] {img/pole/leo-poet-np-LAVAMD.txt};
-\addplot[thick, solid, color=cal, mark=none,smooth,each nth point=5] table[x index=0,y index=2,col sep=space] {img/pole/leo-poet-LAVAMD.txt};
+\addplot[thick, solid, color=CALOREE-NP, mark=none,smooth,each nth point=5] table[x index=0,y index=2,col sep=space] {img/pole/leo-poet-np-LAVAMD.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none,smooth,each nth point=5] table[x index=0,y index=2,col sep=space] {img/pole/leo-poet-LAVAMD.txt};
 %\addplot[thick, dashed, black] coordinates {(250,0) (250, 6)};
 \end{groupplot}
 \end{centering}

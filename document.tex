@@ -21,6 +21,7 @@
 \usepackage{mathtools}
 \usepackage{algorithm2e}
 \usepackage{algorithmic}
+\usepackage{wrapfig}
 %\usepackage{algorithmicx}
 %\usepackage{algpseudocode}
 
@@ -93,8 +94,31 @@
 \definecolor{leo}{RGB}{72,181,163} 
 \definecolor{poet}{RGB}{249,140,182} 
 \definecolor{calnp}{RGB}{117,137,191}
-%\definecolor{cal}{RGB}{0,255,0} %green
 \definecolor{cal}{RGB}{51,255,51} %green
+
+
+%\definecolor{OPTIMAL}{RGB}{165,15,21}
+%\definecolor{RACE}{RGB}{222,45,38}
+%\definecolor{CONTROL}{RGB}{251,106,74}
+%\definecolor{ONLINE}{RGB}{252,146,114}
+\definecolor{OPTIMAL}{RGB}{0,0,0}
+\definecolor{RACE}{RGB}{165,15,21}
+\definecolor{CONTROL}{RGB}{222,45,38}
+\definecolor{ONLINE}{RGB}{251,106,74}
+%\definecolor{OFFLINE}{RGB}{252,187,161}
+%\definecolor{NUCLEAR}{RGB}{254,229,217}
+%\definecolor{HBM}{RGB}{237,248,251}
+%\definecolor{ADAPT-CONTROL}{RGB}{191,211,230}
+%\definecolor{CALOREE-NP}{RGB}{158,188,218}
+\definecolor{OFFLINE}{RGB}{255,165,0}
+\definecolor{NUCLEAR}{RGB}{249,140,182}
+\definecolor{HBM}{RGB}{159, 169,133}
+\definecolor{ADAPT-CONTROL}{RGB}{51,255,51}
+\definecolor{CALOREE-NP}{RGB}{72,181,163}
+
+\definecolor{ONLINE-ADAPT}{RGB}{140,150,198}
+\definecolor{NUCLEAR-ADAPT}{RGB}{136,86,167}
+\definecolor{HBM-ADAPT}{RGB}{129,15,124}
 
 
 \usepackage{listings}
@@ -217,6 +241,8 @@ tick label style={font=\footnotesize},
 \DeclarePairedDelimiter\Floor\lfloor\rfloor
 \DeclarePairedDelimiter\Ceil\lceil\rceil
 %\newcommand{\minimize}{minimize}
+
+\renewcommand{\paragraph}[1]{\vspace{3pt}\noindent\textbf{#1}}
 \newcommand{\st}{s.t.}
 
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -242,6 +268,16 @@ tick label style={font=\footnotesize},
 \input{tex/conclusion}
 \appendix
 \input{tex/appendix}
+
+\PUNT{
+\begin{figure*}[!t]
+  \input{img/single-app-performance-small.tex}
+   \vskip -.5em
+  \caption{Comparison of application performance error for single application scenario.}
+  \label{fig:single-perf}
+\end{figure*}
+}
+
 \newpage
 \clearpage
 %\bibliographystyle{abbrv}

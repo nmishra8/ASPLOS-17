@@ -1,6 +1,8 @@
 \begin{tikzpicture}
-
-
+%\pgfplotstableread[col sep=space]{img/image_text/dyn-mape-0.5-v2.txt}{\datatablefive}
+\pgfplotstableread[col sep=space]{img/image_text/ma-lat-0.60-v3.txt}{\datatablesixty}
+\pgfplotstableread[col sep=space]{img/image_text/ma-lat-0.75-v3.txt}{\datatableseventyfive}
+\pgfplotstableread[col sep=space]{img/image_text/ma-lat-0.90-v3.txt}{\datatableninty}
 \begin{groupplot}[
     group style={
         group name=plots,
@@ -33,11 +35,10 @@ grid style={dashed},
 ]
 
 
-
 \nextgroupplot[ybar=\pgflinewidth,
 ylabel shift={0mm},
 bar width=2.0pt,
-legend entries = {{$\mathsf{Online}$},{$\mathsf{Offline}$},{$\mathsf{LEO}$},{$\mathsf{POET}$},{$\mathsf{\SYSTEM{}-NP}$},{$\mathsf{\SYSTEM{}}$}},
+legend entries = {{$\mathsf{ONLINE}$},{$\mathsf{HBM}$},{$\mathsf{ADAPT-CONTROL}$},{$\mathsf{\SYSTEM{}-NP}$},{$\mathsf{HBM-ADAPT}$}},
 legend style={draw=none,legend columns=6,at={(.5,1.7)},anchor=north},
 ymin=0,
 ymax=20,
@@ -45,12 +46,12 @@ ytick={0.0,5.0,10.0,15.0,20.0},
 yticklabels={,5.0,10.0,15.0},
 ]
 
-\addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/ma-err-0.5-v2.txt};
-\addplot[color=off,fill=off]  table[x index=0,y index=4, col sep=space] {img/image_text/ma-err-0.5-v2.txt};
-\addplot[color=leo,fill=leo]  table[x index=0,y index=5, col sep=space] {img/image_text/ma-err-0.5-v2.txt};
-\addplot[color=poet,fill=poet]  table[x index=0,y index=6, col sep=space] {img/image_text/ma-err-0.5-v2.txt};
-\addplot[color=calnp,fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/ma-err-0.5-v2.txt};
-\addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/ma-err-0.5-v2.txt};
+\addplot+[color=ONLINE,fill=ONLINE]       table[x index=0,y index=4] {\datatablesixty};
+\addplot[color=HBM,fill=HBM]     table[x index=0,y index=7] {\datatablesixty};
+\addplot[color=ADAPT-CONTROL,fill=ADAPT-CONTROL]   table[x index=0,y index=9] {\datatablesixty};
+\addplot[color=CALOREE-NP,fill=CALOREE-NP] table[x index=0,y index=10] {\datatablesixty};
+\addplot[color=HBM-ADAPT,fill=HBM-ADAPT]     table[x index=0,y index=13] {\datatablesixty};
+                                
 
 \nextgroupplot[ybar=\pgflinewidth,
 ylabel={\footnotesize MAPE  {\scriptsize (lower is better)}},
@@ -62,12 +63,12 @@ ytick={0.0,10.0,20.0,30.0},
 yticklabels={,10.0,20.0,30.0},
 ]
 
-\addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/ma-err-0.7-v2.txt};
-\addplot[color=off,fill=off]  table[x index=0,y index=4, col sep=space] {img/image_text/ma-err-0.7-v2.txt};
-\addplot[color=leo,fill=leo]  table[x index=0,y index=5, col sep=space] {img/image_text/ma-err-0.7-v2.txt};
-\addplot[color=poet,fill=poet]  table[x index=0,y index=6, col sep=space] {img/image_text/ma-err-0.7-v2.txt};
-\addplot[color=calnp,fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/ma-err-0.7-v2.txt};
-\addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/ma-err-0.7-v2.txt};
+\addplot[color=ONLINE,fill=ONLINE] table[x index=0,y index=4] {\datatableseventyfive};
+\addplot[color=HBM,fill=HBM]       table[x index=0,y index=7] {\datatableseventyfive};
+\addplot[color=ADAPT-CONTROL,fill=ADAPT-CONTROL] table[x index=0,y index=9] {\datatableseventyfive};
+\addplot[color=CALOREE-NP,fill=CALOREE-NP]   table[x index=0,y index=10] {\datatableseventyfive};
+\addplot[color=HBM-ADAPT,fill=HBM-ADAPT]       table[x index=0,y index=13] {\datatableseventyfive};
+
 
 \nextgroupplot[ybar=\pgflinewidth,
 bar width=2.0pt,
@@ -101,15 +102,14 @@ xticklabels={
 {\scriptsize $\mathsf{stream_threads}$},
 {\scriptsize $\mathsf{x264-ducks}$},
 {\scriptsize $\mathsf{x264-native}$},
-{\scriptsize $\mathsf{\mathbf{Average}}$}},
+{\scriptsize $\mathsf{Average}$}},
 ]
 
-\addplot[color=on,fill=on]  table[x index=0,y index=3, col sep=space] {img/image_text/ma-err-0.9-v2.txt};
-\addplot[color=off,fill=off]  table[x index=0,y index=4, col sep=space] {img/image_text/ma-err-0.9-v2.txt};
-\addplot[color=leo,fill=leo]  table[x index=0,y index=5, col sep=space] {img/image_text/ma-err-0.9-v2.txt};
-\addplot[color=poet,fill=poet]  table[x index=0,y index=6, col sep=space] {img/image_text/ma-err-0.9-v2.txt};
-\addplot[color=calnp,fill=calnp]  table[x index=0,y index=7, col sep=space] {img/image_text/ma-err-0.9-v2.txt};
-\addplot[color=cal,fill=cal]  table[x index=0,y index=8, col sep=space] {img/image_text/ma-err-0.9-v2.txt};
+\addplot[color=ONLINE,fill=ONLINE] table[x index=0,y index=4] {\datatableninty};
+\addplot[color=HBM,fill=HBM]       table[x index=0,y index=7] {\datatableninty};
+\addplot[color=ADAPT-CONTROL,fill=ADAPT-CONTROL]  table[x index=0,y index=9] {\datatableninty};
+\addplot[color=CALOREE-NP,fill=CALOREE-NP] table[x index=0,y index=10] {\datatableninty};
+\addplot[color=HBM-ADAPT,fill=HBM-ADAPT] table[x index=0,y index=13] {\datatableninty};
 
 \end{groupplot}
 \begin{groupplot}[
@@ -142,16 +142,18 @@ ymax=1,
 \nextgroupplot[
 ylabel shift={12mm},
 ylabel style={rotate=270},
-ylabel={$\mathsf{50\%}$},
+ylabel={$\mathsf{60\%}$},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
+
 \nextgroupplot[
 ylabel shift={12mm},
-ylabel={$\mathsf{70\%}$},
-y label style={rotate=270},
+ylabel={$\mathsf{75\%}$},
+ylabel style={rotate=270},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
+
 
 \nextgroupplot[
 ylabel shift={12mm},
@@ -161,4 +163,5 @@ y label style={rotate=270},
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
 \end{groupplot}
+
 \end{tikzpicture}
