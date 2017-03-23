@@ -333,31 +333,29 @@ predictions on the application in hand \cite{pan2010survey} . These models allow
 % applications and will therefore converge very quickly; however, it is
 % overly general and cannot learn features specific to a single
 % application.
+\subsubsection{Offline models}
+The offline models utilize data from previously seen application. If the model is for applications with very similar applications the prediction accuracy might be high but the model is bound to fail if the application's behaviors diverge \cite{meisner2011powe,Kim2014}. For instance,  It will predict the performance of applications only based on prior applications, meaning it will over-allocate speed to memory-bound applications 
+and under-allocate to compute-bound ones. 
 
 \subsubsection{Online models}
-\TODO{Is this offline or online or both?  The prior paragraph sets up
-  this three-legged structure: offline, online, and something which we
-  used to call hybrid but sounds like we are now calling transfer
-  learning. If we are going to keep that structure we should mimic it
-  in the substructure of the rest of the section.}  In general, all
+%\TODO{Is this offline or online or both?  The prior paragraph sets up this three-legged structure: offline, online, and something which we used to call hybrid but sounds like we are now calling transfer learning. If we are going to keep that structure we should mimic it in the substructure of the rest of the section.}  
+  In general, all
 machine learning techniques take observations of some phenomena and
 produce a model to estimate future outcomes.  In our specific case, we
 want to take observations about application's performance and power
-given a resource allocation and predict future applications' behavior.
+given a resource allocation and predict future applications' behavior. 
 The most straightforward approach is to create a linear regression
 model based on the configuration laid out as the input features
 \cite{}. Learning in this model requires samples of the performance
 and power for different resource configurations. Since the systems are
 usually non-linear, polynomial regression models often give better
 results, but increases the number of samples required to fit the model
-\cite{}. Regression models provide a confidence interval for their
-estimates which is important for adaptively tuning the pole.
+\cite{lee2008efficiency}. Regression models also provide a confidence interval for their estimates which is important for adaptively tuning the pole.
 
 \subsubsection{Transfer learning}
-
-Another interesting construction is \textit{transfer learning}; which
+ \textit{Transfer learning} is a field in machine learning; which
 means we apply the knowledge gained from one scenario to a new,
-similar problem.  To provide intuition we offer a simple example.
+similar problem \cite{pan2010survey}.  To provide intuition we offer a simple example.
 Suppose we have observed many prior applications, all of which are
 either completely compute-bound or completely memory-bound, and we
 have an equal number of both.  The only resource we can allocate is

@@ -38,8 +38,8 @@
         xlabel near ticks,
         xlabel = {},
         xmin = 0,
-        xmax = 12,
-        xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        xmax = 13,
+        xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=45, anchor = east, font=\tiny},
         ylabel={\footnotesize \% Latency \\ {\scriptsize (lower is better)}},    
         ytick pos=left
@@ -57,13 +57,26 @@
         xlabel near ticks,
         xlabel = {},
         xmin = 0,
-        xmax = 12,
+        xmax = 13,
         ylabel={\footnotesize \% Energy efficiency\\ {\scriptsize (lower is better)}},
         xticklabel shift={0pt},
-        xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=45, anchor = east, font=\tiny},
-        xticklabels from table={\datatableeff}{Benchmark},
-        ]
+        %xticklabels from table={\datatableeff}{Benchmark},
+        xticklabels={{\scriptsize $\mathsf{Optimal}$},
+{\scriptsize $\mathsf{Race-to-idle}$},
+{\scriptsize $\mathsf{PID-Control}$},
+{\scriptsize $\mathsf{Online}$},
+{\scriptsize $\mathsf{Offline}$},
+{\scriptsize $\mathsf{Netflix}$},
+{\scriptsize $\mathsf{HBM}$},
+{\scriptsize $\mathsf{POET}$},
+{\scriptsize $\mathsf{CALOREE-NoPole}$},
+{\scriptsize $\mathsf{CALOREE-Online}$},
+{\scriptsize $\mathsf{CALOREE-Netflix}$},
+{\scriptsize $\mathsf{CALOREE-HBM}$}
+}       
+]
         \addplot[scatter, only marks ,thick, scatter src=explicit symbolic] table[x index=0,y index=3, meta=Benchmark] {\datatableeff};
         \addplot[only marks,mark=o,  scatter src=explicit symbolic,  error bars/.cd, y dir=plus,   y explicit] table [x index=0, y index=3, y error index=2]  {\datatableeff};
         \addplot[only marks, mark=o, scatter src=explicit symbolic,  error bars/.cd, y dir=minus,  y explicit] table [x index=0, y index=3, y error index=4]  {\datatableeff};
