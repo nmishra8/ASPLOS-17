@@ -59,8 +59,8 @@ application-specific latencies for these stream elements.
 %\SYSTEM{} uses the model for power and performance and its controller
 %actively uses this knowledge to meet the performance target. 
 The latency targets represent performance requirements. To test a
-variety of requirementswWe run our applications with targets that
-represet 50-90\% of the maximum speed and evaluate \SYSTEM{} under
+variety of requirements, we run our applications with targets that
+represent 50-90\% of the maximum speed and evaluate \SYSTEM{} under
 each constraint. We quantify the performance reliability by measuring
 the number of deadlines that were missed for each application and
 performance target. If the application processes $n$ elements total
@@ -162,10 +162,10 @@ the models, and then test on $x$.
 
 
 We set a range of performance targets from 50-90\% of the maximum
-achievable performance and measure the MAPE (performance error) and
-energy efficiency (energy over optimal) for all points of comparison.
+achievable performance and measure the deadline misses and
+energy over optimal for all points of comparison.
 \figref{fig:single-sum} represents the summary results as an average
-error across all targets for single application scenario. This figure
+error across all targets for the single application scenario. This figure
 shows two charts with the percentage of deadline misses in the top
 chart and the energy over optimal in the bottom.  The dots show the
 average for each technique, while the error bars show the minimum and
@@ -193,9 +193,9 @@ approach.
 The summary data shows us that the best prior approaches are
 race-to-idle, HBM, and adaptive control.
 \figsref{fig:single-perf}{fig:single-energy} show the detailed results
-for the 50, 70, and 90\% targets comparing the best of these prior
+for the 60, 75, and 90\% targets comparing the best of these prior
 approaches to \SYSTEM{} with no pole and \SYSTEM{} coupled with the
-HBM, others data has been ommitted for space.  The benchmarks are
+HBM---other data has been omitted for space.  The benchmarks are
 shown on the x-axis; the y-axis shows the number of deadline misses
 and the normalized energy, respectively.
 
@@ -231,45 +231,32 @@ and the normalized energy, respectively.
 \end{figure}
 
 We again launch each benchmark with a performance target (using the
-same targets as the prior study).  One third through execution, we
-start another application randomly drawn from our benchmark set, which
-we bind to one big core.  Launching this second application changes
-performance and power consumption.  Delivering performance to the
-original application in this dynamic scenario tests the ability to
-react to environmental changes.
+same targets as the prior study).  Halfway through execution, we start
+another application randomly drawn from our benchmark set, which we
+bind to one big core, which interferes with the application \SYSTEM{}
+is controlling.  Delivering performance to the original application in
+this dynamic scenario tests \SYSTEM{}'s ability to react to
+environmental changes.
 
-\figref{fig:multi-sum} summarizes the results as an average error
-across all targets for the multiple application scenario.  This figure
-again summarizes latency and energy results for all baselines.  We
-note that some targets are unachievable for some applications.  In
-this case, race-to-idle cannot meet all deadlines, partly because some
-are unachievable, but more importantly because it cannot make use of
-LITTLE cores to do some work.  In fact, most approaches do badly in
-this scenario.  Even adaptive control misses 50\% of the deadlines in
-this scenario.  \SYSTEM{} with the HBM produces the lowest deadline
-misses with an average of 20\%.  It also produces the second lowest
-energy, using slighly more than race-to-idle because it uses LITTLE
-cores to make up for some work that cannot be done on a big core due
-to the second application.  \figsref{fig:multi-perf}{fig:multi-energy}
-shows the detailed results.  The 90\% target is generally not
-reachable in this scenario as it would require the controlled
-application to have exclusive use of all big cores.
-
-
-\PUNT{
-Across all applications and targets, the online model produces an
-average error of 21\%, the offline: 24\%, HBM: 19\%, POET: 7.4\%,
-CALOREE-NoPole: 11\%, and \SYSTEM{}: 2.8\%. \SYSTEM{} is also more energy
-efficient than the baseline algorithms. Across all applications and
-targets, the average normalized energy for online model is 22\%, the
-offline: 21\%, HBM: 17\%, POET: 34\%, CALOREE-NoPole: 13\%, and \SYSTEM{}:
-8.5\%.
-}
-POET and \SYSTEM{} provide more reliable performance because they are
-specifically designed to handle system dynamics.  \SYSTEM{}, however,
-does significantly better than POET in the worst case because the HBM
-produces more robust models.  Again, the results show the benefits of
-incorporating model variance into the controller's pole calculation.
+\figref{fig:multi-sum} summarizes the results as the average number of
+deadline misses and energy over optimal for all baselines.  We note
+that some targets are unachievable for some applications. Due to these
+unachievable targets, both optimal and race-to-idle show some deadline
+misses. Race-to-idle misses more deadlines than optimal because it
+cannot make use of LITTLE cores to do some work, it simply continues
+using all big cores despite the degraded performance due to the second
+application.  In fact, most approaches do badly in this
+scenario---even adaptive control misses 50\% of the deadlines.
+\SYSTEM{} with the HBM produces the lowest deadline misses with an
+average of 20\%, which is only \TODO{XXX} more than optimal.  It also
+produces the second lowest energy, using slightly more than
+race-to-idle because it uses LITTLE cores to make up for some work
+that cannot be done on a big core due to the second application.
+\figsref{fig:multi-perf}{fig:multi-energy} shows the detailed results.
+The 90\% target is generally not reachable in this scenario as it
+would require the controlled application to have exclusive use of all
+big cores. \TODO{Hank: I am thinking that we subtract out the optimal
+  number of deadline misses here.}
 
 
 \begin{figure*}[htp!]
@@ -291,9 +278,9 @@ To demonstrate \SYSTEM{} in this dynamic environment we look at the
 specific example of \texttt{bodytrack} with a 70\% target, shown in
 \figref{fig:bodytrack-multiapp} with time on the x-axis and
 performance/power on the y-axis.  Performance is normalized to the
-target.  There is a curve for each of HBM, POET, and \SYSTEM{}. The
-vertical dashed line shows the point where the second application
-starts.
+target.  There is a curve for each of HBM, Adaptive-Control, and
+\SYSTEM{}-HBM. The vertical dashed line shows the point where the
+second application starts.
 
 \PUNT{This example illustrates \SYSTEM{}'s benefits over prior
   approaches that use only control or learning.  There are two key
@@ -301,22 +288,20 @@ starts.
   starts (on the left of the vertical dashed line) and the times after
   (on the right).}  
 
-Before the second application starts (at the dashed line), both HBM
-and \SYSTEM{} do a good job of tracking the target and keeping energy
-low.  In contrast, POET produces oscillating performance (and thus
-power) because it has a bad model of \texttt{bodytrack}'s LITTLE core
+Before the second application starts, both HBM and \SYSTEM{} do a good
+job of tracking the target and keeping energy low.  In contrast,
+Adaptive-Control produces oscillating performance (and thus power)
+because it has a bad model of \texttt{bodytrack}'s LITTLE core
 performance.  This oscillation also results in unnecessary power
 consumption.  After the second application starts, POET and \SYSTEM{}
 recognize the performance has changed and adjust resource usage.
 \SYSTEM{} does a slightly better job tracking the change, producing
 fewer oscillations.  HBM cannot adjust to the change as it computes
 the optimal configuration once at the beginning of the application.
-Overall, HBM produces a MAPE of 13\%, POET's is 9\%, and \SYSTEM{}'s
-is 4\%.  \SYSTEM{} produces better results than HBM because it reacts
-to the change; it produces better results than POET because it has
-captured the complex application-specific behavior on this system.
-
-
+\SYSTEM{} with the HBM produces better results than the HBM alone
+because it reacts to the change; it produces better results than
+Adaptive-Control because it has captured the complex
+application-specific behavior on this system.
 
 
 \begin{figure}[t]
@@ -350,50 +335,54 @@ the benchmarks.
 }
 
 %\PUNT{
-\subsection{Phase Change}
+\subsection{Adapting to Phase Changes}
 \begin{figure}[!h]
   \input{img/x264-phases.tex}
    \vskip -.5em
   \caption{Time series of \texttt{x264} with phase change caused by different inputs.}
   \label{fig:x264-phase-change}
 \end{figure}
-In this experiment we demonstrate that \SYSTEM{} allows applications
-to operate well by changing resource allotment when the input varies
-with time. In \figref{fig:x264-phase-change} we see \texttt{x264}, a
-video encoder application with 2 different phases, where the phase
-change occurs at the $500^{th}$ frame. The first scene is difficult
-and the second one becomes significantly easier. In the first phase,
-\SYSTEM{} and the baseline HBM seem to have lower MAPE as compared to
-POET.  At the same time, these two algorithms seem to consume less
-energy than POET indicating that POET is operating at a configuration
-not on the Pareto frontier of power and performance.  When we change
-phase, \SYSTEM{} and HBM both algorithms are still able to meet the
-performance target with far less fluctuations as compared to POET.
-But, \SYSTEM{} provides better energy savings as compared to HBM.
+We demonstrate that \SYSTEM{} reacts to input variations.
+\figref{fig:x264-phase-change} shows the \texttt{x264} video encoder
+application with 2 different phases, where the phase change occurs at
+the $500^{th}$ frame. The first scene is difficult and the second one
+is significantly easier. In the first phase, \SYSTEM{} and the HBM are
+closer to the desired performance (1 in the figure) compared to
+Adaptive-Control.  Additionally, these two approaches consume less
+energy than Adaptive-control indicating that Adaptive-Control is
+operating at a configuration not on the Pareto frontier of power and
+performance.  When the input changes, \SYSTEM{} and HBM both
+algorithms are still able to meet the performance target with far less
+fluctuations as compared to POET.  But, \SYSTEM{} provides better
+energy savings as compared to HBM. \TODO{I think we need a better
+  example here.  This example has the learner reacting better to a
+  phase change than the controller, which contradicts what we said
+  before.  The problem is that the learner isn't really a learner, but
+  a controller itself.}
 
 
 %}
 
 
 \subsection{The Pole's Importance}
-
-\figref{fig:lavamd_contour} (see \secref{example}) shows that LAVAMD has a
-complicated tradeoff space on our test platforms.  \secref{guarantees}
-presents an analytical argument that tuning the controller to model
-variance and confidence interval will prevent oscillation and provide
-probabilistic control theoretic guarantees.  We now demonstrate this
+\TODO{Add the LAVAMD contour plot?}  LAVAMD has one of the most
+complicated responses to resource usage on our system, as shown in
+\figref{fig:lavamd_contour}. \secref{guarantees} presents an
+analytical argument that tuning the controller to model variance and
+confidence interval will prevent oscillation and provide probabilistic
+control theoretic guarantees despite using noisy, learned models to
+control such complicated behavior.  We now demonstrate this
 empirically by showing LAVAMD's single-app behavior controlled by both
-CALOREE-NoPole and \SYSTEM{} to meet the 80\% target.
+CALOREE-NoPole and \SYSTEM{}-HBM to meet the 80\% target.
 
 \figref{fig:lavamd-pole} shows the results, with time on the x-axis
-and normalized performance and power on the respective y-axis.  As is
-clear from the figure, CALOREE-NoPole oscillates around the desired
-performance and causes wide fluctuations in power consumption.  In
-contrast, after a brief period of oscillation to adjust to the new
-model, \SYSTEM{} provides reliable performance right at the target
-value (normalized to 1 in this case).  \SYSTEM{} also saves tremendous
-energy because it does not oscillate but uses a constant mixture of
-big and LITTLE cores to keep energy near minimal.  
+and normalized performance and power on the respective y-axes.
+CALOREE-NoPole oscillates around the desired performance and causes
+wide fluctuations in power consumption.  In contrast, after receiving
+the model from its learner, \SYSTEM{} provides reliable performance
+right at the target value (normalized to 1 in this case).  \SYSTEM{}
+also saves tremendous energy because it does not oscillate but uses a
+mixture of big and LITTLE cores to keep energy near minimal.
 % \TODO{Do we need the vertical line here?  This is a single app run
 %   right?}
 
@@ -406,22 +395,28 @@ big and LITTLE cores to keep energy near minimal.
 
 
 \subsection{Sensitivity to the Measured Samples}
-We examine \SYSTEM{}'s sensitivity to sample size.  We vary the number
-of samples taken online and show how it affects model accuracy.  This
-is simply the HBM's accuracy in producing the model used by the
-controller.  This number is significant, because the smaller the
-number of samples, the faster the controller can switch from a general
-model to the HBM's application specific model.
+We vary the number of samples taken and show how it affects model
+accuracy for the Online, Nuclear, and HBM learners.  The accuracy is
+simply how close the model is to ground truth (found through
+exhaustive exploration), with 1 meaning the model perfectly reproduced
+the real performance or power.  This number is significant, because
+the smaller the number of samples, the faster the controller can
+switch from a general model to the HBM's application specific model.
 
-\figref{fig:sensitivity} compares \SYSTEM{}'s accuracy to Online for
-learning both performance (top) and power (bottom).  The figure shows
-sample size on the x-axis and accuracy on the y-axis.  \SYSTEM{}'s HBM
-initially performs as well as the Offline approach and as sample size
-increases, the accuracy uniformly improves and reaches greater than
-90\% around 20 samples. The online approach needs at least 7 samples
-to begin model building.  As we get more samples the accuracy for the
-online model improves but still does not meet \SYSTEM{}'s accuracy for
-the same number of samples.
+\figref{fig:sensitivity} compares \SYSTEM{}'s accuracy to Online and
+NUCLEAR for learning both performance (top) and power (bottom).  The
+figure shows sample size on the x-axis and accuracy on the y-axis.
+\SYSTEM{}'s HBM initially performs as well as the Offline approach and
+as sample size increases, the accuracy uniformly improves and reaches
+greater than 90\% around 20 samples. The online approach needs at
+least 7 samples to begin model building.  As we get more samples the
+accuracy for the online model improves but still does not meet
+\SYSTEM{}'s accuracy for the same number of samples. Nuclear is very
+noisy as small numbers of samples, but once the number of samples
+reaches about 50, it is competitive with HBM.  These results not only
+demonstrate the sensitivity to sample size, they show why
+\SYSTEM{}-HBM achieves better results than the other learning
+mechanisms.
 
 \begin{figure}[t]
   \input{img/sample-accuracy-v3.tex}
@@ -439,18 +434,21 @@ estimate the entire power and performance frontier. We argue that the
 sampling cost can be distributed across devices by asking each of them
 to contribute samples for estimation. Once the sampling phase is over,
 the HBM is quite fast and can generate an estimate as fast as 500 ms
-which is significantly smaller than the time required for sampling the
-applications.  Using four ODROIDs, each board only needs to contribute
-4 samples to achieve 90\% accuracy.  In this worst case
-(\texttt{facesim}), this sampling overhead is less than 2\%.  For all
-other benchmarks it is lower, and for most it is negligible.
+which is significantly smaller than the time required to run any of
+our applications.  Additionally, \SYSTEM{}'s asynchronous
+communication means that the controller never waits for the learner.
+Using the four ODROIDs in our experimental system, each board only
+needs to contribute 4 samples to achieve 90\% accuracy.  In the worst
+case (\texttt{facesim}), this sampling overhead is less than 2\%.  For
+all other benchmarks it is lower, and for most it is negligible.
 
-The GCS requires only a few floating point operations to execute, plus
-the table lookups in the PHT.  To evaluate its overhead, we time 1000
-iterations.  We find that it is under 2 microseconds, which is
-significantly faster than we can change any resource allocation on our
-system.  We conclude that the GCS has negligible impact on performance
-and energy consumption of the controlled device.
+The controller requires only a few floating point operations to
+execute, plus the table lookups in the PHT.  To evaluate its overhead,
+we time 1000 iterations.  We find that it is under 2 microseconds,
+which is significantly faster than we can change any resource
+allocation on our system.  We conclude that the controller has
+negligible impact on performance and energy consumption of the
+controlled device.
 
 
 
