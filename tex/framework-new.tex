@@ -26,26 +26,25 @@ converge to the desired performance.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{figures/Timeline.pdf}
-  \caption{Temporal relationship of the learning and control system.}
+  \caption{Temporal relationship of learning and control.}
   \label{fig:timeline}
 \end{figure}
 
 \figref{fig:timeline} illustrates the asynchronous interaction between
 \SYSTEM{}'s learner and controller over time. The controller starts
-when a new application launches.  Since the controller has no prior
-knowledge of this application, it begins allocating resources using a
-generic model.  At application launch, the controller sends the
-learner the application name and device type (message 1,
-\figref{fig:timeline}).  The learner determines how many samples are
-needed for an accurate estimate and sends this number back to the
-controller (message 2).  The controller takes these samples while
-using the generic model and sends the learner a message with the
-performance and power of each measured configuration (message 3).
-Computationally expensive learners may require some time to build a
-model from these observations.  The controller does not wait for the
-learner, but contiues with the generic model.  Once the learner has a
-model and variance estimate, it sends that data to the controller
-(message 4). From then on, the controller uses the learned model.
+when a new application launches.  It has no prior knowledge of this
+application, so it begins using a generic model.  At start, the
+controller sends the learner the application name and device type
+(message 1, \figref{fig:timeline}).  The learner determines how many
+samples are needed for an accurate estimate and sends this number back
+to the controller (message 2).  The controller takes these samples
+while using the generic model and sends the learner the performance
+and power of each measured configuration (message 3).  Computationally
+expensive learners may require time to build a model.  Thus, the
+controller does not wait for the learner, but continues with the
+generic model.  Once the learner has a model and variance estimate, it
+sends that data to the controller (message 4), which uses the learned
+model from then on.
 
 \figref{fig:timeline} shows several key points about the relationship
 between learning and control.  First, the controller never waits for
@@ -59,13 +58,12 @@ producing a model, control might not even need to know.  Finally,
 because the learner and controller have a clearly defined interface,
 they can be run in separate processes or physically separate devices.
 
-This section first describes a traditional adaptive control system
-designed for a heterogeneous processor.  We then generalize this
-approach and separate out parameters to be learned.  Next, we discuss
-the general class of learning systems that can work with \SYSTEM{}.
-Then, we present an encoding for the learned model that can be
-accessed by the controller in constant time.  Finally, we analyze
-\SYSTEM{}'s formal guarantees.
+This section first describes a traditional adaptive control system.
+We then generalize this approach and separate out parameters to be
+learned.  Next, we discuss the general class of learning systems that
+work with \SYSTEM{}.  Then, we present an encoding for the learned
+model that can be accessed by the controller in constant time.
+Finally, we formally analyze \SYSTEM{}'s guarantees.
 
 
 \subsection{Traditional Control for Computing}
@@ -76,11 +74,10 @@ are measurements, \eg{} performance.  The outputs are the resource
 settings to be used at a particular time, \eg{} an allocation of big
 and LITTLE cores and a clockspeed for each.
 
-The following difference equations describe a generic MIMO controller
-for allocating $n$ resources to meet $m$ goals at time
-$t$:\footnote{We assume discrete time, and thus, use difference
-  equations rather than differential equations that would be used for
-  continuous systems.}
+These difference equations describe a generic MIMO controller for
+allocating $n$ resources to meet $m$ goals at time $t$:\footnote{We
+  assume discrete time, and thus, use difference equations rather than
+  differential equations that would be used for continuous systems.}
 \begin{equation}
 \begin{aligned}
 &\x(t+1) &=& \mathbf{A} \cdot \x(t)& + \mathbf{B} \cdot \mathbf{c}(t)\\
@@ -203,13 +200,13 @@ is a continuous linear function.  We bridge this divide by assigning
 time to resource allocations such that the average speedup over a
 control interval is that produced by \eqnref{speedup-control}.
 
-We call the assignment of times to resource configurations a
-\emph{schedule}. For example, spending 10 ms on the LITTLE cores at
-0.6 GHz and then 15 ms on the big cores at 1 GHz is a schedule. There
-are typically many schedules that deliver a particular speedup and
-\SYSTEM{} must find one with minimal energy.  Given a time interval
-$T$, the $speedup(t)$ from \eqnref{speedup-control}, and $C$ different
-resource configurations, \SYSTEM{} solves:
+The assignment of time to resource configurations is a
+\emph{schedule}; \eg{} spending 10 ms on the LITTLE cores at 0.6 GHz
+and then 15 ms on the big cores at 1 GHz. Typically many schedules can
+deliver a particular speedup and \SYSTEM{} must find one with minimal
+energy.  Given a time interval $T$, the $speedup(t)$ from
+\eqnref{speedup-control}, and $C$ different resource configurations,
+\SYSTEM{} solves:
 \begin{eqnarray}
   \minimize_{\mathbf{\tau} \in \R^{C}} && \sum_{c=0}^{C-1} \tau_c \cdot p_c \label{eqn:power}  \\
   \st %&& \nonumber\\
@@ -228,13 +225,13 @@ time.
 \subsection{Exploiting Structure for Fast Solutions}
 %\SYSTEM{} solves \eqnrref{power}{time} on the local device (see
 %\figref{fig:timeline}, so the solution must be efficient.  
-By expoiting the problem structure and encoding the learned model in
+By exploiting the problem structure and encoding the learned model in
 the performance hash table (PHT), \SYSTEM{} solves
 \eqnrref{power}{time} in constant ($O(1)$) time.
 
-Kim et al. analyze solutions to the problem of minimizing energy while
-meeting a performance constraint and observe that there must be an
-optimal solution with the following properties \cite{kim-cpsna}:
+Kim et al. analyze the problem of minimizing energy while meeting a
+performance constraint and observe that there must be an optimal
+solution with the following properties \cite{kim-cpsna}:
 \begin{itemize}[leftmargin=1em]
 \item At most two of $\tau_c$ are non-zero, meaning that at most two
   configurations will be used in any time interval.
@@ -267,12 +264,12 @@ array points to the configuration in the second array that has the
 largest speedup less than or equal to the index.
 
 \SYSTEM{} computes $speedup(t)$ and uses the PHT to convert speedup
-into two configurations referred to as $hi$ and $lo$.  To find the
-$hi$ configuration, the translator clamps the desired speedup to the
-largest index lower than $speedup(t)$ and then walks forward until it
-finds the first configuration with a speedup higher than $speedup(t)$.
-To find the $lo$ configuration, the translator clamps the desired
-speedup to the smallest index higher than $speedup(t)$ and then walks
+into two configurations: $hi$ and $lo$.  To find the $hi$
+configuration, \SYSTEM{} clamps the desired speedup to the largest
+index lower than $speedup(t)$ and then walks forward until it finds
+the first configuration with a speedup higher than $speedup(t)$.  To
+find the $lo$ configuration, the translator clamps the desired speedup
+to the smallest index higher than $speedup(t)$ and then walks
 backwards until it finds the configuration with the largest speedup
 less than $speedup(t)$.
 
@@ -388,19 +385,18 @@ response to heterogeneous resources in data centers\cite{Paragon}.
 
 \paragraph{ Bayesian Models:} A hierarchical Bayesian model (HBM)
 provides a statistically sound framework for learning across
-applications and devices \cite{LEO}.  In this approach, each
-application has its own model, allowing specificity, but these models
-are conditionally dependent on some underlying probability
-distribution with a hidden mean and co-variance matrix.  In practice,
-an HBM will estimate a model for a new application using a small
-number of observations and combining those observations with the large
-number of observations previously made of similar applications.
-Rather than over-generalizing, the HBM uses only similar applications
-to learn new models.  The HBM's accuracy increases as more
-applications are observed because increasingly diverse behaviors are
-represented in the pool of prior knowledge.  Of course, the
-computational complexity of learning also increases with increasing
-applications. 
+applications and devices \cite{LEO}.  In the HBM, each application has
+its own model, allowing specificity, but these models are
+conditionally dependent on some underlying probability distribution
+with a hidden mean and co-variance.  In practice, an HBM estimates a
+model for a new application using a small number of observations and
+combining those observations with the large number of previous
+observations of other applications.  Rather than over-generalizing,
+the HBM uses only similar applications to learn new models.  The HBM's
+accuracy increases as more applications are observed because
+increasingly diverse behaviors are represented in the pool of prior
+knowledge.  Of course, the computational complexity of learning also
+increases with increasing applications.
 
 
 \subsection{Formal Analysis}
@@ -434,18 +430,16 @@ then each PHT lookup requires constant time.
 \label{sec:guarantees}
 The controller's pole $\rho(t)$ is critical to providing control
 theoretic guarantees in the presence of learned models.  \SYSTEM{}
-requires that any learner estimate not only speedup and powerup, but
-also the variance $\sigma$.  \SYSTEM{} uses that information to derive
-a lower bound for the pole which guarantees probabilistic convergence
-to the desired performance. Specifically, we prove that with
-probability 99.7\% the system will converge to the desired performance
-if the pole is set to,
+requires any learner estimate not only speedup and powerup, but also
+the variance $\sigma$.  \SYSTEM{} uses this information to derive a
+lower bound for the pole which guarantees probabilistic convergence to
+the desired performance. Specifically, we prove that with probability
+99.7\% \SYSTEM{} converges to the desired performance if the pole is
 $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0 \leq \rho(t)
 < 1,$$ where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the estimated
-speedup. The proof of this claim is in the appendix. In principle,
-users who need higher confidence could set the scalar multiplier on
-$\sigma$ higher; \eg{} using $6$ provides a 99.99966\% probability of
-convergence.
+speedup. The appendix contains the proof. Users who need higher
+confidence can set the scalar multiplier on $\sigma$ higher; \eg{}
+using $6$ provides a 99.99966\% probability of convergence.
 
 Thus we provide a lower-bound on the value of $\rho(t)$ required for a
 user to be confident that \SYSTEM{} will converge to the desired

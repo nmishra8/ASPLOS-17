@@ -41,7 +41,7 @@
         xmax = 13,
         xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=45, anchor = east, font=\tiny},
-        ylabel={\footnotesize \% Latency \\ {\scriptsize (lower is better)}},    
+        ylabel={\tiny Deadline Misses (\%) \\ {\tiny (lower is better)}},    
         ytick pos=left
         ]
         \addplot[scatter, only marks ,thick, scatter src=explicit symbolic] table[x index=0,y index=3, meta=Benchmark] {\datatablelat};
@@ -58,7 +58,7 @@
         xlabel = {},
         xmin = 0,
         xmax = 13,
-        ylabel={\footnotesize \% Energy efficiency\\ {\scriptsize (lower is better)}},
+        ylabel={\tiny Energy Over Optimal (\%) \\ {\tiny (lower is better)}},
         xticklabel shift={0pt},
         xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=45, anchor = east, font=\tiny},
@@ -70,7 +70,7 @@
 {\scriptsize $\mathsf{Offline}$},
 {\scriptsize $\mathsf{Netflix}$},
 {\scriptsize $\mathsf{HBM}$},
-{\scriptsize $\mathsf{POET}$},
+{\scriptsize $\mathsf{Adaptive-Control}$},
 {\scriptsize $\mathsf{CALOREE-NoPole}$},
 {\scriptsize $\mathsf{CALOREE-Online}$},
 {\scriptsize $\mathsf{CALOREE-Netflix}$},

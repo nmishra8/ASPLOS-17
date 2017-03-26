@@ -70,8 +70,7 @@ peak speed occurs with 3 big cores at 1.2 GHz, and it is not efficient
 to spend any time on the LITTLE cores.  \texttt{STREAM}, however, does
 not have distinct phases, so once a resource allocator finds the most
 energy efficient configuration, it simply needs to maintain it.
-\TODO{We should change the levels in the contour so there is a clear
-  maximum at 3 cores and a middle clock speed.}
+
 
 \figref{fig:STREAM_timeline} shows 20 iterations of both learning
 \cite{LEO} and adaptive control \cite{POET} allocating resources to
@@ -155,14 +154,14 @@ model, which may have noise and/or errors.
 
 
 
-%\begin{wrapfigure}{r}{0.5\columnwidth} 
-\begin{figure}
-\centering
+\begin{wrapfigure}{r}{0.5\columnwidth} 
+%\begin{figure}
+%\centering
 \input{img/BODYTRACK-example2-resized.tex}
 \caption{Comparison of carefully tuned and default poles.}
 \label{fig:not-simple}
-\end{figure}
-%\end{wrapfigure}
+%\end{figure}
+\end{wrapfigure}
 To demonstrate the pole's importance when using a learned model, we
 again control \texttt{bodytrack}, this time using the adaptive
 controller from the previous subsection with a model produced by the

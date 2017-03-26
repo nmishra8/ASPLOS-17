@@ -47,10 +47,9 @@ application-specific latencies for these stream elements.
 \begin{figure}[t]
   \input{img/mem-compute.tex}
    \vskip -1em
-   \caption{\emph{Lack-of-fit} for performance vs clock-speed for a
-     fixed number of cores. Lower lack-of-fit indicates a more
-     compute-bound application, higher values indicate a memory-bound
-     one.}
+   \caption{\emph{Lack-of-fit} for performance vs clock-speed. Lower
+     lack-of-fit indicates a more compute-bound application, higher
+     values indicate a memory-bound one.}
   \label{fig:application_variety}
 \end{figure}
 
@@ -101,42 +100,38 @@ approaches:
   the best average case behavior across all applications and targets.
 \item \textit{Online}: observes the new application in small number of
   configurations then performs polynomial multivariate regression to
-  estimate unobserved configurations' performance and power. Several
-  approaches have used similar regression based models for resource
-  allocation \cite{Koala,Lee2006,others}.
+  estimate unobserved configurations' behavior
+  \cite{LEO,Li2006,Ponamarev}.
 \item \textit{Offline}: does not observe any values for the current
   application---instead using previously observed applications to
   estimate power and performance as a linear regression.  This
-  baseline represents the class of offline learners that build models
-  with a training set and apply them without observing the new
-  application \cite{PUPiL,LeeBrooks2006,CPR}.
-\item \textit{Nuclear}: is a machine learning approach popularized as
-  the ``Netflix'' algorithm. Variations of this approach have been
-  used to allocate heterogeneous resources in data centers
-  \cite{Paragon,quasar}.
+  baseline represents the class learners that build models with a
+  training set and apply them without new observations
+  \cite{PUPiL,LeeBrooks2006,CPR}.
+\item \textit{Netflix}: is a matrix completion algorithm for the
+  Netflix challenge. Variations of this approach allocate
+  heterogeneous resources in data centers \cite{Paragon,quasar}.
 \item \textit{HBM}: is a hierarchical Bayesian learner previously used
   to allocate resources to meet performance goals with minimal energy
   in server systems \cite{LEO}.
-\item \textit{Adaptive-Control}: a state-of-the-art, adaptive control system
-  designed to meet application performance with minimal energy
-  \cite{POET}.  POET requires users to specify a model.  We use POET
-  with the model produced by the \emph{Offline} learner. A recent
-  study comparing ML and control techniques for resource allocation
-  showed that there was no single best approach, but adaptive control
-  had the best average behavior across a number of applications
-  \cite{TAAS}.
+\item \textit{Adaptive-Control}: is a state-of-the-art, adaptive
+  controller that meets application performance with minimal energy
+  \cite{POET}.  This approach requires a user-specified starting
+  model, we use the model produced by the \emph{Offline} learner. A
+  recent study comparing ML and control techniques for resource
+  allocation showed that there was no single best approach, but
+  adaptive control had the best average behavior \cite{TAAS}.
 \end{enumerate}
 
 
-\SYSTEM{} is a framework that allows different learners to be combined
-with the \SYSTEM{} control system.  We therefore the above baselines
-to four different versions of \SYSTEM{}:
+\SYSTEM{} is a framework for combining different learners with the
+\SYSTEM{} control system.  We compare the above baselines to four
+different versions of \SYSTEM{}:
 \begin{enumerate}
-\item \textit{CALOREE-NoPole}: uses the HBM to produce a model, but
-  sets the pole set to 0.  We include this baseline to show the
-  importance of informing the controller of the confidence interval
-  and model variance. In all other versions of \SYSTEM{} we set the
-  pole according to \secref{guarantees}.
+\item \textit{CALOREE-NoPole}: uses the HBM learner, but sets the pole
+  set to 0.  This baseline shows the importance of incorporating the
+  confidence interval and model variance into control. All other
+  versions of \SYSTEM{} set the pole according to \secref{guarantees}.
 \item \textit{CALOREE-online}: uses the online learner.
 \item \textit{CALOREE-nuclear}: uses the Nuclear learner.
 \item \textit{CALOREE-HBM}: uses the HBM learner.
@@ -152,14 +147,14 @@ the models, and then test on $x$.
 
 \subsection{Performance and Energy for Single App}
 %Setup
-\begin{figure}[!h]
+
+\begin{figure}[!th]
 \centering
   \input{img/single-app-summary2-v4.tex}
    \vskip -.5em
   \caption{Summary data for single-app scenario.}
   \label{fig:single-sum}
 \end{figure}
-
 
 We set a range of performance targets from 50-90\% of the maximum
 achievable performance and measure the deadline misses and
@@ -181,6 +176,21 @@ achieves similar deadline misses (14\%) with lower average energy than
 any of the prior learning approaches (12\%). \SYSTEM{} with no pole
 misses 45\% of all deadlines, which is clearly unacceptable.
 
+\begin{figure*}[!t]
+  \input{img/single-app-performance-small.tex}
+   \vskip -.5em
+  \caption{Deadline misses for single application scenario.}
+  \label{fig:single-perf}
+\end{figure*}
+
+
+\begin{figure*}[!t]
+  \input{img/single-app-energy-small.tex}
+   \vskip -.5em
+  \caption{Energy over optimal for single application scenario.}
+  \label{fig:single-energy}
+\end{figure*}
+
 When we allow \SYSTEM{} to adaptively tune its pole, however, we see
 greatly improved results.  The best combination is \SYSTEM{} with the
 HBM, which misses only 5.5\% of deadlines on average, while consuming
@@ -199,30 +209,12 @@ HBM---other data has been omitted for space.  The benchmarks are
 shown on the x-axis; the y-axis shows the number of deadline misses
 and the normalized energy, respectively.
 
-
-
-
-\begin{figure*}[!t]
-  \input{img/single-app-performance-small.tex}
-   \vskip -.5em
-  \caption{Comparison of application performance error for single application scenario.}
-  \label{fig:single-perf}
-\end{figure*}
-
-
-\begin{figure*}[!t]
-  \input{img/single-app-energy-small.tex}
-   \vskip -.5em
-  \caption{Comparison of application energy consumption for single application scenario.}
-  \label{fig:single-energy}
-\end{figure*}
-
 %In addition to providing better average case behavior, \SYSTEM{}
 %provides significantly better worst case behavior.  
 
 
 \subsection{Performance and Energy for Multiple Apps}
-\begin{figure}[!h]
+\begin{figure}[!t]
 \centering
   \input{img/multi-app-summary2-v4.tex}
    \vskip -.5em
@@ -238,8 +230,22 @@ is controlling.  Delivering performance to the original application in
 this dynamic scenario tests \SYSTEM{}'s ability to react to
 environmental changes.
 
+\begin{figure*}[t!]
+  \input{img/multi-app-performance-small.tex}
+   \vskip -.5em
+  \caption{Deadline misses for multiple application scenario.}
+  \label{fig:multi-perf}
+\end{figure*}
+
+\begin{figure*}[!t]
+  \input{img/multi-app-energy-small.tex}
+   \vskip -.5em
+  \caption{Energy over optimal for multiple application scenario.}
+  \label{fig:multi-energy}
+\end{figure*}
+
 \figref{fig:multi-sum} summarizes the results as the average number of
-deadline misses and energy over optimal for all baselines.  We note
+deadline misses and energy over optimal for all approaches.  We note
 that some targets are unachievable for some applications. Due to these
 unachievable targets, both optimal and race-to-idle show some deadline
 misses. Race-to-idle misses more deadlines than optimal because it
@@ -248,7 +254,7 @@ using all big cores despite the degraded performance due to the second
 application.  In fact, most approaches do badly in this
 scenario---even adaptive control misses 50\% of the deadlines.
 \SYSTEM{} with the HBM produces the lowest deadline misses with an
-average of 20\%, which is only \TODO{XXX} more than optimal.  It also
+average of 20\%, which is only 5\% more than optimal.  It also
 produces the second lowest energy, using slightly more than
 race-to-idle because it uses LITTLE cores to make up for some work
 that cannot be done on a big core due to the second application.
@@ -259,20 +265,8 @@ big cores. \TODO{Hank: I am thinking that we subtract out the optimal
   number of deadline misses here.}
 
 
-\begin{figure*}[htp!]
-  \input{img/multi-app-performance-small.tex}
-   \vskip -.5em
-  \caption{Comparison of application performance error for multiple application scenario.}
-  \label{fig:multi-perf}
-\end{figure*}
 
-\begin{figure*}[!t]
-  \input{img/multi-app-energy-small.tex}
-   \vskip -.5em
-  \caption{Comparison of application energy consumption for multiple application scenario.}
-  \label{fig:multi-energy}
-\end{figure*}
-
+\PUNT{
 \subsection{Multiapp Details for \texttt{bodytrack}}
 To demonstrate \SYSTEM{} in this dynamic environment we look at the
 specific example of \texttt{bodytrack} with a 70\% target, shown in
@@ -288,20 +282,19 @@ second application starts.
   starts (on the left of the vertical dashed line) and the times after
   (on the right).}  
 
-Before the second application starts, both HBM and \SYSTEM{} do a good
-job of tracking the target and keeping energy low.  In contrast,
-Adaptive-Control produces oscillating performance (and thus power)
-because it has a bad model of \texttt{bodytrack}'s LITTLE core
-performance.  This oscillation also results in unnecessary power
-consumption.  After the second application starts, POET and \SYSTEM{}
-recognize the performance has changed and adjust resource usage.
-\SYSTEM{} does a slightly better job tracking the change, producing
-fewer oscillations.  HBM cannot adjust to the change as it computes
-the optimal configuration once at the beginning of the application.
-\SYSTEM{} with the HBM produces better results than the HBM alone
-because it reacts to the change; it produces better results than
-Adaptive-Control because it has captured the complex
-application-specific behavior on this system.
+Before the second application starts, both HBM and \SYSTEM{} track the
+target and keeping energy low.  In contrast, Adaptive-Control produces
+oscillating performance (and thus power) because it has a bad model of
+\texttt{bodytrack}'s LITTLE core performance.  After the second
+application starts, Adaptive-Control and \SYSTEM{} recognize the
+performance has changed and adjust resource usage.  \SYSTEM{} does a
+slightly better job tracking the change, producing fewer oscillations.
+HBM cannot adjust to the change as it computes the optimal
+configuration once at the beginning of the application.  \SYSTEM{}
+with the HBM produces better results than the HBM alone because it
+reacts to the change; it produces better results than Adaptive-Control
+because it has captured the complex application-specific behavior on
+this system.
 
 
 \begin{figure}[t]
@@ -310,70 +303,62 @@ application-specific behavior on this system.
   \caption{Time series of \texttt{Bodytrack} with phase change caused by multiple applications running.}
   \label{fig:bodytrack-multiapp}
 \end{figure}
-
-
-\PUNT{
-\subsection{Power and performance estimation}
-We use HBM as described in \secref{sec:framework:HBM} to estimate the
-power and performance for the applications using only 10 out of 128
-observations.
-
-Our results are summarized in \figref{fig:accuracy}. HBM is 13.4\%
-better than online and 19.1\% better than offline in terms of
-performance estimation and HBM is 3.7\% better than online and 1.5\%
-better than offline in terms of power estimation, on average over all
-the benchmarks.
-%Infact, LEO uniformly performs well for all applications with the worst accuracy being YY as compared to offline and online algorithm.
-
-
-\begin{figure}[t]
-  \input[width=\columnwidth]{img/accuracy-performance.tex}
-   \vskip -.5em
-  \caption{Accuracy performance}
-  \label{fig:accuracy}
-\end{figure}
 }
 
-%\PUNT{
 \subsection{Adapting to Phase Changes}
 \begin{figure}[!h]
   \input{img/x264-phases.tex}
    \vskip -.5em
-  \caption{Time series of \texttt{x264} with phase change caused by different inputs.}
+  \caption{Controlling \texttt{x264} through scene changes.}
   \label{fig:x264-phase-change}
 \end{figure}
-We demonstrate that \SYSTEM{} reacts to input variations.
-\figref{fig:x264-phase-change} shows the \texttt{x264} video encoder
-application with 2 different phases, where the phase change occurs at
-the $500^{th}$ frame. The first scene is difficult and the second one
-is significantly easier. In the first phase, \SYSTEM{} and the HBM are
-closer to the desired performance (1 in the figure) compared to
-Adaptive-Control.  Additionally, these two approaches consume less
-energy than Adaptive-control indicating that Adaptive-Control is
-operating at a configuration not on the Pareto frontier of power and
-performance.  When the input changes, \SYSTEM{} and HBM both
-algorithms are still able to meet the performance target with far less
-fluctuations as compared to POET.  But, \SYSTEM{} provides better
-energy savings as compared to HBM. \TODO{I think we need a better
-  example here.  This example has the learner reacting better to a
-  phase change than the controller, which contradicts what we said
-  before.  The problem is that the learner isn't really a learner, but
-  a controller itself.}
-
-
-%}
+We compare \SYSTEM{} and Adaptive-Control reacting to input
+variations.  \figref{fig:x264-phase-change} shows the \texttt{x264}
+video encoder application with 2 different phases caused by a scene
+change in the input that occurs at the $500^{th}$ frame. The first
+scene is difficult and the second one is significantly easier.  In the
+first scene, \SYSTEM{} is closer to the desired performance (1 in the
+figure) and operates at a lower power state compared to
+Adaptive-Control. Adaptive-Control is operating at a configuration not
+on the Pareto frontier of power and performance.  When the input
+changes, \SYSTEM{} is still meets the performance target with far less
+fluctuations compared to Adaptive-Control.
 
 
 \subsection{The Pole's Importance}
-\TODO{Add the LAVAMD contour plot?}  LAVAMD has one of the most
-complicated responses to resource usage on our system, as shown in
-\figref{fig:lavamd_contour}. \secref{guarantees} presents an
-analytical argument that tuning the controller to model variance and
-confidence interval will prevent oscillation and provide probabilistic
-control theoretic guarantees despite using noisy, learned models to
-control such complicated behavior.  We now demonstrate this
-empirically by showing LAVAMD's single-app behavior controlled by both
-CALOREE-NoPole and \SYSTEM{}-HBM to meet the 80\% target.
+%\TODO{Add the LAVAMD contour plot?}  
+\begin{figure}
+\centering
+  \subfloat[]
+  {
+    \includegraphics[width=.25\textwidth]{figures/lavamd.png}
+    \label{fig:lavamd}
+  }
+  \subfloat[]
+  {
+    \input{img/LAVA-pole2.tex}
+    \label{fig:lavamd-pole}
+  }
+  \caption{(a) LAVAMD's performance with different resources. (b) The
+    pole's effects on LAVAMD's behaviors.}
+  \label{fig:lavamd-is-hard}
+\end{figure}
+
+
+%\begin{wrapfigure}{r}{0.5\columnwidth} 
+%\includegraphics[width=.25\textwidth]{figures/lavamd.png}
+%\caption{Performance of LAVAMD with differnt resources.}
+%\label{fig:lavamd}
+%\end{wrapfigure}
+LAVAMD has one of the most complicated responses to resource usage on
+our system with multiple local optima, as shown in
+\figref{fig:lavamd}.  \secref{guarantees} presents an analytical
+argument that tuning the controller to model variance and confidence
+interval prevents oscillation and provide probabilistic control
+theoretic guarantees despite using noisy, learned models to control
+such complicated behavior.  We now demonstrate this empirically by
+showing LAVAMD's single-app behavior controlled by both CALOREE-NoPole
+and \SYSTEM{}-HBM to meet the 80\% target.
 
 \figref{fig:lavamd-pole} shows the results, with time on the x-axis
 and normalized performance and power on the respective y-axes.
@@ -386,37 +371,35 @@ mixture of big and LITTLE cores to keep energy near minimal.
 % \TODO{Do we need the vertical line here?  This is a single app run
 %   right?}
 
-\begin{figure}[t]
-  \input{img/LAVA-pole.tex}
-   \vskip -.5em
-   \caption{The pole's effects on LAVAMD behavior.}
-  \label{fig:lavamd-pole}
-\end{figure}
+%\begin{figure}[t]
+%  \input{img/LAVA-pole.tex}
+%   \vskip -.5em
+%   \caption{The pole's effects on LAVAMD behavior.}
+%  \label{fig:lavamd-pole}
+%\end{figure}
 
 
 \subsection{Sensitivity to the Measured Samples}
 We vary the number of samples taken and show how it affects model
-accuracy for the Online, Nuclear, and HBM learners.  The accuracy is
-simply how close the model is to ground truth (found through
-exhaustive exploration), with 1 meaning the model perfectly reproduced
-the real performance or power.  This number is significant, because
-the smaller the number of samples, the faster the controller can
-switch from a general model to the HBM's application specific model.
+accuracy for the Online, Netflix, and HBM learners.  Accuracy is how
+close the model is to ground truth (found through exhaustive
+exploration), with 1 meaning the model perfectly reproduced the real
+performance or power.  Accuracy is significant, because the smaller
+the number of samples, the faster the controller can switch from a
+general model to the learner's application-specific model.
 
-\figref{fig:sensitivity} compares \SYSTEM{}'s accuracy to Online and
-NUCLEAR for learning both performance (top) and power (bottom).  The
-figure shows sample size on the x-axis and accuracy on the y-axis.
-\SYSTEM{}'s HBM initially performs as well as the Offline approach and
-as sample size increases, the accuracy uniformly improves and reaches
-greater than 90\% around 20 samples. The online approach needs at
-least 7 samples to begin model building.  As we get more samples the
-accuracy for the online model improves but still does not meet
-\SYSTEM{}'s accuracy for the same number of samples. Nuclear is very
-noisy as small numbers of samples, but once the number of samples
-reaches about 50, it is competitive with HBM.  These results not only
-demonstrate the sensitivity to sample size, they show why
-\SYSTEM{}-HBM achieves better results than the other learning
-mechanisms.
+\figref{fig:sensitivity} compares the Online, HBM, and Netflix
+learners for both performance (top) and power (bottom).  The figure
+shows sample size on the x-axis and accuracy on the y-axis.  The HBM
+initially performs as well as Offline and as sample size increases,
+the accuracy uniformly improves, exceeding 90\% after 20 samples. The
+Online approach needs at least 7 samples before it can even generate a
+model.  As Online receives more samples, its accuracy improves but
+never exceeds HBM's for the same number of samples. Netflix is very
+noisy for sample sizes, but once the number of samples reaches about
+50, it is competitive with HBM.  These results not only demonstrate
+the sensitivity to sample size, they show why \SYSTEM{}-HBM achieves
+better results than the other learning mechanisms.
 
 \begin{figure}[t]
   \input{img/sample-accuracy-v3.tex}
