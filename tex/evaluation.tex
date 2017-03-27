@@ -176,19 +176,23 @@ achieves similar deadline misses (14\%) with lower average energy than
 any of the prior learning approaches (12\%). \SYSTEM{} with no pole
 misses 45\% of all deadlines, which is clearly unacceptable.
 
-\begin{figure*}[!t]
-  \input{img/single-app-performance-small.tex}
-   \vskip -.5em
-  \caption{Deadline misses for single application scenario.}
-  \label{fig:single-perf}
-\end{figure*}
 
-
-\begin{figure*}[!t]
-  \input{img/single-app-energy-small.tex}
-   \vskip -.5em
-  \caption{Energy over optimal for single application scenario.}
-  \label{fig:single-energy}
+\begin{figure*}[t]
+ \captionsetup[subfigure]{labelformat=empty}
+  \subfloat[]
+  {
+    \input{img/single-app-performance-small.tex}
+  }
+  \\
+  \vskip -2.5em
+  \subfloat[]
+  {
+    \input{img/single-app-energy-small.tex}
+  }
+  \vskip -1em
+  \label{fig:multi}
+  \caption{Comparison of application performance error and energy for single application scenario.}
+ \label{fig:odroidall}
 \end{figure*}
 
 When we allow \SYSTEM{} to adaptively tune its pole, however, we see
@@ -230,19 +234,24 @@ is controlling.  Delivering performance to the original application in
 this dynamic scenario tests \SYSTEM{}'s ability to react to
 environmental changes.
 
-\begin{figure*}[t!]
-  \input{img/multi-app-performance-small.tex}
-   \vskip -.5em
-  \caption{Deadline misses for multiple application scenario.}
-  \label{fig:multi-perf}
+\begin{figure*}[t]
+ \captionsetup[subfigure]{labelformat=empty}
+  \subfloat[]
+  {
+    \input{img/multi-app-performance-small.tex}
+  }
+  \\
+  \vskip -2.5em
+  \subfloat[]
+  {
+    \input{img/multi-app-energy-small.tex}
+  }
+  \vskip -1em
+  \label{fig:multi}
+  \caption{Comparison of application performance error and energy for multiple application scenario.}
+ \label{fig:odroidall}
 \end{figure*}
 
-\begin{figure*}[!t]
-  \input{img/multi-app-energy-small.tex}
-   \vskip -.5em
-  \caption{Energy over optimal for multiple application scenario.}
-  \label{fig:multi-energy}
-\end{figure*}
 
 \figref{fig:multi-sum} summarizes the results as the average number of
 deadline misses and energy over optimal for all approaches.  We note
@@ -336,7 +345,7 @@ fluctuations compared to Adaptive-Control.
   }
   \subfloat[]
   {
-    \input{img/LAVA-pole2.tex}
+    \input{img/LAVA-pole.tex}
     \label{fig:lavamd-pole}
   }
   \caption{(a) LAVAMD's performance with different resources. (b) The
