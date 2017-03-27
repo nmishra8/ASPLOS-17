@@ -9,8 +9,8 @@
         xticklabels at=edge bottom,
         vertical sep=5pt
     },
-height=3.3cm,
-width=0.95\columnwidth,
+height=3cm,
+width=0.55\columnwidth,
 xmajorgrids,
 ymajorgrids,
 grid style={dashed},
@@ -33,8 +33,12 @@ yticklabels={,0.5,1.0,1.5,2.0},
 yticklabel style={font=\footnotesize},
 ymin=0,
 ymax=2.0,
-legend entries={{$\mathsf{\SYSTEM{}-NO-POLE}$},{{$\mathsf{\SYSTEM{}-HBM}$}}},
-legend style={draw=none,at={(0.5,1.4)},anchor=north,legend columns=4,line width=5pt},
+%legend entries={{$\mathsf{\SYSTEM{}-NO-POLE}$},{{$\mathsf{\SYSTEM{}-HBM}$}}},
+legend entries={{\scriptsize $\mathsf{\SYSTEM{}-NO-POLE}$},{\scriptsize $\mathsf{\SYSTEM{}-HBM}$}},
+legend style={fill=none,draw=none,at={(0.5,1.5)},anchor=north,legend columns=1,
+line width=1pt},
+%legend style={draw=none,at={(0.5,1.4)},anchor=north,legend columns=4,line width=5pt},
+%legend style={fill=none,draw=none,at={(0.5,1.5)},anchor=north,legend columns=1,line width=1pt}
 ]
 
 \addplot[thick, solid, color=CALOREE-NP, mark=none,each nth point=5] table[x index=0,y index=1,col sep=space] {img/pole/leo-poet-np-LAVAMD.txt};
