@@ -104,7 +104,9 @@ resources: the number of big cores, the number of LITTLE cores, and
 the speeds for each of the big and LITTLE cores.  There is also a
 single goal: performance.  Thus, in this example, $n=4$ and $m=1$. The
 vector $\mathbf{c}(t)$ has four elements representing the resource
-allocation at time $t$.  The matrices $\mathbf{A}$, $\mathbf{B}$, and
+allocation at time $t$. $q$ is the number of variables in the controller's 
+state which can vary between, we can choose $q$ to be between 1 to $n$.
+The matrices $\mathbf{A}$, $\mathbf{B}$, and
 $\mathbf{C}$ capture the linear relationship between the control state
 $\x$, the resource usage $\mathbf{c}$, and the measured behavior.  In
 this example, we know there is a non-linear relationship between the
@@ -137,7 +139,7 @@ Specifically, \SYSTEM{} takes three steps to transform a standard
 control system into one that works without prior knowledge of the
 application to be controlled:
 \begin{enumerate}[leftmargin=1em]
-\item controlling \emph{speedup} rather than resources,
+\item controlling \emph{speedup} (which is an abstraction on performance) rather than resources,
 \item translating speedup into an energy minimal \emph{resource
     schedule} in a separate step, and
 \item exploiting the \emph{problem structure} to solve this scheduling
@@ -174,12 +176,12 @@ With this model, \SYSTEM{}'s control law is simply:
 \end{eqnarray}
 which states that the speedup at time $t$ is a function of the
 previous speedup, the error at time $t$, the base speed $b(t)$, and
-the controller's \emph{pole} $rho(t)$.  Standard control techniques
+the controller's \emph{pole} $\rho(t)$.  Standard control techniques
 statically determine the pole and the base speed, but \SYSTEM{}
 \emph{dynamically sets the pole and base speed to account for error in
   the learned models---an essential modification for providing formal
   guarantees of the combined control and learning systems.}  For
-stable control, \SYSTEM{} ensures $0 \le $rho(t)$ < 1$. Small values
+stable control, \SYSTEM{} ensures $0 \le $\rho(t)$ < 1$. Small values
 of $\rho(t)$ eliminate error quickly, but make the controller more
 sensitive to model inaccuracies.  Larger $\rho(t)$ makes the system
 more robust at the cost of reduced convergence time.  \SYSTEM{} sets
