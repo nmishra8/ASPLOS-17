@@ -18,11 +18,11 @@ power.  The recorded values are sent to a learner, which estimates the
 application's performance and power in all other configurations and
 extracts those that represent Pareto-optimal tradeoffs.  These
 configurations are packaged in a special data structure---the
-performance hash table (PHT).  The learner sends the PHT, the
-estimated variance, and a confidence interval to the controller.
-Using these values, the controller selects an energy minimal resource
-configuration in constant time with formal guarantees that it will
-converge to the desired performance.
+performance hash table (PHT).  The learner sends the PHT and the
+estimated variance to the controller.  Using these values, the
+controller selects an energy minimal resource configuration in
+constant time with formal guarantees of convergence to the desired
+performance.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{figures/Timeline.pdf}
@@ -86,8 +86,9 @@ allocating $n$ resources to meet $m$ goals at time $t$:\footnote{We
 \label{eqn:system:mimo}
 \end{equation}
 where $\x \in \R^{q}$ is the controller's \emph{state}, an abstract
-representation of the relationship between resources and goals.
-$\mathbf{c}(t) \in \R^n$ is a vector representing the current
+representation of the relationship between resources and goals and $q$
+is the controller's \emph{degree}, or complexity of its internal
+state.  $\mathbf{c}(t) \in \R^n$ is a vector representing the current
 \emph{configuration} of resources; \ie{} the $i$th vector element
 represents the amount of resource $i$ to be allocated at time $t$.
 $\y(t) \in \R^{m}$ represents the current value of the goal dimensions
@@ -104,9 +105,9 @@ resources: the number of big cores, the number of LITTLE cores, and
 the speeds for each of the big and LITTLE cores.  There is also a
 single goal: performance.  Thus, in this example, $n=4$ and $m=1$. The
 vector $\mathbf{c}(t)$ has four elements representing the resource
-allocation at time $t$. $q$ is the number of variables in the controller's 
-state which can vary between, we can choose $q$ to be between 1 to $n$.
-The matrices $\mathbf{A}$, $\mathbf{B}$, and
+allocation at time $t$. $q$ is the number of variables in the
+controller's state which can vary between, we can choose $q$ to be
+between 1 to $n$.  The matrices $\mathbf{A}$, $\mathbf{B}$, and
 $\mathbf{C}$ capture the linear relationship between the control state
 $\x$, the resource usage $\mathbf{c}$, and the measured behavior.  In
 this example, we know there is a non-linear relationship between the
@@ -114,7 +115,7 @@ resources.  We overcome this difficulty by tuning the identified
 matrices at each time step---approximating the non-linear system
 through a series of changing linear formulations.  This approximation
 is a form of \emph{adaptive} or \emph{self-tuning} control
-\cite{AdaptiveControl}.  Such adaptive controllers provide formal
+\cite{HandbookControl}.  Such adaptive controllers provide formal
 guarantees that they will converge to the desired performance even in
 the face of non-linearities, but they still assume convexity.
 
@@ -126,10 +127,9 @@ parameter-free---they require users to specify starting values of the
 matrices $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ and the method
 for updating these matrices to account for any non-convexity in the
 relationship between resources and performance
-\cite{POET,METE,ControlWare,AdaptiveControl}.  Therefore, typically
-100s to 1000s of samples are taken when the controller is designed to
-ensure that the starting matrices are sufficient to prevent the
-controller from getting stuck in a local optima
+\cite{POET,METE,ControlWare,HandbookControl}.  Therefore, typically
+100s to 1000s of samples are taken at design time to ensure that the
+starting matrices are sufficient to ensure convergence
 \cite{FSE2015,sysid,josep-isca2016}.
 
 \subsection{\SYSTEM{} Control System}
@@ -176,19 +176,19 @@ With this model, \SYSTEM{}'s control law is simply:
 \end{eqnarray}
 which states that the speedup at time $t$ is a function of the
 previous speedup, the error at time $t$, the base speed $b(t)$, and
-the controller's \emph{pole} $\rho(t)$.  Standard control techniques
+the controller's \emph{pole}, $\rho(t)$.  Standard control techniques
 statically determine the pole and the base speed, but \SYSTEM{}
 \emph{dynamically sets the pole and base speed to account for error in
   the learned models---an essential modification for providing formal
   guarantees of the combined control and learning systems.}  For
-stable control, \SYSTEM{} ensures $0 \le $\rho(t)$ < 1$. Small values
-of $\rho(t)$ eliminate error quickly, but make the controller more
+stable control, \SYSTEM{} ensures $0 \le \rho(t) < 1$. Small values of
+$\rho(t)$ eliminate error quickly, but make the controller more
 sensitive to model inaccuracies.  Larger $\rho(t)$ makes the system
 more robust at the cost of reduced convergence time.  \SYSTEM{} sets
 $b(t)$ using the standard technique of Kalman filter estimation
-\cite{whelch2006kalman}. We describe how \SYSTEM{} automatically sets
-the pole in \secref{guarantees}.  First, however, we address the
-problem of converting an abstract speedup into a resource allocation.
+\cite{welch2006kalman}. \secref{guarantees} describes how \SYSTEM{}
+automatically sets the pole; however, we first address converting an
+abstract speedup into a resource allocation.
 
 \subsubsection{Converting Speedup to Resource Schedules}
 \SYSTEM{} must map \eqnref{speedup-control}'s speedup into a resource
@@ -241,6 +241,8 @@ solution with the following properties \cite{kim-cpsna}:
   tradeoff space (\eg{} the top half of \figref{fig:pht}) the two
   configurations with non-zero $\tau_c$ lie on the lower convex hull
   of the power performance tradeoff space.
+\item The two configurations with non-zero $\tau_c$ are adjacent on
+  the convex hull: one above the constraint and one below.
 \end{itemize}
 %\SYSTEM{} uses these two facts to construct a constant time algorithm
 %for finding the optimal solution online.
@@ -270,10 +272,10 @@ into two configurations: $hi$ and $lo$.  To find the $hi$
 configuration, \SYSTEM{} clamps the desired speedup to the largest
 index lower than $speedup(t)$ and then walks forward until it finds
 the first configuration with a speedup higher than $speedup(t)$.  To
-find the $lo$ configuration, the translator clamps the desired speedup
-to the smallest index higher than $speedup(t)$ and then walks
-backwards until it finds the configuration with the largest speedup
-less than $speedup(t)$.
+find the $lo$ configuration, it clamps the desired speedup to the
+smallest index higher than $speedup(t)$ and then walks backwards until
+it finds the configuration with the largest speedup less than
+$speedup(t)$.
 
 For example, consider the PHT in \figref{fig:pht} and an optimizer
 meeting $speedup(t) = .65$.  To find $hi$, the optimizer indexes at .6
@@ -308,19 +310,22 @@ the specific and the general; \ie between frameworks that build
 application-specific models and frameworks that combine observations
 across applications.  For example, the key to energy efficiency on
 heterogeneous mobile systems is knowing when to make use of the
-smaller, low-power cores \cite{}.  An application-specific model will
-capture that precisely, but may require many observations before
-producing the correct model.  A more general model will capture the
-trend, \eg when most applications should transition, but this general
-model might miss the key inflection point for some applications.  We
-refer to application-specific models as \emph{online} because they
-build models for the current application and do not incorporate
-knowledge of other applications.  We refer to general models as
-\emph{offline} as they use prior observations of other applications to
-predict the behavior of a new application. A third class of
-\emph{transfer learning} models combines information from the
-previously seen applications and current application to make the
-predictions on the application in hand \cite{pan2010survey} . These models allow us to obtain higher prediction accuracies since we are able to augment our data with extra information from other applications.
+smaller, low-power cores \cite{kim-cpsna,Carroll2013,LeSueur11}.  An
+application-specific model will capture that precisely, but may
+require many observations before producing the correct model.  A more
+general model will capture the trend, \eg when most applications
+should transition, but this general model might miss the key
+inflection point for some applications.  We refer to
+application-specific models as \emph{online} because they build models
+for the current application and do not incorporate knowledge of other
+applications.  We refer to general models as \emph{offline} as they
+use prior observations of other applications to predict the behavior
+of a new application. A third class of \emph{transfer learning} models
+combines information from the previously seen applications and current
+application to make the predictions on the application in hand
+\cite{pan2010survey} . These models allow us to obtain higher
+prediction accuracies since we are able to augment our data with extra
+information from other applications.
 
 % The HBM provides a good balance between the online and offline
 % approaches.  A strictly online approach will handle each new
@@ -333,43 +338,51 @@ predictions on the application in hand \cite{pan2010survey} . These models allow
 % overly general and cannot learn features specific to a single
 % application.
 \subsubsection{Offline models}
-The offline models utilize data from previously seen application. If the model is for applications with very similar applications the prediction accuracy might be high but the model is bound to fail if the application's behaviors diverge \cite{meisner2011powe,Kim2014}. For instance,  It will predict the performance of applications only based on prior applications, meaning it will over-allocate speed to memory-bound applications 
-and under-allocate to compute-bound ones. 
+These models utilize data from previously seen applications. If the
+model is for applications with very similar behavior the prediction
+accuracy might be high but the model will fail if the application's
+behaviors diverge \cite{meisnerISCA2011,Kim2014}.  For example, these
+techniques will predict the performance of applications based on prior
+applications, meaning they will over-allocate speed to memory-bound
+applications and under-allocate to compute-bound ones.
 
 \subsubsection{Online models}
 %\TODO{Is this offline or online or both?  The prior paragraph sets up this three-legged structure: offline, online, and something which we used to call hybrid but sounds like we are now calling transfer learning. If we are going to keep that structure we should mimic it in the substructure of the rest of the section.}  
-  In general, all
-machine learning techniques take observations of some phenomena and
-produce a model to estimate future outcomes.  In our specific case, we
-want to take observations about application's performance and power
-given a resource allocation and predict future applications' behavior. 
-The most straightforward approach is to create a linear regression
-model based on the configuration laid out as the input features
-\cite{}. Learning in this model requires samples of the performance
-and power for different resource configurations. Since the systems are
-usually non-linear, polynomial regression models often give better
-results, but increases the number of samples required to fit the model
-\cite{lee2008efficiency}. Regression models also provide a confidence interval for their estimates which is important for adaptively tuning the pole.
+In general, all machine learning techniques take observations of some
+phenomena and produce a model to estimate future outcomes.  In our
+specific case, we want to take observations about application's
+performance and power given a resource allocation and predict future
+applications' behavior.  The most straightforward approach is to
+create a linear regression model based on the configuration laid out
+as the input features
+\cite{tibshirani1996regression,yuan2006model,CPR}.  Learning in this
+model requires samples of the performance and power for different
+resource configurations.  Since the systems are usually non-linear,
+polynomial regression models often give better results, but increases
+the number of samples required to fit the model \cite{LeeBrooks}.
+Regression models also provide a confidence interval for their
+estimates which is important for adaptively tuning the pole.
+
 
 \subsubsection{Transfer learning}
- \textit{Transfer learning} is a field in machine learning; which
-means we apply the knowledge gained from one scenario to a new,
-similar problem \cite{pan2010survey}.  To provide intuition we offer a simple example.
-Suppose we have observed many prior applications, all of which are
-either completely compute-bound or completely memory-bound, and we
-have an equal number of both.  The only resource we can allocate is
-clockspeed, which will increase the performance of compute-bound
-applications, but not memory-bound ones.  When we encounter new
-application, we must estimate its response to clockspeed.  The online
-model will not use prior knowledge, but will observe many different
-clock speeds for the new application, leading to high overhead.  The
-offline model will predict the mean response of prior applications,
-meaning it will over-allocate speed to memory-bound applications and
-under-allocate to compute-bound ones.  The transfer learning approach
-takes a small number of samples and combines those with prior
-knowledge: if the new observations show that clockspeed has no effect
-on performance these models will use only the prior memory bound
-applications, otherwise, it will use the compute-bound applications.
+\textit{Transfer learning} refers to the process of applying knowledge
+gained from one scenario to a new, similar one \cite{pan2010survey}.
+To provide intuition we offer a simple example.  Suppose we have
+observed many prior applications, all of which are either completely
+compute-bound or completely memory-bound, and we have an equal number
+of both.  The only resource we can allocate is clockspeed, which will
+increase the performance of compute-bound applications, but not
+memory-bound ones.  When we encounter new application, we must
+estimate its response to clockspeed.  The online model will not use
+prior knowledge, but will observe many different clock speeds for the
+new application, leading to high overhead.  The offline model will
+predict the mean response of prior applications, meaning it will
+over-allocate speed to memory-bound applications and under-allocate to
+compute-bound ones.  The transfer learning approach takes a small
+number of samples and combines those with prior knowledge: if the new
+observations show that clockspeed has no effect on performance these
+models will use only the prior memory bound applications, otherwise,
+it will use the compute-bound applications.
 
 \paragraph{Netflix Algorithm:}
 The Netflix problem is a famous challenge posted by Netflix to find
@@ -377,12 +390,13 @@ estimate users' movie preferences. The challenge was one by realizing
 that if 2 users both like some movies they might have similar taste in
 other movies. This approach allows allows models to borrow large
 amounts of data from other users to answer some questions about a new
-user.  
+user.
 %One of the solutions in designing this mathematically is to say
 %the the matrix of users vs movies is low rank and solve the problem
 %using mathematical optimization techniques.
-Delemitriou and Kozyrakis use this algorithm to predict application
-response to heterogeneous resources in data centers\cite{Paragon}.
+Delimitriou and Kozyrakis use this algorithm to predict application
+response to heterogeneous resources in data centers
+\cite{Paragon,quasar}.
 
 
 \paragraph{ Bayesian Models:} A hierarchical Bayesian model (HBM)
@@ -412,10 +426,10 @@ only parts that are not obviously constant time are the PHT lookups.
 Provided the PHT resolution is sufficiently high to avoid collisions,
 then each PHT lookup requires constant time.
 \begin{algorithm}[t]
-\caption{Generalized control system}
+\caption{\SYSTEM{} control.}
 \label{alg:gcs}
 \begin{algorithmic}
-\REQUIRE Initialize the controller with a general model of speedup and powerup. Send power and performance samples to server and get performance hash table(PHT) from the server.
+\REQUIRE Initialize the controller with a general model of speedup and powerup. Send power and performance samples to learner and receive a PHT.
 \WHILE{$True$}
     \STATE    Measure streaming application performance 
     \STATE    Compute required speedup (Equation \eqref{eqn:speedup})

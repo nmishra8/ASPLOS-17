@@ -60,8 +60,8 @@ machine learning and control theory to build resource allocators.
 \SYSTEM{} is parameter-free because it automatically tunes all
 internal parameters and models to customize itself to the application
 under management.  In contrast, many approaches require user-specified
-parameters, like learning rate \cite{dubach2010,more} or poles and
-zeros of characteristic equations \cite{ControlWare,more}.
+parameters, like learning rate \cite{dubach2010,Tokic2010} or poles
+and zeros of characteristic equations \cite{ControlWare,POET}.
 
 \SYSTEM{} creates a general control system implementation that factors
 out the parameters that must be learned.  While traditional control
@@ -78,7 +78,7 @@ mechanisms such that the expensive learning can be offloaded to
 another system and the controller itself runs in
 constant---$O(1)$---time.  Thus, learning's high cost can be amortized
 as \SYSTEM{} uses \emph{transfer learning} to apply knowledge from
-multiple devices and applications \cite{transferlearning}.
+multiple devices and applications \cite{pan2010survey}.
 
 
 \SYSTEM{}'s generality allows a wide range of learning techniques to
@@ -93,55 +93,51 @@ We evaluate \SYSTEM{} by implementing the learner on an x86 server and
 the controller on heterogeneous ARM big.LITTLE devices.  We compare
 \SYSTEM{} to existing, state-of-the-art learning (including polynomial
 regression \cite{Koala,dubach2010}, the Netflix algorithm
-\cite{nuclear,Paragon}, and a hierarchical Bayesian model \cite{LEO})
+\cite{netflix,Paragon}, and a hierarchical Bayesian model \cite{LEO})
 and control (including proportional-integral-derivative
 \cite{Hellerstein2004a} and adaptive, or self-tuning
-\cite{ControlHandbook}) techniques.  Additionally, we compare to a
-naive combination of learning and control that does not account for
-the inaccuracies of learned models.  We set performance goals---as
-latency requirements---for a set of benchmark applications and then
-measure both the percentage of time the requirements are violated and
-the energy for each application.  We test both \emph{single-app},
-where an application runs alone, and \emph{multi-app} environments,
-where other applications enter the system and compete for resources.
-\SYSTEM{} achieves the:
+\cite{HandbookControl}) techniques.  \PUNT{Additionally, we compare to
+  a naive combination of learning and control that does not account
+  for the inaccuracies of learned models.}  We set performance
+goals---as latency requirements---for a set of benchmark applications
+and then measure both the percentage of time the requirements are
+violated and the energy for each application.  We test both
+\emph{single-app}, where an application runs alone, and
+\emph{multi-app} environments, where other applications enter the
+system and compete for resources.  \SYSTEM{} achieves the:
 \begin{itemize}[leftmargin=1em]
 \item \textit{Most reliable performance:}
   \begin{itemize}[leftmargin=1em]
-  \item In the \emph{single-app} case, the best prior learning and
-    control techniques miss 12\% of deadlines on average, while the
-    naive combination misses 45\% of deadlines. \SYSTEM{} misses only
-    5\% on average, reducing deadline misses by over 50\% compared to
+  \item In the \emph{single-app} case, the best prior technique misses
+    12\% of deadlines on average, while \SYSTEM{} misses only 5\% on
+    average---reducing deadline misses by more than 58\% compared to
     prior approaches.
   \item In the \emph{multi-app} case, the best prior approach averages
-    30\% deadline misses, the naive combination averages 31\%, but
-    \SYSTEM{} misses just 5.6\% of deadlines, a huge reduction
-    compared to prior approaches.
+    30\% deadline misses, but \SYSTEM{} misses just 5.6\% of
+    deadlines---a huge improvement over prior work.
   \end{itemize}
 \item \textit{Best energy savings:} We compare to an \emph{oracle}
   with a perfect model of the application, system, and future events.
   \begin{itemize}[leftmargin=1em]
   \item In the \emph{single-app} case, the best prior approach
-    averages 12\% more energy consumption than the oracle, the naive
-    combination of control and learning consumes 11\% more, and
-    \SYSTEM{} consumes 5\% more.
+    averages 12\% more energy consumption than the oracle, but
+    \SYSTEM{} consumes only 5\% more.
   \item In the \emph{multi-app} case, the best prior approach averages
-    18\% more energy than the oracle, the naive combination of control
-    and learning consumes 11\% more, and \SYSTEM{} consumes 7\% more.
+    18\% more energy than the oracle, while \SYSTEM{} consumes just
+    8\% more.
   \end{itemize}
 \end{itemize}
 
 % Key contributions.
 % Contributions, but I decided against bulleted llist for thsi paper
-In summary, control theoretic approaches are well suited to manage
-resources in dynamic environments and machine learning techniques
-accurately model complex, heterogeneous processors.  \emph{To the best
-  of our knowledge, \SYSTEM{} is the first work to combine the two at
-  runtime, ensuring application performance without prior knowledge of
-  the controlled application.}  Our formal analysis of \SYSTEM{}'s
-convergence despite noisy inputs shows how to incorporate learned
-variance and confidence intervals into control theoretic guarantees.
-We demonstrate the practical benefits of these contributions by
+In summary, control approaches are well suited to dynamic environments
+and learning techniques accurately model complex, heterogeneous
+processors.  \emph{To the best of our knowledge, \SYSTEM{} is the
+  first work to combine the two to ensure application performance
+  without prior knowledge of the controlled application.}  Our formal
+analysis of \SYSTEM{}'s convergence despite noisy inputs shows how to
+incorporate learned variance into control theoretic guarantees.  We
+demonstrate the practical benefits of these contributions by
 implementing \SYSTEM{} for mobile/embedded processors to show it
 provides more reliable performance and lower energy than individual,
 state-of-the-art learning and control solutions.

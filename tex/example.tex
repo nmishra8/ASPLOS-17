@@ -15,21 +15,22 @@ updates \cite{packandcap,Winter2010,dubach2010,Koala,Cinder,
 Control theory provides techniques for maintaining desired behavior in
 dynamic systems \cite{Hellerstein2004a}. \emph{Adaptive controllers}
 or \emph{self-tuning regulators} adjust their internal models in
-response to dynamic changes; they are especially useful in webservers
-with fluctuating request rates
+response to dynamic changes \cite{HandbookControl}. They are
+especially useful in webservers with fluctuating request rates
 \cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} and multimedia
 applications with dynamically varying inputs
-\cite{TCST,Agilos,grace2}.  Prior adaptive control solutions, however,
-incorporate application-specific models into the control
-implementation---making a controller for a web server unsuitable for
-video playback.  Prior work has generalized adaptive control design by
-exposing key parameters to users who customize control to their needs
-\cite{ControlWare,POET}.  User customization provides greater
-flexibility, but the controller will not converge to the desired
-performance if the custom control models do not accurately capture the
-relationship between resources and performance.  This practice means
-users must not only be experts in their application domain, but must
-also have sufficient control knowledge to specify robust models.
+\cite{TCST,Agilos,grace2}.  Prior work has generalized adaptive
+control design by exposing key model parameters to users who customize
+control to their needs \cite{ControlWare,POET}.  User customization
+provides greater flexibility, but the controller will not converge to
+the desired performance if the custom models do not accurately capture
+the relationship between resources and performance.  This practice
+means users must not only be experts in their application domain, but
+must also have sufficient control knowledge to specify robust models.
+
+This section illustrates how learning handles complexity, how control
+handles dynamics, and then describes a key difficulty that must be
+overcome to combine learning and control.
 
 \subsection{\emph{Learning} Complexity}
 \begin{figure}
@@ -57,19 +58,19 @@ high-performance cores and four LITTLE, energy efficient cores.  The
 big cores support 19 clock speeds, while the LITTLE cores support 14.
 
 
-\figref{fig:STREAM_contour} shows the relationship between resources
-and performance for \texttt{STREAM}.  This memory-bound application
-has complicated behavior: due to memory pressure, the LITTLE cores'
-memory hierarchy cannot deliver the required performance.  The big
-cores' more powerful memory system delivers much greater performance,
-but the peak occurs with 3 big cores.  Furthermore, at low
-clockspeeds, these 3 big cores cannot saturate the memory bandwidth,
-while at high clockspeeds the performance drops as the processor
-overheats and triggers thermal management.  For \texttt{STREAM}, the
-peak speed occurs with 3 big cores at 1.2 GHz, and it is not efficient
-to spend any time on the LITTLE cores.  \texttt{STREAM}, however, does
-not have distinct phases, so once a resource allocator finds the most
-energy efficient configuration, it simply needs to maintain it.
+\figref{fig:STREAM_contour} shows \texttt{STREAM}'s performance for
+different resource configurations.  This memory-bound application has
+complicated behavior: the LITTLE cores' memory hierarchy cannot
+deliver the required performance.  The big cores' more powerful memory
+system delivers much greater performance, but the peak occurs with 3
+big cores.  Furthermore, at low clockspeeds, these 3 big cores cannot
+saturate the memory bandwidth, while at high clockspeeds the
+performance drops as the processor overheats, triggering thermal
+management.  For \texttt{STREAM}, the peak speed occurs with 3 big
+cores at 1.2 GHz, and it is not efficient to spend any time on the
+LITTLE cores.  \texttt{STREAM}, however, does not have distinct
+phases, so once a resource allocator finds the most energy efficient
+configuration, it simply needs to maintain it.
 
 
 \figref{fig:STREAM_timeline} shows 20 iterations of both learning
@@ -107,8 +108,7 @@ control systems \cite{ControlWare,POET,ICSE2014}.  Hence, the
   \caption{(a) \texttt{bodytrack} performance as a function of
     configuration. (b) Managing \texttt{bodytrack}'s performance with
     another application: \emph{control} detects the change (at the
-    vertical dashed line) and immediately adjusts, but \emph{learning}
-    has no mechanism to handle these dynamics. }
+    vertical dashed line) and adjusts, but \emph{learning} cannot. }
   \label{fig:control}
 \end{figure}
 
