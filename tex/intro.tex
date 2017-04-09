@@ -30,80 +30,93 @@ these difficulties individually.
 % dynamics.  Control---handles dynamics.  Control advantages: formally
 % analyzable guarantees despite dynamics.  Control disadvantages:
 % relies on good models---no local optima, bounded error.
-Many machine learning approaches model the complex performance/power
-tradeoff spaces inherent to heterogeneous computing
+Existing machine learning approaches predict an application's
+performance and power as a function of resource configurations
 \cite{reddiHPCA2013,dubach2010,Bitirgen2008,Ipek,Koala,LEO,Flicker,Ponamarev,Paragon}.
-Learning handles non-convexity, identifying local optima and moving to
-globally optimal solutions. These techniques are computationally
-expensive and lack support for dynamics; \ie{} when the environment
-changes the expensive model building process must be restarted.
-Control theoretic solutions provide formal guarantees that they will
-converge to the desired performance despite system dynamics
+Learning approaches handle the complexity of modern hardware, but
+their predictions are not useful if the environment changes
+dynamically; \eg{} when a second application enters the system.
+Control theoretic approaches adjust resource usage based on the
+difference between measured and expected performance
 \cite{Hellerstein2004a,Chen2011,POET,ControlWare,Agilos,grace2,JouleGuard}.
-Control provides formal guarantees of convergence to the desired
-performance, but these guarantees require \emph{ground truth} models
-and control will not converge if the models do not accurately capture
-system complexity---including local optima and non-linearities.
-
+Control solutions provide formal guarantees they will converge to the
+desired performance despite dynamic and unpredictable interference,
+but these guarantees are based on known relationships between resource
+usage and application performance.  If the relationships are not known
+or there is significant error between the expected behavior and the
+actual behavior, the controller will not converge.
 
 % Want to combine learning and control to address both difficulties
-% simultaneously.  Need an interface that allows learned models to be
-% used by control system.  Challenges: (1) overhead and (2) formal
-% guarantees.  
-We want the benefits of both learning and control to ensure
-performance requirements are met with minimal energy in complex and
-dynamic environments.  Thus, we present
-\SYSTEM{}:\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning
-  for \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
-  \textbf{E}fficiency} a \emph{parameter-free} framework for combining
-machine learning and control theory to build resource allocators.
-\SYSTEM{} is parameter-free because it automatically tunes all
-internal parameters and models to customize itself to the application
-under management.  In contrast, many approaches require user-specified
-parameters, like learning rate \cite{dubach2010,Tokic2010} or poles
-and zeros of characteristic equations \cite{ControlWare,POET}.
+% simultaneously. 
+Intuitively, we want to combine learning and control to get
+predictable behavior in complex, dynamic systems.  The combination,
+however, incurs at least two major challenges:
+\begin{itemize}
+\item Dividing the resource allocation problem into sub-tasks
+  so that each sub-task suits the different strengths of learning and
+  control, while avoiding their drawbacks.
+\item Defining an interface that ensures the sub-task solutions
+  coordinate with each other.
+\end{itemize}
 
-\SYSTEM{} creates a general control system implementation that factors
-out the parameters that must be learned.  While traditional control
-designs assume all combinations of resource configurations have been
-measured accurately (requiring 100s or 1000s of samples
-\cite{sysid,FSE2015}), \SYSTEM{} tunes its internal models and
-parameters while sampling only a small subset of possible
-configurations.  Among these, the controller's \emph{pole} is a key
-parameter.  \SYSTEM{} automatically tunes the pole, providing formal
-guarantees the controller converges to the desired performance---even
-when behavior is estimated by a noisy learner rather than directly
-measured.  \SYSTEM{} implements modular abstractions and self-tuning
-mechanisms such that the expensive learning can be offloaded to
-another system and the controller itself runs in
-constant---$O(1)$---time.  Thus, learning's high cost can be amortized
-as \SYSTEM{} uses \emph{transfer learning} to apply knowledge from
-multiple devices and applications \cite{pan2010survey}.
+We address the first challenge by splitting resource allocation into
+two tasks.  The first task is learning speedup---instead of absolute
+performance---so that all unpredictable external interference can be
+viewed as a change to a \emph{baseline} performance and the relative
+speedup is not affected by these changes.  Learning is well suited to
+predicting speedup as a function of resource usage, even when the
+resources have complicated relationships.  The second task is using
+control to adjust speedup based on the difference between measured and
+desired performance. Since there is a simple linear relationship
+between speedup and performance, it is easy to build the controller
+using standard techniques and even if the measured performance is
+substantially changed due to external disturbances, the controller
+accounts for these dynamics.
 
+We address the second challenge by defining an interface between
+control and learning and that allows fast application of control while
+maintaining control's formal guarantees.  This interface consists of
+two parts.  The first part is a \emph{performance hash table} (PHT)
+that stores the learned relationship between configurations and
+speedup.  The controller accesses the PHT to find the resource
+allocation that meets a desired speedup with minimal energy and
+requires only constant time---$O(1)$---to access.  The second part of
+the interface is the learned variance.  Using the ratio of minimum and
+maximum speedup and the learned variance, the controller can
+dynamically set its error tolerance.  This part of the interface
+allows the controller to maintain formal guarantees of convergence
+despite the fact that speedup is predicted by a noisy learning
+mechanism, rather than directly measured in traditional control
+design.
 
-\SYSTEM{}'s generality allows a wide range of learning techniques to
-be paired with its controller.  So, \SYSTEM{} not only provides an
-advantage over existing individual learning and control techniques, it
-allows us to explore different combinations of learning and control to
-find the best.
+The proposed approach is a general methodology allowing a wide range
+of learning techniques to be paired with its controller.
+\emph{Furthermore, this approach requires no user-level parameters}.
+Instead, the proposed approach tunes its internal parameters
+automatically, meaning that it requires no user-level knowledge of
+control or learning to apply.  So, our proposed approach not only
+provide an advantage over existing individual learning and control
+techniques, it allows us to explore different combinations of learning
+and control to find the best.
 
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
-We evaluate \SYSTEM{} by implementing the learner on an x86 server and
-the controller on heterogeneous ARM big.LITTLE devices.  We compare
-\SYSTEM{} to existing, state-of-the-art learning (including polynomial
-regression \cite{Koala,dubach2010}, the Netflix algorithm
-\cite{netflix,Paragon}, and a hierarchical Bayesian model \cite{LEO})
-and control (including proportional-integral-derivative
-\cite{Hellerstein2004a} and adaptive, or self-tuning
-\cite{HandbookControl}) techniques.  \PUNT{Additionally, we compare to
-  a naive combination of learning and control that does not account
-  for the inaccuracies of learned models.}  We set performance
+We call our combination of learning and control
+\SYSTEM{}.\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning
+  for \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
+  \textbf{E}fficiency} We evaluate \SYSTEM{} by implementing the
+learner on an x86 server and the controller on heterogeneous ARM
+big.LITTLE devices.  We compare \SYSTEM{} to existing,
+state-of-the-art learning (including polynomial regression
+\cite{Koala,dubach2010}, the Netflix algorithm \cite{netflix,Paragon},
+and a hierarchical Bayesian model \cite{LEO}) and control (including
+proportional-integral-derivative \cite{Hellerstein2004a} and adaptive,
+or self-tuning \cite{HandbookControl}) techniques.  We set performance
 goals---as latency requirements---for a set of benchmark applications
 and then measure both the percentage of time the requirements are
 violated and the energy for each application.  We test both
-\emph{single-app}, where an application runs alone, and
-\emph{multi-app} environments, where other applications enter the
+\emph{single-app}---where an application runs alone---and
+\emph{multi-app} environments---where other applications enter the
 system and compete for resources.  \SYSTEM{} achieves the:
 \begin{itemize}[leftmargin=1em]
 \item \textit{Most reliable performance:}
@@ -133,10 +146,11 @@ system and compete for resources.  \SYSTEM{} achieves the:
 In summary, control approaches are well suited to dynamic environments
 and learning techniques accurately model complex, heterogeneous
 processors.  \emph{To the best of our knowledge, \SYSTEM{} is the
-  first work to combine the two to ensure application performance
-  without prior knowledge of the controlled application.}  Our formal
-analysis of \SYSTEM{}'s convergence despite noisy inputs shows how to
-incorporate learned variance into control theoretic guarantees.  We
+  first work to combine the two to ensure application
+  performance---both formally and empirically---without prior
+  knowledge of the controlled application.}  Our formal analysis of
+\SYSTEM{} demonstrates convergence despite noisy inputs shows how to
+integrate learned variance into control theoretic guarantees.  We
 demonstrate the practical benefits of these contributions by
 implementing \SYSTEM{} for mobile/embedded processors to show it
 provides more reliable performance and lower energy than individual,
