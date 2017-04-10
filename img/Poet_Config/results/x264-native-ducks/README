@@ -1,0 +1,9 @@
+These are the phases results for X264.  This was native followed by ducks.
+
+There is a file for each of poet, leo, and leopoet.
+
+Each file has three tab-separate columns:
+Frame	Performance	Power
+
+Performance is normalized to the target (this was the 50% target).  Power is restored to the actual power we would measure on the system.
+
