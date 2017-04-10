@@ -1,35 +1,35 @@
 \section{Background and Motivation}
 \label{sec:example}
-Many learning approaches estimate an application's most energy
-efficient resource allocation.  These include \emph{offline}
-techniques that train models and then apply those models to new
-applications
+Many learning approaches predict an application's most energy
+efficient resource allocation.  Such learning methods include
+\emph{offline} techniques that build predictors with training data and
+then predict the behavior of new applications
 \cite{Yi2003,LeeBrooks2006,CPR,reddiHPCA2013,PUPiL,quasar}.
-\emph{Online} techniques construct models dynamically as an
-application runs
-\cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.
-\emph{Hybrid} techniques combine offline modeling with online model
-updates \cite{packandcap,Winter2010,dubach2010,Koala,Cinder,
+\emph{Online} techniques construct predictors while an application
+runs \cite{Li2006,Flicker,ParallelismDial,Ponamarev,LeeBrooks}.
+\emph{Hybrid} techniques combine offline training with online
+predictor updates \cite{packandcap,Winter2010,dubach2010,Koala,Cinder,
   wu2012inferred,LEO}.
 
 Control theory provides techniques for maintaining desired behavior in
 dynamic systems \cite{Hellerstein2004a}. \emph{Adaptive controllers}
-or \emph{self-tuning regulators} adjust their internal models in
-response to dynamic changes \cite{HandbookControl}. They are
+or \emph{self-tuning regulators} adjust their internal parameters in
+response to dynamic changes \cite{HandbookControl}. They have proven
 especially useful in webservers with fluctuating request rates
 \cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} and multimedia
 applications with dynamically varying inputs
 \cite{TCST,Agilos,grace2}.  Prior work has generalized adaptive
-control design by exposing key model parameters to users who customize
+control design by exposing key parameters to users who customize
 control to their needs \cite{ControlWare,POET}.  User customization
 provides greater flexibility, but the controller will not converge to
-the desired performance if the custom models do not accurately capture
-the relationship between resources and performance.  This practice
-means users must not only be experts in their application domain, but
-must also have sufficient control knowledge to specify robust models.
+the desired performance if the custom design does not accurately
+capture the relationship between resources and performance.  This
+practice means users must not only be experts in their application
+domain, but must also have sufficient control knowledge to specify the
+parameters correctly.
 
 This section illustrates how learning handles complexity, how control
-handles dynamics, and then describes a key difficulty that must be
+handles dynamics, and then describes a key challenge that must be
 overcome to combine learning and control.
 
 \subsection{\emph{Learning} Complexity}
@@ -80,16 +80,16 @@ performance normalized to the requirement.  The \emph{learning}
 approach estimates \texttt{STREAM}'s performance and power for all
 configurations and uses the lowest energy configuration that delivers
 the required performance.  The \emph{adaptive controller} begins with
-a generic model of power/performance tradeoffs.  As the controller
+a generic notion of power/performance tradeoffs.  As the controller
 runs, it measures performance and adjusts both the allocated resources
-and its own parameters using online measurements.  The adaptive
-controller dynamically adjusts to non-linearities with a series of
-linear approximations; however, it is sensitive to model inaccuracies,
-which cause the oscillations that lead to performance violations.
-This behavior occurs because the controller's adaptive mechanisms
-cannot handle the STREAM's complexity, a known limitation of adaptive
-control systems \cite{ControlWare,POET,ICSE2014}.  Hence, the
-\emph{learner}'s ability to model complex behavior is crucial.
+and its own parameters.  The adaptive controller dynamically adjusts
+to non-linearities with a series of linear approximations; however,
+inaccuracies in the relationship between resources and performance
+cause oscillations that lead to performance violations.  This behavior
+occurs because the controller's adaptive mechanisms cannot handle
+STREAM's complexity, a known limitation of adaptive control systems
+\cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s ability
+to predict complex behavior is crucial.
 
 \subsection{\emph{Controlling} Dynamics}
 
@@ -140,17 +140,21 @@ learners capable of handling this complexity
 \cite{Paragon,quasar,LEO}.
 
 
-\subsection{Challenges of Parameter-free Control}
-The adaptive controller requires user-specified parameters and
-\figref{fig:STREAM_timeline} shows the consequences of getting those
-parameters wrong. The controller's \emph{pole} is a particularly
-important parameter.  Control engineers tune the pole with a model to
-trade response time for noise sensitivity.  This model may be an
-abstraction but is considered \emph{ground truth}
-\cite{Hellerstein2004a}, meaning all possible resource configurations
-the controller might select have been directly measured for some
-input.  \SYSTEM{}, however, tunes the pole based on an estimated
-model, which may have noise and/or errors.
+\subsection{Challenges of Interfacing Learning and Control}
+The previous section motivate the first part of \SYSTEM{}: splitting
+the resource allocation problem into prediction---which is handled by
+learning---and dynamic management---which is handled by control. The
+second part of \SYSTEM{}'s approach is the interface that combines the
+two solutions.  This subsection demonstrates the importance of this
+interface.
+
+The controller's \emph{pole} is a particularly important part of a
+controller's design.  Control engineers tune the pole to trade
+response time for noise sensitivity.  The data used to set the pole
+comes from many observations of the controlled system and is
+considered \emph{ground truth} \cite{Hellerstein2004a}.  \SYSTEM{},
+however, must tune the pole based on data from the learner, which may
+have noise and/or errors.
 
 
 
@@ -162,21 +166,22 @@ model, which may have noise and/or errors.
 \label{fig:not-simple}
 %\end{figure}
 \end{wrapfigure}
-To demonstrate the pole's importance when using a learned model, we
+To demonstrate the pole's importance when using a learned data, we
 again control \texttt{bodytrack}, this time using the adaptive
-controller from the previous subsection with a model produced by the
+controller from the previous subsection but instead of measuring
+performance as a function of resource usage, we predict it, using the
 learner from the first subsection.  We compare the results with a
-carefully tuned pole to those using the default pole provided by the
-controller developers \cite{POET}.
+carefully hand-tuned pole to those using the default pole provided by
+the controller developers \cite{POET}.
 
 \figref{fig:not-simple} shows the results.  The carefully tuned pole
-converges because the pole accounts for the learned model's error. The
-default pole, however, oscillates around the performance target,
-resulting in a number of missed deadlines.  Additionally, the frames
-that exceed the desired performance waste energy because they spend
-more time on the big, inefficient cores. The pole parameterizes the
-system's \emph{inertia}---dictating how fast it should react to
-environmental changes.  If the estimated model is noisy, the
+converges because the pole accounts for possible errors in the learned
+data. The default pole, however, oscillates around the performance
+target, resulting in a number of missed deadlines.  Additionally, the
+frames that exceed the desired performance waste energy because they
+spend more time on the big, inefficient cores. The pole parameterizes
+the system's \emph{inertia}---dictating how fast it should react to
+environmental changes.  If the learner is noisy or inaccurate, the
 controller should trust it less and move slowly. Rather than require
 users with both computing and control knowledge to tune the pole,
 \emph{\SYSTEM{} incorporates the learner's confidence interval and
