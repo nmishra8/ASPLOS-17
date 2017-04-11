@@ -9,19 +9,19 @@
 
 
 \figref{fig:overview} shows \SYSTEM{}'s approach of splitting resource
-management into separate learning and control tasks and then defining
-an interface between them.  A new application enters the system with a
-performance requirement.  A generalized adaptive control system
-allocates resources according to a generic scheme and records
-performance and power.  The recorded values are sent to a learner,
-which predicts the application's performance and power in all other
-configurations, extracting those that represent Pareto-optimal
-tradeoffs.  These configurations are packaged in a special data
-structure: the performance hash table (PHT).  The learner sends the
-PHT and the estimated variance to the controller, which then sets its
-pole and selects an energy minimal resource configuration with formal
-guarantees of convergence to the desired performance. \SYSTEM{}'s only
-user-specified parameter is the performance requirement. 
+management into separate learning and control tasks and defining an
+interface between them.  When a new application enters the system with
+a performance requirement, an adaptive control system allocates
+resources using generic predictions and records performance and power.
+The recorded values are sent to a learner, which predicts the
+application's performance and power in all other resource
+configurations. The learner extracts those that are Pareto-optimal and
+packages them in a special data structure: the performance hash table
+(PHT).  The PHT and the estimated variance are sent to the controller,
+which sets its pole and selects an energy minimal resource
+configuration with formal guarantees of convergence to the desired
+performance.  \SYSTEM{}'s only user-specified parameter is the
+performance requirement.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{figures/Timeline.pdf}
