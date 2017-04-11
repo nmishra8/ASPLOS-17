@@ -59,16 +59,17 @@ however, incurs two major challenges:
 \end{itemize}
 
 We address the first challenge by splitting resource allocation into
-two tasks.  First, is learning speedup---instead of absolute
+two sub-tasks.  The first is learning speedup---instead of absolute
 performance---so that all unpredictable external interference can be
 viewed as a change to a \emph{baseline} performance and the relative
-speedup is independent of these changes.  \PUNT{Learning is well
-  suited to predicting speedup as a function of resource usage, even
-  when the resources have complicated relationships.}  Second, is
-using control to adjust speedup dynamically based on the difference
-between measured and desired performance. Given the linear
-relationship between speedup and performance, it is easy to build the
-controller using standard techniques. 
+speedup is independent of these changes.  Learning is well-suited to
+predicting speedups as a function of resource usage and separating
+globally optimal resource configurations from locally optimal ones.
+The second sub-task controlling speedup dynamically based on the
+difference between measured and desired performance.  Once the learner
+has removed locally optimal solutions, the problem is convex and
+well-suited to adaptive control solutions which can deliver required
+speedup even in dynamic environments.
 %Even if the measured performance
 %is substantially changed due to external disturbances, the controller
 %accounts for these dynamics.
@@ -77,46 +78,43 @@ We address the second challenge by defining an interface between
 learning and control that maintains control's formal guarantees.  This
 interface consists of two parts.  The first is a \emph{performance
   hash table} (PHT) that stores the learned relationship between
-configurations and speedup.  The controller accesses the PHT to find
-the resource allocation that meets a desired speedup with minimal
-energy and requires only constant time---$O(1)$---to access.  The
-second part of the interface is the learned variance.  Using the ratio
-of minimum and maximum speedup and the learned variance, the
-controller dynamically sets its error tolerance (specifically, it sets
-the \emph{pole} of its characteristic equation).  Communicating the
-learned variance allows the controller to maintain formal convergence
-guarantees even though speedup is predicted by a noisy learning
-mechanism, rather than directly measured as in traditional control
-design.
+configurations and speedup.  The PHT allows the controller to find the
+resource allocation that meets a desired speedup with minimal energy
+and requires only constant time---$O(1)$---to access.  The second part
+of the interface is the learned variance.  Knowing this value, the
+controller can adjust itself to maintain formal convergence guarantees
+even though the speedup is predicted by a noisy learning mechanism,
+rather than directly measured---as it would be in traditional control
+design.\PUNT{Using the ratio of minimum and maximum speedup and the
+  learned variance, the controller dynamically sets its error
+  tolerance (specifically, it sets the \emph{pole} of its
+  characteristic equation).  Communicating the learned variance allows
+  the controller to maintain formal convergence guarantees even though
+  speedup is predicted by a noisy learning mechanism, rather than
+  directly measured as in traditional control design.}
 
 We call our combination of learning and control
 \SYSTEM{}.\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning
   for \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
-  \textbf{E}fficiency} \SYSTEM{} is a general methodology allowing a
-wide range of learning techniques to be paired with its controller.
-\emph{Furthermore, this approach requires no user-level parameters}.
-Instead, \SYSTEM{} tunes its internal parameters automatically; \ie{}
-it requires no user-level inputs other than performance requirements.
-Thus, \SYSTEM{} not only provides an advantage over existing individual
-learning and control techniques, it allows us to explore different
-combinations of learning and control to find the best.
-
+  \textbf{E}fficiency} \SYSTEM{} is a general methodology allowing
+different learning techniques to be paired with its controller.
+\SYSTEM{} tunes its internal parameters automatically; \ie{} \emph{it
+  requires no user-level inputs other than performance requirements}.
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
 We evaluate \SYSTEM{} by implementing the learners on an x86 server
 and the controller on heterogeneous ARM big.LITTLE devices.  We
-compare \SYSTEM{} to existing, state-of-the-art learning (including
-polynomial regression \cite{Koala,dubach2010}, the Netflix algorithm
-\cite{netflix,Paragon}, and a hierarchical Bayesian model \cite{LEO})
-and control (including proportional-integral-derivative
-\cite{Hellerstein2004a} and adaptive, or self-tuning
-\cite{HandbookControl}) techniques.  We set performance goals---as
-latency requirements---for a set of benchmark applications and then
-measure both the percentage of time the requirements are violated and
-the energy for each application.  We test both
-\emph{single-app}---where an application runs alone---and
-\emph{multi-app} environments---where other applications enter the
-system and compete for resources.  \SYSTEM{} achieves the:
+compare to state-of-the-art learning (including polynomial regression
+\cite{Koala,dubach2010}, the Netflix algorithm \cite{netflix,Paragon},
+and a hierarchical Bayesian model \cite{LEO}) and control (including
+proportional-integral-derivative \cite{Hellerstein2004a} and adaptive,
+or self-tuning \cite{HandbookControl}) techniques.  We set performance
+goals---as latency requirements---for a set of benchmark applications
+and then measure both the percentage of time the requirements are
+violated and the energy.  We test both \emph{single-app}---where an
+application runs alone---and \emph{multi-app} environments---where
+other applications enter the system and compete for resources.
+\SYSTEM{} achieves the:
 \begin{itemize}[leftmargin=1em]
 \item \textit{Most reliable performance:}
   \begin{itemize}[leftmargin=1em]
@@ -142,17 +140,16 @@ system and compete for resources.  \SYSTEM{} achieves the:
 
 % Key contributions.
 % Contributions, but I decided against bulleted llist for thsi paper
-In summary, control adjusts to dynamic environments while learning
-accurately predicts performance for complex, heterogeneous processors.
+In summary, control handles dynamic environments while learning
+predicts performance for complex, heterogeneous processors.
 \emph{\SYSTEM{} is the first work to combine learning and control to
   ensure application performance---both formally and
   empirically---without prior knowledge of the controlled
   application.}  Formal analysis of \SYSTEM{} demonstrates convergence
 despite noisy inputs and shows how to integrate learned variance into
 control theoretic guarantees.  We demonstrate the practical benefits
-of these contributions by implementing \SYSTEM{} for mobile/embedded
-processors to find \SYSTEM{} provides more reliable performance and
-lower energy than individual, state-of-the-art learning or control
-solutions.
+of these contributions for mobile/embedded processors, finding
+\SYSTEM{} provides much more reliable performance and lower energy
+than individual learning or control solutions.
 
 
