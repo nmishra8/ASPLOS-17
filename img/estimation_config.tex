@@ -1,0 +1,96 @@
+\begin{tikzpicture}
+\begin{centering}
+
+\begin{groupplot}[
+    group style={
+        group name=plots,
+        group size=3 by 2,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=5pt
+    },
+height=3.2cm,
+width=0.37\columnwidth,
+xmajorgrids,
+ymajorgrids,
+grid style={dashed},
+xmin=0,
+xmax=128,
+ymin=0,
+ymax=1,
+yticklabel pos=left,
+enlargelimits=false,
+tick align = outside,
+tick style={white},
+xticklabel shift={-5pt},
+yticklabel shift={-5pt},
+ylabel shift={-2pt},
+ylabel style={align=center},
+unbounded coords=jump,
+ytick={0.0,0.5,1.0},
+yticklabels={,0.5,1.0},
+]
+
+\nextgroupplot[ylabel={\footnotesize Performance \\ (Normalized)}, % Performance
+yticklabel style={font=\footnotesize},
+title=\texttt{backprop},
+legend entries={{$\mathsf{HBM}$},{{$\mathsf{True}$}}},
+legend style={draw=none,anchor=north,at={(1.6,1.7)},legend columns=2,line width=5pt,fill=none},
+]
+\addplot[thick, solid, color=ADAPT-CONTROL, mark=none] table[x expr=\coordindex,y index=2,col sep=space] {img/Poet_Config/est_BACKPROP.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none] table[x expr=\coordindex,y index=2,col sep=space] {img/Poet_Config/true_BACKPROP.txt};
+
+
+\nextgroupplot[ylabel={}, % Performance
+yticklabel style={font=\footnotesize},
+title=\texttt{lavamd},
+]
+\addplot[thick, solid, color=ADAPT-CONTROL, mark=none] table[x expr=\coordindex,y index=2,col sep=space] {img/Poet_Config/est_LAVAMD.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none] table[x expr=\coordindex,y index=2,col sep=space] {img/Poet_Config/true_LAVAMD.txt};
+
+\nextgroupplot[ylabel={}, % Performance
+%ytick={0.0,0.5,1.0,1.5,2.0},
+%yticklabels={,0.5,1.0,1.5,2.0},
+yticklabel style={font=\footnotesize},
+title=\texttt{x264},
+%legend entries={{$\mathsf{POET}$},{$\mathsf{HBM}$},{{$\mathsf{CALOREE-HBM}$}}},
+%legend entries={{$\mathsf{Adaptive-Control}$},{{$\mathsf{CALOREE-HBM}$}}},
+%legend style={draw=none,at={(0.5,1.4)},anchor=north,legend columns=4,line width=5pt},
+]
+\addplot[thick, solid, color=ADAPT-CONTROL, mark=none] table[x expr=\coordindex,y index=2,col sep=space] {img/Poet_Config/est_X264_phases.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none] table[x expr=\coordindex,y index=2,col sep=space] {img/Poet_Config/true_X264_phases.txt};
+
+\nextgroupplot[ylabel={\footnotesize Power \\ (Normalized)}, % Power
+yticklabel style={font=\footnotesize},
+xlabel={\footnotesize Configuration},
+xlabel near ticks,
+%title=\texttt{backprop},
+%xticklabels={,0,60,120,240,360,480},
+]
+\addplot[thick, solid, color=ADAPT-CONTROL, mark=none] table[x expr=\coordindex,y index=3,col sep=space] {img/Poet_Config/est_BACKPROP.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none] table[x expr=\coordindex,y index=3,col sep=space] {img/Poet_Config/true_BACKPROP.txt};
+
+\nextgroupplot[ylabel={}, % Power
+yticklabel style={font=\footnotesize},
+xlabel={\footnotesize Configuration},
+xlabel near ticks,
+%title=\texttt{lavamd},
+%xticklabels={,0,60,120,240,360,480},
+]
+\addplot[thick, solid, color=ADAPT-CONTROL, mark=none] table[x expr=\coordindex,y index=3,col sep=space] {img/Poet_Config/est_LAVAMD.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none] table[x expr=\coordindex,y index=3,col sep=space] {img/Poet_Config/true_LAVAMD.txt};
+
+
+\nextgroupplot[ylabel={}, % Power
+yticklabel style={font=\footnotesize},
+xlabel={\footnotesize Configuration},
+xlabel near ticks,
+%title=\texttt{x264-ducks},
+%xticklabels={,0,60,120,240,360,480},
+]
+\addplot[thick, solid, color=ADAPT-CONTROL, mark=none] table[x expr=\coordindex,y index=3,col sep=space] {img/Poet_Config/est_X264_phases.txt};
+\addplot[thick, solid, color=HBM-ADAPT, mark=none] table[x expr=\coordindex,y index=3,col sep=space] {img/Poet_Config/true_X264_phases.txt};
+
+\end{groupplot}
+\end{centering}
+\end{tikzpicture}

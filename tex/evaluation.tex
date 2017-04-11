@@ -56,7 +56,7 @@ application-specific latencies for these stream elements.
 
 \subsection{Evaluation Metrics}
 %\SYSTEM{} uses the model for power and performance and its controller
-%actively uses this knowledge to meet the performance target. 
+%actively uses this knowledge to meet the performance target.
 The latency targets represent performance requirements. To test a
 variety of requirements, we run our applications with targets that
 represent 50-90\% of the maximum speed and evaluate \SYSTEM{} under
@@ -80,7 +80,7 @@ energy:
 \end{equation}
 where $e_{measured}$ is measured energy and $e_{optimal}$ is the
 optimal energy produced by our oracle. We subtract 1, so that this
-metric shows the percentage of energy over optimal.  
+metric shows the percentage of energy over optimal.
 
 \subsection{Points of Comparison}
 We compare \SYSTEM{} to a number of existing learning and control
@@ -163,7 +163,7 @@ error across all targets for the single application scenario. This figure
 shows two charts with the percentage of deadline misses in the top
 chart and the energy over optimal in the bottom.  The dots show the
 average for each technique, while the error bars show the minimum and
-maximum values.  
+maximum values.
 
 Not surprisingly, race-to-idle meets all deadlines, but its
 conservative resource allocation has the highest average energy
@@ -213,7 +213,7 @@ shown on the x-axis; the y-axis shows the number of deadline misses
 and the normalized energy, respectively.
 
 %In addition to providing better average case behavior, \SYSTEM{}
-%provides significantly better worst case behavior.  
+%provides significantly better worst case behavior.
 
 
 \subsection{Performance and Energy for Multiple Apps}
@@ -288,7 +288,7 @@ second application starts.
   approaches that use only control or learning.  There are two key
   regions in the figures, the times before the second application
   starts (on the left of the vertical dashed line) and the times after
-  (on the right).}  
+  (on the right).}
 
 Before the second application starts, both HBM and \SYSTEM{} track the
 target and keeping energy low.  In contrast, Adaptive-Control produces
@@ -320,6 +320,13 @@ application-specific behavior on this system.
   \caption{Controlling \texttt{x264} through scene changes.}
   \label{fig:x264-phase-change}
 \end{figure}
+
+\begin{figure}[!h]
+  \input{img/estimation_config.tex}
+   \vskip -.5em
+  \caption{Performance and power estimation for applications across different resource allocation as configuration index.}
+  \label{fig:x264-phase-change}
+\end{figure}
 We compare \SYSTEM{} and Adaptive-Control reacting to input
 variations.  \figref{fig:x264-phase-change} shows the \texttt{x264}
 video encoder application with 2 different phases caused by a scene
@@ -334,7 +341,7 @@ fluctuations compared to Adaptive-Control.
 
 
 \subsection{The Pole's Importance}
-%\TODO{Add the LAVAMD contour plot?}  
+%\TODO{Add the LAVAMD contour plot?}
 \begin{figure}
 \centering
   \subfloat[]
@@ -353,7 +360,7 @@ fluctuations compared to Adaptive-Control.
 \end{figure}
 
 
-%\begin{wrapfigure}{r}{0.5\columnwidth} 
+%\begin{wrapfigure}{r}{0.5\columnwidth}
 %\includegraphics[width=.25\textwidth]{figures/lavamd.png}
 %\caption{Performance of LAVAMD with differnt resources.}
 %\label{fig:lavamd}
@@ -441,13 +448,3 @@ which is significantly faster than we can change any resource
 allocation on our system.  We conclude that the controller has
 negligible impact on performance and energy consumption of the
 controlled device.
-
-
-
-
-
-
-
-
-
-
