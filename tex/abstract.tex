@@ -1,29 +1,28 @@
 \begin{abstract}
 
-  Intelligent resource management is essential for modern computing
-  systems that must provide reliable performance with minimal energy.
-  Two central challenges arise when allocating system resources to
-  meet these conflicting goals: (1) \emph{complexity}---modern
-  hardware exposes diverse resources with complicated
-  interactions---and (2) \emph{dynamics}---performance must be
-  maintained despite unpredictable changes in operating environment or
-  input.  Machine learning accurately predicts the performance of
-  complex, interacting resources, but does not address system
-  dynamics; control theory adjusts resource usage dynamically, but
-  struggles with complex resource interaction. We therefore propose
-  \SYSTEM{}, a combination of learning and control that automatically
-  adjusts resource usage to meet performance requirements with minimal
-  energy in complex, dynamic environments.  \SYSTEM{} breaks resource
-  allocation into two sub-tasks: learning speedup as a function of
-  resource usage, and controlling speedup to meet performance
-  requirements. \SYSTEM{} also defines a general interface allowing
-  different learners to be combined with a controller while
-  maintaining control's formal guarantees that performance will
-  converge to the goal. We implement \SYSTEM{} and test its ability to
-  deliver reliable performance on heterogeneous ARM big.LITTLE
-  architectures in both single and multi-application scenarios.
-  Compared to state-of-the-art learning and control solutions, we find
-  that \SYSTEM{} reduces deadline misses by 2--6$\times$ while
+  Many modern computing systems must provide reliable performance with
+  minimal energy.  Two central challenges arise when allocating system
+  resources to meet these conflicting goals: (1)
+  \emph{complexity}---modern hardware exposes diverse resources with
+  complicated interactions---and (2) \emph{dynamics}---performance
+  must be maintained despite unpredictable changes in operating
+  environment or input.  Machine learning accurately predicts the
+  performance of complex, interacting resources, but does not address
+  system dynamics; control theory adjusts resource usage dynamically,
+  but struggles with complex resource interaction. We therefore
+  propose \SYSTEM{}, a combination of learning and control that
+  automatically adjusts resource usage to meet performance
+  requirements with minimal energy in complex, dynamic environments.
+  \SYSTEM{} breaks resource allocation into two sub-tasks: learning
+  speedup as a function of resource usage, and controlling speedup to
+  meet performance requirements. \SYSTEM{} also defines a general
+  interface allowing different learners to be combined with a
+  controller while maintaining control's formal guarantees that
+  performance will converge to the goal. We implement \SYSTEM{} and
+  test its ability to deliver reliable performance on heterogeneous
+  ARM big.LITTLE architectures in both single and multi-application
+  scenarios.  Compared to state-of-the-art learning and control
+  solutions, \SYSTEM{} reduces deadline misses by 2--6$\times$ while
   reducing energy consumption by 7--10$\%$.
   
 

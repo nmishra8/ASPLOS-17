@@ -104,9 +104,7 @@ approaches:
   \cite{LEO,Li2006,Ponamarev}.
 \item \textit{Offline}: does not observe any values for the current
   application---instead using previously observed applications to
-  estimate power and performance as a linear regression.  This
-  baseline represents the class learners that build models with a
-  training set and apply them without new observations
+  estimate power and performance as a linear regression
   \cite{PUPiL,LeeBrooks2006,CPR}.
 \item \textit{Netflix}: is a matrix completion algorithm for the
   Netflix challenge. Variations of this approach allocate
@@ -116,11 +114,12 @@ approaches:
   in server systems \cite{LEO}.
 \item \textit{Adaptive-Control}: is a state-of-the-art, adaptive
   controller that meets application performance with minimal energy
-  \cite{POET}.  This approach requires a user-specified starting
-  model, we use the model produced by the \emph{Offline} learner. A
-  recent study comparing ML and control techniques for resource
-  allocation showed that there was no single best approach, but
-  adaptive control had the best average behavior \cite{TAAS}.
+  \cite{POET}.  This approach requires a user-specified model relating
+  resource configuration to performance and power.  For this paper, we
+  use the \emph{Offline} learner's predictions.  \PUNT{A recent study
+    comparing ML and control techniques for resource allocation showed
+    that there was no single best approach, but adaptive control had
+    the best average behavior \cite{TAAS}.}
 \end{enumerate}
 
 
@@ -129,8 +128,8 @@ approaches:
 different versions of \SYSTEM{}:
 \begin{enumerate}
 \item \textit{CALOREE-NoPole}: uses the HBM learner, but sets the pole
-  set to 0.  This baseline shows the importance of incorporating the
-  confidence interval and model variance into control. All other
+  to 0.  This baseline shows the importance of incorporating the
+  confidence interval and learned variance into control. All other
   versions of \SYSTEM{} set the pole according to \secref{guarantees}.
 \item \textit{CALOREE-online}: uses the online learner.
 \item \textit{CALOREE-nuclear}: uses the Nuclear learner.
@@ -141,7 +140,7 @@ In all cases that require prior knowledge, we ensure that knowledge of
 the application under test is never included in that set of prior
 knowledge.  Specifically, we use leave-one-out cross validation: to
 test application $x$, we form a set of all other applications, train
-the models, and then test on $x$.
+the learners, and then test on $x$.
 
 \section{Experimental Evaluation}
 
@@ -293,17 +292,17 @@ second application starts.
 
 Before the second application starts, both HBM and \SYSTEM{} track the
 target and keeping energy low.  In contrast, Adaptive-Control produces
-oscillating performance (and thus power) because it has a bad model of
-\texttt{bodytrack}'s LITTLE core performance.  After the second
-application starts, Adaptive-Control and \SYSTEM{} recognize the
-performance has changed and adjust resource usage.  \SYSTEM{} does a
-slightly better job tracking the change, producing fewer oscillations.
-HBM cannot adjust to the change as it computes the optimal
-configuration once at the beginning of the application.  \SYSTEM{}
-with the HBM produces better results than the HBM alone because it
-reacts to the change; it produces better results than Adaptive-Control
-because it has captured the complex application-specific behavior on
-this system.
+oscillating performance (and thus power) because its generic control
+model does not capture \texttt{bodytrack}'s LITTLE core performance.
+After the second application starts, Adaptive-Control and \SYSTEM{}
+recognize the performance has changed and adjust resource usage.
+\SYSTEM{} does a slightly better job tracking the change, producing
+fewer oscillations.  HBM cannot adjust to the change as it computes
+the optimal configuration once at the beginning of the application.
+\SYSTEM{} with the HBM produces better results than the HBM alone
+because it reacts to the change; it produces better results than
+Adaptive-Control because it has captured the complex
+application-specific behavior on this system.
 
 
 \begin{figure}[t]
@@ -362,21 +361,22 @@ fluctuations compared to Adaptive-Control.
 LAVAMD has one of the most complicated responses to resource usage on
 our system with multiple local optima, as shown in
 \figref{fig:lavamd}.  \secref{guarantees} presents an analytical
-argument that tuning the controller to model variance and confidence
-interval prevents oscillation and provide probabilistic control
-theoretic guarantees despite using noisy, learned models to control
-such complicated behavior.  We now demonstrate this empirically by
-showing LAVAMD's single-app behavior controlled by both CALOREE-NoPole
-and \SYSTEM{}-HBM to meet the 80\% target.
+argument that tuning the controller to learned variance prevents
+oscillation and provide probabilistic control theoretic guarantees
+despite using noisy, learned data to control such complicated
+behavior.  We now demonstrate this empirically by showing LAVAMD's
+single-app behavior controlled by both CALOREE-NoPole and
+\SYSTEM{}-HBM to meet the 80\% target.
 
 \figref{fig:lavamd-pole} shows the results, with time on the x-axis
 and normalized performance and power on the respective y-axes.
 CALOREE-NoPole oscillates around the desired performance and causes
 wide fluctuations in power consumption.  In contrast, after receiving
-the model from its learner, \SYSTEM{} provides reliable performance
-right at the target value (normalized to 1 in this case).  \SYSTEM{}
-also saves tremendous energy because it does not oscillate but uses a
-mixture of big and LITTLE cores to keep energy near minimal.
+the predictions from its learner, \SYSTEM{} provides reliable
+performance right at the target value (normalized to 1 in this case).
+\SYSTEM{} also saves tremendous energy because it does not oscillate
+but uses a mixture of big and LITTLE cores to keep energy near
+minimal.
 % \TODO{Do we need the vertical line here?  This is a single app run
 %   right?}
 
@@ -389,13 +389,13 @@ mixture of big and LITTLE cores to keep energy near minimal.
 
 
 \subsection{Sensitivity to the Measured Samples}
-We vary the number of samples taken and show how it affects model
+We vary the number of samples taken and show how it affects learning
 accuracy for the Online, Netflix, and HBM learners.  Accuracy is how
-close the model is to ground truth (found through exhaustive
-exploration), with 1 meaning the model perfectly reproduced the real
-performance or power.  Accuracy is significant, because the smaller
-the number of samples, the faster the controller can switch from a
-general model to the learner's application-specific model.
+close the learner is to ground truth (found through exhaustive
+exploration), with 1 meaning the learner perfectly predicted the real
+performance or power.  Accuracy is significant because the smaller
+the number of samples, the faster the controller can switch to the
+learner's application-specific predictions.
 
 \figref{fig:sensitivity} compares the Online, HBM, and Netflix
 learners for both performance (top) and power (bottom).  The figure
@@ -403,12 +403,12 @@ shows sample size on the x-axis and accuracy on the y-axis.  The HBM
 initially performs as well as Offline and as sample size increases,
 the accuracy uniformly improves, exceeding 90\% after 20 samples. The
 Online approach needs at least 7 samples before it can even generate a
-model.  As Online receives more samples, its accuracy improves but
-never exceeds HBM's for the same number of samples. Netflix is very
-noisy for sample sizes, but once the number of samples reaches about
-50, it is competitive with HBM.  These results not only demonstrate
-the sensitivity to sample size, they show why \SYSTEM{}-HBM achieves
-better results than the other learning mechanisms.
+prediction.  As Online receives more samples, its accuracy improves
+but never exceeds HBM's for the same number of samples. Netflix is
+very noisy for sample sizes, but once the number of samples reaches
+about 50, it is competitive with HBM.  These results not only
+demonstrate the sensitivity to sample size, they show why
+\SYSTEM{}-HBM achieves better results than the other learners.
 
 \begin{figure}[t]
   \input{img/sample-accuracy-v3.tex}
