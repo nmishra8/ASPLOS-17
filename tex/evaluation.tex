@@ -15,15 +15,15 @@
 \end{figure}
 
 \subsection{Platform and Benchmarks}
-We run streaming applications on four ODROID-XU3 devices running
-Ubuntu 14.04, as shown in \figref{fig:odroidall}. The ODROIDs have
-Samsung Exynos 5 Octa processors using the ARM big.LITTLE
-architecture.  Each has 19 speed settings for the 4 big cores and 13
-for 4 LITTLE cores.  Each board has an on-board power meter updated at
-1/4 \ms intervals, this meter captures core, GPU, memory, and flash
-drive power.  Each resource configuration (combination of big/LITTLE
-cores and clock-speeds) has a different performance and power, which
-is application-dependent.
+We run applications on four ODROID-XU3 devices with Ubuntu 14.04, as
+shown in \figref{fig:odroidall}. The ODROIDs have Samsung Exynos 5
+Octa processors using the ARM big.LITTLE architecture.  Each has 19
+speed settings for the 4 big cores and 13 for 4 LITTLE cores.  Each
+board has an on-board power meter updated at 1/4 \ms intervals
+capturing core, GPU, memory, and flash drive power.  
+% Each resource configuration (combination of big/LITTLE cores and
+% clock-speeds) has a different, application-dependent performance and
+% power.
 
 We use 20 benchmarks from different suites including PARSEC
 \cite{parsec}, Minebench \cite{minebench}, Rodinia \cite{rodinia}, and
@@ -32,15 +32,15 @@ variety of workloads indicated by the \emph{lack-of-fit} or the
 absence of correlation between frequency and performance.
 Applications with high lack-of-fit do not speed up with increasing
 frequency---typical of memory bound applications. Applications with
-low lack-of-fit do see increasing performance with increasing
-clock-speed \cite{powerslope}.  Applications with intermediate
-lack-of-fit tend to improve with increasing clock speed up to a point
-and then see no further improvement.  Each application has an outer
-loop which processes one unit in a data stream (\eg{} a point for
-\texttt{kmeans} or a frame for \texttt{x264}). The application signals
-the completion of processing a single stream element using a standard
-API \cite{icac2010heartbeats}.  Performance targets are specified as
-application-specific latencies for these stream elements.
+low lack-of-fit increase performance with increasing clock-speed
+\cite{powerslope}.  Applications with intermediate lack-of-fit tend to
+improve with increasing clock speed up to a point and then stop.  Each
+application has an outer loop which processes one unit in a data
+stream (\eg{} a point for \texttt{kmeans} or a frame for
+\texttt{x264}). The application signals the completion of processing a
+stream element using a standard API \cite{icac2010heartbeats}.
+Performance targets are specified as application-specific latencies
+for these stream elements.
 
 
 
@@ -57,14 +57,13 @@ application-specific latencies for these stream elements.
 \subsection{Evaluation Metrics}
 %\SYSTEM{} uses the model for power and performance and its controller
 %actively uses this knowledge to meet the performance target.
-The latency targets represent performance requirements. To test a
-variety of requirements, we run our applications with targets that
-represent 50-90\% of the maximum speed and evaluate \SYSTEM{} under
-each constraint. We quantify the performance reliability by measuring
-the number of deadlines that were missed for each application and
-performance target. If the application processes $n$ elements total
-and $m$ of those elements took longer than the target latency we
-compute deadline misses as:
+To test a variety of latency requirements, we run our applications
+with targets that represent 50-90\% of the maximum speed and evaluate
+\SYSTEM{} under each constraint. We quantify performance reliability
+by measuring the number of deadlines that were missed for each
+application and performance target. If the application processes $n$
+elements total and $m$ of those elements took longer than the target
+latency we compute deadline misses as:
 \begin{equation}
 deadline\, misses = 100\% \cdot \frac{m}{n}.
 \end{equation}
@@ -83,25 +82,23 @@ optimal energy produced by our oracle. We subtract 1, so that this
 metric shows the percentage of energy over optimal.
 
 \subsection{Points of Comparison}
-We compare \SYSTEM{} to a number of existing learning and control
-approaches:
-\begin{enumerate}
+We compare to existing learning and control approaches:
+\begin{enumerate}[leftmargin=1em]
 \item \textit{Race-to-idle}: This well known heuristic allocates all
   resources to the application to complete each stream element as fast
   as possible, then idles until the next element is available
-  \cite{kim-cpsna,powerslope,heisner}.  This heuristic requires no
+  \cite{kim-cpsna,powerslope,LeSueur11}.  This heuristic requires no
   knowledge of the application and never misses deadlines in a
   single-application scenario.
 \item \textit{PID-Control}: This is a standard single-input
   (performance), multiple-output (big/LITTLE core counts and speeds)
-  proportional-integral-controller representative of several that have
-  been proposed for computer resource management
+  prop\-ortional-integral-controller representative of several that
+  have been proposed for computer resource management
   \cite{Hellerstein2004a,METE}.  This controller is tuned to provide
   the best average case behavior across all applications and targets.
-\item \textit{Online}: observes the new application in small number of
-  configurations then performs polynomial multivariate regression to
-  estimate unobserved configurations' behavior
-  \cite{LEO,Li2006,Ponamarev}.
+\item \textit{Online}: measures a few sample configurations then
+  performs polynomial multivariate regression to estimate unobserved
+  configurations' behavior \cite{LEO,Li2006,Ponamarev}.
 \item \textit{Offline}: does not observe any values for the current
   application---instead using previously observed applications to
   estimate power and performance as a linear regression
@@ -126,13 +123,13 @@ approaches:
 \SYSTEM{} is a framework for combining different learners with the
 \SYSTEM{} control system.  We compare the above baselines to four
 different versions of \SYSTEM{}:
-\begin{enumerate}
+\begin{enumerate}[leftmargin=1em]
 \item \textit{CALOREE-NoPole}: uses the HBM learner, but sets the pole
-  to 0.  This baseline shows the importance of incorporating the
-  confidence interval and learned variance into control. All other
-  versions of \SYSTEM{} set the pole according to \secref{guarantees}.
+  to 0, showing the importance of incorporating the learned variance
+  into control. All other versions of \SYSTEM{} set the pole according
+  to \secref{guarantees}.
 \item \textit{CALOREE-online}: uses the online learner.
-\item \textit{CALOREE-nuclear}: uses the Nuclear learner.
+\item \textit{CALOREE-Netflix}: uses the Netflix learner.
 \item \textit{CALOREE-HBM}: uses the HBM learner.
 \end{enumerate}
 
@@ -147,14 +144,6 @@ the learners, and then test on $x$.
 \subsection{Performance and Energy for Single App}
 %Setup
 
-\begin{figure}[!th]
-\centering
-  \input{img/single-app-summary2-v4.tex}
-   \vskip -.5em
-  \caption{Summary data for single-app scenario.}
-  \label{fig:single-sum}
-\end{figure}
-
 We set a range of performance targets from 50-90\% of the maximum
 achievable performance and measure the deadline misses and
 energy over optimal for all points of comparison.
@@ -164,10 +153,18 @@ shows two charts with the percentage of deadline misses in the top
 chart and the energy over optimal in the bottom.  The dots show the
 average for each technique, while the error bars show the minimum and
 maximum values.
+\begin{figure}[t]
+\centering
+  \input{img/single-app-summary2-v4.tex}
+   \vskip -.8em
+  \caption{Summary data for single-app scenario.}
+  \label{fig:single-sum}
+\end{figure}
+
 
 Not surprisingly, race-to-idle meets all deadlines, but its
 conservative resource allocation has the highest average energy
-consumption. Among the prior learning approaches Nuclear has the
+consumption. Among the prior learning approaches Netflix has the
 lowest average deadline misses (11\%), but with high energy (40\% more
 than optimal), while the HBM has higher deadline misses (17\%) but
 with significantly lower energy consumption (16\%). Adaptive control
@@ -205,7 +202,7 @@ approach.
 
 The summary data shows us that the best prior approaches are
 race-to-idle, HBM, and adaptive control.
-\figsref{fig:single-perf}{fig:single-energy} show the detailed results
+\figsref{single-perf}{single-energy} show the detailed results
 for the 60, 75, and 90\% targets comparing the best of these prior
 approaches to \SYSTEM{} with no pole and \SYSTEM{} coupled with the
 HBM---other data has been omitted for space.  The benchmarks are
@@ -217,21 +214,21 @@ and the normalized energy, respectively.
 
 
 \subsection{Performance and Energy for Multiple Apps}
-\begin{figure}[!t]
+
+We again launch each benchmark with a performance target (the same
+targets as the prior study).  Halfway through execution, we start
+another application randomly drawn from our benchmark set---bound to
+one big core---which interferes with the application \SYSTEM{} is
+controlling.  Meeting the required performance in this dynamic
+scenario tests \SYSTEM{}'s ability to react to environmental changes.
+
+\begin{figure}[t]
 \centering
   \input{img/multi-app-summary2-v4.tex}
-   \vskip -.5em
+   \vskip -.8em
   \caption{Summary data for multi-app scenario.}
   \label{fig:multi-sum}
 \end{figure}
-
-We again launch each benchmark with a performance target (using the
-same targets as the prior study).  Halfway through execution, we start
-another application randomly drawn from our benchmark set, which we
-bind to one big core, which interferes with the application \SYSTEM{}
-is controlling.  Delivering performance to the original application in
-this dynamic scenario tests \SYSTEM{}'s ability to react to
-environmental changes.
 
 \begin{figure*}[t]
  \captionsetup[subfigure]{labelformat=empty}
@@ -266,11 +263,12 @@ average of 20\%, which is only 5\% more than optimal.  It also
 produces the second lowest energy, using slightly more than
 race-to-idle because it uses LITTLE cores to make up for some work
 that cannot be done on a big core due to the second application.
-\figsref{fig:multi-perf}{fig:multi-energy} shows the detailed results.
-The 90\% target is generally not reachable in this scenario as it
-would require the controlled application to have exclusive use of all
-big cores. \TODO{Hank: I am thinking that we subtract out the optimal
-  number of deadline misses here.}
+\figsref{multi-perf}{multi-energy} shows the detailed results.  The
+90\% target is generally not reachable in this scenario as it would
+require the controlled application to have exclusive use of all big
+cores.
+%\TODO{Hank: I am thinking that we subtract out the optimal
+%  number of deadline misses here.}
 
 
 
@@ -321,23 +319,24 @@ application-specific behavior on this system.
   \label{fig:x264-phase-change}
 \end{figure}
 
-\begin{figure}[!h]
-  \input{img/estimation_config.tex}
-   \vskip -.5em
-  \caption{Performance and power estimation for applications across different resource allocation as configuration index.}
-  \label{fig:x264-phase-change}
-\end{figure}
+% \begin{figure}[!h]
+%   \input{img/estimation_config.tex}
+%    \vskip -.5em
+%    \caption{Performance and power prediction for applications across
+%      different resource allocations.}
+%   \label{fig:estimation_config}
+% \end{figure}
 We compare \SYSTEM{} and Adaptive-Control reacting to input
 variations.  \figref{fig:x264-phase-change} shows the \texttt{x264}
 video encoder application with 2 different phases caused by a scene
-change in the input that occurs at the $500^{th}$ frame. The first
-scene is difficult and the second one is significantly easier.  In the
-first scene, \SYSTEM{} is closer to the desired performance (1 in the
-figure) and operates at a lower power state compared to
-Adaptive-Control. Adaptive-Control is operating at a configuration not
-on the Pareto frontier of power and performance.  When the input
-changes, \SYSTEM{} is still meets the performance target with far less
-fluctuations compared to Adaptive-Control.
+change in the input occurring at the $500^{th}$ frame. The first scene
+is difficult and the second one is much easier.  In the first,
+\SYSTEM{} is closer to the desired performance (1 in the figure) and
+operates at a lower power state compared to Adaptive-Control.
+Adaptive-Control is not operating at a configuration on the Pareto
+frontier of power and performance.  When the input changes, \SYSTEM{}
+is still meets the performance target with fewer fluctuations compared
+to Adaptive-Control.
 
 
 \subsection{The Pole's Importance}
@@ -365,15 +364,14 @@ fluctuations compared to Adaptive-Control.
 %\caption{Performance of LAVAMD with differnt resources.}
 %\label{fig:lavamd}
 %\end{wrapfigure}
-LAVAMD has one of the most complicated responses to resource usage on
-our system with multiple local optima, as shown in
-\figref{fig:lavamd}.  \secref{guarantees} presents an analytical
-argument that tuning the controller to learned variance prevents
-oscillation and provide probabilistic control theoretic guarantees
-despite using noisy, learned data to control such complicated
-behavior.  We now demonstrate this empirically by showing LAVAMD's
-single-app behavior controlled by both CALOREE-NoPole and
-\SYSTEM{}-HBM to meet the 80\% target.
+LAVAMD has the most complicated responses to resource usage on our
+system, with multiple local optima as shown in \figref{fig:lavamd}.
+\secref{guarantees} presents an analytical argument that tuning the
+controller to learned variance prevents oscillation and provides
+probabilistic control theoretic guarantees despite using noisy,
+learned data to control such complicated behavior.  We now demonstrate
+this empirically by showing LAVAMD's single-app behavior using both
+CALOREE-NoPole and \SYSTEM{}-HBM to meet the 80\% target.
 
 \figref{fig:lavamd-pole} shows the results, with time on the x-axis
 and normalized performance and power on the respective y-axes.
@@ -407,15 +405,15 @@ learner's application-specific predictions.
 \figref{fig:sensitivity} compares the Online, HBM, and Netflix
 learners for both performance (top) and power (bottom).  The figure
 shows sample size on the x-axis and accuracy on the y-axis.  The HBM
-initially performs as well as Offline and as sample size increases,
-the accuracy uniformly improves, exceeding 90\% after 20 samples. The
-Online approach needs at least 7 samples before it can even generate a
+initially performs as well as Offline. As sample size increases, HBM's
+accuracy uniformly improves, exceeding 90\% after 20 samples. The
+Online approach needs at least 7 samples to even generate a
 prediction.  As Online receives more samples, its accuracy improves
 but never exceeds HBM's for the same number of samples. Netflix is
-very noisy for sample sizes, but once the number of samples reaches
-about 50, it is competitive with HBM.  These results not only
-demonstrate the sensitivity to sample size, they show why
-\SYSTEM{}-HBM achieves better results than the other learners.
+very noisy for small sample sizes, but after about 50, it is
+competitive with HBM.  These results not only demonstrate the
+sensitivity to sample size, they show why \SYSTEM{}-HBM achieves
+better results than the other learners.
 
 \begin{figure}[t]
   \input{img/sample-accuracy-v3.tex}

@@ -1,19 +1,17 @@
 \section{Related Work}
 
-We discuss related work in managing resources to meet performance
-goals and reduce energy.  
+\paragraph{Machine Learning}
 
-\subsection{Machine Learning}
 We break learning for resource management into 3 categories: offline,
 online, and hybrid approaches.
 
-\noindent \textbf{Offline Learning} These approaches build models
-before deployment and then use those fixed models to allocate
+\noindent \textbf{Offline Learning} These approaches build predictors
+before deployment and then use those fixed predictors to allocate
 resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  The
-model-building phase is expensive, requiring both a large number of
-samples and substantial computation.  Applying the model online,
-however, is low overhead.  The main drawback is that the models are
+training phase is expensive, requiring both a large number of
+samples and substantial computation.  Applying the predictor online,
+however, is low overhead.  The main drawback is that the predictions are
 not updated as the system runs: a problem for adapting workloads.
 \PUNT{A good example of an offline approach applies learning to render
   web pages on mobile systems with low energy \cite{reddiHPCA2013}. It
@@ -30,13 +28,13 @@ to increase battery life \cite{carat}.  While both Carat and \SYSTEM{}
 learn across devices, they have very different goals.  Carat returns
 very high-level information to human users; \eg{} update a driver to
 extend battery life.  \SYSTEM{} automatically builds and applies
-low-level models to save energy.
+low-level predictions to save energy.
 
 \noindent \textbf{Online Learning} Online techniques observe the
 current application to tune system resource usage for that application
 \cite{Li2006,Flicker,ParallelismDial,Ponamarev,petabricksDynamic,LeeBrooks}.
 For example, Flicker is a configurable architecture and optimization
-framework that uses online models to maximize performance under a
+framework that uses online prediction to maximize performance under a
 power limitation \cite{Flicker}.  Another example, ParallelismDial,
 uses online adaptation to tailor parallelism to application workload
 \cite{ParallelismDial}.
@@ -44,56 +42,56 @@ uses online adaptation to tailor parallelism to application workload
 
 
 \noindent \textbf{Hybrid Approaches} Some approaches combine offline
-predictive models with online adaptation
+predictions with online adaptation
 \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
-  wu2012inferred}.  For example, Dubach et al.  use hybrid models to
+  wu2012inferred}.  For example, Dubach et al.  use a hybrid scheme to
 optimize the microarchitecture of a single core \cite{dubach2010}.
-Such predictive models have also been employed at the operating system
-level to manage system energy consumption
+Such predictors have also been employed at the operating system level
+to manage system energy consumption
 \cite{Koala,Cinder,wu2012inferred}.  Other approaches combine offline
-modeling with online updates \cite{JouleGuard,Bitirgen2008,Ipek}.  For
-example, Bitirgen et al use an artificial neural network to allocate
-resources to multiple applications in a multicore \cite{Bitirgen2008}.
-The neural network is trained offline and then adapted online using
-measured feedback.  This approach maximizes performance but does not
-consider power or energy minimization.
+prediction with online updates \cite{JouleGuard,Bitirgen2008,Ipek}.
+For example, Bitirgen et al use an artificial neural network to
+allocate resources to multiple applications in a multicore
+\cite{Bitirgen2008}.  The neural network is trained offline and then
+adapted online using measured feedback to maximizes performance but
+without consideration for energy minimization.
 
-\subsection{Control}
+\paragraph{Control}
+
 Almost all control solutions can be thought of as a combination of
-offline model building with online adaptation.  The model building
-involves substantial empirical measurement that is used to synthesize
-a control system
-\cite{Wu2004,TCST,Chen2011,PTRADE,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
+offline prediction with online adaptation.  The offline phase involves
+substantial empirical measurement that is used to synthesize a control
+system
+\cite{Wu2004,Chen2011,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
 The combination of offline learning and control works well over a
-narrow range of applications, as the offline models capture the
-general behavior of a class of application and require negligible
-online overhead.  This focused approach is extremely effective for
-multimedia applications \cite{grace2,flinn99,flinn2004,xtune,TCST} and
+narrow range of applications, as the offline data captures the general
+behavior of a class of application and require negligible online
+overhead.  This focused approach is extremely effective for multimedia
+applications \cite{grace2,flinn99,flinn2004,xtune,TCST} and
 web-servers \cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} because the
-workloads can be characterized ahead of time so that the models
-produce sound control.
+workloads can be characterized ahead of time to produce sound control.
 
-Indeed, the need for good models is the central tension in developing
-control for computing systems.  It is always possible to build a
-controller for a specific application and system by extensively
-modeling that pair.  More general controllers, which work with a range
-of applications, have addressed the need for models in various ways.
-Some provide libraries that encapsulate control functionality and
-require user-specified models
+Indeed, the need for good predictions is the central tension in
+developing control for computing systems.  It is always possible to
+build a controller for a specific application and system by
+specializing for that pair.  More general controllers, which work with
+a range of applications, have addressed the need for accurate
+predictions in various ways.  Some provide libraries that encapsulate
+control functionality and require user-specified models
 \cite{ControlWare,Sojka,Rajkumar,POET,SWiFT}.  Others automatically
-synthesize both a model and a controller for either hardware
+synthesize both a predictor and a controller for either hardware
 \cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.  JouleGuard
 combines learning for energy efficiency with control for managing
 application parameters \cite{JouleGuard}.  In JouleGuard, a learner
 adapts the controller's coefficients to model uncertainty, but
-JouleGuard's learner does not produce a new model for the controller.
+JouleGuard's learner does not produce a new set of predictions.
 Because JouleGuard's learner runs on the same device as the controlled
 application, it must be computationally efficient and thus it cannot
 identify correlations across applications or even different resource
 configurations.  \SYSTEM{} is unique in that a separate learner
-generates an application-specific model automatically.  By offloading
-the learning task, \SYSTEM{} (1) combines data from many applications
-and systems and (2) applies computationally expensive, but highly
-accurate learning techniques.
+generates an application-specific predictions automatically.  By
+offloading the learning task, \SYSTEM{} (1) combines data from many
+applications and systems and (2) applies computationally expensive,
+but highly accurate learning techniques.
 
 

@@ -31,39 +31,36 @@ performance requirement.
 \end{figure}
 
 \figref{fig:timeline} illustrates the asynchronous interaction between
-\SYSTEM{}'s learner and controller over time. The controller starts
-when a new application launches.  It has no prior knowledge of this
-application, so it begins as a generic controller.  The controller
-sends the learner the application's name and device type (message 1,
-\figref{fig:timeline}).  The learner determines how many samples are
-needed for an accurate prediction and sends this number to the
-controller (message 2).  The controller takes these samples and sends
-the learner the performance and power of each measured configuration
-(message 3).  The learner may require time to build predictions; so,
-the controller does not wait for the learner but continues without
+\SYSTEM{}'s learner and controller. The controller starts--using a
+generic speedup prediction---when a new application launches.  The
+controller sends the learner the application's name and device type
+(message 1, \figref{fig:timeline}).  The learner determines how many
+samples are needed for an accurate prediction and sends this number to
+the controller (message 2).  The controller takes these samples and
+sends the performance and power of each measured configuration to the
+learner (message 3).  The learner may require time to make
+predictions; so, the controller does not wait, but continues without
 application-specific data.  Once the learner predicts the optimal
 configurations for this application, it sends that data and the
 variance estimate to the controller (message 4), which uses the
-learned predictions from then on.
+learner's predictions from then on.
 
 \figref{fig:timeline} shows several key points about the relationship
 between learning and control.  First, the controller never waits for
-the learner. it uses a generic control specification, which is less
-efficient until the learner produces application-specific predictions.
-Second, the controller does not continuously communicate with the
-learner, this interaction happens once at application launch.  Third,
-if the learner crashed, the controller would default to the generic
+the learner: it uses a generic, less-efficient control specification
+until the learner produces application-specific predictions.  Second,
+the controller does not continuously communicate with the
+learner---this interaction happens once at application launch.  Third,
+if the learner crashed, the controller defaults to the generic
 adaptive control system.  If the learner crashed after sending its
 predictions, the controller does not need to know.  Finally, the
 learner and controller have a clearly defined interface, so they can
 be run in separate processes or physically separate devices.
 
-This section first describes a traditional adaptive control system.
-We then generalize this approach and separate out parameters to be
-learned.  Next, we discuss the general class of learning systems that
-work with \SYSTEM{}.  Then, we present an encoding for the learned
-data that can be accessed by the controller in constant time.
-Finally, we formally analyze \SYSTEM{}'s guarantees.
+This section first describes traditional adaptive control.  We then
+generalize this approach, separating out parameters to be learned.
+Next, we discuss the class of learning systems that work with
+\SYSTEM{}.  Finally, we formally analyze \SYSTEM{}'s guarantees.
 
 
 \subsection{Traditional Control for Computing}
@@ -189,9 +186,8 @@ For stable control, \SYSTEM{} ensures $0 \le \rho(t) < 1$. Small
 values of $\rho(t)$ eliminate error quickly, but make the controller
 more sensitive to the learner's inaccuracies.  Larger $\rho(t)$ makes
 the system more robust at the cost of reduced convergence time.
-\secref{guarantees} describes how \SYSTEM{} automatically sets the
-pole; however, we first address converting an abstract speedup into a
-resource allocation.
+\secref{guarantees} describes how \SYSTEM{} sets the pole, but we
+first address converting speedup into a resource allocation.
 
 \subsubsection{Converting Speedup to Resource Schedules}
 \SYSTEM{} must map \eqnref{speedup-control}'s speedup into a resource
@@ -291,24 +287,24 @@ $c=1$ with $s_c=.2$, setting $lo = 1$.
   T &=& \tau_{hi} + \tau_{lo}    \label{eqn:s1} \\
   speedup(t) &=& \frac{s_{hi} \cdot \tau_{hi} + s_{lo} \cdot \tau_{lo}}{T} \label{eqn:s2}
 \end{eqnarray}
-where $speedup(t)$ is given by the controller and $s_c$ are speedups
-estimated by the learner.  By solving \eqnsref{s1}{s2}, \SYSTEM{} has
-turned the controller's speedup into a schedule of resource
-allocations using learned predictions stored in the PHT.
+where the controller provides $speedup(t)$ and the learner predicts
+$s_c$.  By solving \eqnsref{s1}{s2}, \SYSTEM{} has turned the
+controller's speedup into a resource schedule using predictions stored
+in the PHT.
 
 \subsection{\SYSTEM{} Learning Algorithms}
 The previous subsection describes a general control system, which can
 be customized with a number of different learning methods.  The
-requirements on the learner are that it must produce 1) estimates of
-the speedup and powerup values for each resource configuration and 2)
-an estimate of its own inaccuracy.
+requirements on the learner are that it must produce 1) predictions of
+each resource configuration's speedup and powerup and 2) estimate of
+its own variance.
 % We also provide a proxy for self tuning parameter in the later
 % sections in case the learning algorithm cannot provide the
 % confidence interval.
 This section describes the general class of learning mechanisms that
 meet these requirements. 
 
-When selecting a learning framework we must find a tradeoff between
+\PUNT{When selecting a learning framework we must find a tradeoff between
 the specific and the general; \ie between frameworks that build
 application-specific predictions and frameworks that combine
 observations across applications.  For example, the key to energy
@@ -319,80 +315,87 @@ predictor will capture that precisely, but may require many
 observations before producing the correct predictions.  A more general
 predictor will capture the trend, \eg when most applications should
 transition, but this general approach might miss the key inflection
-point for some applications.  We refer to application-specific
-predictors as \emph{online} because they work for the current
-application and do not incorporate knowledge of other applications.
-We refer to general predictors as \emph{offline} as they use prior
-observations of other applications to predict the behavior of a new
-application. A third class of \emph{transfer learning} predictors
-combines information from the previously seen applications and current
-application to make the predictions on the application in hand
-\cite{pan2010survey}. Transfer learning obtains higher prediction
-accuracies since it augments online data with offline information from
-other applications.
+point for some applications.}
 
-% The HBM provides a good balance between the online and offline
-% approaches.  A strictly online approach will handle each new
-% application completely separately and ignore observations of previous
-% applications.  This approach never risks contaminating a model with
-% unrelated observations, but it may take many observations of the
-% current application to converge because it starts with no prior
-% knowledge. The offline approach uses all observations from prior
-% applications and will therefore converge very quickly; however, it is
-% overly general and cannot learn features specific to a single
-% application.
-\subsubsection{Offline Predictors}
-These predictors utilize data from previously seen applications. If
-the predictor is for applications with very similar behavior the
-prediction accuracy might be high but the predictor will fail if the
-application's behaviors diverge \cite{meisnerISCA2011,Kim2014}.  For
-example, these techniques will predict the performance of applications
-based on prior applications, meaning they will over-allocate speed to
-memory-bound applications and under-allocate to compute-bound ones.
+We refer to application-specific predictors as \emph{online} because
+they work for the current application and do not incorporate knowledge
+of other applications.  We refer to general predictors as
+\emph{offline} as they use prior observations of other applications to
+predict the behavior of a new application. A third class of
+\emph{transfer learning} predictors combines information from the
+previously seen applications and current application to make the
+predictions on the application in hand \cite{pan2010survey}. Transfer
+learning obtains higher prediction accuracies since it augments online
+data with offline information from other applications.  In this work
+we are particularly interested in transfer learning techniques because
+\SYSTEM{}'s separation of learning and control makes it easy to
+incorporate data from other applications---the learner in
+\figref{fig:timeline} can simply aggregate data from multiple
+controllers. We give two examples of appropriate transfer learning
+algorithms.
 
-\subsubsection{Online Predictors}
-%\TODO{Is this offline or online or both?  The prior paragraph sets up this three-legged structure: offline, online, and something which we used to call hybrid but sounds like we are now calling transfer learning. If we are going to keep that structure we should mimic it in the substructure of the rest of the section.}  
-In general, all machine learning techniques take observations of some
-phenomena and produce a prediction of future outcomes.  In our
-specific case, we want to take observations about application's
-performance and power given a resource allocation and predict future
-applications' behavior.  The most straightforward approach is to
-create a linear regression based on the configuration laid out as the
-input features \cite{tibshirani1996regression,yuan2006model,CPR}.
-Regression requires samples of the performance and power for different
-resource configurations.  Since the systems are usually non-linear,
-polynomial regression often gives better results, but increases the
-number of samples required \cite{LeeBrooks}.  Regression also provides
-a confidence interval for its predictions which is important for
-adaptively tuning the pole.
+% % The HBM provides a good balance between the online and offline
+% % approaches.  A strictly online approach will handle each new
+% % application completely separately and ignore observations of previous
+% % applications.  This approach never risks contaminating a model with
+% % unrelated observations, but it may take many observations of the
+% % current application to converge because it starts with no prior
+% % knowledge. The offline approach uses all observations from prior
+% % applications and will therefore converge very quickly; however, it is
+% % overly general and cannot learn features specific to a single
+% % application.
+% \subsubsection{Offline Predictors}
+% These predictors utilize data from previously seen applications. If
+% the predictor is for applications with very similar behavior the
+% prediction accuracy might be high but the predictor will fail if the
+% application's behaviors diverge \cite{meisnerISCA2011,Kim2014}.  For
+% example, these techniques will predict the performance of applications
+% based on prior applications, meaning they will over-allocate speed to
+% memory-bound applications and under-allocate to compute-bound ones.
+
+% \subsubsection{Online Predictors}
+% %\TODO{Is this offline or online or both?  The prior paragraph sets up this three-legged structure: offline, online, and something which we used to call hybrid but sounds like we are now calling transfer learning. If we are going to keep that structure we should mimic it in the substructure of the rest of the section.}  
+% In general, all machine learning techniques take observations of some
+% phenomena and produce a prediction of future outcomes.  In our
+% specific case, we want to take observations about application's
+% performance and power given a resource allocation and predict future
+% applications' behavior.  The most straightforward approach is to
+% create a linear regression based on the configuration laid out as the
+% input features \cite{tibshirani1996regression,yuan2006model,CPR}.
+% Regression requires samples of the performance and power for different
+% resource configurations.  Since the systems are usually non-linear,
+% polynomial regression often gives better results, but increases the
+% number of samples required \cite{LeeBrooks}.  Regression also provides
+% a confidence interval for its predictions which is important for
+% adaptively tuning the pole.
 
 
-\subsubsection{Transfer learning}
-\textit{Transfer learning} refers to the process of applying knowledge
-gained from one scenario to a new, similar one \cite{pan2010survey}.
-To provide intuition we offer a simple example.  Suppose we have
-observed many prior applications, all of which are either completely
-compute-bound or completely memory-bound, and we have an equal number
-of both.  The only resource we can allocate is clockspeed, which will
-increase the performance of compute-bound applications, but not
-memory-bound ones.  When we encounter new application, we must
-estimate its response to clockspeed.  The online predictor will not
-use prior knowledge, but will observe many different clock speeds for
-the new application, leading to high overhead.  The offline predictor
-will predict the mean response of prior applications, meaning it will
-over-allocate speed to memory-bound applications and under-allocate to
-compute-bound ones.  The transfer learning approach takes a small
-number of samples and combines those with prior knowledge: if the new
-observations show that clockspeed has no effect on performance, these
-predictors will use only the prior memory bound applications,
-otherwise, it will use the compute-bound applications.
+% %\subsubsection{Transfer learning}
+% \textit{Transfer learning} refers to the process of applying knowledge
+% gained from one scenario to a new, similar one \cite{pan2010survey}.
+% To provide intuition we offer a simple example.  Suppose we have
+% observed many prior applications, all of which are either completely
+% compute-bound or completely memory-bound, and we have an equal number
+% of both.  The only resource we can allocate is clockspeed, which will
+% increase the performance of compute-bound applications, but not
+% memory-bound ones.  When we encounter new application, we must
+% estimate its response to clockspeed.  The online predictor will not
+% use prior knowledge, but will observe many different clock speeds for
+% the new application, leading to high overhead.  The offline predictor
+% will predict the mean response of prior applications, meaning it will
+% over-allocate speed to memory-bound applications and under-allocate to
+% compute-bound ones.  The transfer learning approach takes a small
+% number of samples and combines those with prior knowledge: if the new
+% observations show that clockspeed has no effect on performance, these
+% predictors will use only the prior memory bound applications,
+% otherwise, it will use the compute-bound applications.
 
 \paragraph{Netflix Algorithm:}
-The Netflix problem is a famous challenge posted by Netflix to find
-estimate users' movie preferences. The challenge was one by realizing
-that if 2 users both like some movies they might have similar taste in
-other movies. This approach allows predictors to borrow large amounts
-of data from other users to answer some questions about a new user.
+The Netflix problem is a famous challenge posted by Netflix to predict
+users' movie preferences. The challenge was won by realizing that if 2
+users both like some movies they might have similar taste in other
+movies. This approach allows predictors to borrow large amounts of
+data from other users to answer some questions about a new user.
 %One of the solutions in designing this mathematically is to say
 %the the matrix of users vs movies is low rank and solve the problem
 %using mathematical optimization techniques.
@@ -408,18 +411,18 @@ its own model, allowing specificity, but these models are
 conditionally dependent on some underlying probability distribution
 with a hidden mean and co-variance.  In practice, an HBM predicts
 behavior for a new application using a small number of observations
-and combining those observations with the large number of previous
-observations of other applications.  Rather than over-generalizing,
-the HBM uses only similar applications to predict new application
-behavior.  The HBM's accuracy increases as more applications are
-observed because increasingly diverse behaviors are represented in the
-pool of prior knowledge.  Of course, the computational complexity of
-learning also increases with increasing applications.
+and combining those with the large number of observations of other
+applications.  Rather than over-generalizing, the HBM uses only
+similar applications to predict new application behavior.  The HBM's
+accuracy increases as more applications are observed because
+increasingly diverse behaviors are represented in the pool of prior
+knowledge.  Of course, the computational complexity of learning also
+increases with increasing applications.
 
 
 \subsection{Formal Analysis}
-\subsubsection{Control System Complexity}
-%\subsubsection{Algorithmic Analysis}
+\label{sec:guarantees}
+\paragraph{Control System Complexity}
 
 \SYSTEM{}'s control system (see Algorithm \ref{alg:gcs}) runs on the
 local device along with the application under control, so its overhead
@@ -444,8 +447,8 @@ then each PHT lookup requires constant time.
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Control Theoretic Formal Guarantees}
-\label{sec:guarantees}
+\paragraph{Control Theoretic Formal Guarantees}
+
 The controller's pole $\rho(t)$ is critical to providing control
 theoretic guarantees in the presence of learned--rather than directly
 measured---data.  \SYSTEM{} requires any learner estimate not only
