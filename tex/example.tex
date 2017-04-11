@@ -73,21 +73,22 @@ phases, so once a resource allocator finds the most energy efficient
 configuration, it simply needs to maintain it.
 
 
-\figref{fig:STREAM_timeline} shows 20 iterations of both learning
-\cite{LEO} and adaptive control \cite{POET} allocating resources to
-\texttt{STREAM}.  The x-axis shows iteration and the y-axis shows
-performance normalized to the requirement.  The \emph{learning}
-approach estimates \texttt{STREAM}'s performance and power for all
-configurations and uses the lowest energy configuration that delivers
-the required performance.  The \emph{adaptive controller} begins with
-a generic notion of power/performance tradeoffs.  As the controller
-runs, it measures performance and adjusts both the allocated resources
-and its own parameters.  The adaptive controller dynamically adjusts
-to non-linearities with a series of linear approximations; however,
-inaccuracies in the relationship between resources and performance
-cause oscillations that lead to performance violations.  This behavior
-occurs because the controller's adaptive mechanisms cannot handle
-STREAM's complexity, a known limitation of adaptive control systems
+\figref{fig:STREAM_timeline} shows 20 iterations of existing learning
+\cite{LEO} and adaptive control \cite{POET} approaches allocating
+resources to \texttt{STREAM}.  The x-axis shows iteration and the
+y-axis shows performance normalized to the requirement.  The
+\emph{learning} approach estimates \texttt{STREAM}'s performance and
+power for all configurations and uses the lowest energy configuration
+that delivers the required performance.  The \emph{adaptive
+  controller} begins with a generic notion of power/performance
+tradeoffs.  As the controller runs, it measures performance and
+adjusts both the allocated resources and its own parameters.  The
+adaptive controller dynamically adjusts to non-linearities with a
+series of linear approximations; however, inaccuracies in the
+relationship between resources and performance cause oscillations that
+lead to performance violations.  This behavior occurs because the
+controller's adaptive mechanisms cannot handle STREAM's complexity, a
+known limitation of adaptive control systems
 \cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s ability
 to predict complex behavior is crucial.
 
@@ -114,15 +115,15 @@ to predict complex behavior is crucial.
 
 
 We now consider a dynamic environment.  We begin with
-\texttt{bodytrack} running alone on the system.  Halfway through its
-execution, we launch a second application---\texttt{STREAM}---on a
-single big core, dynamically changing available resources.
+\texttt{bodytrack} running alone on the system.
 \figref{fig:BODYTRACK_contour} shows \texttt{bodytrack}'s behavior.
 It achieves the best performance on 4 big cores at the highest
-clockspeed; the 4 LITTLE are more energy-efficient but slower.  For
-\texttt{bodytrack}, the challenge is determining how to split time
+clockspeed; the 4 LITTLE cores are more energy-efficient but slower.
+For \texttt{bodytrack}, the challenge is determining how to split time
 between the LITTLE and big cores to conserve energy while still
-meeting the performance requirements.
+meeting the performance requirements. Halfway through its execution,
+we launch a second application---\texttt{STREAM}---on a single big
+core, dynamically changing available resources.
 
 \figref{fig:BODYTRACK_timeline} shows the results of this experiment.
 The vertical dashed line---at frame 99---represents when the second
@@ -141,21 +142,19 @@ learners capable of handling this complexity
 
 
 \subsection{Challenges of Interfacing Learning and Control}
-The previous section motivate the first part of \SYSTEM{}: splitting
-the resource allocation problem into prediction---which is handled by
-learning---and dynamic management---which is handled by control. The
-second part of \SYSTEM{}'s approach is the interface that combines the
-two solutions.  This subsection demonstrates the importance of this
-interface.
+The previous section motivates the first of \SYSTEM{}'s contributions:
+splitting the resource allocation problem into prediction---handled by
+learning---and dynamic management---handled by control. \SYSTEM{}'s
+second contribution is the interface that combines the two solutions.
+This subsection demonstrates the importance of this interface.
 
 The controller's \emph{pole} is a particularly important control
 parameter.  Control engineers tune the pole to trade response time for
 noise sensitivity.  Traditionally, the data used to set the pole comes
 from many observations of the controlled system and is considered
 \emph{ground truth} \cite{Hellerstein2004a}.  \SYSTEM{}, however, must
-tune the pole based on data from the learner, which may have noise
+tune the pole based the learner's predictions, which may have noise
 and/or errors.
-
 
 
 \begin{wrapfigure}{r}{0.5\columnwidth} 
@@ -174,18 +173,17 @@ learner from the first subsection.  We compare the results with a
 carefully hand-tuned pole to those using the default pole provided by
 the controller developers \cite{POET}.
 
-\figref{fig:not-simple} shows the results.  The carefully tuned pole
-converges because the pole accounts for possible errors in the learned
-data. The default pole, however, oscillates around the performance
-target, resulting in a number of missed deadlines.  Additionally, the
-frames that exceed the desired performance waste energy because they
-spend more time on the big, inefficient cores. The pole parameterizes
-the system's \emph{inertia}---dictating how fast it should react to
-environmental changes.  If the learner is noisy or inaccurate, the
-controller should trust it less and move slowly. Rather than require
-users with both computing and control knowledge to tune the pole,
-\emph{\SYSTEM{} incorporates the learner's confidence interval and
-  estimated variance to compute a pole that provides probabilistic
-  convergence guarantees.}
+As shown in \figref{fig:not-simple}, the carefully tuned pole
+converges. The default pole, however, oscillates around the
+performance target, resulting in a number of missed deadlines.
+Additionally, the frames that exceed the desired performance waste
+energy because they spend more time on the big, inefficient cores. The
+pole captures the system's \emph{inertia}---dictating how fast it
+should react to environmental changes.  If the learner is noisy or
+inaccurate, the controller should trust it less and move slowly.
+Rather than require users with both computing and control knowledge to
+tune the pole, \emph{\SYSTEM{} incorporates the learner's estimated
+  variance to compute a pole that provides probabilistic convergence
+  guarantees.}
 
 
