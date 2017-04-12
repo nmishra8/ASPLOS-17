@@ -93,6 +93,66 @@ design.\PUNT{Using the ratio of minimum and maximum speedup and the
   speedup is predicted by a noisy learning mechanism, rather than
   directly measured as in traditional control design.}
 
+
+  \PUNT{
+  Intuitively, the combination of learning and control should produce
+predictable behavior in complex, dynamic systems.  The combination,
+however, incurs two major challenges:
+\begin{itemize}[leftmargin=1em]
+\item Dividing the resource allocation problem into sub-tasks that
+  suit learning and control's different strengths.
+\item Defining an interface that efficiently combines sub-task
+  solutions so that they coordinate well with each other.
+\end{itemize}
+
+
+We address the first challenge by adding a layer of indirection. The learner 
+learns relative performance (speed-up)---instead of absolute
+performance---so that all unpredictable external interference can be
+viewed as a change to a \emph{baseline} performance and the relative
+speedup is independent of these changes. These speedups are then fed into the 
+controller which can use this information to operate dynamically. The controller 
+does not need to know the explicit mapping between resource configuration and 
+performance but it only needs to know the relative ordering between those configurations.
+
+
+We address the first challenge by splitting resource allocation into
+two sub-tasks.  The first is learning speedup---instead of absolute
+performance---so that all unpredictable external interference can be
+viewed as a change to a \emph{baseline} performance and the relative
+speedup is independent of these changes.  Learning is well-suited to
+predicting speedups as a function of resource usage and separating
+globally optimal resource configurations from locally optimal ones.
+
+The second sub-task controlling speedup dynamically based on the
+difference between measured and desired performance.  Once the learner
+has removed locally optimal solutions, the problem is convex and
+well-suited to adaptive control solutions which can deliver required
+speedup even in dynamic environments.
+%Even if the measured performance
+%is substantially changed due to external disturbances, the controller
+%accounts for these dynamics.
+
+We address the second challenge by defining an interface between
+learning and control that maintains control's formal guarantees.  This
+interface consists of two parts.  The first is a \emph{performance
+  hash table} (PHT) that stores the learned relationship between
+configurations and speedup.  The PHT allows the controller to find the
+resource allocation that meets a desired speedup with minimal energy
+and requires only constant time---$O(1)$---to access.  The second part
+of the interface is the learned variance.  Knowing this value, the
+controller can adjust itself to maintain formal convergence guarantees
+even though the speedup is predicted by a noisy learning mechanism,
+rather than directly measured---as it would be in traditional control
+design.\PUNT{Using the ratio of minimum and maximum speedup and the
+  learned variance, the controller dynamically sets its error
+  tolerance (specifically, it sets the \emph{pole} of its
+  characteristic equation).  Communicating the learned variance allows
+  the controller to maintain formal convergence guarantees even though
+  speedup is predicted by a noisy learning mechanism, rather than
+  directly measured as in traditional control design.}
+  }
+
 We call our combination of learning and control
 \SYSTEM{}.\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning
   for \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
