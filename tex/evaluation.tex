@@ -141,6 +141,14 @@ the learners, and then test on $x$.
 
 \section{Experimental Evaluation}
 
+\begin{figure}[t]
+\centering
+  \input{img/single-app-summary2-v4.tex}
+   \vskip -.8em
+  \caption{Summary data for single-app scenario.}
+  \label{fig:single-sum}
+\end{figure}
+
 \subsection{Performance and Energy for Single App}
 %Setup
 
@@ -153,13 +161,6 @@ shows two charts with the percentage of deadline misses in the top
 chart and the energy over optimal in the bottom.  The dots show the
 average for each technique, while the error bars show the minimum and
 maximum values.
-\begin{figure}[t]
-\centering
-  \input{img/single-app-summary2-v4.tex}
-   \vskip -.8em
-  \caption{Summary data for single-app scenario.}
-  \label{fig:single-sum}
-\end{figure}
 
 
 Not surprisingly, race-to-idle meets all deadlines, but its
@@ -202,7 +203,7 @@ approach.
 
 The summary data shows us that the best prior approaches are
 race-to-idle, HBM, and adaptive control.
-\figsref{single-perf}{single-energy} show the detailed results
+\figsref{fig:single-perf}{fig:single-energy} show the detailed results
 for the 60, 75, and 90\% targets comparing the best of these prior
 approaches to \SYSTEM{} with no pole and \SYSTEM{} coupled with the
 HBM---other data has been omitted for space.  The benchmarks are
@@ -263,7 +264,7 @@ average of 20\%, which is only 5\% more than optimal.  It also
 produces the second lowest energy, using slightly more than
 race-to-idle because it uses LITTLE cores to make up for some work
 that cannot be done on a big core due to the second application.
-\figsref{multi-perf}{multi-energy} shows the detailed results.  The
+\figsref{fig:multi-perf}{fig:multi-energy} shows the detailed results.  The
 90\% target is generally not reachable in this scenario as it would
 require the controlled application to have exclusive use of all big
 cores.
