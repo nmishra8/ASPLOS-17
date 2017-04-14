@@ -52,8 +52,8 @@ will not converge.
 %behavior in complex, dynamic systems.  There are, however, two major
 %challenges to implementing the combination:
 Intuitively, combining learning and control should produce predictable
-behavior in complex, dynamic systems.  The combination, however,
-produces two major challenges:
+behavior in complex, dynamic systems.  Such a combination, however,
+must address two major challenges:
 \begin{itemize}[leftmargin=1em]
 \item Dividing the resource allocation problem into sub-tasks that
   suit learning and control's different strengths.
@@ -158,13 +158,13 @@ design.
     rather than directly measured as in traditional control design.}
 }
 
-We call our combination of learning and control
-\SYSTEM{}.\footnote{\textbf{C}ontrol \textbf{A}nd \textbf{L}earning
-  for \textbf{O}ptimal \textbf{R}esource \textbf{E}nergy
-  \textbf{E}fficiency} \SYSTEM{} is a general methodology allowing
-different learning techniques to be paired with its controller.
-\SYSTEM{} tunes its internal parameters automatically; \ie{} \emph{it
-  requires no user-level inputs other than performance requirements}.
+In this paper we propose \SYSTEM{}\footnote{\textbf{C}ontrol
+  \textbf{A}nd \textbf{L}earning for \textbf{O}ptimal
+  \textbf{R}esource \textbf{E}nergy \textbf{E}fficiency} a general
+methodology allowing different learning techniques to be paired with a
+controller.  \SYSTEM{} tunes its internal parameters automatically;
+\ie{} \emph{it requires no user-level inputs other than performance
+  requirements}.
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
 We evaluate \SYSTEM{} by implementing the learners on an x86 server
@@ -174,12 +174,12 @@ compare to state-of-the-art learning (including polynomial regression
 and a hierarchical Bayesian model \cite{LEO}) and control (including
 proportional-integral-derivative \cite{Hellerstein2004a} and adaptive,
 or self-tuning \cite{HandbookControl}) techniques.  We set performance
-goals---as latency requirements---for a set of benchmark applications
-and then measure both the percentage of time the requirements are
-violated and the energy.  We test both \emph{single-app}---where an
-application runs alone---and \emph{multi-app} environments---where
-other applications enter the system and compete for resources.
-\SYSTEM{} achieves the:
+goals for a set of benchmark applications and then measure both the
+percentage of time the requirements are violated and the energy.  We
+test both \emph{single-app}---where an application runs alone---and
+\emph{multi-app} environments---where background applications
+unpredictably enter the system and compete for resources.  \SYSTEM{}
+achieves the:
 \begin{itemize}[leftmargin=1em]
 \item \textit{Most reliable performance:}
   \begin{itemize}[leftmargin=1em]
@@ -215,6 +215,6 @@ despite noisy inputs and shows how to integrate learned variance into
 control theoretic guarantees.  We demonstrate the practical benefits
 of these contributions for mobile/embedded processors, finding
 \SYSTEM{} provides much more reliable performance and lower energy
-than individual learning or control solutions.
+than learning or control solutions alone.
 
 

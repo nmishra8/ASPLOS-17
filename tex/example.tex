@@ -141,7 +141,7 @@ learners capable of handling this complexity
 \cite{Paragon,quasar,LEO}.
 
 
-\subsection{Challenges of Interfacing Learning and Control}
+\subsection{Challenges Combining Learning and Control}
 The previous section motivates the first of \SYSTEM{}'s contributions:
 splitting the resource allocation problem into prediction---handled by
 learning---and dynamic management---handled by control. \SYSTEM{}'s
@@ -165,13 +165,13 @@ and/or errors.
 \label{fig:not-simple}
 %\end{figure}
 \end{wrapfigure}
-To demonstrate the pole's importance when using a learned data, we
-again control \texttt{bodytrack}, this time using the adaptive
-controller from the previous subsection but instead of measuring
-performance as a function of resource usage, we predict it, using the
-learner from the first subsection.  We compare the results with a
-carefully hand-tuned pole to those using the default pole provided by
-the controller developers \cite{POET}.
+To demonstrate the pole's importance when using learned data, we again
+control \texttt{bodytrack}, using the adaptive controller from the
+previous subsection. Instead of measuring performance as a function of
+resource usage, we predict it using the learner from the first
+subsection.  We compare the results with a carefully hand-tuned pole
+to those using the default pole provided by the controller developers
+\cite{POET}.
 
 As shown in \figref{fig:not-simple}, the carefully tuned pole
 converges. The default pole, however, oscillates around the

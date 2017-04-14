@@ -5,7 +5,7 @@
   Let $\mathbf{s}$ and $\hat{\mathbf{s}}$ denote the true and estimated speedups of various configurations in set $C$ as $\mathbf{s} \in \mathbb{R}^{|C|}$. Let $\sigma$ denote the
   estimation error for speedups such that, $\hat{s_i} \sim
   N(s_i, \sigma^2)$ $\forall$ $i$. We can show that with probability
-  greater than 99.7\%, the pole $\rho(t)$ can be chosen to lie in the range, $[\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0, 1)$, where $\Floor{x}_0 = \max(x,0)$.
+  greater than 99.7\%, the pole $\rho(t)$ can be chosen to lie in the range, $\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) -  3\sigma)}_0}_0, 1)$, where $\Floor{x}_0 = \max(x,0)$.
 \end{theorem}
 
 \begin{proof}
@@ -30,7 +30,7 @@ $\hat{s} \sim N(s, \sigma^2)$, therefore with probability greater
 than 99.7\% and the speedups can be given by, $s_{lo} \geq
 \hat{s}_{lo} - 3 \sigma$. Hence, $\widehat{speedup}(t) \geq T
 (\hat{s}_{lo} -3 \sigma)$. Since, over all configurations, $\Delta \leq
-\Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0$,  we can choose the pole from the range,  $([\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0, 1)$.
+\Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0$,  we can choose the pole from the range,  $(\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0, 1)$.
 
 
 \end{proof}

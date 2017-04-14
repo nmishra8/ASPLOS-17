@@ -1,37 +1,36 @@
 \section{Related Work}
 
-\paragraph{Machine Learning}
+%\paragraph{Machine Learning}
 
 %We break learning for resource management into 3 categories: offline,
 %online, and hybrid approaches.
 
-\noindent \textbf{Offline Learning} These approaches build predictors
-before deployment and then use those fixed predictors to allocate
-resources
+\noindent \textbf{Offline Learning} approaches build predictors before
+deployment and then use those fixed predictors to allocate resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  The
-training phase is expensive, requiring both a large number of
-samples and substantial computation.  Applying the predictor online,
-however, is low overhead.  The main drawback is that the predictions are
-not updated as the system runs: a problem for adapting workloads.
-\PUNT{A good example of an offline approach applies learning to render
-  web pages on mobile systems with low energy \cite{reddiHPCA2013}. It
+training phase is expensive, requiring both a large number of samples
+and substantial computation.  Applying the predictor online, however,
+is low overhead.  The main drawback is that the predictions are not
+updated as the system runs: a problem for adapting workloads.  \PUNT{A
+  good example of an offline approach applies learning to render web
+  pages on mobile systems with low energy \cite{reddiHPCA2013}. It
   builds an offline model mapping web page features into performance
   for different core types.  When a new page is downloaded, the system
   estimates the resources needed to render the web page and uses the
   lowest energy configuration that meets user satisfaction.  This
   approach handles the complexity of allocating resources to webpage
   rendering, but cannot address dynamics; \eg{} when other apps run
-  concurrently with the web browser.}  Carat is a good example of an
-offline learner that aggregates data across multiple devices to
-generate a report for human users about how to configure their device
-to increase battery life \cite{carat}.  While both Carat and \SYSTEM{}
-learn across devices, they have very different goals.  Carat returns
-very high-level information to human users; \eg{} update a driver to
-extend battery life.  \SYSTEM{} automatically builds and applies
-low-level predictions to save energy.
+  concurrently with the web browser.}  Carat is an offline learner
+that aggregates data across multiple devices to generate a report for
+human users about how to configure their device to increase battery
+life \cite{carat}.  While both Carat and \SYSTEM{} learn across
+devices, they have very different goals.  Carat returns very
+high-level information to human users; \eg{} update a driver to extend
+battery life.  \SYSTEM{} automatically builds and applies low-level
+predictions to save energy.
 
-\noindent \textbf{Online Learning} Online techniques observe the
-current application to tune system resource usage for that application
+\noindent \textbf{Online Learning} techniques observe the current
+application to tune system resource usage for that application
 \cite{Li2006,Flicker,ParallelismDial,Ponamarev,petabricksDynamic,LeeBrooks}.
 For example, Flicker is a configurable architecture and optimization
 framework that uses online prediction to maximize performance under a
@@ -41,8 +40,8 @@ uses online adaptation to tailor parallelism to application workload
 
 
 
-\noindent \textbf{Hybrid Approaches} Some approaches combine offline
-predictions with online adaptation
+\noindent \textbf{Hybrid Approaches} combine offline predictions with
+online adaptation
 \cite{Zhang2012,packandcap,Winter2010,dubach2010,Koala,Cinder,
   wu2012inferred}.  For example, Dubach et al.  use a hybrid scheme to
 optimize the microarchitecture of a single core \cite{dubach2010}.
@@ -56,12 +55,11 @@ allocate resources to multiple applications in a multicore
 adapted online using measured feedback to maximizes performance but
 without consideration for energy minimization.
 
-\paragraph{Control}
 
-Almost all control solutions can be thought of as a combination of
-offline prediction with online adaptation.  The offline phase involves
-substantial empirical measurement that is used to synthesize a control
-system
+\noindent \textbf{Control} solutions can be thought of as a
+combination of offline prediction with online adaptation.  The offline
+phase involves substantial empirical measurement that is used to
+synthesize a control system
 \cite{Wu2004,Chen2011,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
 The combination of offline learning and control works well over a
 narrow range of applications, as the offline data captures the general

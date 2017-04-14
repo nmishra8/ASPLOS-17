@@ -32,28 +32,28 @@ performance requirement.
 
 \figref{fig:timeline} illustrates the asynchronous interaction between
 \SYSTEM{}'s learner and controller. The controller starts--using a
-generic speedup prediction---when a new application launches.  The
-controller sends the learner the application's name and device type
-(message 1, \figref{fig:timeline}).  The learner determines how many
-samples are needed for an accurate prediction and sends this number to
-the controller (message 2).  The controller takes these samples and
-sends the performance and power of each measured configuration to the
-learner (message 3).  The learner may require time to make
-predictions; so, the controller does not wait, but continues without
-application-specific data.  Once the learner predicts the optimal
-configurations for this application, it sends that data and the
-variance estimate to the controller (message 4), which uses the
-learner's predictions from then on.
+conservative, generic speedup prediction---when a new application
+launches.  The controller sends the learner the application's name and
+device type (message 1, \figref{fig:timeline}).  The learner
+determines how many samples are needed for an accurate prediction and
+sends this number to the controller (message 2).  The controller takes
+these samples and sends the performance and power of each measured
+configuration to the learner (message 3).  The learner may require
+time to make predictions; so, the controller does not wait, but
+continues with the conservative model.  Once the learner predicts the
+optimal configurations for this application, it sends that data and
+the variance estimate to the controller (message 4), which uses the
+learner's application-specific predictions from then on.
 
 \figref{fig:timeline} shows several key points about the relationship
 between learning and control.  First, the controller never waits for
-the learner: it uses a generic, less-efficient control specification
-until the learner produces application-specific predictions.  Second,
-the controller does not continuously communicate with the
-learner---this interaction happens once at application launch.  Third,
-if the learner crashed, the controller defaults to the generic
-adaptive control system.  If the learner crashed after sending its
-predictions, the controller does not need to know.  Finally, the
+the learner: it uses a conservative, less-efficient control
+specification until the learner produces application-specific
+predictions.  Second, the controller does not continuously communicate
+with the learner---this interaction happens once at application
+launch.  Third, if the learner crashed, the controller defaults to the
+generic adaptive control system.  If the learner crashed after sending
+its predictions, the controller does not need to know.  Finally, the
 learner and controller have a clearly defined interface, so they can
 be run in separate processes or physically separate devices.
 
@@ -64,12 +64,11 @@ Next, we discuss the class of learning systems that work with
 
 
 \subsection{Traditional Control for Computing}
-Several researchers have proposed controlling computing systems.  A
-controller that can manage multiple resources to meet multiple goals
-is a multiple-input, multiple-output (MIMO) controller.  The inputs
-are measurements, \eg{} performance.  The outputs are the resource
-settings to be used at a particular time, \eg{} an allocation of big
-and LITTLE cores and a clockspeed for each.
+A multiple-input, multiple-output (MIMO) controller manages multiple
+resources to meet multiple goals.  The inputs are measurements, \eg{}
+performance.  The outputs are the resource settings to be used at a
+particular time, \eg{} an allocation of big and LITTLE cores and a
+clockspeed for each.
 
 These difference equations describe a generic MIMO controller for
 allocating $n$ resources to meet $m$ goals at time $t$:\footnote{We
@@ -96,24 +95,24 @@ expected behavior.  This control definition does not assume the states
 or the resources are independent, but it does assume a linear
 relationship.
 
-For example, in our ARM big.LITTLE system---from
-\secref{example}---there are four resources: the number of big cores,
-the number of LITTLE cores, and the speeds for each of the big and
-LITTLE cores.  There is also a single goal: performance.  Thus, in
-this example, $n=4$ and $m=1$. The vector $\mathbf{u}(t)$ has four
-elements representing the resource allocation at time $t$. $q$ is the
-number of variables in the controller's state which can vary between,
-we can choose $q$ to be between 1 to $n$.  The matrices $\mathbf{A}$,
-$\mathbf{B}$, and $\mathbf{C}$ capture the linear relationship between
-the control state $\x$, the resource usage $\mathbf{c}$, and the
-measured behavior.  In this example, we know there is a non-linear
-relationship between the resources.  We overcome this difficulty by
-tuning the matrices at each time step---approximating the non-linear
-system through a series of changing linear formulations.  This
-approximation is a form of \emph{adaptive} or \emph{self-tuning}
-control \cite{HandbookControl}.  Such adaptive controllers provide
-formal guarantees that they will converge to the desired performance
-even in the face of non-linearities, but they still assume convexity.
+For example, in our ARM big.LITTLE system there are four resources:
+the number of big cores, the number of LITTLE cores, and the speeds
+for each of the big and LITTLE cores.  There is also a single goal:
+performance.  Thus, in this example, $n=4$ and $m=1$. The vector
+$\mathbf{u}(t)$ has four elements representing the resource allocation
+at time $t$. $q$ is the number of variables in the controller's state
+which can vary between, we can choose $q$ to be between 1 to $n$.  The
+matrices $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ capture the
+linear relationship between the control state $\x$, the resource usage
+$\mathbf{u}$, and the measured behavior.  In this example, we know
+there is a non-linear relationship between the resources.  We overcome
+this difficulty by tuning the matrices at each time
+step---approximating the non-linear system through a series of
+changing linear formulations.  This approximation is a form of
+\emph{adaptive} or \emph{self-tuning} control \cite{HandbookControl}.
+Such adaptive controllers provide formal guarantees that they will
+converge to the desired performance even in the face of
+non-linearities, but they still assume convexity.
 
 This controller has two major drawbacks.  First, it requires matrix
 computation, so its overhead scales poorly in the number of resources
@@ -134,8 +133,8 @@ Specifically, \SYSTEM{} takes three steps to transform a standard
 control system into one that works without prior knowledge of the
 application to be controlled:
 \begin{enumerate}[leftmargin=1em]
-\item controlling \emph{speedup} (which is an abstraction of performance) rather than resources,
-\item turning speedup into a minimal energy \emph{resource schedule},
+\item controlling \emph{speedup} (which is an abstraction of performance) rather than resources;
+\item turning speedup into a minimal energy \emph{resource schedule};
 \item and exploiting the \emph{problem structure} to solve this
   scheduling problem in constant time.
 \end{enumerate}
@@ -160,10 +159,10 @@ speedup to performance:
 \begin{equation}
   perf(t) = b(t) \cdot speedup(t-1) \label{eqn:speedup}
 \end{equation}
-While $b(t)$ is application specific.  \SYSTEM{} assumes base speed is
+While $b(t)$ is application-specific.  \SYSTEM{} assumes base speed is
 time-variant as applications will transition through phases and it
 estimates this value online using the standard technique of Kalman
-filter estimation \cite{welch2006kalman}. .
+filter estimation \cite{welch2006kalman}. 
 
 
 \SYSTEM{} must reduce the error between the target performance and the goal: $ error(t) = goal - perf(t)$.
@@ -185,15 +184,15 @@ statically determine the pole and the base speed, but \SYSTEM{}
 For stable control, \SYSTEM{} ensures $0 \le \rho(t) < 1$. Small
 values of $\rho(t)$ eliminate error quickly, but make the controller
 more sensitive to the learner's inaccuracies.  Larger $\rho(t)$ makes
-the system more robust at the cost of reduced convergence time.
+the system more robust at the cost of increased convergence time.
 \secref{guarantees} describes how \SYSTEM{} sets the pole, but we
 first address converting speedup into a resource allocation.
 
 \subsubsection{Converting Speedup to Resource Schedules}
 \SYSTEM{} must map \eqnref{speedup-control}'s speedup into a resource
-allocation.  On our example ARM big.LITTLE architecture that means
-mapping speedup into an allocation of big and LITTLE cores as well as
-a speed for both (big and LITTLE cores are in separate clock domains).
+allocation.  On our example ARM big.LITTLE architecture we map speedup
+into an allocation of big and LITTLE cores as well as a speed for both
+(big and LITTLE cores are in separate clock domains).
 
 The primary challenge is that speedups in real systems are discrete
 non-linear functions of resource usage, while \eqnref{speedup-control}
@@ -223,12 +222,11 @@ average speedup must be maintained, while \eqnref{deadline} requires
 the time to be fully utilized.  \eqnref{time} simply avoids negative
 time.
 
-\subsection{Exploiting Structure for Fast Solutions}
+\subsection{Exploiting Problem Structure for Fast Solutions}
 %\SYSTEM{} solves \eqnrref{power}{time} on the local device (see
 %\figref{fig:timeline}, so the solution must be efficient.  
-By exploiting the problem structure and encoding the learner's
-predictions in the performance hash table (PHT), \SYSTEM{} solves
-\eqnrref{power}{time} in constant ($O(1)$) time.
+By encoding the learner's predictions in the performance hash table
+(PHT), \SYSTEM{} solves \eqnrref{power}{time} in constant time.
 
 Kim et al. analyze the problem of minimizing energy while meeting a
 performance constraint and observe that there must be an optimal
@@ -239,7 +237,7 @@ solution with the following properties \cite{kim-cpsna}:
 \item If you chart the configurations in the power and performance
   tradeoff space (\eg{} the top half of \figref{fig:pht}) the two
   configurations with non-zero $\tau_c$ lie on the lower convex hull
-  of the power performance tradeoff space.
+  of the points in that space.
 \item The two configurations with non-zero $\tau_c$ are adjacent on
   the convex hull: one above the constraint and one below.
 \end{itemize}
@@ -255,32 +253,32 @@ solution with the following properties \cite{kim-cpsna}:
 
 The PHT (shown in \figref{fig:pht}) provides constant time access to
 points on the lower convex hull.  It consists of two arrays: the first
-being pointers into the second, which stores resource configurations
-on the lower convex hull sorted by speedup.  Recall speedups are
-computed relative to the base speed, which uses all resources.  The
-largest estimated speedup is therefore 1, so \SYSTEM{} needs only
-consider speedups between 0 and 1.  The first array of pointers has a
-\emph{resolution} indicating how many decimal points of precision it
-captures and it is indexed by speedup.  The example in
-\figref{fig:pht} has a resolution of $0.1$.  Each pointer in the first
-array points to the configuration in the second array that has the
-largest speedup less than or equal to the index.
+being pointers into the second: a configuration array, which stores
+resource configurations on the lower convex hull sorted by speedup.
+Recall speedups are computed relative to the base speed, which uses
+all resources.  The largest estimated speedup is therefore 1, so
+\SYSTEM{} needs only consider speedups between 0 and 1.  The first
+array of pointers has a \emph{resolution} indicating how many decimal
+points of precision it captures and it is indexed by speedup.  The
+example in \figref{fig:pht} has a resolution of $0.1$.  Each pointer
+in the first array points to the configuration in the second array
+that has the largest speedup less than or equal to the index.
 
 \SYSTEM{} computes $speedup(t)$ and uses the PHT to convert speedup
 into two configurations: $hi$ and $lo$.  To find the $hi$
 configuration, \SYSTEM{} clamps the desired speedup to the largest
-index lower than $speedup(t)$ and then walks forward until it finds
-the first configuration with a speedup higher than $speedup(t)$.  To
-find the $lo$ configuration, it clamps the desired speedup to the
-smallest index higher than $speedup(t)$ and then walks backwards until
-it finds the configuration with the largest speedup less than
-$speedup(t)$.
+index lower than $speedup(t)$, indexes into the configuration array,
+and then walks forward until it finds the first configuration with
+speedup higher than $speedup(t)$.  To find $lo$, it clamps the desired
+speedup to the smallest index higher than $speedup(t)$, indexes into
+the configuration array, and then walks backwards until it finds the
+configuration with the largest speedup less than $speedup(t)$.
 
-For example, consider the PHT in \figref{fig:pht} and an optimizer
-meeting $speedup(t) = .65$.  To find $hi$, the optimizer indexes at .6
-and walks up to find $c=2$ with $s_c=.8$, setting $hi = 2$.  To find
-$lo$, the optimizer indexes the table at .7 and walks backward to find
-$c=1$ with $s_c=.2$, setting $lo = 1$.
+For example, consider the PHT in \figref{fig:pht} and a $speedup(t) =
+.65$.  To find $hi$, \SYSTEM{} indexes at .6 and walks up to find
+$c=2$ with $s_c=.8$, setting $hi = 2$.  To find $lo$, \SYSTEM{}
+indexes the table at .7 and walks backward to find $c=1$ with
+$s_c=.2$, setting $lo = 1$.
 
 \SYSTEM{} sets $\tau_{hi}$ and $\tau_{lo}$ by solving:
 \begin{eqnarray}
@@ -327,12 +325,11 @@ previously seen applications and current application to make the
 predictions on the application in hand \cite{pan2010survey}. Transfer
 learning obtains higher prediction accuracies since it augments online
 data with offline information from other applications.  In this work
-we are particularly interested in transfer learning techniques because
-\SYSTEM{}'s separation of learning and control makes it easy to
-incorporate data from other applications---the learner in
-\figref{fig:timeline} can simply aggregate data from multiple
-controllers. We give two examples of appropriate transfer learning
-algorithms.
+we use transfer learning techniques because \SYSTEM{}'s separation of
+learning and control makes it easy to incorporate data from other
+applications---the learner in \figref{fig:timeline} can simply
+aggregate data from multiple controllers. We describe two examples of
+appropriate transfer learning algorithms.
 
 % % The HBM provides a good balance between the online and offline
 % % approaches.  A strictly online approach will handle each new
@@ -393,7 +390,7 @@ algorithms.
 \paragraph{Netflix Algorithm:}
 The Netflix problem is a famous challenge posted by Netflix to predict
 users' movie preferences. The challenge was won by realizing that if 2
-users both like some movies they might have similar taste in other
+users both like some movies, they might have similar taste in other
 movies. This approach allows predictors to borrow large amounts of
 data from other users to answer some questions about a new user.
 %One of the solutions in designing this mathematically is to say
@@ -431,7 +428,7 @@ only parts that are not obviously constant time are the PHT lookups.
 Provided the PHT resolution is sufficiently high to avoid collisions,
 then each PHT lookup requires constant time.
 \begin{algorithm}[t]
-\caption{\SYSTEM{} control.}
+\caption{\SYSTEM{}'s runtime control algorithm.}
 \label{alg:gcs}
 \begin{algorithmic}
 %\REQUIRE Initialize the controller with a generic prediction of speedup and powerup. Send power and performance samples to learner and receive a PHT.
@@ -450,7 +447,7 @@ then each PHT lookup requires constant time.
 \paragraph{Control Theoretic Formal Guarantees}
 
 The controller's pole $\rho(t)$ is critical to providing control
-theoretic guarantees in the presence of learned--rather than directly
+theoretic guarantees in the presence of learned---rather than directly
 measured---data.  \SYSTEM{} requires any learner estimate not only
 speedup and powerup, but also the variance $\sigma$.  \SYSTEM{} uses
 this information to derive a lower bound for the pole which guarantees
@@ -459,18 +456,18 @@ prove that with probability 99.7\% \SYSTEM{} converges to the desired
 performance if the pole is
 $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0 \leq \rho(t)
 < 1,$$ where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the estimated
-speedup. The appendix contains the proof. Users who need higher
+speedup. See appendix A for the proof. Users who need higher
 confidence can set the scalar multiplier on $\sigma$ higher; \eg{}
 using $6$ provides a 99.99966\% probability of convergence.
 
 Thus we provide a lower-bound on the value of $\rho(t)$ required for a
 user to be confident that \SYSTEM{} will converge to the desired
 performance.  This pole value only considers performance, and not
-energy efficiency.  In practice, we find that it better to use a
-higher pole based on the \emph{uncertainty} between the controller's
-observed energy efficiency and that predicted by the learner.  We
-follow prior work in quantifying uncertainty as $\rho(t) $
-\cite{Tokic2010}:
+energy efficiency.  In practice, we find it better to use a higher
+pole based on the \emph{uncertainty} between the controller's observed
+energy efficiency and that predicted by the learner.  We follow prior
+work \cite{Tokic2010} in quantifying uncertainty as $\beta(t)$, and
+setting the pole based on this uncertainty:
 \begin{equation}
   \begin{array}{rcl}
     \beta(t) &=&  \text{exp}{\left(- \left( \left|   \frac{\bar{s}(t)}{\bar{p}(t)}  -\frac{ \hat{s}(t)}{\hat{p}_(t)} \right| \right) /5\right)} \\

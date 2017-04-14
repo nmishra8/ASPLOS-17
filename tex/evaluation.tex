@@ -19,8 +19,8 @@ We run applications on four ODROID-XU3 devices with Ubuntu 14.04, as
 shown in \figref{fig:odroidall}. The ODROIDs have Samsung Exynos 5
 Octa processors using the ARM big.LITTLE architecture.  Each has 19
 speed settings for the 4 big cores and 13 for 4 LITTLE cores.  Each
-board has an on-board power meter updated at 1/4 \ms intervals
-capturing core, GPU, memory, and flash drive power.  
+board has an on-board power meter updated at 1/4 s intervals capturing
+core, GPU, and memory.
 % Each resource configuration (combination of big/LITTLE cores and
 % clock-speeds) has a different, application-dependent performance and
 % power.
@@ -28,11 +28,11 @@ capturing core, GPU, memory, and flash drive power.
 We use 20 benchmarks from different suites including PARSEC
 \cite{parsec}, Minebench \cite{minebench}, Rodinia \cite{rodinia}, and
 STREAM \cite{stream}. \figref{fig:application_variety} shows the
-variety of workloads indicated by the \emph{lack-of-fit} or the
+variety of workloads indicated by the \emph{lack-of-fit}, or the
 absence of correlation between frequency and performance.
 Applications with high lack-of-fit do not speed up with increasing
 frequency---typical of memory bound applications. Applications with
-low lack-of-fit increase performance with increasing clock-speed
+low lack-of-fit increase performance with increasing clock speed
 \cite{powerslope}.  Applications with intermediate lack-of-fit tend to
 improve with increasing clock speed up to a point and then stop.  Each
 application has an outer loop which processes one unit in a data
@@ -59,8 +59,10 @@ for these stream elements.
 %actively uses this knowledge to meet the performance target.
 To test a variety of latency requirements, we run our applications
 with targets that represent 50-90\% of the maximum speed and evaluate
-\SYSTEM{} under each constraint. We quantify performance reliability
-by measuring the number of deadlines that were missed for each
+\SYSTEM{} under each constraint. For these targets, the key decision
+is how much work can be done on the little cores without violating the
+performance requirements.  We quantify performance reliability by
+measuring the number of deadlines that were missed for each
 application and performance target. If the application processes $n$
 elements total and $m$ of those elements took longer than the target
 latency we compute deadline misses as:
@@ -84,14 +86,14 @@ metric shows the percentage of energy over optimal.
 \subsection{Points of Comparison}
 We compare to existing learning and control approaches:
 \begin{enumerate}[leftmargin=1em]
-\item \textit{Race-to-idle}: This well known heuristic allocates all
+\item \textit{Race-to-idle}: This well-known heuristic allocates all
   resources to the application to complete each stream element as fast
   as possible, then idles until the next element is available
   \cite{kim-cpsna,powerslope,LeSueur11}.  This heuristic requires no
   knowledge of the application and never misses deadlines in a
   single-application scenario.
-\item \textit{PID-Control}: This is a standard single-input
-  (performance), multiple-output (big/LITTLE core counts and speeds)
+\item \textit{PID-Control}: a standard single-input (performance),
+  multiple-output (big/LITTLE core counts and speeds)
   prop\-ortional-integral-controller representative of several that
   have been proposed for computer resource management
   \cite{Hellerstein2004a,METE}.  This controller is tuned to provide
@@ -103,13 +105,13 @@ We compare to existing learning and control approaches:
   application---instead using previously observed applications to
   estimate power and performance as a linear regression
   \cite{PUPiL,LeeBrooks2006,CPR}.
-\item \textit{Netflix}: is a matrix completion algorithm for the
+\item \textit{Netflix}: a matrix completion algorithm for the
   Netflix challenge. Variations of this approach allocate
   heterogeneous resources in data centers \cite{Paragon,quasar}.
-\item \textit{HBM}: is a hierarchical Bayesian learner previously used
+\item \textit{HBM}: a hierarchical Bayesian learner previously used
   to allocate resources to meet performance goals with minimal energy
-  in server systems \cite{LEO}.
-\item \textit{Adaptive-Control}: is a state-of-the-art, adaptive
+  in server systems \cite{LEO}. 
+\item \textit{Adaptive-Control}: a state-of-the-art, adaptive
   controller that meets application performance with minimal energy
   \cite{POET}.  This approach requires a user-specified model relating
   resource configuration to performance and power.  For this paper, we
@@ -125,9 +127,9 @@ We compare to existing learning and control approaches:
 different versions of \SYSTEM{}:
 \begin{enumerate}[leftmargin=1em]
 \item \textit{CALOREE-NoPole}: uses the HBM learner, but sets the pole
-  to 0, showing the importance of incorporating the learned variance
-  into control. All other versions of \SYSTEM{} set the pole according
-  to \secref{guarantees}.
+  to 0, which will show the importance of incorporating the learned
+  variance into control. All other versions of \SYSTEM{} set the pole
+  according to \secref{guarantees}.
 \item \textit{CALOREE-online}: uses the online learner.
 \item \textit{CALOREE-Netflix}: uses the Netflix learner.
 \item \textit{CALOREE-HBM}: uses the HBM learner.
@@ -187,9 +189,8 @@ misses 45\% of all deadlines, which is clearly unacceptable.
     \input{img/single-app-energy-small.tex}
   }
   \vskip -1em
-  \label{fig:multi}
   \caption{Comparison of application performance error and energy for single application scenario.}
- \label{fig:odroidall}
+ \label{fig:single-all}
 \end{figure*}
 
 When we allow \SYSTEM{} to adaptively tune its pole, however, we see
@@ -202,13 +203,12 @@ compared to prior approaches.  The other learners paired with
 approach.
 
 The summary data shows us that the best prior approaches are
-race-to-idle, HBM, and adaptive control.
-\figsref{fig:single-perf}{fig:single-energy} show the detailed results
-for the 60, 75, and 90\% targets comparing the best of these prior
-approaches to \SYSTEM{} with no pole and \SYSTEM{} coupled with the
-HBM---other data has been omitted for space.  The benchmarks are
-shown on the x-axis; the y-axis shows the number of deadline misses
-and the normalized energy, respectively.
+race-to-idle, HBM, and adaptive control.  \figref{fig:single-all}
+shows the detailed results for the 60, 75, and 90\% targets comparing
+the best of these prior approaches to \SYSTEM{} with no pole and
+\SYSTEM{} coupled with the HBM---other data has been omitted for
+space.  The benchmarks are shown on the x-axis; the y-axis shows the
+number of deadline misses and the normalized energy, respectively.
 
 %In addition to providing better average case behavior, \SYSTEM{}
 %provides significantly better worst case behavior.
@@ -246,7 +246,7 @@ scenario tests \SYSTEM{}'s ability to react to environmental changes.
   \vskip -1em
   \label{fig:multi}
   \caption{Comparison of application performance error and energy for multiple application scenario.}
- \label{fig:odroidall}
+ \label{fig:multi-all}
 \end{figure*}
 
 
@@ -264,10 +264,9 @@ average of 20\%, which is only 5\% more than optimal.  It also
 produces the second lowest energy, using slightly more than
 race-to-idle because it uses LITTLE cores to make up for some work
 that cannot be done on a big core due to the second application.
-\figsref{fig:multi-perf}{fig:multi-energy} shows the detailed results.  The
-90\% target is generally not reachable in this scenario as it would
-require the controlled application to have exclusive use of all big
-cores.
+\figref{fig:multi-all} shows the detailed results.  The 90\% target is
+generally not reachable in this scenario as it would require the
+controlled application to have exclusive use of all big cores.
 %\TODO{Hank: I am thinking that we subtract out the optimal
 %  number of deadline misses here.}
 
@@ -379,10 +378,9 @@ and normalized performance and power on the respective y-axes.
 CALOREE-NoPole oscillates around the desired performance and causes
 wide fluctuations in power consumption.  In contrast, after receiving
 the predictions from its learner, \SYSTEM{} provides reliable
-performance right at the target value (normalized to 1 in this case).
-\SYSTEM{} also saves tremendous energy because it does not oscillate
-but uses a mixture of big and LITTLE cores to keep energy near
-minimal.
+performance right at the target value (normalized to 1).  \SYSTEM{}
+also saves tremendous energy because it does not oscillate but uses a
+mixture of big and LITTLE cores to keep energy near minimal.
 % \TODO{Do we need the vertical line here?  This is a single app run
 %   right?}
 
@@ -396,12 +394,12 @@ minimal.
 
 \subsection{Sensitivity to the Measured Samples}
 We vary the number of samples taken and show how it affects learning
-accuracy for the Online, Netflix, and HBM learners.  Accuracy is how
-close the learner is to ground truth (found through exhaustive
-exploration), with 1 meaning the learner perfectly predicted the real
-performance or power.  Accuracy is significant because the smaller
-the number of samples, the faster the controller can switch to the
-learner's application-specific predictions.
+accuracy for the Online, Netflix, and HBM learners.  We quantify
+accuracy as how close the learner is to ground truth (found through
+exhaustive exploration), with 1 meaning the learner perfectly
+predicted the real performance or power.  Accuracy is significant
+because the smaller the number of samples, the faster the controller
+can switch to the learner's application-specific predictions.
 
 \figref{fig:sensitivity} compares the Online, HBM, and Netflix
 learners for both performance (top) and power (bottom).  The figure
@@ -426,12 +424,12 @@ better results than the other learners.
 %\PUNT{
 
 \subsection{Overhead}
-\SYSTEM{}'s main source of overhead is sampling where the applications
-need to run through a few configurations before \SYSTEM{} can reliably
-estimate the entire power and performance frontier. We argue that the
+\SYSTEM{}'s main source of overhead is sampling, where the
+applications need to run through a few configurations before \SYSTEM{}
+can reliably estimate the entire power and performance frontier. The
 sampling cost can be distributed across devices by asking each of them
 to contribute samples for estimation. Once the sampling phase is over,
-the HBM is quite fast and can generate an estimate as fast as 500 ms
+the HBM is quite fast and can generate an estimate as fast as 500 ms,
 which is significantly smaller than the time required to run any of
 our applications.  Additionally, \SYSTEM{}'s asynchronous
 communication means that the controller never waits for the learner.
