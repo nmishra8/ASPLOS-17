@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  16 APR 2017 19:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  16 APR 2017 19:38
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -2140,11 +2140,11 @@ A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
 
-LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 253.
+LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 254.
 
 
 
-LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 267.
+LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 268.
 
 
 (./img/x264-phases.tex
@@ -2156,7 +2156,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: Reference `fig:x264-phase-change' on page 8 undefined on input l
-ine 330.
+ine 331.
 
 The command '\includegraphics [width=.2\textwidth ]{figures/lavamd2.pdf}' has b
 een optimized away. Use '/tikz/external/optimize=false' to disable this.
@@ -2164,24 +2164,24 @@ een optimized away. Use '/tikz/external/optimize=false' to disable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (571.25298pt too wide) in paragraph at lines 350--357
+Overfull \hbox (571.25298pt too wide) in paragraph at lines 351--358
  [][][][] 
  []
 
 
-LaTeX Warning: Reference `fig:lavamd' on page 8 undefined on input line 368.
+LaTeX Warning: Reference `fig:lavamd' on page 8 undefined on input line 369.
 
 
-LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 369
+LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 370
 .
 
 
 LaTeX Warning: Reference `fig:lavamd-pole' on page 9 undefined on input line 37
-6.
+7.
 
 
 LaTeX Warning: Reference `fig:sensitivity' on page 9 undefined on input line 40
-4.
+5.
 
 (./img/sample-accuracy-v3.tex
 \openout7 = `out/document-figure12.dpth'.
@@ -2251,7 +2251,7 @@ Here is how much of TeX's memory you used:
 btn_c6xmqr.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/libertine/LinBiolinumT.p
 fb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on out/document-figure12.pdf (1 page, 55092 bytes).
+Output written on out/document-figure12.pdf (1 page, 55308 bytes).
 PDF statistics:
  28 PDF objects out of 1000 (max. 8388607)
  20 compressed objects within 1 object stream
