@@ -1,0 +1,4 @@
+out/document-figure10.pdf: img/x264-native-ducks/poet-x264.txt
+out/document-figure10.pdf: img/x264-native-ducks/leopoet-x264.txt
+out/document-figure10.pdf: img/x264-native-ducks/poet-x264.txt
+out/document-figure10.pdf: img/x264-native-ducks/leopoet-x264.txt

@@ -1,0 +1,2 @@
+out/document-figure4.pdf: img/single-eff-summary.txt
+out/document-figure4.pdf: img/single-lat-summary.txt

@@ -1,0 +1,3 @@
+out/document-figure5.pdf: img/image_text/dyn-lat-0.60-v3.txt
+out/document-figure5.pdf: img/image_text/dyn-lat-0.75-v3.txt
+out/document-figure5.pdf: img/image_text/dyn-lat-0.90-v3.txt

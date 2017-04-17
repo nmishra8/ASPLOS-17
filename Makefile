@@ -9,7 +9,7 @@ PDFLATEX=pdflatex
 TEX-FILES = *.tex tex/*.tex
 BIB-FILES = *.bib
 TOP-LEVEL-ROOT = document
-CRNAME = asplos2017
+CRNAME = sosp2017
 
 all: ${TOP-LEVEL-ROOT}.pdf $(CRNAME)
 

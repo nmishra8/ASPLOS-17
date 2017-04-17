@@ -1,0 +1,2 @@
+out/document-figure1.pdf: img/dynamics-example-leo.txt
+out/document-figure1.pdf: img/dynamics-example-poet.txt

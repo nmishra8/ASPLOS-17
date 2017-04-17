@@ -1,0 +1,2 @@
+out/document-figure7.pdf: img/ma-eff-summary.txt
+out/document-figure7.pdf: img/ma-lat-summary.txt
