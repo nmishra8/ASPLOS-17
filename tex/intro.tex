@@ -4,12 +4,12 @@
 % software management.  For a wide range of applications, need to meet
 % performance goals with minimal energy.
 Large classes of computing systems---from embedded to cloud---must
-deliver reliable performance to users while minimizing energy to
-prolong battery life or lower operating costs.  To address these
-conflicting requirements, hardware architects expose diverse,
-heterogeneous resources with a wide array of performance and energy
-tradeoffs.  Software must allocate these resources to guarantee
-performance requirements are met with minimal energy.
+deliver reliable performance while minimizing energy to prolong
+battery life or lower operating costs.  To address these conflicting
+requirements, hardware architects expose diverse, heterogeneous
+resources with a wide array of performance and energy tradeoffs.
+Software must allocate these resources to guarantee performance
+requirements are met with minimal energy.
 
 
 % Difficulties of meeting performance with minimal energy. (1)
@@ -17,11 +17,11 @@ performance requirements are met with minimal energy.
 % unforeseen changes in workload and environment.
 There are two primary difficulties in determining how to allocate
 heterogeneous resources.  The first is \emph{complexity}: resources
-interact in intricate ways, leading to non-convex optimization
-spaces.  The second is \emph{dynamics}: perfor\-mance requirements
-must be met despite unpredictable disturbances; \eg{} phases in input
-or changes in operating environment.  Prior work addresses each of
-these difficulties individually.
+interact in intricate ways, leading to non-convex optimization spaces.
+The second is \emph{dynamics}: perfor\-mance requirements must be met
+despite unpredictable disturbances; \eg{} program phases or changes in
+operating environment.  Prior work addresses each of these
+difficulties individually.
 
 % Prior approaches addressed each of these difficulties individually.
 % ML---can handle complexity.  ML advantages: can handle
@@ -39,12 +39,12 @@ dynamically; \eg{} a second application enters the system.  Control
 theoretic approaches dynamically adjust resource usage based on the
 difference between measured and expected performance
 \cite{Hellerstein2004a,Chen2011,POET,ControlWare,Agilos,grace2,JouleGuard}.
-Control provides formal guarantees of convergence to the desired
-performance despite unpredictable interference, but these guarantees
-are based on known relationships between resources and performance.
-If the relationships are not known or there is significant error
-between the expected behavior and the actual behavior, the controller
-will not converge.
+Control provides formal guarantees that it will meet the performance
+goal in dynamic environments, but these guarantees are based on known
+relationships between resources and performance.  If the relationships
+are not known or there is significant error between the expected and
+actual behavior, the controller will fail to deliver the required
+performance.
 
 % Want to combine learning and control to address both difficulties
 % simultaneously. 
@@ -57,19 +57,19 @@ must address two major challenges:
 \begin{itemize}[leftmargin=1em]
 \item Dividing the resource allocation problem into sub-tasks that
   suit learning and control's different strengths.
-\item Defining abstractions allowing sub-task solutions to coordinate
-  well with each other.
+\item Defining abstractions allowing sub-task solutions to combine
+  efficiently, while maintaining guarantees.
 \end{itemize}
 
 We address the first challenge by splitting resource allocation into
-two sub-tasks.  The first is learning speedup---instead of absolute
-performance---so that all unpredictable external interference is
-viewed as a change to a \emph{baseline} performance and the relative
-speedup is independent of these changes.  Learning is well-suited to
-predicting speedups as a function of resource usage and finding
-Pareto-optimal tradeoffs in speedup and energy.  The second sub-task
-is controlling speedup dynamically based on the difference between
-measured and desired performance.  Once the learner has found
+two sub-tasks.  The first is learning \emph{speedup}---instead of
+absolute performance---so that all unpredictable external interference
+is viewed as a change to a \emph{baseline} performance and the
+relative speedup is independent of these changes.  Learning is
+well-suited to predicting speedups as a function of resource usage and
+finding Pareto-optimal tradeoffs in speedup and energy.  The second
+sub-task is controlling speedup dynamically based on the difference
+between measured and desired performance.  Once the learner has found
 Pareto-optimal tradeoffs the problem is convex and well-suited to
 adaptive control solutions which deliver the required speedup even in
 dynamic environments.
@@ -158,13 +158,12 @@ design.
     rather than directly measured as in traditional control design.}
 }
 
-In this paper we propose \SYSTEM{}\footnote{\textbf{C}ontrol
-  \textbf{A}nd \textbf{L}earning for \textbf{O}ptimal
-  \textbf{R}esource \textbf{E}nergy \textbf{E}fficiency} a general
-methodology allowing different learning techniques to be paired with a
-controller.  \SYSTEM{} tunes its internal parameters automatically;
-\ie{} \emph{it requires no user-level inputs other than performance
-  requirements}.
+We propose \SYSTEM{}\footnote{\textbf{C}ontrol \textbf{A}nd
+  \textbf{L}earning for \textbf{O}ptimal \textbf{R}esource
+  \textbf{E}nergy \textbf{E}fficiency} a general methodology allowing
+different learning techniques to be paired with a controller.
+\SYSTEM{} tunes its internal parameters automatically; \ie{} \emph{it
+  requires no user-level inputs other than performance requirements}.
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
 We evaluate \SYSTEM{} by implementing the learners on an x86 server
@@ -174,9 +173,9 @@ compare to state-of-the-art learning (including polynomial regression
 and a hierarchical Bayesian model \cite{LEO}) and control (including
 proportional-integral-derivative \cite{Hellerstein2004a} and adaptive,
 or self-tuning \cite{HandbookControl}) techniques.  We set performance
-goals for a set of benchmark applications and then measure both the
-percentage of time the requirements are violated and the energy.  We
-test both \emph{single-app}---where an application runs alone---and
+goals for benchmark applications and measure both the percentage of
+time the requirements are violated and the energy.  We test both
+\emph{single-app}---where an application runs alone---and
 \emph{multi-app} environments---where background applications
 unpredictably enter the system and compete for resources.  \SYSTEM{}
 achieves the:
@@ -205,16 +204,27 @@ achieves the:
 
 % Key contributions.
 % Contributions, but I decided against bulleted llist for thsi paper
-In summary, control handles dynamic environments while learning
-predicts performance for complex, heterogeneous processors.
-\emph{\SYSTEM{} is the first work to combine learning and control to
-  ensure application performance---both formally and
-  empirically---without prior knowledge of the controlled
-  application.}  Formal analysis of \SYSTEM{} demonstrates convergence
-despite noisy inputs and shows how to integrate learned variance into
-control theoretic guarantees.  We demonstrate the practical benefits
-of these contributions for mobile/embedded processors, finding
-\SYSTEM{} provides much more reliable performance and lower energy
-than learning or control solutions alone.
+In summary, \emph{\SYSTEM{} is the first work to combine learning and
+  control to ensure application performance---both formally and
+  empirically---without requiring prior knowledge of the controlled
+  application.}  \SYSTEM{}'s contributions are:
+\begin{itemize}[leftmargin=1em]
+\item Separation of resource management into (1) learning complicated
+  resource interactions and (2) controlling speedup.
+\item A generalized control design for use with multiple learners.
+\item A data structure for constant time access to learned models.
+\item Identification of variance as the key to guaranteeing
+  performance using learned---rather than measured---data.
+\item Demonstration of practical benefits using mobile/embedded
+  processors as a case study.
+\end{itemize}
+
+
+% Formal analysis of \SYSTEM{} demonstrates convergence
+% despite noisy inputs and shows how to integrate learned variance into
+% control theoretic guarantees.  We demonstrate the practical benefits
+% of these contributions for mobile/embedded processors, finding
+% \SYSTEM{} provides much more reliable performance and lower energy
+% than learning or control solutions alone.
 
 
