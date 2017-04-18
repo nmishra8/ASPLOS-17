@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  18 APR 2017 11:06
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  18 APR 2017 17:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1872,6 +1872,11 @@ Package biblatex Warning: BibTeX reported the following issues
 (biblatex)                with 'carat':
 (biblatex)                - Can't use 'location' + 'address'.
 
+
+Package biblatex Warning: BibTeX reported the following issues
+(biblatex)                with 'Steere99':
+(biblatex)                - Can't use 'location' + 'address'.
+
 )
 Package biblatex Info: Reference section=0 on input line 228.
 Package biblatex Info: Reference segment=0 on input line 228.
@@ -1911,7 +1916,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 ]) (./tex/example.tex
-<figures/STREAM-contour.pdf, id=192, 563.10374pt x 542.025pt>
+<figures/STREAM-contour.pdf, id=194, 563.10374pt x 542.025pt>
 File: figures/STREAM-contour.pdf Graphic file (type pdf)
 
 <use figures/STREAM-contour.pdf>
@@ -1935,7 +1940,7 @@ Package microtype Info: Loading generic settings for font family
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 74.
  [2.2 <./figures/STREAM-contour.pdf> <./out/document-figure0.pdf>]
-<figures/BODYTRACK-contour.png, id=250, 1433.355pt x 1332.98pt>
+<figures/BODYTRACK-contour.png, id=252, 1433.355pt x 1332.98pt>
 File: figures/BODYTRACK-contour.png Graphic file (type png)
 
 <use figures/BODYTRACK-contour.png>
@@ -1977,14 +1982,14 @@ Underfull \vbox (badness 1082) has occurred while \output is active []
 
  [3.3 <./figures/BODYTRACK-contour.png (PNG copy)> <./out/document-figure1.pdf>
  <./out/document-figure2.pdf>]) (./tex/framework-new.tex
-<figures/Overview.pdf, id=284, 670.505pt x 399.4925pt>
+<figures/Overview.pdf, id=286, 670.505pt x 399.4925pt>
 File: figures/Overview.pdf Graphic file (type pdf)
 
 <use figures/Overview.pdf>
 Package pdftex.def Info: figures/Overview.pdf used on input line 5.
 (pdftex.def)             Requested size: 240.94499pt x 143.55507pt.
 
-<figures/Timeline.pdf, id=286, 688.5725pt x 315.1775pt>
+<figures/Timeline.pdf, id=288, 688.5725pt x 315.1775pt>
 File: figures/Timeline.pdf Graphic file (type pdf)
 
 <use figures/Timeline.pdf>
@@ -1994,7 +1999,7 @@ Package pdftex.def Info: figures/Timeline.pdf used on input line 27.
 Underfull \vbox (badness 1661) has occurred while \output is active []
 
  [5.5]
-<figures/performance-hash-table.pdf, id=1321, 751.80875pt x 553.06625pt>
+<figures/performance-hash-table.pdf, id=1323, 751.80875pt x 553.06625pt>
 File: figures/performance-hash-table.pdf Graphic file (type pdf)
 
 <use figures/performance-hash-table.pdf>
@@ -2019,14 +2024,14 @@ Overfull \hbox (10.0pt too wide) detected at line 445
 [][] 
  []
 
-) (./tex/evaluation.tex <figures/odroid.png, id=1372, 642.4pt x 481.8pt>
+) (./tex/evaluation.tex <figures/odroid.png, id=1374, 642.4pt x 481.8pt>
 File: figures/odroid.png Graphic file (type png)
 
 <use figures/odroid.png>
 Package pdftex.def Info: figures/odroid.png used on input line 7.
 (pdftex.def)             Requested size: 111.29642pt x 83.47081pt.
 
-<figures/odroidall.png, id=1373, 4047.12pt x 3035.34pt>
+<figures/odroidall.png, id=1375, 4047.12pt x 3035.34pt>
 File: figures/odroidall.png Graphic file (type png)
 
 <use figures/odroidall.png>
@@ -2081,7 +2086,7 @@ Underfull \vbox (badness 1082) has occurred while \output is active []
 
 (./img/x264-phases.tex
 ===== Image 'out/document-figure10' is up-to-date. ======
-) <figures/lavamd2.pdf, id=1487, 451.6875pt x 574.145pt>
+) <figures/lavamd2.pdf, id=1489, 451.6875pt x 574.145pt>
 File: figures/lavamd2.pdf Graphic file (type pdf)
 
 <use figures/lavamd2.pdf>
@@ -2101,8 +2106,11 @@ Overfull \hbox (3.85936pt too wide) in paragraph at lines 351--358
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10.10 <./out/document-figure5.pdf> <./out/document-figure6.pdf> <./figures/la
-vamd2.pdf> <./out/document-figure11.pdf>]) (./tex/related.tex [11.11 <./out/doc
-ument-figure8.pdf> <./out/document-figure9.pdf> <./out/document-figure12.pdf>]
+vamd2.pdf> <./out/document-figure11.pdf>]) (./tex/related.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11.11 <./out/document-figure8.pdf> <./out/document-figure9.pdf> <./out/docume
+nt-figure12.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
@@ -2119,7 +2127,7 @@ Overfull \hbox (1.44968pt too wide) in paragraph at lines 252--252
 []\OT1/ptm/m/n/10 (-20) R. Raghaven-dra, P. Ran-ganathan, V. Tal-war, Z. Wang,
  []
 
-
+[14.14]
 Overfull \hbox (3.36096pt too wide) in paragraph at lines 252--252
 \OT1/ptm/m/n/10 (-20) ``GRACE-2: in-te-grat-ing fine-grained ap-pli-ca-tion ada
 p-
@@ -2131,7 +2139,7 @@ Overfull \hbox (1.42087pt too wide) in paragraph at lines 252--252
 '.
  []
 
-[14.14] [15.15
+[15.15
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
@@ -2147,13 +2155,13 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 252.
  ) 
 Here is how much of TeX's memory you used:
- 41604 strings out of 493304
- 857639 string characters out of 6139871
+ 41630 strings out of 493304
+ 858150 string characters out of 6139871
  1350758 words of memory out of 5000000
- 43528 multiletter control sequences out of 15000+600000
- 78250 words of font info for 323 fonts, out of 8000000 for 9000
+ 43540 multiletter control sequences out of 15000+600000
+ 79824 words of font info for 329 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
- 63i,14n,94p,910b,1146s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,14n,94p,910b,1147s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/s
 hare/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/inconsolata/i4-ot1-4.enc}{/usr/share/texlive/texmf-dist/fon
@@ -2172,10 +2180,10 @@ s/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/newtx/zxlr.pfb>
-Output written on document.pdf (15 pages, 3396134 bytes).
+Output written on document.pdf (15 pages, 3399001 bytes).
 PDF statistics:
- 1812 PDF objects out of 2073 (max. 8388607)
- 1309 compressed objects within 14 object streams
- 175 named destinations out of 1000 (max. 500000)
+ 1841 PDF objects out of 2073 (max. 8388607)
+ 1338 compressed objects within 14 object streams
+ 181 named destinations out of 1000 (max. 500000)
  38214 words of extra memory for PDF output out of 42996 (max. 10000000)
 

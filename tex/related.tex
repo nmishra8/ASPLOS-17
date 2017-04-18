@@ -1,30 +1,24 @@
 \section{Related Work}
+Energy has long been an important resource for mobile and embedded
+computing.  Several OSs have supported energy as an allocatable
+resource \cite{Koala,Cinder,PowerContainers}.  Others have specialized
+OS constructs to monitor \cite{quanto} and reduce
+\cite{JouleGuard,flinn99,grace,grace2,Drowsy} energy for mobile and
+embedded applications. We examine related work applying learning and
+control to energy management.
 
-%\paragraph{Machine Learning}
-
-%We break learning for resource management into 3 categories: offline,
-%online, and hybrid approaches.
 
 \noindent \textbf{Offline Learning} approaches build predictors before
 deployment and then use those fixed predictors to allocate resources
 \cite{Yi2003,LeeBrooks2006,CPR,ChenJohn2011,petabricksStatic}.  The
-training phase is expensive, requiring both a large number of samples
-and substantial computation.  Applying the predictor online, however,
-is low overhead.  The main drawback is that the predictions are not
-updated as the system runs: a problem for adapting workloads.  \PUNT{A
-  good example of an offline approach applies learning to render web
-  pages on mobile systems with low energy \cite{reddiHPCA2013}. It
-  builds an offline model mapping web page features into performance
-  for different core types.  When a new page is downloaded, the system
-  estimates the resources needed to render the web page and uses the
-  lowest energy configuration that meets user satisfaction.  This
-  approach handles the complexity of allocating resources to webpage
-  rendering, but cannot address dynamics; \eg{} when other apps run
-  concurrently with the web browser.}  Carat is an offline learner
-that aggregates data across multiple devices to generate a report for
-human users about how to configure their device to increase battery
-life \cite{carat}.  While both Carat and \SYSTEM{} learn across
-devices, they have very different goals.  Carat returns very
+training requires both a large number of samples and substantial
+computation.  Applying the predictor online, however, is low overhead.
+The main drawback is that the predictions are not updated as the
+system runs: a problem for adapting workloads.  Carat is an offline
+learner that aggregates data across multiple devices to generate a
+report for human users about how to reconfigure their device for
+energy savings \cite{carat}.  While both Carat and \SYSTEM{} learn
+across devices, they have very different goals.  Carat returns very
 high-level information to human users; \eg{} update a driver to extend
 battery life.  \SYSTEM{} automatically builds and applies low-level
 predictions to save energy.
@@ -52,39 +46,40 @@ prediction with online updates \cite{JouleGuard,Bitirgen2008,Ipek}.
 For example, Bitirgen et al use an artificial neural network to
 allocate resources to multiple applications in a multicore
 \cite{Bitirgen2008}.  The neural network is trained offline and then
-adapted online using measured feedback to maximizes performance but
-without consideration for energy minimization.
+adapted online to maximizes performance but without considering
+energy.
 
 
 \noindent \textbf{Control} solutions can be thought of as a
-combination of offline prediction with online adaptation.  The offline
+combination of offline prediction with online adaptation.  Their
+formal properties make them attractive for managing resources in
+operating systems
+\cite{Steere99,KaramanolisEtAl-2005a,Hellerstein2004a}. The offline
 phase involves substantial empirical measurement that is used to
 synthesize a control system
-\cite{Wu2004,Chen2011,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
-The combination of offline learning and control works well over a
-narrow range of applications, as the offline data captures the general
-behavior of a class of application and require negligible online
-overhead.  This focused approach is extremely effective for multimedia
-applications \cite{grace2,flinn99,flinn2004,xtune,TCST} and
-web-servers \cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} because the
-workloads can be characterized ahead of time to produce sound control.
+\cite{grace,Wu2004,Chen2011,POET,ControlWare,Agilos,Rajkumar,Sojka,Raghavendra2008}.
+Control solutions work well over a narrow range of applications, as
+the rigorous offline measurement captures the general behavior of a
+class of application and require negligible online overhead.  This
+focused approach is extremely effective for multimedia applications
+\cite{grace,grace2,flinn99,flinn2004,xtune,TCST} and web-servers
+\cite{Horvarth,LuEtAl-2006a,SunDaiPan-2008a} because the workloads can
+be characterized ahead of time to produce sound control.
 
-Indeed, the need for good predictions is the central tension in
-developing control for computing systems.  It is always possible to
-build a controller for a specific application and system by
-specializing for that pair.  More general controllers, which work with
-a range of applications, have addressed the need for accurate
-predictions in various ways.  Some provide libraries that encapsulate
-control functionality and require user-specified models
-\cite{ControlWare,Sojka,Rajkumar,POET,SWiFT}.  Others automatically
-synthesize both a predictor and a controller for either hardware
-\cite{josep-isca2016} or software \cite{ICSE2014,FSE2015}.  JouleGuard
-combines learning for energy efficiency with control for managing
-application parameters \cite{JouleGuard}.  In JouleGuard, a learner
-adapts the controller's coefficients to model uncertainty, but
-JouleGuard's learner does not produce a new set of predictions.
-Because JouleGuard's learner runs on the same device as the controlled
-application, it must be computationally efficient and thus it cannot
+The need for good predictions is the central tension in developing
+control for computing systems.  It is always possible to build a
+controller for a specific application and system by specializing for
+that pair.  Prior work addresses the need for accurate predictions in
+various ways.  Some provides control libraries that require
+user-specified models \cite{ControlWare,Sojka,Rajkumar,POET,SWiFT}.
+Others automatically synthesize both a predictor and a controller for
+either hardware \cite{josep-isca2016} or software
+\cite{ICSE2014,FSE2015}.  JouleGuard combines learning for energy
+efficiency with control for managing application parameters
+\cite{JouleGuard}.  In JouleGuard, a learner adapts the controller's
+coefficients to uncertainty, but JouleGuard does not produce a new set
+of predictions.  JouleGuard's computationally efficient learner runs
+on the same device as the controlled application, but it cannot
 identify correlations across applications or even different resource
 configurations.  \SYSTEM{} is unique in that a separate learner
 generates an application-specific predictions automatically.  By

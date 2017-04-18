@@ -496,6 +496,37 @@
   \field{year}{2004}
 \endentry
 
+\entry{quanto}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Fonseca}{F.}%
+     {Rodrigo}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dutta}{D.}%
+     {Prabal}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Levis}{L.}%
+     {Philip}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stoica}{S.}%
+     {Ion}{I.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{FRDPLPSI1}
+  \strng{fullhash}{FRDPLPSI1}
+  \field{sortinit}{F}
+  \field{booktitle}{OSDI}
+  \field{title}{Quanto: Tracking Energy in Networked Embedded Systems}
+  \field{year}{2008}
+\endentry
+
 \entry{SWiFT}{inproceedings}{}
   \name{author}{4}{}{%
     {{}%
@@ -712,6 +743,35 @@
   \field{year}{2008}
 \endentry
 
+\entry{KaramanolisEtAl-2005a}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Karamanolis}{K.}%
+     {C.}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Karlsson}{K.}%
+     {M.}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhu}{Z.}%
+     {X.}{X.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{KCKMZX1}
+  \strng{fullhash}{KCKMZX1}
+  \field{sortinit}{K}
+  \field{booktitle}{HotOS}
+  \field{title}{Designing controllable computer systems}
+  \list{location}{1}{%
+    {Berkeley, CA, USA}%
+  }
+  \field{year}{2005}
+\endentry
+
 \entry{kim-cpsna}{inproceedings}{}
   \name{author}{3}{}{%
     {{}%
@@ -878,6 +938,32 @@
   \field{title}{Accurate and Efficient Regression Modeling for
   Microarchitectural Performance and Power Prediction}
   \field{year}{2006}
+\endentry
+
+\entry{Drowsy}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Lentz}{L.}%
+     {Matthew}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Litton}{L.}%
+     {James}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bhattacharjee}{B.}%
+     {Bobby}{B.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LMLJBB1}
+  \strng{fullhash}{LMLJBB1}
+  \field{sortinit}{L}
+  \field{booktitle}{SOSP}
+  \field{title}{Drowsy Power Management}
+  \field{year}{2015}
 \endentry
 
 \entry{HandbookControl}{book}{}
@@ -1508,6 +1594,62 @@
   \field{year}{2011}
 \endentry
 
+\entry{PowerContainers}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Shen}{S.}%
+     {Kai}{K.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shriraman}{S.}%
+     {Arrvindh}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dwarkadas}{D.}%
+     {Sandhya}{S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhang}{Z.}%
+     {Xiao}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chen}{C.}%
+     {Zhuan}{Z.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{hardware counters, multicore, operating system, power modeling, power
+  virus, server and cloud computing}
+  \strng{namehash}{SKSADSZXCZ1}
+  \strng{fullhash}{SKSADSZXCZ1}
+  \field{sortinit}{S}
+  \verb{doi}
+  \verb 10.1145/2499368.2451124
+  \endverb
+  \field{issn}{0362-1340}
+  \field{number}{4}
+  \field{pages}{65\bibrangedash 76}
+  \field{title}{Power Containers: An OS Facility for Fine-grained Power and
+  Energy Management on Multicore Servers}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/2499368.2451124
+  \endverb
+  \field{volume}{48}
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{journaltitle}{SIGPLAN Not.}
+  \field{month}{03}
+  \field{year}{2013}
+\endentry
+
 \entry{Koala}{inproceedings}{}
   \name{author}{4}{}{%
     {{}%
@@ -1613,6 +1755,62 @@
   \field{title}{Holistic Run-time Parallelism Management for Time and Energy
   Efficiency}
   \field{year}{2013}
+\endentry
+
+\entry{Steere99}{inproceedings}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Steere}{S.}%
+     {David~C.}{D.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Goel}{G.}%
+     {Ashvin}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Gruenberg}{G.}%
+     {Joshua}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {McNamee}{M.}%
+     {Dylan}{D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Pu}{P.}%
+     {Calton}{C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Walpole}{W.}%
+     {Jonathan}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {USENIX Association}%
+  }
+  \strng{namehash}{SDCGAGJMDPCWJ1}
+  \strng{fullhash}{SDCGAGJMDPCWJ1}
+  \field{sortinit}{S}
+  \field{booktitle}{Proceedings of the Third Symposium on Operating Systems
+  Design and Implementation}
+  \field{isbn}{1-880446-39-1}
+  \field{pages}{145\bibrangedash 158}
+  \field{series}{OSDI '99}
+  \field{title}{A Feedback-driven Proportion Allocator for Real-rate
+  Scheduling}
+  \verb{url}
+  \verb http://dl.acm.org/citation.cfm?id=296806.296820
+  \endverb
+  \list{location}{1}{%
+    {New Orleans, Louisiana, USA}%
+  }
+  \field{year}{1999}
+  \warn{\item Can't use 'location' + 'address'}
 \endentry
 
 \entry{SunDaiPan-2008a}{inproceedings}{}
@@ -1847,6 +2045,28 @@
   \field{booktitle}{HPCA}
   \field{title}{A Statistically Rigorous Approach for Improving Simulation
   Methodology}
+  \field{year}{2003}
+\endentry
+
+\entry{grace}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Yuan}{Y.}%
+     {Wanghong}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Nahrstedt}{N.}%
+     {Klara}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{YWNK1}
+  \strng{fullhash}{YWNK1}
+  \field{sortinit}{Y}
+  \field{booktitle}{SOSP}
+  \field{title}{Energy-efficient soft real-time {CPU} scheduling for mobile
+  multimedia systems}
   \field{year}{2003}
 \endentry
 
