@@ -47,7 +47,7 @@ actual behavior, the controller will fail to deliver the required
 performance.
 
 % Want to combine learning and control to address both difficulties
-% simultaneously. 
+% simultaneously.
 %Intuitively, combining learning and control should produce predictable
 %behavior in complex, dynamic systems.  There are, however, two major
 %challenges to implementing the combination:
@@ -219,12 +219,17 @@ In summary, \emph{\SYSTEM{} is the first work to combine learning and
   processors as a case study.
 \end{itemize}
 
-
+%\begin{wrapfigure}{r}{0.5\columnwidth}
+\begin{figure}
+\centering
+\includegraphics[width=.5\columnwidth]{figures/learning_control_doodle.pdf}
+\caption{Learning makes controller's domain smooth.}
+\label{fig:learning-control-doodle}
+\end{figure}
+%\end{wrapfigure}
 % Formal analysis of \SYSTEM{} demonstrates convergence
 % despite noisy inputs and shows how to integrate learned variance into
 % control theoretic guarantees.  We demonstrate the practical benefits
 % of these contributions for mobile/embedded processors, finding
 % \SYSTEM{} provides much more reliable performance and lower energy
 % than learning or control solutions alone.
-
-
