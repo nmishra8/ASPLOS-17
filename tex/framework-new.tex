@@ -295,25 +295,8 @@ The previous subsection describes a general control system, which can
 be customized with a number of different learning methods.  The
 requirements on the learner are that it must produce 1) predictions of
 each resource configuration's speedup and powerup and 2) estimate of
-its own variance.
-% We also provide a proxy for self tuning parameter in the later
-% sections in case the learning algorithm cannot provide the
-% confidence interval.
-This section describes the general class of learning mechanisms that
-meet these requirements. 
-
-\PUNT{When selecting a learning framework we must find a tradeoff between
-the specific and the general; \ie between frameworks that build
-application-specific predictions and frameworks that combine
-observations across applications.  For example, the key to energy
-efficiency on heterogeneous mobile systems is knowing when to make use
-of the smaller, low-power cores
-\cite{kim-cpsna,Carroll2013,LeSueur11}.  An application-specific
-predictor will capture that precisely, but may require many
-observations before producing the correct predictions.  A more general
-predictor will capture the trend, \eg when most applications should
-transition, but this general approach might miss the key inflection
-point for some applications.}
+its own variance.  This section describes the general class of
+learning mechanisms that meet these requirements.
 
 We refer to application-specific predictors as \emph{online} because
 they work for the current application and do not incorporate knowledge
@@ -330,62 +313,6 @@ learning and control makes it easy to incorporate data from other
 applications---the learner in \figref{fig:timeline} can simply
 aggregate data from multiple controllers. We describe two examples of
 appropriate transfer learning algorithms.
-
-% % The HBM provides a good balance between the online and offline
-% % approaches.  A strictly online approach will handle each new
-% % application completely separately and ignore observations of previous
-% % applications.  This approach never risks contaminating a model with
-% % unrelated observations, but it may take many observations of the
-% % current application to converge because it starts with no prior
-% % knowledge. The offline approach uses all observations from prior
-% % applications and will therefore converge very quickly; however, it is
-% % overly general and cannot learn features specific to a single
-% % application.
-% \subsubsection{Offline Predictors}
-% These predictors utilize data from previously seen applications. If
-% the predictor is for applications with very similar behavior the
-% prediction accuracy might be high but the predictor will fail if the
-% application's behaviors diverge \cite{meisnerISCA2011,Kim2014}.  For
-% example, these techniques will predict the performance of applications
-% based on prior applications, meaning they will over-allocate speed to
-% memory-bound applications and under-allocate to compute-bound ones.
-
-% \subsubsection{Online Predictors}
-% %\TODO{Is this offline or online or both?  The prior paragraph sets up this three-legged structure: offline, online, and something which we used to call hybrid but sounds like we are now calling transfer learning. If we are going to keep that structure we should mimic it in the substructure of the rest of the section.}  
-% In general, all machine learning techniques take observations of some
-% phenomena and produce a prediction of future outcomes.  In our
-% specific case, we want to take observations about application's
-% performance and power given a resource allocation and predict future
-% applications' behavior.  The most straightforward approach is to
-% create a linear regression based on the configuration laid out as the
-% input features \cite{tibshirani1996regression,yuan2006model,CPR}.
-% Regression requires samples of the performance and power for different
-% resource configurations.  Since the systems are usually non-linear,
-% polynomial regression often gives better results, but increases the
-% number of samples required \cite{LeeBrooks}.  Regression also provides
-% a confidence interval for its predictions which is important for
-% adaptively tuning the pole.
-
-
-% %\subsubsection{Transfer learning}
-% \textit{Transfer learning} refers to the process of applying knowledge
-% gained from one scenario to a new, similar one \cite{pan2010survey}.
-% To provide intuition we offer a simple example.  Suppose we have
-% observed many prior applications, all of which are either completely
-% compute-bound or completely memory-bound, and we have an equal number
-% of both.  The only resource we can allocate is clockspeed, which will
-% increase the performance of compute-bound applications, but not
-% memory-bound ones.  When we encounter new application, we must
-% estimate its response to clockspeed.  The online predictor will not
-% use prior knowledge, but will observe many different clock speeds for
-% the new application, leading to high overhead.  The offline predictor
-% will predict the mean response of prior applications, meaning it will
-% over-allocate speed to memory-bound applications and under-allocate to
-% compute-bound ones.  The transfer learning approach takes a small
-% number of samples and combines those with prior knowledge: if the new
-% observations show that clockspeed has no effect on performance, these
-% predictors will use only the prior memory bound applications,
-% otherwise, it will use the compute-bound applications.
 
 \paragraph{Netflix Algorithm:}
 The Netflix problem is a famous challenge posted by Netflix to predict
@@ -460,14 +387,14 @@ speedup. See appendix A for the proof. Users who need higher
 confidence can set the scalar multiplier on $\sigma$ higher; \eg{}
 using $6$ provides a 99.99966\% probability of convergence.
 
-Thus we provide a lower-bound on the value of $\rho(t)$ required for a
-user to be confident that \SYSTEM{} will converge to the desired
-performance.  This pole value only considers performance, and not
-energy efficiency.  In practice, we find it better to use a higher
-pole based on the \emph{uncertainty} between the controller's observed
-energy efficiency and that predicted by the learner.  We follow prior
-work \cite{Tokic2010} in quantifying uncertainty as $\beta(t)$, and
-setting the pole based on this uncertainty:
+Thus we provide a lower-bound on the value of $\rho(t)$ required for
+confidence that \SYSTEM{} converges to the desired performance.  This
+pole value only considers performance, and not energy efficiency.  In
+practice, we find it better to use a higher pole based on the
+\emph{uncertainty} between the controller's observed energy efficiency
+and that predicted by the learner.  We follow prior work
+\cite{Tokic2010} in quantifying uncertainty as $\beta(t)$, and setting
+the pole based on this uncertainty:
 \begin{equation}
   \begin{array}{rcl}
     \beta(t) &=&  \text{exp}{\left(- \left( \left|   \frac{\bar{s}(t)}{\bar{p}(t)}  -\frac{ \hat{s}(t)}{\hat{p}_(t)} \right| \right) /5\right)} \\

@@ -1,5 +1,5 @@
 \section{Experimental Setup}
-\begin{figure}[t]
+\PUNT{\begin{figure}[t]
   \subfloat[]
   {
     \includegraphics[width=.22\textwidth]{figures/odroid.png}
@@ -13,14 +13,15 @@
  \caption{ODROID-XU3 boards used in the evaluation.}
  \label{fig:odroidall}
 \end{figure}
+}
 
 \subsection{Platform and Benchmarks}
-We run applications on four ODROID-XU3 devices with Ubuntu 14.04, as
-shown in \figref{fig:odroidall}. The ODROIDs have Samsung Exynos 5
-Octa processors using the ARM big.LITTLE architecture.  Each has 19
-speed settings for the 4 big cores and 13 for 4 LITTLE cores.  Each
-board has an on-board power meter updated at 1/4 s intervals capturing
-core, GPU, and memory.
+We run applications on four ODROID-XU3 devices with Ubuntu
+14.04\PUNT{, as shown in \figref{fig:odroidall}}. The ODROIDs have
+Samsung Exynos 5 Octa processors using the ARM big.LITTLE
+architecture.  Each has 19 speed settings for the 4 big cores and 13
+for 4 LITTLE cores.  Each board has an on-board power meter updated at
+1/4 s intervals capturing core, GPU, and memory.
 % Each resource configuration (combination of big/LITTLE cores and
 % clock-speeds) has a different, application-dependent performance and
 % power.
@@ -211,6 +212,26 @@ misses 45\% of all deadlines, which is clearly unacceptable.
  \label{fig:single-all}
 \end{figure*}
 
+\begin{figure*}[t]
+ \captionsetup[subfigure]{labelformat=empty}
+  \subfloat[]
+  {
+    \input{img/multi-app-performance-small.tex}
+  }
+  \\
+  \vskip -1.5em
+  \subfloat[]
+  {
+    \input{img/multi-app-energy-small.tex}
+  }
+  \vskip -1.2em
+  \label{fig:multi}
+  \caption{Comparison of application performance error and energy for multiple
+  application scenario. }
+ \label{fig:multi-all}
+\end{figure*}
+
+
 When we allow \SYSTEM{} to adaptively tune its pole, however, we see
 greatly improved results.  The best combination is \SYSTEM{} with the
 HBM, which misses only 5.5\% of deadlines on average, while consuming
@@ -251,26 +272,6 @@ ability to react to environmental changes.
   \label{fig:multi-sum}
 \end{figure}
 }
-
-\begin{figure*}[t]
- \captionsetup[subfigure]{labelformat=empty}
-  \subfloat[]
-  {
-    \input{img/multi-app-performance-small.tex}
-  }
-  \\
-  \vskip -1.5em
-  \subfloat[]
-  {
-    \input{img/multi-app-energy-small.tex}
-  }
-  \vskip -1.2em
-  \label{fig:multi}
-  \caption{Comparison of application performance error and energy for multiple
-  application scenario. }
- \label{fig:multi-all}
-\end{figure*}
-
 
 \figref{fig:multi-sum} summarizes the results as the average number of
 deadline misses and energy over optimal for all approaches.  We note

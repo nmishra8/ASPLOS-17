@@ -50,6 +50,7 @@ overcome to combine learning and control.
     \emph{Learning} handles the complex configuration space, but
     \emph{control} oscillates.}
   \label{fig:learning-models1}
+\vskip -2em
 \end{figure}
 
 We demonstrate how well learning handles complex resource interaction
@@ -61,16 +62,14 @@ big cores support 19 clock speeds, while the LITTLE cores support 14.
 \figref{fig:STREAM_contour} shows \texttt{STREAM}'s performance for
 different resource configurations.  This memory-bound application has
 complicated behavior: the LITTLE cores' memory hierarchy cannot
-deliver the required performance.  The big cores' more powerful memory
-system delivers much greater performance, but the peak occurs with 3
-big cores.  Furthermore, at low clockspeeds, these 3 big cores cannot
-saturate the memory bandwidth, while at high clockspeeds the
-performance drops as the processor overheats, triggering thermal
-management.  For \texttt{STREAM}, the peak speed occurs with 3 big
-cores at 1.2 GHz, and it is not efficient to spend any time on the
-LITTLE cores.  \texttt{STREAM}, however, does not have distinct
-phases, so once a resource allocator finds the most energy efficient
-configuration, it simply needs to maintain it.
+deliver performance.  The big cores' more powerful memory system
+delivers greater performance, with a peak at 3 big cores.  At low
+clockspeeds, 3 big cores cannot saturate the memory bandwidth, while
+at high clockspeeds thermal throttling results in performance loss.
+Thus, the peak speed occurs with 3 big cores at 1.2 GHz, and it is
+inefficient to use the LITTLE cores.  \texttt{STREAM}, however, does
+not have distinct phases, so once a resource allocator finds the most
+energy efficient configuration, it simply maintains it.
 
 
 \figref{fig:STREAM_timeline} shows 20 iterations of existing learning
@@ -125,28 +124,25 @@ meeting the performance requirements. Halfway through its execution,
 we launch a second application---\texttt{STREAM}---on a single big
 core, dynamically changing available resources.
 
-\figref{fig:BODYTRACK_timeline} shows the results of this experiment.
-The vertical dashed line---at frame 99---represents when the second
-application begins.  The figure clearly shows adaptive control's
-benefits in this dynamic scenario.  When the second application
-starts, the controller detects \texttt{bodytrack}'s performance
-dip--rather than detecting the new application specifically---and it
-changes resource allocation (increasing clockspeed and moving
-bodytrack from 4 to 3 big cores).  The learning system however, does
-not have any inherent mechanism to measure the change or adapt to the
-altered performance.  While we could theoretically add feedback to the
-learner and re-estimate the configuration space whenever the
-environment changes, doing so is impractical due to high overhead for
-learners capable of handling this complexity
-\cite{Paragon,quasar,LEO}.
+\figref{fig:BODYTRACK_timeline} shows the results.  The vertical
+dashed line at frame 99 shows when the second application begins.
+When the second application starts, the adaptive controller detects
+\texttt{bodytrack}'s performance dip--rather than detecting the new
+application specifically---and it increases clockspeed and moves
+bodytrack from 4 to 3 big cores.  The learning system however, does
+not have a mechanism to measure the change or adapt to the altered
+environment.  While we could theoretically add feedback to the learner
+and re-estimate the configuration space whenever the environment
+changes, doing so is impractical due to high overhead for learners
+capable of handling this complexity \cite{Paragon,quasar,LEO}.
 
 
 \subsection{Challenges Combining Learning and Control}
 The previous section motivates the first of \SYSTEM{}'s contributions:
 splitting the resource allocation problem into prediction---handled by
 learning---and dynamic management---handled by control. \SYSTEM{}'s
-second contribution is the interface that combines the two solutions.
-This subsection demonstrates the importance of this interface.
+second contribution is combining the two solutions.  This subsection
+demonstrates the importance of this interface.
 
 The controller's \emph{pole} is a particularly important control
 parameter.  Control engineers tune the pole to trade response time for

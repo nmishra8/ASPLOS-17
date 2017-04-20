@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  20 APR 2017 15:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  20 APR 2017 17:35
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **document
 (./document.tex
@@ -1635,6 +1635,10 @@ Package biblatex Warning: Patching footnotes failed.
 
 \@quotelevel=\count351
 \@quotereset=\count352
+
+LaTeX Warning: Unused global option(s):
+    [nocopyrightspace].
+
 (./document.aux)
 \openout1 = `document.aux'.
 
@@ -1950,27 +1954,30 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `zi4' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+
+Underfull \vbox (badness 1946) has occurred while \output is active []
+
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 61.
+(Font)              scaled to size 10.0pt on input line 62.
  [2.2 <./figures/STREAM-contour.pdf> <./out/document-figure0.pdf>]
 <figures/BODYTRACK-contour.png, id=269, 1433.355pt x 1332.98pt>
 File: figures/BODYTRACK-contour.png Graphic file (type png)
 
 <use figures/BODYTRACK-contour.png>
-Package pdftex.def Info: figures/BODYTRACK-contour.png used on input line 103.
+Package pdftex.def Info: figures/BODYTRACK-contour.png used on input line 102.
 (pdftex.def)             Requested size: 126.47249pt x 117.60362pt.
  (./img/BODYTRACK-example-resized.tex
 ===== Image 'out/document-figure1' is up-to-date. ======
 )
-Overfull \hbox (7.6621pt too wide) in paragraph at lines 103--112
+Overfull \hbox (7.6621pt too wide) in paragraph at lines 102--111
  [][][][] 
  []
 
 
-Underfull \vbox (badness 1082) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (4.71365pt too wide) in paragraph at lines 145--150
+Overfull \hbox (4.71365pt too wide) in paragraph at lines 141--146
 \OT1/ptm/m/n/10 (-20) prediction---handled by learning---and dy-namic managemen
 t---
  []
@@ -1978,18 +1985,18 @@ t---
 (./img/BODYTRACK-example2-resized.tex
 ===== Image 'out/document-figure2' is up-to-date. ======
 )
-Underfull \hbox (badness 2368) in paragraph at lines 168--175
+Underfull \hbox (badness 2368) in paragraph at lines 164--171
 [][]\OT1/ptm/m/n/10 (+20) To demon-strate the
  []
 
 
-Overfull \hbox (2.4672pt too wide) in paragraph at lines 168--175
+Overfull \hbox (2.4672pt too wide) in paragraph at lines 164--171
 \OT1/ptm/m/n/10 (-20) again con-trol \OT1/zi4/m/n/10 bodytrack\OT1/ptm/m/n/10 (
 -20) ,
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 168--175
+Underfull \hbox (badness 1902) in paragraph at lines 164--171
 \OT1/ptm/m/n/10 (+20) first sub-sec-tion. We
  []
 
@@ -2011,6 +2018,9 @@ Package pdftex.def Info: figures/Timeline.pdf used on input line 27.
  [4.4 <./figures/Overview.pdf> <./figures/Timeline.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [5.5]
 <figures/performance-hash-table.pdf, id=1338, 751.80875pt x 553.06625pt>
 File: figures/performance-hash-table.pdf Graphic file (type pdf)
@@ -2027,50 +2037,31 @@ it/10 | =
  []
 
 [6.6 <./figures/performance-hash-table.pdf>]
-Overfull \hbox (1.01132pt too wide) in paragraph at lines 404--418
+Overfull \hbox (1.01132pt too wide) in paragraph at lines 331--345
  \OT1/ptm/b/n/10 Bayesian Pre-dic-tors: \OT1/ptm/m/n/10 (-20) A hi-er-ar-chi-ca
 l Bayesian model (HBM)
  []
 
 
-Overfull \hbox (10.0pt too wide) detected at line 445
+Overfull \hbox (10.0pt too wide) detected at line 372
 [][] 
  []
 
-) (./tex/evaluation.tex <figures/odroid.png, id=1391, 642.4pt x 481.8pt>
-File: figures/odroid.png Graphic file (type png)
-
-<use figures/odroid.png>
-Package pdftex.def Info: figures/odroid.png used on input line 7.
-(pdftex.def)             Requested size: 111.29642pt x 83.47081pt.
-
-<figures/odroidall.png, id=1392, 4047.12pt x 3035.34pt>
-File: figures/odroidall.png Graphic file (type png)
-
-<use figures/odroidall.png>
-Package pdftex.def Info: figures/odroidall.png used on input line 12.
-(pdftex.def)             Requested size: 111.29642pt x 83.46053pt.
-
-Overfull \hbox (8.07062pt too wide) in paragraph at lines 18--27
-\OT1/ptm/m/n/10 (-20) Sam-sung Exynos 5 Octa pro-ces-sors us-ing the ARM big.LI
-TTLE
- []
-
-[7.7 <./figures/odroid.png> <./figures/odroidall.png>] (./img/mem-compute.tex
+) (./tex/evaluation.tex (./img/mem-compute.tex
 ===== Image 'out/document-figure3' is up-to-date. ======
 )
-Overfull \hbox (3.20314pt too wide) in paragraph at lines 1--49
+Overfull \hbox (3.20314pt too wide) in paragraph at lines 1--50
  [][] 
  []
 
-
-Overfull \hbox (9.09486pt too wide) in paragraph at lines 95--101
+[7.7]
+Overfull \hbox (9.09486pt too wide) in paragraph at lines 96--102
 []\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
 input (per-for-mance), multiple-
  []
 
 
-Overfull \hbox (18.3895pt too wide) in paragraph at lines 104--108
+Overfull \hbox (18.3895pt too wide) in paragraph at lines 105--109
 []\OT1/ptm/m/it/10 (-20) Offline\OT1/ptm/m/n/10 (-20) : does not ob-serve any v
 al-ues for the cur-rent application---
  []
@@ -2079,78 +2070,70 @@ al-ues for the cur-rent application---
 ===== Image 'out/document-figure4' is up-to-date. ======
 ) (./img/multi-app-summary2-v4.tex
 ===== Image 'out/document-figure5' is up-to-date. ======
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8.8 <./out/document-figure3.pdf>] (./img/single-app-performance-small.tex
+) (./img/single-app-performance-small.tex
 ===== Image 'out/document-figure6' is up-to-date. ======
 ) (./img/single-app-energy-small.tex
 ===== Image 'out/document-figure7' is up-to-date. ======
+) (./img/multi-app-performance-small.tex
+===== Image 'out/document-figure8' is up-to-date. ======
+) (./img/multi-app-energy-small.tex
+===== Image 'out/document-figure9' is up-to-date. ======
 )
-Overfull \hbox (1.54169pt too wide) in paragraph at lines 237--244
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8.8 <./out/document-figure3.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9.9 <./out/document-figure4.pdf> <./out/document-figure5.pdf> <./out/document
+-figure6.pdf> <./out/document-figure7.pdf>]
+Overfull \hbox (1.54169pt too wide) in paragraph at lines 258--265
 \OT1/ptm/m/n/10 (-20) an-other ap-pli-ca-tion ran-domly drawn from our bench-ma
 rk set---
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-(./img/multi-app-performance-small.tex
-===== Image 'out/document-figure8' is up-to-date. ======
-) (./img/multi-app-energy-small.tex
-===== Image 'out/document-figure9' is up-to-date. ======
-) (./img/x264-phases.tex
+(./img/x264-phases.tex
 ===== Image 'out/document-figure10' is up-to-date. ======
 )
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [9.9 <./out/document-figure4.pdf> <./out/document-figure5.pdf>]
-<figures/lavamd2.pdf, id=1530, 451.6875pt x 574.145pt>
+ [10.10 <./out/document-figure8.pdf> <./out/document-figure9.pdf> <./out/docume
+nt-figure10.pdf>] <figures/lavamd2.pdf, id=1591, 451.6875pt x 574.145pt>
 File: figures/lavamd2.pdf Graphic file (type pdf)
 
 <use figures/lavamd2.pdf>
-Package pdftex.def Info: figures/lavamd2.pdf used on input line 372.
+Package pdftex.def Info: figures/lavamd2.pdf used on input line 373.
 (pdftex.def)             Requested size: 101.17645pt x 128.6076pt.
  (./img/LAVA-pole.tex
 ===== Image 'out/document-figure11' is up-to-date. ======
 )
-Overfull \hbox (3.85936pt too wide) in paragraph at lines 372--379
+Overfull \hbox (3.85936pt too wide) in paragraph at lines 373--380
  [][][][] 
  []
 
-[10.10 <./out/document-figure6.pdf> <./out/document-figure7.pdf> <./out/documen
-t-figure10.pdf> <./figures/lavamd2.pdf> <./out/document-figure11.pdf>]
 (./img/sample-accuracy-v3.tex
 ===== Image 'out/document-figure12' is up-to-date. ======
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11.11 <./out/document-figure8.pdf> <./out/document-figure9.pdf> <./out/docume
-nt-figure12.pdf>]) (./tex/related.tex
+)) (./tex/related.tex [11.11 <./figures/lavamd2.pdf> <./out/document-figure11.p
+df> <./out/document-figure12.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
-(./tex/conclusion.tex) (./tex/appendix.tex [12.12]) [13.13
-
-]
+(./tex/conclusion.tex) (./tex/appendix.tex) [12.12]
 Overfull \hbox (4.83752pt too wide) in paragraph at lines 252--252
 \OT1/ptm/m/n/10 (-20) Lim-its from Com-pre-hen-sive Mi-croar-chi-tec-tural Adap
 -
  []
 
-[14.14
+[13.13
 
 ]
 Overfull \hbox (1.44968pt too wide) in paragraph at lines 252--252
 []\OT1/ptm/m/n/10 (-20) R. Raghaven-dra, P. Ran-ganathan, V. Tal-war, Z. Wang,
  []
 
-[15.15]
+[14.14]
 Overfull \hbox (3.36096pt too wide) in paragraph at lines 252--252
 \OT1/ptm/m/n/10 (-20) ``GRACE-2: in-te-grat-ing fine-grained ap-pli-ca-tion ada
 p-
@@ -2162,7 +2145,7 @@ Overfull \hbox (1.42087pt too wide) in paragraph at lines 252--252
 '.
  []
 
-[16.16
+[15.15
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
@@ -2178,10 +2161,10 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 252.
  ) 
 Here is how much of TeX's memory you used:
- 41643 strings out of 493304
- 858470 string characters out of 6139871
- 1350758 words of memory out of 5000000
- 43549 multiletter control sequences out of 15000+600000
+ 41629 strings out of 493304
+ 858251 string characters out of 6139871
+ 1350794 words of memory out of 5000000
+ 43541 multiletter control sequences out of 15000+600000
  79824 words of font info for 329 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
  63i,14n,94p,910b,1147s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2203,10 +2186,10 @@ s/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/newtx/zxlr.pfb>
-Output written on document.pdf (16 pages, 3411219 bytes).
+Output written on document.pdf (15 pages, 1161077 bytes).
 PDF statistics:
- 1866 PDF objects out of 2073 (max. 8388607)
- 1359 compressed objects within 14 object streams
- 184 named destinations out of 1000 (max. 500000)
- 38219 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1854 PDF objects out of 2073 (max. 8388607)
+ 1350 compressed objects within 14 object streams
+ 180 named destinations out of 1000 (max. 500000)
+ 38209 words of extra memory for PDF output out of 42996 (max. 10000000)
 
