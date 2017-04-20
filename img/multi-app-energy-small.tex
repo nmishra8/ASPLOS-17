@@ -1,8 +1,7 @@
 \begin{tikzpicture}
-%\pgfplotstableread[col sep=space]{img/image_text/dyn-mape-0.5-v2.txt}{\datatablefive}
 \pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.60-v4.txt}{\datatablesixty}
-\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.75-v4.txt}{\datatableseventyfive}
-\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.90-v4.txt}{\datatableninty}
+\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.75-v4.txt}{\datatableseventy}
+\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.90-v4.txt}{\datatableeighty}
 \begin{groupplot}[
     group style={
         group name=plots,
@@ -28,7 +27,7 @@ ymin=0,
 ymax=30,
 ytick={0,5,10,15,20},
 yticklabels={,5,10,15,20},
-legend cell align=left, 
+legend cell align=left,
 legend style={ column sep=1ex },
 ymajorgrids,
 grid style={dashed},
@@ -49,7 +48,7 @@ yticklabels={,30.0,60.0,90.0},
 \addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatablesixty};
 \addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatablesixty};
 \addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatablesixty};
-                                
+
 
 \nextgroupplot[ybar=\pgflinewidth,
 ylabel={\footnotesize Energy Above Optimal  {\scriptsize (lower is better)}},
@@ -60,16 +59,16 @@ ymax=90,
 ytick={0.0,30.0,60.0,90.0},
 yticklabels={,30.0,60.0,90.0},]
 
-%\addplot[color=RACE,fill=RACE] table[x index=0,y index=4] {\datatableseventyfive};
-%\addplot[color=HBM,fill=HBM]       table[x index=0,y index=7] {\datatableseventyfive};
-%\addplot[color=ADAPT-CONTROL,fill=ADAPT-CONTROL] table[x index=0,y index=9] {\datatableseventyfive};
-%\addplot[color=CALOREE-NP,fill=CALOREE-NP]   table[x index=0,y index=10] {\datatableseventyfive};
-%\addplot[color=HBM-ADAPT,fill=HBM-ADAPT]       table[x index=0,y index=13] {\datatableseventyfive};
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableseventyfive};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableseventyfive};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableseventyfive};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableseventyfive};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableseventyfive};
+%\addplot[color=RACE,fill=RACE] table[x index=0,y index=4] {\datatableseventy};
+%\addplot[color=HBM,fill=HBM]       table[x index=0,y index=7] {\datatableseventy};
+%\addplot[color=ADAPT-CONTROL,fill=ADAPT-CONTROL] table[x index=0,y index=9] {\datatableseventy};
+%\addplot[color=CALOREE-NP,fill=CALOREE-NP]   table[x index=0,y index=10] {\datatableseventy};
+%\addplot[color=HBM-ADAPT,fill=HBM-ADAPT]       table[x index=0,y index=13] {\datatableseventy};
+\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableseventy};
+\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableseventy};
+\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableseventy};
+\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableseventy};
+\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableseventy};
 
 \nextgroupplot[ybar=\pgflinewidth,
 bar width=2.0pt,
@@ -106,11 +105,11 @@ xticklabels={
 {\scriptsize $\mathsf{Average}$}},
 ]
 
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableninty};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableninty};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableninty};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableninty};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableninty};
+\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableeighty};
+\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableeighty};
+\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableeighty};
+\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableeighty};
+\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableeighty};
 
 \end{groupplot}
 \begin{groupplot}[
@@ -150,7 +149,7 @@ ylabel={$\mathsf{60\%}$},
 
 \nextgroupplot[
 ylabel shift={12mm},
-ylabel={$\mathsf{75\%}$},
+ylabel={$\mathsf{70\%}$},
 ylabel style={rotate=270},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
@@ -158,7 +157,7 @@ ylabel style={rotate=270},
 
 \nextgroupplot[
 ylabel shift={12mm},
-ylabel={$\mathsf{90\%}$},
+ylabel={$\mathsf{80\%}$},
 y label style={rotate=270},
 ]
 \addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};

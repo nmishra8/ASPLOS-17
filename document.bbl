@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex version 2.3 $
+% $ biblatex bbl format version 2.7 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -16,2169 +16,2628 @@
   {}
 \endgroup
 
-\entry{petabricksDynamic}{inproceedings}{}
-  \name{author}{7}{}{%
-    {{}%
-     {Ansel}{A.}%
-     {Jason}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pacula}{P.}%
-     {Maciej}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Wong}{W.}%
-     {Yee~Lok}{Y.~L.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Chan}{C.}%
-     {Cy}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Olszewski}{O.}%
-     {Marek}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {O'Reilly}{O.}%
-     {Una-May}{U.-M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Amarasinghe}{A.}%
-     {Saman}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{AJPMWYLCCOMOUMAS1}
-  \strng{fullhash}{AJPMWYLCCOMOUMAS1}
-  \field{sortinit}{A}
-  \field{booktitle}{CASES}
-  \field{title}{Siblingrivalry: online autotuning through local competitions}
-  \field{year}{2012}
-\endentry
+\sortlist[entry]{nyt/global/}
+  \entry{petabricksDynamic}{inproceedings}{}
+    \name{author}{7}{}{%
+      {{hash=AJ}{%
+         family={Ansel},
+         family_i={A\bibinitperiod},
+         given={Jason},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=PM}{%
+         family={Pacula},
+         family_i={P\bibinitperiod},
+         given={Maciej},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=WYL}{%
+         family={Wong},
+         family_i={W\bibinitperiod},
+         given={Yee\bibnamedelima Lok},
+         given_i={Y\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=CC}{%
+         family={Chan},
+         family_i={C\bibinitperiod},
+         given={Cy},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=OM}{%
+         family={Olszewski},
+         family_i={O\bibinitperiod},
+         given={Marek},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=OUM}{%
+         family={O'Reilly},
+         family_i={O\bibinitperiod},
+         given={Una-May},
+         given_i={U\bibinitperiod-M\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Amarasinghe},
+         family_i={A\bibinitperiod},
+         given={Saman},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AJPMWYLCCOMOUMAS1}
+    \strng{fullhash}{AJPMWYLCCOMOUMAS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{CASES}
+    \field{title}{Siblingrivalry: online autotuning through local competitions}
+    \field{year}{2012}
+  \endentry
 
-\entry{petabricksStatic}{inproceedings}{}
-  \name{author}{6}{}{%
-    {{}%
-     {Ansel}{A.}%
-     {Jason}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Wong}{W.}%
-     {Yee~Lok}{Y.~L.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Chan}{C.}%
-     {Cy}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Olszewski}{O.}%
-     {Marek}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Edelman}{E.}%
-     {Alan}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Amarasinghe}{A.}%
-     {Saman}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{AJWYLCCOMEAAS1}
-  \strng{fullhash}{AJWYLCCOMEAAS1}
-  \field{sortinit}{A}
-  \field{booktitle}{CGO}
-  \field{title}{Language and compiler support for auto-tuning variable-accuracy
-  algorithms}
-  \field{year}{2011}
-\endentry
+  \entry{petabricksStatic}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=AJ}{%
+         family={Ansel},
+         family_i={A\bibinitperiod},
+         given={Jason},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=WYL}{%
+         family={Wong},
+         family_i={W\bibinitperiod},
+         given={Yee\bibnamedelima Lok},
+         given_i={Y\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=CC}{%
+         family={Chan},
+         family_i={C\bibinitperiod},
+         given={Cy},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=OM}{%
+         family={Olszewski},
+         family_i={O\bibinitperiod},
+         given={Marek},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=EA}{%
+         family={Edelman},
+         family_i={E\bibinitperiod},
+         given={Alan},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=AS}{%
+         family={Amarasinghe},
+         family_i={A\bibinitperiod},
+         given={Saman},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{AJWYLCCOMEAAS1}
+    \strng{fullhash}{AJWYLCCOMEAAS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{booktitle}{CGO}
+    \field{title}{Language and compiler support for auto-tuning
+  variable-accuracy algorithms}
+    \field{year}{2011}
+  \endentry
 
-\entry{netflix}{report}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Bell}{B.}%
-     {R.~M.}{R.~M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Koren}{K.}%
-     {Y.}{Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Volinsky}{V.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{BRMKYVC1}
-  \strng{fullhash}{BRMKYVC1}
-  \field{sortinit}{B}
-  \field{title}{The BellKor 2008 solution to the Netflix Prize}
-  \list{institution}{1}{%
-    {{ATandT} Labs}%
-  }
-  \field{type}{techreport}
-  \field{year}{2008}
-\endentry
+  \entry{netflix}{report}{}
+    \name{author}{3}{}{%
+      {{hash=BRM}{%
+         family={Bell},
+         family_i={B\bibinitperiod},
+         given={R.\bibnamedelima M.},
+         given_i={R\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=KY}{%
+         family={Koren},
+         family_i={K\bibinitperiod},
+         given={Y.},
+         given_i={Y\bibinitperiod},
+      }}%
+      {{hash=VC}{%
+         family={Volinsky},
+         family_i={V\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BRMKYVC1}
+    \strng{fullhash}{BRMKYVC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{title}{The BellKor 2008 solution to the Netflix Prize}
+    \list{institution}{1}{%
+      {{ATandT} Labs}%
+    }
+    \field{type}{techreport}
+    \field{year}{2008}
+  \endentry
 
-\entry{parsec}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Bienia}{B.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kumar}{K.}%
-     {S.}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Singh}{S.}%
-     {J.~P.}{J.~P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Li}{L.}%
-     {K.}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{BCKSSJPLK1}
-  \strng{fullhash}{BCKSSJPLK1}
-  \field{sortinit}{B}
-  \field{booktitle}{PACT}
-  \field{title}{The {PARSEC} Benchmark Suite: Characterization and
+  \entry{parsec}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=BC}{%
+         family={Bienia},
+         family_i={B\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=KS}{%
+         family={Kumar},
+         family_i={K\bibinitperiod},
+         given={S.},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=SJP}{%
+         family={Singh},
+         family_i={S\bibinitperiod},
+         given={J.\bibnamedelima P.},
+         given_i={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Li},
+         family_i={L\bibinitperiod},
+         given={K.},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BCKSSJPLK1}
+    \strng{fullhash}{BCKSSJPLK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{PACT}
+    \field{title}{The {PARSEC} Benchmark Suite: Characterization and
   Architectural Implications}
-  \field{year}{2008}
-\endentry
+    \field{year}{2008}
+  \endentry
 
-\entry{Bitirgen2008}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Bitirgen}{B.}%
-     {Ramazan}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ipek}{I.}%
-     {Engin}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Martinez}{M.}%
-     {Jose~F.}{J.~F.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{BRIEMJF1}
-  \strng{fullhash}{BRIEMJF1}
-  \field{sortinit}{B}
-  \field{booktitle}{MICRO}
-  \field{title}{{Coordinated management of multiple interacting resources in
+  \entry{Bitirgen2008}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=BR}{%
+         family={Bitirgen},
+         family_i={B\bibinitperiod},
+         given={Ramazan},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=IE}{%
+         family={Ipek},
+         family_i={I\bibinitperiod},
+         given={Engin},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=MJF}{%
+         family={Martinez},
+         family_i={M\bibinitperiod},
+         given={Jose\bibnamedelima F.},
+         given_i={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BRIEMJF1}
+    \strng{fullhash}{BRIEMJF1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{booktitle}{MICRO}
+    \field{title}{{Coordinated management of multiple interacting resources in
   chip multiprocessors: A machine learning approach}}
-  \field{year}{2008}
-\endentry
+    \field{year}{2008}
+  \endentry
 
-\entry{rodinia}{inproceedings}{}
-  \name{author}{7}{}{%
-    {{}%
-     {Che}{C.}%
-     {Shuai}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Boyer}{B.}%
-     {Michael}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Meng}{M.}%
-     {Jiayuan}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Tarjan}{T.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Sheaffer}{S.}%
-     {Jeremy~W.}{J.~W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lee}{L.}%
-     {Sang-Ha}{S.-H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Skadron}{S.}%
-     {Kevin}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CSBMMJTDSJWLSHSK1}
-  \strng{fullhash}{CSBMMJTDSJWLSHSK1}
-  \field{sortinit}{C}
-  \field{booktitle}{IISWC}
-  \field{title}{Rodinia: A Benchmark Suite for Heterogeneous Computing}
-  \field{year}{2009}
-\endentry
+  \entry{rodinia}{inproceedings}{}
+    \name{author}{7}{}{%
+      {{hash=CS}{%
+         family={Che},
+         family_i={C\bibinitperiod},
+         given={Shuai},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Boyer},
+         family_i={B\bibinitperiod},
+         given={Michael},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Meng},
+         family_i={M\bibinitperiod},
+         given={Jiayuan},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=TD}{%
+         family={Tarjan},
+         family_i={T\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=SJW}{%
+         family={Sheaffer},
+         family_i={S\bibinitperiod},
+         given={Jeremy\bibnamedelima W.},
+         given_i={J\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+      {{hash=LSH}{%
+         family={Lee},
+         family_i={L\bibinitperiod},
+         given={Sang-Ha},
+         given_i={S\bibinitperiod-H\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Skadron},
+         family_i={S\bibinitperiod},
+         given={Kevin},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CSBMMJTDSJWLSHSK1}
+    \strng{fullhash}{CSBMMJTDSJWLSHSK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{IISWC}
+    \field{title}{Rodinia: A Benchmark Suite for Heterogeneous Computing}
+    \field{year}{2009}
+  \endentry
 
-\entry{Chen2011}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Chen}{C.}%
-     {Jian}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {John}{J.}%
-     {Lizy~Kurian}{L.~K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CJJLK1}
-  \strng{fullhash}{CJJLK1}
-  \field{sortinit}{C}
-  \field{booktitle}{ICS}
-  \field{title}{Predictive coordination of multiple on-chip resources for chip
-  multiprocessors}
-  \field{year}{2011}
-\endentry
-
-\entry{ChenJohn2011}{article}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Chen}{C.}%
-     {Jian}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {John}{J.}%
-     {Lizy~Kurian}{L.~K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kaseridis}{K.}%
-     {Dimitris}{D.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CJJLKKD1}
-  \strng{fullhash}{CJJLKKD1}
-  \field{sortinit}{C}
-  \field{issn}{0163-5999}
-  \field{number}{1}
-  \field{pages}{1\bibrangedash 12}
-  \field{title}{Modeling Program Resource Demand Using Inherent Program
-  Characteristics}
-  \field{volume}{39}
-  \field{journaltitle}{SIGMETRICS Perform. Eval. Rev.}
-  \field{month}{06}
-  \field{year}{2011}
-\endentry
-
-\entry{packandcap}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Cochran}{C.}%
-     {Ryan}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hankendi}{H.}%
-     {Can}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Coskun}{C.}%
-     {Ayse~K.}{A.~K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Reda}{R.}%
-     {Sherief}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{CRHCCAKRS1}
-  \strng{fullhash}{CRHCCAKRS1}
-  \field{sortinit}{C}
-  \field{booktitle}{MICRO}
-  \field{title}{Pack \& Cap: adaptive DVFS and thread packing under power caps}
-  \field{year}{2011}
-\endentry
-
-\entry{Paragon}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Delimitrou}{D.}%
-     {Christina}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kozyrakis}{K.}%
-     {Christos}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{DCKC1}
-  \strng{fullhash}{DCKC1}
-  \field{sortinit}{D}
-  \field{booktitle}{ASPLOS}
-  \field{title}{Paragon: QoS-aware Scheduling for Heterogeneous Datacenters}
-  \field{year}{2013}
-\endentry
-
-\entry{quasar}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Delimitrou}{D.}%
-     {Christina}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kozyrakis}{K.}%
-     {Christos}{C.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{DCKC1}
-  \strng{fullhash}{DCKC1}
-  \field{sortinit}{D}
-  \field{booktitle}{ASPLOS}
-  \field{title}{Quasar: Resource-efficient and QoS-aware Cluster Management}
-  \field{year}{2014}
-\endentry
-
-\entry{dubach2010}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Dubach}{D.}%
-     {Christophe}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Jones}{J.}%
-     {Timothy~M.}{T.~M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Bonilla}{B.}%
-     {Edwin~V.}{E.~V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {O'Boyle}{O.}%
-     {Michael F.~P.}{M.~F.~P.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{DCJTMBEVOMFP1}
-  \strng{fullhash}{DCJTMBEVOMFP1}
-  \field{sortinit}{D}
-  \field{booktitle}{MICRO}
-  \field{title}{A Predictive Model for Dynamic Microarchitectural Adaptivity
-  Control}
-  \field{year}{2010}
-\endentry
-
-\entry{ICSE2014}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Filieri}{F.}%
-     {Antonio}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Maggio}{M.}%
-     {Martina}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{FAHHMM1}
-  \strng{fullhash}{FAHHMM1}
-  \field{sortinit}{F}
-  \field{booktitle}{ICSE}
-  \field{title}{Automated design of self-adaptive software with
-  control-theoretical formal guarantees}
-  \field{year}{2014}
-\endentry
-
-\entry{FSE2015}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Filieri}{F.}%
-     {Antonio}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Maggio}{M.}%
-     {Martina}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{FAHHMM1}
-  \strng{fullhash}{FAHHMM1}
-  \field{sortinit}{F}
-  \field{booktitle}{FSE}
-  \field{title}{Automated multi-objective control for self-adaptive software
-  design}
-  \field{year}{2015}
-\endentry
-
-\entry{flinn99}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Flinn}{F.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Satyanarayanan}{S.}%
-     {M.}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{FJSM1}
-  \strng{fullhash}{FJSM1}
-  \field{sortinit}{F}
-  \field{booktitle}{SOSP}
-  \field{title}{{Energy-aware adaptation for mobile applications}}
-  \field{year}{1999}
-\endentry
-
-\entry{flinn2004}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Flinn}{F.}%
-     {Jason}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Satyanarayanan}{S.}%
-     {M.}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{FJSM2}
-  \strng{fullhash}{FJSM2}
-  \field{sortinit}{F}
-  \field{number}{2}
-  \field{title}{Managing battery lifetime with energy-aware adaptation}
-  \field{volume}{22}
-  \field{journaltitle}{ACM Trans. Comp. Syst.}
-  \field{month}{05}
-  \field{year}{2004}
-\endentry
-
-\entry{quanto}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Fonseca}{F.}%
-     {Rodrigo}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dutta}{D.}%
-     {Prabal}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Levis}{L.}%
-     {Philip}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Stoica}{S.}%
-     {Ion}{I.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{FRDPLPSI1}
-  \strng{fullhash}{FRDPLPSI1}
-  \field{sortinit}{F}
-  \field{booktitle}{OSDI}
-  \field{title}{Quanto: Tracking Energy in Networked Embedded Systems}
-  \field{year}{2008}
-\endentry
-
-\entry{SWiFT}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Goel}{G.}%
-     {Ashvin}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Steere}{S.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pu}{P.}%
-     {Calton}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Walpole}{W.}%
-     {Jonathan}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{GASDPCWJ1}
-  \strng{fullhash}{GASDPCWJ1}
-  \field{sortinit}{G}
-  \field{booktitle}{2nd USENIX Windows NT Symposium}
-  \field{title}{SWiFT: A Feedback Control and Dynamic Reconfiguration Toolkit}
-  \field{year}{1998}
-\endentry
-
-\entry{Hellerstein2004a}{book}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Hellerstein}{H.}%
-     {Joseph~L.}{J.~L.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Diao}{D.}%
-     {Yixin}{Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Parekh}{P.}%
-     {Sujay}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Tilbury}{T.}%
-     {Dawn~M.}{D.~M.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {John Wiley \& Sons}%
-  }
-  \strng{namehash}{HJLDYPSTDM1}
-  \strng{fullhash}{HJLDYPSTDM1}
-  \field{sortinit}{H}
-  \field{isbn}{047126637X}
-  \field{title}{Feedback Control of Computing Systems}
-  \field{year}{2004}
-\endentry
-
-\entry{JouleGuard}{inproceedings}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{HH1}
-  \strng{fullhash}{HH1}
-  \field{sortinit}{H}
-  \field{booktitle}{SOSP}
-  \field{title}{JouleGuard: energy guarantees for approximate applications}
-  \field{year}{2015}
-\endentry
-
-\entry{icac2010heartbeats}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Eastep}{E.}%
-     {Jonathan}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Santambrogio}{S.}%
-     {Marco~D.}{M.~D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Miller}{M.}%
-     {Jason~E.}{J.~E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Agarwal}{A.}%
-     {Anant}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{HHEJSMDMJEAA1}
-  \strng{fullhash}{HHEJSMDMJEAA1}
-  \field{sortinit}{H}
-  \field{booktitle}{ICAC}
-  \field{title}{Application Heartbeats: a generic interface for specifying
-  program performance and goals in autonomous computing environments}
-  \field{year}{2010}
-\endentry
-
-\entry{Horvarth}{article}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Horvath}{H.}%
-     {T.}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Abdelzaher}{A.}%
-     {T.}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Skadron}{S.}%
-     {K.}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Liu}{L.}%
-     {Xue}{X.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{HTATSKLX1}
-  \strng{fullhash}{HTATSKLX1}
-  \field{sortinit}{H}
-  \field{number}{4}
-  \field{title}{Dynamic Voltage Scaling in Multitier Web Servers with
-  End-to-End Delay Control}
-  \field{volume}{56}
-  \field{journaltitle}{Computers, IEEE Transactions on}
-  \field{year}{2007}
-\endentry
-
-\entry{POET}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Imes}{I.}%
-     {Connor}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kim}{K.}%
-     {David H.~K.}{D.~H.~K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Maggio}{M.}%
-     {Martina}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{ICKDHKMMHH1}
-  \strng{fullhash}{ICKDHKMMHH1}
-  \field{sortinit}{I}
-  \field{booktitle}{RTAS}
-  \field{title}{POET: A Portable Approach to Minimizing Energy Under Soft
-  Real-time Constraints}
-  \field{year}{2015}
-\endentry
-
-\entry{Ipek}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Ipek}{I.}%
-     {Engin}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Mutlu}{M.}%
-     {Onur}{O.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Mart\'{\i}nez}{M.}%
-     {Jos{\'e}~F.}{J.~F.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Caruana}{C.}%
-     {Rich}{R.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{IEMOMJFCR1}
-  \strng{fullhash}{IEMOMJFCR1}
-  \field{sortinit}{I}
-  \field{booktitle}{ISCA}
-  \field{title}{Self-Optimizing Memory Controllers: A Reinforcement Learning
-  Approach}
-  \field{year}{2008}
-\endentry
-
-\entry{KaramanolisEtAl-2005a}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Karamanolis}{K.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Karlsson}{K.}%
-     {M.}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhu}{Z.}%
-     {X.}{X.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{KCKMZX1}
-  \strng{fullhash}{KCKMZX1}
-  \field{sortinit}{K}
-  \field{booktitle}{HotOS}
-  \field{title}{Designing controllable computer systems}
-  \list{location}{1}{%
-    {Berkeley, CA, USA}%
-  }
-  \field{year}{2005}
-\endentry
-
-\entry{kim-cpsna}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Kim}{K.}%
-     {David H.~K.}{D.~H.~K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Imes}{I.}%
-     {Connor}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{KDHKICHH1}
-  \strng{fullhash}{KDHKICHH1}
-  \field{sortinit}{K}
-  \field{booktitle}{CPSNA}
-  \field{title}{Racing and Pacing to Idle: Theoretical and Empirical Analysis
-  of Energy Optimization Heuristics}
-  \field{year}{2015}
-\endentry
-
-\entry{xtune}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Kim}{K.}%
-     {Minyoung}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Stehr}{S.}%
-     {Mark-Oliver}{M.-O.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Talcott}{T.}%
-     {Carolyn}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dutt}{D.}%
-     {Nikil}{N.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Venkatasubramanian}{V.}%
-     {Nalini}{N.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{KMSMOTCDNVN1}
-  \strng{fullhash}{KMSMOTCDNVN1}
-  \field{sortinit}{K}
-  \field{number}{4}
-  \field{title}{xTune: A Formal Methodology for Cross-layer Tuning of Mobile
-  Embedded Systems}
-  \field{volume}{11}
-  \field{journaltitle}{ACM Trans. Embed. Comput. Syst.}
-  \field{month}{01}
-  \field{year}{2013}
-\endentry
-
-\entry{LeSueur11}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Le~Sueur}{L.~S.}%
-     {Etienne}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Heiser}{H.}%
-     {Gernot}{G.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LSEHG1}
-  \strng{fullhash}{LSEHG1}
-  \field{sortinit}{L}
-  \field{booktitle}{Proceedings of the 2011 USENIX Annual Technical Conference}
-  \field{title}{Slow Down or Sleep, That is the Question}
-  \list{location}{1}{%
-    {Portland, OR, USA}%
-  }
-  \field{year}{2011}
-  \warn{\item Invalid format of field 'month'}
-\endentry
-
-\entry{CPR}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Lee}{L.}%
-     {B.C.}{B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Collins}{C.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Wang}{W.}%
-     {Hong}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Brooks}{B.}%
-     {D.}{D.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LBCJWHBD1}
-  \strng{fullhash}{LBCJWHBD1}
-  \field{sortinit}{L}
-  \field{booktitle}{MICRO}
-  \field{title}{CPR: Composable performance regression for scalable
-  multiprocessor models}
-  \field{year}{2008}
-\endentry
-
-\entry{LeeBrooks}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Lee}{L.}%
-     {Benjamin~C.}{B.~C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Brooks}{B.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LBCBD1}
-  \strng{fullhash}{LBCBD1}
-  \field{sortinit}{L}
-  \field{booktitle}{ASPLOS}
-  \field{title}{Efficiency Trends and Limits from Comprehensive
-  Microarchitectural Adaptivity}
-  \field{year}{2008}
-\endentry
-
-\entry{LeeBrooks2006}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Lee}{L.}%
-     {Benjamin~C.}{B.~C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Brooks}{B.}%
-     {David~M.}{D.~M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LBCBDM1}
-  \strng{fullhash}{LBCBDM1}
-  \field{sortinit}{L}
-  \field{booktitle}{ASPLOS}
-  \field{title}{Accurate and Efficient Regression Modeling for
-  Microarchitectural Performance and Power Prediction}
-  \field{year}{2006}
-\endentry
-
-\entry{Drowsy}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Lentz}{L.}%
-     {Matthew}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Litton}{L.}%
-     {James}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Bhattacharjee}{B.}%
-     {Bobby}{B.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LMLJBB1}
-  \strng{fullhash}{LMLJBB1}
-  \field{sortinit}{L}
-  \field{booktitle}{SOSP}
-  \field{title}{Drowsy Power Management}
-  \field{year}{2015}
-\endentry
-
-\entry{HandbookControl}{book}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Levine}{L.}%
-     {W.S.}{W.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {CRC Press}%
-  }
-  \strng{namehash}{LW1}
-  \strng{fullhash}{LW1}
-  \field{sortinit}{L}
-  \field{title}{The control handbook}
-  \field{year}{2005}
-\endentry
-
-\entry{Agilos}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Li}{L.}%
-     {Baochun}{B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Nahrstedt}{N.}%
-     {K.}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LBNK1}
-  \strng{fullhash}{LBNK1}
-  \field{sortinit}{L}
-  \field{number}{9}
-  \field{title}{A control-based middleware framework for quality-of-service
-  adaptations}
-  \field{volume}{17}
-  \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
-  \field{year}{1999}
-\endentry
-
-\entry{Li2006}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Li}{L.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Martinez}{M.}%
-     {J.F.}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LJMJ1}
-  \strng{fullhash}{LJMJ1}
-  \field{sortinit}{L}
-  \field{booktitle}{HPCA}
-  \field{title}{Dynamic power-performance adaptation of parallel computation on
+  \entry{Chen2011}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=CJ}{%
+         family={Chen},
+         family_i={C\bibinitperiod},
+         given={Jian},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=JLK}{%
+         family={John},
+         family_i={J\bibinitperiod},
+         given={Lizy\bibnamedelima Kurian},
+         given_i={L\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CJJLK1}
+    \strng{fullhash}{CJJLK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{ICS}
+    \field{title}{Predictive coordination of multiple on-chip resources for
   chip multiprocessors}
-  \field{year}{2006}
-\endentry
+    \field{year}{2011}
+  \endentry
 
-\entry{sysid}{book}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Ljung}{L.}%
-     {Lennart}{L.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {Prentice Hall PTR}%
-  }
-  \strng{namehash}{LL1}
-  \strng{fullhash}{LL1}
-  \field{sortinit}{L}
-  \field{isbn}{0-13-656695-2}
-  \field{title}{System Identification: Theory for the User}
-  \list{location}{1}{%
-    {Upper Saddle River, NJ, USA}%
-  }
-  \field{year}{1999}
-\endentry
+  \entry{ChenJohn2011}{article}{}
+    \name{author}{3}{}{%
+      {{hash=CJ}{%
+         family={Chen},
+         family_i={C\bibinitperiod},
+         given={Jian},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=JLK}{%
+         family={John},
+         family_i={J\bibinitperiod},
+         given={Lizy\bibnamedelima Kurian},
+         given_i={L\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=KD}{%
+         family={Kaseridis},
+         family_i={K\bibinitperiod},
+         given={Dimitris},
+         given_i={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CJJLKKD1}
+    \strng{fullhash}{CJJLKKD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{issn}{0163-5999}
+    \field{number}{1}
+    \field{pages}{1\bibrangedash 12}
+    \field{title}{Modeling Program Resource Demand Using Inherent Program
+  Characteristics}
+    \field{volume}{39}
+    \field{journaltitle}{SIGMETRICS Perform. Eval. Rev.}
+    \field{month}{06}
+    \field{year}{2011}
+  \endentry
 
-\entry{LuEtAl-2006a}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Lu}{L.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lu}{L.}%
-     {Y.}{Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Abdelzaher}{A.}%
-     {T.F.}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Stankovic}{S.}%
-     {J.A.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Son}{S.}%
-     {S.H.}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{LCLYATSJSS1}
-  \strng{fullhash}{LCLYATSJSS1}
-  \field{sortinit}{L}
-  \field{number}{9}
-  \field{pages}{1014\bibrangedash 1027}
-  \field{title}{Feedback Control Architecture and Design Methodology for
+  \entry{packandcap}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=CR}{%
+         family={Cochran},
+         family_i={C\bibinitperiod},
+         given={Ryan},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=HC}{%
+         family={Hankendi},
+         family_i={H\bibinitperiod},
+         given={Can},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=CAK}{%
+         family={Coskun},
+         family_i={C\bibinitperiod},
+         given={Ayse\bibnamedelima K.},
+         given_i={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=RS}{%
+         family={Reda},
+         family_i={R\bibinitperiod},
+         given={Sherief},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CRHCCAKRS1}
+    \strng{fullhash}{CRHCCAKRS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{MICRO}
+    \field{title}{Pack \& Cap: adaptive DVFS and thread packing under power
+  caps}
+    \field{year}{2011}
+  \endentry
+
+  \entry{Paragon}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=DC}{%
+         family={Delimitrou},
+         family_i={D\bibinitperiod},
+         given={Christina},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=KC}{%
+         family={Kozyrakis},
+         family_i={K\bibinitperiod},
+         given={Christos},
+         given_i={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DCKC1}
+    \strng{fullhash}{DCKC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{ASPLOS}
+    \field{title}{Paragon: QoS-aware Scheduling for Heterogeneous Datacenters}
+    \field{year}{2013}
+  \endentry
+
+  \entry{quasar}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=DC}{%
+         family={Delimitrou},
+         family_i={D\bibinitperiod},
+         given={Christina},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=KC}{%
+         family={Kozyrakis},
+         family_i={K\bibinitperiod},
+         given={Christos},
+         given_i={C\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DCKC1}
+    \strng{fullhash}{DCKC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{ASPLOS}
+    \field{title}{Quasar: Resource-efficient and QoS-aware Cluster Management}
+    \field{year}{2014}
+  \endentry
+
+  \entry{dubach2010}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=DC}{%
+         family={Dubach},
+         family_i={D\bibinitperiod},
+         given={Christophe},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=JTM}{%
+         family={Jones},
+         family_i={J\bibinitperiod},
+         given={Timothy\bibnamedelima M.},
+         given_i={T\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=BEV}{%
+         family={Bonilla},
+         family_i={B\bibinitperiod},
+         given={Edwin\bibnamedelima V.},
+         given_i={E\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=OMFP}{%
+         family={O'Boyle},
+         family_i={O\bibinitperiod},
+         given={Michael F.\bibnamedelima P.},
+         given_i={M\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
+  P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{DCJTMBEVOMFP1}
+    \strng{fullhash}{DCJTMBEVOMFP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{booktitle}{MICRO}
+    \field{title}{A Predictive Model for Dynamic Microarchitectural Adaptivity
+  Control}
+    \field{year}{2010}
+  \endentry
+
+  \entry{ICSE2014}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=FA}{%
+         family={Filieri},
+         family_i={F\bibinitperiod},
+         given={Antonio},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Maggio},
+         family_i={M\bibinitperiod},
+         given={Martina},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FAHHMM1}
+    \strng{fullhash}{FAHHMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{ICSE}
+    \field{title}{Automated design of self-adaptive software with
+  control-theoretical formal guarantees}
+    \field{year}{2014}
+  \endentry
+
+  \entry{FSE2015}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=FA}{%
+         family={Filieri},
+         family_i={F\bibinitperiod},
+         given={Antonio},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Maggio},
+         family_i={M\bibinitperiod},
+         given={Martina},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FAHHMM1}
+    \strng{fullhash}{FAHHMM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{FSE}
+    \field{title}{Automated multi-objective control for self-adaptive software
+  design}
+    \field{year}{2015}
+  \endentry
+
+  \entry{flinn99}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=FJ}{%
+         family={Flinn},
+         family_i={F\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Satyanarayanan},
+         family_i={S\bibinitperiod},
+         given={M.},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FJSM1}
+    \strng{fullhash}{FJSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{SOSP}
+    \field{title}{{Energy-aware adaptation for mobile applications}}
+    \field{year}{1999}
+  \endentry
+
+  \entry{flinn2004}{article}{}
+    \name{author}{2}{}{%
+      {{hash=FJ}{%
+         family={Flinn},
+         family_i={F\bibinitperiod},
+         given={Jason},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SM}{%
+         family={Satyanarayanan},
+         family_i={S\bibinitperiod},
+         given={M.},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FJSM2}
+    \strng{fullhash}{FJSM2}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{number}{2}
+    \field{title}{Managing battery lifetime with energy-aware adaptation}
+    \field{volume}{22}
+    \field{journaltitle}{ACM Trans. Comp. Syst.}
+    \field{month}{05}
+    \field{year}{2004}
+  \endentry
+
+  \entry{quanto}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=FR}{%
+         family={Fonseca},
+         family_i={F\bibinitperiod},
+         given={Rodrigo},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=DP}{%
+         family={Dutta},
+         family_i={D\bibinitperiod},
+         given={Prabal},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Levis},
+         family_i={L\bibinitperiod},
+         given={Philip},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=SI}{%
+         family={Stoica},
+         family_i={S\bibinitperiod},
+         given={Ion},
+         given_i={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FRDPLPSI1}
+    \strng{fullhash}{FRDPLPSI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{booktitle}{OSDI}
+    \field{title}{Quanto: Tracking Energy in Networked Embedded Systems}
+    \field{year}{2008}
+  \endentry
+
+  \entry{SWiFT}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=GA}{%
+         family={Goel},
+         family_i={G\bibinitperiod},
+         given={Ashvin},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Steere},
+         family_i={S\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=PC}{%
+         family={Pu},
+         family_i={P\bibinitperiod},
+         given={Calton},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Walpole},
+         family_i={W\bibinitperiod},
+         given={Jonathan},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GASDPCWJ1}
+    \strng{fullhash}{GASDPCWJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{booktitle}{2nd USENIX Windows NT Symposium}
+    \field{title}{SWiFT: A Feedback Control and Dynamic Reconfiguration
+  Toolkit}
+    \field{year}{1998}
+  \endentry
+
+  \entry{Hellerstein2004a}{book}{}
+    \name{author}{4}{}{%
+      {{hash=HJL}{%
+         family={Hellerstein},
+         family_i={H\bibinitperiod},
+         given={Joseph\bibnamedelima L.},
+         given_i={J\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+      {{hash=DY}{%
+         family={Diao},
+         family_i={D\bibinitperiod},
+         given={Yixin},
+         given_i={Y\bibinitperiod},
+      }}%
+      {{hash=PS}{%
+         family={Parekh},
+         family_i={P\bibinitperiod},
+         given={Sujay},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=TDM}{%
+         family={Tilbury},
+         family_i={T\bibinitperiod},
+         given={Dawn\bibnamedelima M.},
+         given_i={D\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {John Wiley \& Sons}%
+    }
+    \strng{namehash}{HJLDYPSTDM1}
+    \strng{fullhash}{HJLDYPSTDM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{isbn}{047126637X}
+    \field{title}{Feedback Control of Computing Systems}
+    \field{year}{2004}
+  \endentry
+
+  \entry{JouleGuard}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HH1}
+    \strng{fullhash}{HH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{SOSP}
+    \field{title}{JouleGuard: energy guarantees for approximate applications}
+    \field{year}{2015}
+  \endentry
+
+  \entry{icac2010heartbeats}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=EJ}{%
+         family={Eastep},
+         family_i={E\bibinitperiod},
+         given={Jonathan},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SMD}{%
+         family={Santambrogio},
+         family_i={S\bibinitperiod},
+         given={Marco\bibnamedelima D.},
+         given_i={M\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=MJE}{%
+         family={Miller},
+         family_i={M\bibinitperiod},
+         given={Jason\bibnamedelima E.},
+         given_i={J\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Agarwal},
+         family_i={A\bibinitperiod},
+         given={Anant},
+         given_i={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HHEJSMDMJEAA1}
+    \strng{fullhash}{HHEJSMDMJEAA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{ICAC}
+    \field{title}{Application Heartbeats: a generic interface for specifying
+  program performance and goals in autonomous computing environments}
+    \field{year}{2010}
+  \endentry
+
+  \entry{Horvarth}{article}{}
+    \name{author}{4}{}{%
+      {{hash=HT}{%
+         family={Horvath},
+         family_i={H\bibinitperiod},
+         given={T.},
+         given_i={T\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Abdelzaher},
+         family_i={A\bibinitperiod},
+         given={T.},
+         given_i={T\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Skadron},
+         family_i={S\bibinitperiod},
+         given={K.},
+         given_i={K\bibinitperiod},
+      }}%
+      {{hash=LX}{%
+         family={Liu},
+         family_i={L\bibinitperiod},
+         given={Xue},
+         given_i={X\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HTATSKLX1}
+    \strng{fullhash}{HTATSKLX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{number}{4}
+    \field{title}{Dynamic Voltage Scaling in Multitier Web Servers with
+  End-to-End Delay Control}
+    \field{volume}{56}
+    \field{journaltitle}{Computers, IEEE Transactions on}
+    \field{year}{2007}
+  \endentry
+
+  \entry{POET}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=IC}{%
+         family={Imes},
+         family_i={I\bibinitperiod},
+         given={Connor},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=KDHK}{%
+         family={Kim},
+         family_i={K\bibinitperiod},
+         given={David H.\bibnamedelima K.},
+         given_i={D\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim
+  K\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Maggio},
+         family_i={M\bibinitperiod},
+         given={Martina},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ICKDHKMMHH1}
+    \strng{fullhash}{ICKDHKMMHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{I}
+    \field{sortinithash}{I}
+    \field{booktitle}{RTAS}
+    \field{title}{POET: A Portable Approach to Minimizing Energy Under Soft
+  Real-time Constraints}
+    \field{year}{2015}
+  \endentry
+
+  \entry{Ipek}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=IE}{%
+         family={Ipek},
+         family_i={I\bibinitperiod},
+         given={Engin},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=MO}{%
+         family={Mutlu},
+         family_i={M\bibinitperiod},
+         given={Onur},
+         given_i={O\bibinitperiod},
+      }}%
+      {{hash=MJF}{%
+         family={Mart\'{\i}nez},
+         family_i={M\bibinitperiod},
+         given={Jos{\'e}\bibnamedelima F.},
+         given_i={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=CR}{%
+         family={Caruana},
+         family_i={C\bibinitperiod},
+         given={Rich},
+         given_i={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{IEMOMJFCR1}
+    \strng{fullhash}{IEMOMJFCR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{I}
+    \field{sortinithash}{I}
+    \field{booktitle}{ISCA}
+    \field{title}{Self-Optimizing Memory Controllers: A Reinforcement Learning
+  Approach}
+    \field{year}{2008}
+  \endentry
+
+  \entry{KaramanolisEtAl-2005a}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=KC}{%
+         family={Karamanolis},
+         family_i={K\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Karlsson},
+         family_i={K\bibinitperiod},
+         given={M.},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhu},
+         family_i={Z\bibinitperiod},
+         given={X.},
+         given_i={X\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KCKMZX1}
+    \strng{fullhash}{KCKMZX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{booktitle}{HotOS}
+    \field{title}{Designing controllable computer systems}
+    \list{location}{1}{%
+      {Berkeley, CA, USA}%
+    }
+    \field{year}{2005}
+  \endentry
+
+  \entry{kim-cpsna}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=KDHK}{%
+         family={Kim},
+         family_i={K\bibinitperiod},
+         given={David H.\bibnamedelima K.},
+         given_i={D\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim
+  K\bibinitperiod},
+      }}%
+      {{hash=IC}{%
+         family={Imes},
+         family_i={I\bibinitperiod},
+         given={Connor},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KDHKICHH1}
+    \strng{fullhash}{KDHKICHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{booktitle}{CPSNA}
+    \field{title}{Racing and Pacing to Idle: Theoretical and Empirical Analysis
+  of Energy Optimization Heuristics}
+    \field{year}{2015}
+  \endentry
+
+  \entry{xtune}{article}{}
+    \name{author}{5}{}{%
+      {{hash=KM}{%
+         family={Kim},
+         family_i={K\bibinitperiod},
+         given={Minyoung},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=SMO}{%
+         family={Stehr},
+         family_i={S\bibinitperiod},
+         given={Mark-Oliver},
+         given_i={M\bibinitperiod-O\bibinitperiod},
+      }}%
+      {{hash=TC}{%
+         family={Talcott},
+         family_i={T\bibinitperiod},
+         given={Carolyn},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=DN}{%
+         family={Dutt},
+         family_i={D\bibinitperiod},
+         given={Nikil},
+         given_i={N\bibinitperiod},
+      }}%
+      {{hash=VN}{%
+         family={Venkatasubramanian},
+         family_i={V\bibinitperiod},
+         given={Nalini},
+         given_i={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KMSMOTCDNVN1}
+    \strng{fullhash}{KMSMOTCDNVN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{number}{4}
+    \field{title}{xTune: A Formal Methodology for Cross-layer Tuning of Mobile
+  Embedded Systems}
+    \field{volume}{11}
+    \field{journaltitle}{ACM Trans. Embed. Comput. Syst.}
+    \field{month}{01}
+    \field{year}{2013}
+  \endentry
+
+  \entry{LeSueur11}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=LSE}{%
+         family={Le\bibnamedelima Sueur},
+         family_i={L\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Etienne},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=HG}{%
+         family={Heiser},
+         family_i={H\bibinitperiod},
+         given={Gernot},
+         given_i={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LSEHG1}
+    \strng{fullhash}{LSEHG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{Proceedings of the 2011 USENIX Annual Technical
+  Conference}
+    \field{title}{Slow Down or Sleep, That is the Question}
+    \list{location}{1}{%
+      {Portland, OR, USA}%
+    }
+    \field{year}{2011}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
+
+  \entry{CPR}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=LB}{%
+         family={Lee},
+         family_i={L\bibinitperiod},
+         given={B.C.},
+         given_i={B\bibinitperiod},
+      }}%
+      {{hash=CJ}{%
+         family={Collins},
+         family_i={C\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=WH}{%
+         family={Wang},
+         family_i={W\bibinitperiod},
+         given={Hong},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=BD}{%
+         family={Brooks},
+         family_i={B\bibinitperiod},
+         given={D.},
+         given_i={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LBCJWHBD1}
+    \strng{fullhash}{LBCJWHBD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{MICRO}
+    \field{title}{CPR: Composable performance regression for scalable
+  multiprocessor models}
+    \field{year}{2008}
+  \endentry
+
+  \entry{LeeBrooks}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=LBC}{%
+         family={Lee},
+         family_i={L\bibinitperiod},
+         given={Benjamin\bibnamedelima C.},
+         given_i={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=BD}{%
+         family={Brooks},
+         family_i={B\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LBCBD1}
+    \strng{fullhash}{LBCBD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{ASPLOS}
+    \field{title}{Efficiency Trends and Limits from Comprehensive
+  Microarchitectural Adaptivity}
+    \field{year}{2008}
+  \endentry
+
+  \entry{LeeBrooks2006}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=LBC}{%
+         family={Lee},
+         family_i={L\bibinitperiod},
+         given={Benjamin\bibnamedelima C.},
+         given_i={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=BDM}{%
+         family={Brooks},
+         family_i={B\bibinitperiod},
+         given={David\bibnamedelima M.},
+         given_i={D\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LBCBDM1}
+    \strng{fullhash}{LBCBDM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{ASPLOS}
+    \field{title}{Accurate and Efficient Regression Modeling for
+  Microarchitectural Performance and Power Prediction}
+    \field{year}{2006}
+  \endentry
+
+  \entry{Drowsy}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=LM}{%
+         family={Lentz},
+         family_i={L\bibinitperiod},
+         given={Matthew},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Litton},
+         family_i={L\bibinitperiod},
+         given={James},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=BB}{%
+         family={Bhattacharjee},
+         family_i={B\bibinitperiod},
+         given={Bobby},
+         given_i={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LMLJBB1}
+    \strng{fullhash}{LMLJBB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{SOSP}
+    \field{title}{Drowsy Power Management}
+    \field{year}{2015}
+  \endentry
+
+  \entry{HandbookControl}{book}{}
+    \name{author}{1}{}{%
+      {{hash=LW}{%
+         family={Levine},
+         family_i={L\bibinitperiod},
+         given={W.S.},
+         given_i={W\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {CRC Press}%
+    }
+    \strng{namehash}{LW1}
+    \strng{fullhash}{LW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{title}{The control handbook}
+    \field{year}{2005}
+  \endentry
+
+  \entry{Agilos}{article}{}
+    \name{author}{2}{}{%
+      {{hash=LB}{%
+         family={Li},
+         family_i={L\bibinitperiod},
+         given={Baochun},
+         given_i={B\bibinitperiod},
+      }}%
+      {{hash=NK}{%
+         family={Nahrstedt},
+         family_i={N\bibinitperiod},
+         given={K.},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LBNK1}
+    \strng{fullhash}{LBNK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{9}
+    \field{title}{A control-based middleware framework for quality-of-service
+  adaptations}
+    \field{volume}{17}
+    \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
+    \field{year}{1999}
+  \endentry
+
+  \entry{Li2006}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=LJ}{%
+         family={Li},
+         family_i={L\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Martinez},
+         family_i={M\bibinitperiod},
+         given={J.F.},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LJMJ1}
+    \strng{fullhash}{LJMJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{booktitle}{HPCA}
+    \field{title}{Dynamic power-performance adaptation of parallel computation
+  on chip multiprocessors}
+    \field{year}{2006}
+  \endentry
+
+  \entry{sysid}{book}{}
+    \name{author}{1}{}{%
+      {{hash=LL}{%
+         family={Ljung},
+         family_i={L\bibinitperiod},
+         given={Lennart},
+         given_i={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Prentice Hall PTR}%
+    }
+    \strng{namehash}{LL1}
+    \strng{fullhash}{LL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{isbn}{0-13-656695-2}
+    \field{title}{System Identification: Theory for the User}
+    \list{location}{1}{%
+      {Upper Saddle River, NJ, USA}%
+    }
+    \field{year}{1999}
+  \endentry
+
+  \entry{LuEtAl-2006a}{article}{}
+    \name{author}{5}{}{%
+      {{hash=LC}{%
+         family={Lu},
+         family_i={L\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Lu},
+         family_i={L\bibinitperiod},
+         given={Y.},
+         given_i={Y\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Abdelzaher},
+         family_i={A\bibinitperiod},
+         given={T.F.},
+         given_i={T\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Stankovic},
+         family_i={S\bibinitperiod},
+         given={J.A.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Son},
+         family_i={S\bibinitperiod},
+         given={S.H.},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LCLYATSJSS1}
+    \strng{fullhash}{LCLYATSJSS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{number}{9}
+    \field{pages}{1014\bibrangedash 1027}
+    \field{title}{Feedback Control Architecture and Design Methodology for
   Service Delay Guarantees in Web Servers}
-  \field{volume}{17}
-  \field{journaltitle}{IEEE TPDS}
-  \field{year}{2006}
-  \warn{\item Invalid format of field 'month'}
-\endentry
+    \field{volume}{17}
+    \field{journaltitle}{IEEE TPDS}
+    \field{year}{2006}
+    \warn{\item Invalid format of field 'month'}
+  \endentry
 
-\entry{TCST}{article}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Maggio}{M.}%
-     {Martina}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Anant~Agarwal}{A.~A.}%
-     {Marco D.~Santambrogio}{M.~D.~S.}%
-     {an~d}{a.~d.}%
-     {}{}}%
-    {{}%
-     {Leva}{L.}%
-     {Alberto}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{MMHHAAMDSadLA1}
-  \strng{fullhash}{MMHHAAMDSadLA1}
-  \field{sortinit}{M}
-  \field{title}{Power optimization in embedded systems via feedback control of
-  resource allocation}
-  \field{journaltitle}{IEEE Transactions on Control Systems Technology (to
+  \entry{TCST}{article}{}
+    \name{author}{4}{}{%
+      {{hash=MM}{%
+         family={Maggio},
+         family_i={M\bibinitperiod},
+         given={Martina},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=adAAMDS}{%
+         prefix={an\bibnamedelima d},
+         prefix_i={a\bibinitperiod\bibinitdelim d\bibinitperiod},
+         family={Anant\bibnamedelima Agarwal},
+         family_i={A\bibinitperiod\bibinitdelim A\bibinitperiod},
+         given={Marco D.\bibnamedelima Santambrogio},
+         given_i={M\bibinitperiod\bibinitdelim D\bibinitperiod\bibinitdelim
+  S\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Leva},
+         family_i={L\bibinitperiod},
+         given={Alberto},
+         given_i={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MMHHAAMDSadLA1}
+    \strng{fullhash}{MMHHAAMDSadLA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{title}{Power optimization in embedded systems via feedback control
+  of resource allocation}
+    \field{journaltitle}{IEEE Transactions on Control Systems Technology (to
   appear)}
-\endentry
+  \endentry
 
-\entry{stream}{article}{}
-  \name{author}{1}{}{%
-    {{}%
-     {McCalpin}{M.}%
-     {John~D.}{J.~D.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{MJD1}
-  \strng{fullhash}{MJD1}
-  \field{sortinit}{M}
-  \field{abstract}{%
-  The ratio of cpu speed to memory speed in current high-performance computers
-  is growing rapidly, with significant implications for the design and
-  implementation of algorithms in scientific computing. I present the results
-  of a broad survey of memory bandwidth and machine balance for a large variety
-  of current computers, including uniprocessors, vector processors,
+  \entry{stream}{article}{}
+    \name{author}{1}{}{%
+      {{hash=MJD}{%
+         family={McCalpin},
+         family_i={M\bibinitperiod},
+         given={John\bibnamedelima D.},
+         given_i={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MJD1}
+    \strng{fullhash}{MJD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    The ratio of cpu speed to memory speed in current high-performance
+  computers is growing rapidly, with significant implications for the design
+  and implementation of algorithms in scientific computing. I present the
+  results of a broad survey of memory bandwidth and machine balance for a large
+  variety of current computers, including uniprocessors, vector processors,
   shared-memory systems, and districuted-memory systems. The results are
   analyzed in terms of the sustainable data transfer rates for uncached
   unit-stride vector operation for each machine, and for each class.%
-  }
-  \field{pages}{19\bibrangedash 25}
-  \field{title}{Memory Bandwidth and Machine Balance in Current High
+    }
+    \field{pages}{19\bibrangedash 25}
+    \field{title}{Memory Bandwidth and Machine Balance in Current High
   Performance Computers}
-  \verb{file}
-  \verb http://tab.computer.org/tcca/NEWS/DEC95/dec95_mccalpin.ps
-  \endverb
-  \field{journaltitle}{IEEE TCCA Newsletter}
-  \field{month}{12}
-  \field{year}{1995}
-\endentry
+    \verb{file}
+    \verb http://tab.computer.org/tcca/NEWS/DEC95/dec95_mccalpin.ps
+    \endverb
+    \field{journaltitle}{IEEE TCCA Newsletter}
+    \field{month}{12}
+    \field{year}{1995}
+  \endentry
 
-\entry{LEO}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Mishra}{M.}%
-     {Nikita}{N.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhang}{Z.}%
-     {Huazhe}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lafferty}{L.}%
-     {John~D.}{J.~D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{MNZHLJDHH1}
-  \strng{fullhash}{MNZHLJDHH1}
-  \field{sortinit}{M}
-  \field{booktitle}{ASPLOS}
-  \field{title}{A Probabilistic Graphical Model-based Approach for Minimizing
+  \entry{LEO}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=MN}{%
+         family={Mishra},
+         family_i={M\bibinitperiod},
+         given={Nikita},
+         given_i={N\bibinitperiod},
+      }}%
+      {{hash=ZH}{%
+         family={Zhang},
+         family_i={Z\bibinitperiod},
+         given={Huazhe},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=LJD}{%
+         family={Lafferty},
+         family_i={L\bibinitperiod},
+         given={John\bibnamedelima D.},
+         given_i={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MNZHLJDHH1}
+    \strng{fullhash}{MNZHLJDHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{ASPLOS}
+    \field{title}{A Probabilistic Graphical Model-based Approach for Minimizing
   Energy Under Performance Constraints}
-  \field{year}{2015}
-\endentry
+    \field{year}{2015}
+  \endentry
 
-\entry{powerslope}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Miyoshi}{M.}%
-     {Akihiko}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lefurgy}{L.}%
-     {Charles}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Van~Hensbergen}{V.~H.}%
-     {Eric}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rajamony}{R.}%
-     {Ram}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rajkumar}{R.}%
-     {Raj}{R.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{MALCVHERRRR1}
-  \strng{fullhash}{MALCVHERRRR1}
-  \field{sortinit}{M}
-  \field{booktitle}{ICS}
-  \field{title}{Critical Power Slope: Understanding the Runtime Effects of
+  \entry{powerslope}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=MA}{%
+         family={Miyoshi},
+         family_i={M\bibinitperiod},
+         given={Akihiko},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lefurgy},
+         family_i={L\bibinitperiod},
+         given={Charles},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=VHE}{%
+         family={Van\bibnamedelima Hensbergen},
+         family_i={V\bibinitperiod\bibinitdelim H\bibinitperiod},
+         given={Eric},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=RR}{%
+         family={Rajamony},
+         family_i={R\bibinitperiod},
+         given={Ram},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=RR}{%
+         family={Rajkumar},
+         family_i={R\bibinitperiod},
+         given={Raj},
+         given_i={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{MALCVHERRRR1}
+    \strng{fullhash}{MALCVHERRRR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{booktitle}{ICS}
+    \field{title}{Critical Power Slope: Understanding the Runtime Effects of
   Frequency Scaling}
-  \field{year}{2002}
-\endentry
+    \field{year}{2002}
+  \endentry
 
-\entry{minebench}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Narayanan}{N.}%
-     {R.}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ozisikyilmaz}{O.}%
-     {B.}{B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zambreno}{Z.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Memik}{M.}%
-     {G.}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Choudhary}{C.}%
-     {A.}{A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{NROBZJMGCA1}
-  \strng{fullhash}{NROBZJMGCA1}
-  \field{sortinit}{N}
-  \field{booktitle}{IISWC}
-  \field{title}{MineBench: A Benchmark Suite for Data Mining Workloads}
-  \field{year}{2006}
-\endentry
+  \entry{minebench}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=NR}{%
+         family={Narayanan},
+         family_i={N\bibinitperiod},
+         given={R.},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=OB}{%
+         family={Ozisikyilmaz},
+         family_i={O\bibinitperiod},
+         given={B.},
+         given_i={B\bibinitperiod},
+      }}%
+      {{hash=ZJ}{%
+         family={Zambreno},
+         family_i={Z\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=MG}{%
+         family={Memik},
+         family_i={M\bibinitperiod},
+         given={G.},
+         given_i={G\bibinitperiod},
+      }}%
+      {{hash=CA}{%
+         family={Choudhary},
+         family_i={C\bibinitperiod},
+         given={A.},
+         given_i={A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NROBZJMGCA1}
+    \strng{fullhash}{NROBZJMGCA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{booktitle}{IISWC}
+    \field{title}{MineBench: A Benchmark Suite for Data Mining Workloads}
+    \field{year}{2006}
+  \endentry
 
-\entry{carat}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Oliner}{O.}%
-     {Adam~J.}{A.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Iyer}{I.}%
-     {Anand~P.}{A.~P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Stoica}{S.}%
-     {Ion}{I.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lagerspetz}{L.}%
-     {Eemil}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Tarkoma}{T.}%
-     {Sasu}{S.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {ACM}%
-  }
-  \keyw{analytics, battery, collaborative, diagnosis, energy, mobile}
-  \strng{namehash}{OAJIAPSILETS1}
-  \strng{fullhash}{OAJIAPSILETS1}
-  \field{sortinit}{O}
-  \field{booktitle}{Proceedings of the 11th ACM Conference on Embedded
+  \entry{carat}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=OAJ}{%
+         family={Oliner},
+         family_i={O\bibinitperiod},
+         given={Adam\bibnamedelima J.},
+         given_i={A\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=IAP}{%
+         family={Iyer},
+         family_i={I\bibinitperiod},
+         given={Anand\bibnamedelima P.},
+         given_i={A\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+      {{hash=SI}{%
+         family={Stoica},
+         family_i={S\bibinitperiod},
+         given={Ion},
+         given_i={I\bibinitperiod},
+      }}%
+      {{hash=LE}{%
+         family={Lagerspetz},
+         family_i={L\bibinitperiod},
+         given={Eemil},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=TS}{%
+         family={Tarkoma},
+         family_i={T\bibinitperiod},
+         given={Sasu},
+         given_i={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {ACM}%
+    }
+    \keyw{analytics, battery, collaborative, diagnosis, energy, mobile}
+    \strng{namehash}{OAJIAPSILETS1}
+    \strng{fullhash}{OAJIAPSILETS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{booktitle}{Proceedings of the 11th ACM Conference on Embedded
   Networked Sensor Systems}
-  \verb{doi}
-  \verb 10.1145/2517351.2517354
-  \endverb
-  \field{isbn}{978-1-4503-2027-6}
-  \field{pages}{10:1\bibrangedash 10:14}
-  \field{series}{SenSys '13}
-  \field{title}{Carat: Collaborative Energy Diagnosis for Mobile Devices}
-  \verb{url}
-  \verb http://doi.acm.org/10.1145/2517351.2517354
-  \endverb
-  \list{location}{1}{%
-    {Roma, Italy}%
-  }
-  \field{year}{2013}
-  \warn{\item Can't use 'location' + 'address'}
-\endentry
+    \verb{doi}
+    \verb 10.1145/2517351.2517354
+    \endverb
+    \field{isbn}{978-1-4503-2027-6}
+    \field{pages}{10:1\bibrangedash 10:14}
+    \field{series}{SenSys '13}
+    \field{title}{Carat: Collaborative Energy Diagnosis for Mobile Devices}
+    \verb{url}
+    \verb http://doi.acm.org/10.1145/2517351.2517354
+    \endverb
+    \list{location}{1}{%
+      {Roma, Italy}%
+    }
+    \field{year}{2013}
+    \warn{\item Can't use 'location' + 'address'}
+  \endentry
 
-\entry{pan2010survey}{article}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Pan}{P.}%
-     {Sinno~Jialin}{S.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Yang}{Y.}%
-     {Qiang}{Q.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {IEEE Educational Activities Department}%
-  }
-  \keyw{Transfer learning, Transfer learning, survey, machine learning, data
+  \entry{pan2010survey}{article}{}
+    \name{author}{2}{}{%
+      {{hash=PSJ}{%
+         family={Pan},
+         family_i={P\bibinitperiod},
+         given={Sinno\bibnamedelima Jialin},
+         given_i={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=YQ}{%
+         family={Yang},
+         family_i={Y\bibinitperiod},
+         given={Qiang},
+         given_i={Q\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE Educational Activities Department}%
+    }
+    \keyw{Transfer learning, Transfer learning, survey, machine learning, data
   mining., data mining., machine learning, survey}
-  \strng{namehash}{PSJYQ1}
-  \strng{fullhash}{PSJYQ1}
-  \field{sortinit}{P}
-  \verb{doi}
-  \verb 10.1109/TKDE.2009.191
-  \endverb
-  \field{issn}{1041-4347}
-  \field{number}{10}
-  \field{pages}{1345\bibrangedash 1359}
-  \field{title}{A Survey on Transfer Learning}
-  \verb{url}
-  \verb http://dx.doi.org/10.1109/TKDE.2009.191
-  \endverb
-  \field{volume}{22}
-  \list{location}{1}{%
-    {Piscataway, NJ, USA}%
-  }
-  \field{journaltitle}{IEEE Trans. on Knowl. and Data Eng.}
-  \field{month}{10}
-  \field{year}{2010}
-\endentry
+    \strng{namehash}{PSJYQ1}
+    \strng{fullhash}{PSJYQ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \verb{doi}
+    \verb 10.1109/TKDE.2009.191
+    \endverb
+    \field{issn}{1041-4347}
+    \field{number}{10}
+    \field{pages}{1345\bibrangedash 1359}
+    \field{title}{A Survey on Transfer Learning}
+    \verb{url}
+    \verb http://dx.doi.org/10.1109/TKDE.2009.191
+    \endverb
+    \field{volume}{22}
+    \list{location}{1}{%
+      {Piscataway, NJ, USA}%
+    }
+    \field{journaltitle}{IEEE Trans. on Knowl. and Data Eng.}
+    \field{month}{10}
+    \field{year}{2010}
+  \endentry
 
-\entry{Flicker}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Petrica}{P.}%
-     {Paula}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Izraelevitz}{I.}%
-     {Adam~M.}{A.~M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Albonesi}{A.}%
-     {David~H.}{D.~H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shoemaker}{S.}%
-     {Christine~A.}{C.~A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{PPIAMADHSCA1}
-  \strng{fullhash}{PPIAMADHSCA1}
-  \field{sortinit}{P}
-  \field{booktitle}{ISCA}
-  \field{title}{Flicker: A Dynamically Adaptive Architecture for Power Limited
-  Multicore Systems}
-  \field{year}{2013}
-\endentry
+  \entry{Flicker}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=PP}{%
+         family={Petrica},
+         family_i={P\bibinitperiod},
+         given={Paula},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=IAM}{%
+         family={Izraelevitz},
+         family_i={I\bibinitperiod},
+         given={Adam\bibnamedelima M.},
+         given_i={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=ADH}{%
+         family={Albonesi},
+         family_i={A\bibinitperiod},
+         given={David\bibnamedelima H.},
+         given_i={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=SCA}{%
+         family={Shoemaker},
+         family_i={S\bibinitperiod},
+         given={Christine\bibnamedelima A.},
+         given_i={C\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PPIAMADHSCA1}
+    \strng{fullhash}{PPIAMADHSCA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{ISCA}
+    \field{title}{Flicker: A Dynamically Adaptive Architecture for Power
+  Limited Multicore Systems}
+    \field{year}{2013}
+  \endentry
 
-\entry{Ponamarev}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Ponomarev}{P.}%
-     {Dmitry}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kucuk}{K.}%
-     {Gurhan}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ghose}{G.}%
-     {Kanad}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{PDKGGK1}
-  \strng{fullhash}{PDKGGK1}
-  \field{sortinit}{P}
-  \field{booktitle}{MICRO}
-  \field{title}{Reducing Power Requirements of Instruction Scheduling Through
+  \entry{Ponamarev}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=PD}{%
+         family={Ponomarev},
+         family_i={P\bibinitperiod},
+         given={Dmitry},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=KG}{%
+         family={Kucuk},
+         family_i={K\bibinitperiod},
+         given={Gurhan},
+         given_i={G\bibinitperiod},
+      }}%
+      {{hash=GK}{%
+         family={Ghose},
+         family_i={G\bibinitperiod},
+         given={Kanad},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PDKGGK1}
+    \strng{fullhash}{PDKGGK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{MICRO}
+    \field{title}{Reducing Power Requirements of Instruction Scheduling Through
   Dynamic Allocation of Multiple Datapath Resources}
-  \field{year}{2001}
-\endentry
+    \field{year}{2001}
+  \endentry
 
-\entry{josep-isca2016}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Pothukuchi}{P.}%
-     {Raghavendra}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ansari}{A.}%
-     {Amin}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Voulgaris}{V.}%
-     {Petros}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Torrellas}{T.}%
-     {Josep}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{PRAAVPTJ1}
-  \strng{fullhash}{PRAAVPTJ1}
-  \field{sortinit}{P}
-  \field{booktitle}{ISCA}
-  \field{title}{Using Multiple Input, Multiple Output Formal Control to
+  \entry{josep-isca2016}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=PR}{%
+         family={Pothukuchi},
+         family_i={P\bibinitperiod},
+         given={Raghavendra},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=AA}{%
+         family={Ansari},
+         family_i={A\bibinitperiod},
+         given={Amin},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=VP}{%
+         family={Voulgaris},
+         family_i={V\bibinitperiod},
+         given={Petros},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Torrellas},
+         family_i={T\bibinitperiod},
+         given={Josep},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PRAAVPTJ1}
+    \strng{fullhash}{PRAAVPTJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{booktitle}{ISCA}
+    \field{title}{Using Multiple Input, Multiple Output Formal Control to
   Maximize Resource Efficiency in Architectures}
-  \field{year}{2016}
-\endentry
+    \field{year}{2016}
+  \endentry
 
-\entry{Raghavendra2008}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Raghavendra}{R.}%
-     {Ramya}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ranganathan}{R.}%
-     {Parthasarathy}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Talwar}{T.}%
-     {Vanish}{V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Wang}{W.}%
-     {Zhikui}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhu}{Z.}%
-     {Xiaoyun}{X.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{RRRPTVWZZX1}
-  \strng{fullhash}{RRRPTVWZZX1}
-  \field{sortinit}{R}
-  \field{booktitle}{ASPLOS}
-  \field{title}{No "power" struggles: coordinated multi-level power management
-  for the data center}
-  \field{year}{2008}
-\endentry
+  \entry{Raghavendra2008}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=RR}{%
+         family={Raghavendra},
+         family_i={R\bibinitperiod},
+         given={Ramya},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=RP}{%
+         family={Ranganathan},
+         family_i={R\bibinitperiod},
+         given={Parthasarathy},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=TV}{%
+         family={Talwar},
+         family_i={T\bibinitperiod},
+         given={Vanish},
+         given_i={V\bibinitperiod},
+      }}%
+      {{hash=WZ}{%
+         family={Wang},
+         family_i={W\bibinitperiod},
+         given={Zhikui},
+         given_i={Z\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhu},
+         family_i={Z\bibinitperiod},
+         given={Xiaoyun},
+         given_i={X\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RRRPTVWZZX1}
+    \strng{fullhash}{RRRPTVWZZX1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{booktitle}{ASPLOS}
+    \field{title}{No "power" struggles: coordinated multi-level power
+  management for the data center}
+    \field{year}{2008}
+  \endentry
 
-\entry{Rajkumar}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Rajkumar}{R.}%
-     {R.}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lee}{L.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lehoczky}{L.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Siewiorek}{S.}%
-     {Dan}{D.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{RRLCLJSD1}
-  \strng{fullhash}{RRLCLJSD1}
-  \field{sortinit}{R}
-  \field{booktitle}{RTSS}
-  \field{title}{A resource allocation model for QoS management}
-  \field{year}{1997}
-\endentry
+  \entry{Rajkumar}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=RR}{%
+         family={Rajkumar},
+         family_i={R\bibinitperiod},
+         given={R.},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lee},
+         family_i={L\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Lehoczky},
+         family_i={L\bibinitperiod},
+         given={J.},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Siewiorek},
+         family_i={S\bibinitperiod},
+         given={Dan},
+         given_i={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RRLCLJSD1}
+    \strng{fullhash}{RRLCLJSD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{booktitle}{RTSS}
+    \field{title}{A resource allocation model for QoS management}
+    \field{year}{1997}
+  \endentry
 
-\entry{Cinder}{inproceedings}{}
-  \name{author}{6}{}{%
-    {{}%
-     {Roy}{R.}%
-     {Arjun}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Rumble}{R.}%
-     {Stephen~M.}{S.~M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Stutsman}{S.}%
-     {Ryan}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Levis}{L.}%
-     {Philip}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Mazi\`{e}res}{M.}%
-     {David}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zeldovich}{Z.}%
-     {Nickolai}{N.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{RARSMSRLPMDZN1}
-  \strng{fullhash}{RARSMSRLPMDZN1}
-  \field{sortinit}{R}
-  \field{booktitle}{EuroSys}
-  \field{title}{Energy Management in Mobile Devices with the Cinder Operating
+  \entry{Cinder}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=RA}{%
+         family={Roy},
+         family_i={R\bibinitperiod},
+         given={Arjun},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=RSM}{%
+         family={Rumble},
+         family_i={R\bibinitperiod},
+         given={Stephen\bibnamedelima M.},
+         given_i={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=SR}{%
+         family={Stutsman},
+         family_i={S\bibinitperiod},
+         given={Ryan},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=LP}{%
+         family={Levis},
+         family_i={L\bibinitperiod},
+         given={Philip},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={Mazi\`{e}res},
+         family_i={M\bibinitperiod},
+         given={David},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=ZN}{%
+         family={Zeldovich},
+         family_i={Z\bibinitperiod},
+         given={Nickolai},
+         given_i={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RARSMSRLPMDZN1}
+    \strng{fullhash}{RARSMSRLPMDZN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{R}
+    \field{sortinithash}{R}
+    \field{booktitle}{EuroSys}
+    \field{title}{Energy Management in Mobile Devices with the Cinder Operating
   System}
-  \field{year}{2011}
-\endentry
+    \field{year}{2011}
+  \endentry
 
-\entry{METE}{inproceedings}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Sharifi}{S.}%
-     {Akbar}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Srikantaiah}{S.}%
-     {Shekhar}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Mishra}{M.}%
-     {Asit~K.}{A.~K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kandemir}{K.}%
-     {Mahmut}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Das}{D.}%
-     {Chita~R.}{C.~R.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{SASSMAKKMDCR1}
-  \strng{fullhash}{SASSMAKKMDCR1}
-  \field{sortinit}{S}
-  \field{booktitle}{SIGMETRICS}
-  \field{title}{METE: meeting end-to-end QoS in multicores through system-wide
-  resource management}
-  \field{year}{2011}
-\endentry
+  \entry{METE}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=SA}{%
+         family={Sharifi},
+         family_i={S\bibinitperiod},
+         given={Akbar},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Srikantaiah},
+         family_i={S\bibinitperiod},
+         given={Shekhar},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=MAK}{%
+         family={Mishra},
+         family_i={M\bibinitperiod},
+         given={Asit\bibnamedelima K.},
+         given_i={A\bibinitperiod\bibinitdelim K\bibinitperiod},
+      }}%
+      {{hash=KM}{%
+         family={Kandemir},
+         family_i={K\bibinitperiod},
+         given={Mahmut},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=DCR}{%
+         family={Das},
+         family_i={D\bibinitperiod},
+         given={Chita\bibnamedelima R.},
+         given_i={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SASSMAKKMDCR1}
+    \strng{fullhash}{SASSMAKKMDCR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{SIGMETRICS}
+    \field{title}{METE: meeting end-to-end QoS in multicores through
+  system-wide resource management}
+    \field{year}{2011}
+  \endentry
 
-\entry{PowerContainers}{article}{}
-  \name{author}{5}{}{%
-    {{}%
-     {Shen}{S.}%
-     {Kai}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shriraman}{S.}%
-     {Arrvindh}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dwarkadas}{D.}%
-     {Sandhya}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhang}{Z.}%
-     {Xiao}{X.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Chen}{C.}%
-     {Zhuan}{Z.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {ACM}%
-  }
-  \keyw{hardware counters, multicore, operating system, power modeling, power
+  \entry{PowerContainers}{article}{}
+    \name{author}{5}{}{%
+      {{hash=SK}{%
+         family={Shen},
+         family_i={S\bibinitperiod},
+         given={Kai},
+         given_i={K\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Shriraman},
+         family_i={S\bibinitperiod},
+         given={Arrvindh},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Dwarkadas},
+         family_i={D\bibinitperiod},
+         given={Sandhya},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhang},
+         family_i={Z\bibinitperiod},
+         given={Xiao},
+         given_i={X\bibinitperiod},
+      }}%
+      {{hash=CZ}{%
+         family={Chen},
+         family_i={C\bibinitperiod},
+         given={Zhuan},
+         given_i={Z\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {ACM}%
+    }
+    \keyw{hardware counters, multicore, operating system, power modeling, power
   virus, server and cloud computing}
-  \strng{namehash}{SKSADSZXCZ1}
-  \strng{fullhash}{SKSADSZXCZ1}
-  \field{sortinit}{S}
-  \verb{doi}
-  \verb 10.1145/2499368.2451124
-  \endverb
-  \field{issn}{0362-1340}
-  \field{number}{4}
-  \field{pages}{65\bibrangedash 76}
-  \field{title}{Power Containers: An OS Facility for Fine-grained Power and
+    \strng{namehash}{SKSADSZXCZ1}
+    \strng{fullhash}{SKSADSZXCZ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \verb{doi}
+    \verb 10.1145/2499368.2451124
+    \endverb
+    \field{issn}{0362-1340}
+    \field{number}{4}
+    \field{pages}{65\bibrangedash 76}
+    \field{title}{Power Containers: An OS Facility for Fine-grained Power and
   Energy Management on Multicore Servers}
-  \verb{url}
-  \verb http://doi.acm.org/10.1145/2499368.2451124
-  \endverb
-  \field{volume}{48}
-  \list{location}{1}{%
-    {New York, NY, USA}%
-  }
-  \field{journaltitle}{SIGPLAN Not.}
-  \field{month}{03}
-  \field{year}{2013}
-\endentry
+    \verb{url}
+    \verb http://doi.acm.org/10.1145/2499368.2451124
+    \endverb
+    \field{volume}{48}
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
+    \field{journaltitle}{SIGPLAN Not.}
+    \field{month}{03}
+    \field{year}{2013}
+  \endentry
 
-\entry{Koala}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Snowdon}{S.}%
-     {David~C.}{D.~C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Le~Sueur}{L.~S.}%
-     {Etienne}{E.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Petters}{P.}%
-     {Stefan~M.}{S.~M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Heiser}{H.}%
-     {Gernot}{G.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{SDCLSEPSMHG1}
-  \strng{fullhash}{SDCLSEPSMHG1}
-  \field{sortinit}{S}
-  \field{booktitle}{EuroSys}
-  \field{title}{Koala: A Platform for OS-level Power Management}
-  \field{year}{2009}
-\endentry
+  \entry{Koala}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=SDC}{%
+         family={Snowdon},
+         family_i={S\bibinitperiod},
+         given={David\bibnamedelima C.},
+         given_i={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=LSE}{%
+         family={Le\bibnamedelima Sueur},
+         family_i={L\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Etienne},
+         given_i={E\bibinitperiod},
+      }}%
+      {{hash=PSM}{%
+         family={Petters},
+         family_i={P\bibinitperiod},
+         given={Stefan\bibnamedelima M.},
+         given_i={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=HG}{%
+         family={Heiser},
+         family_i={H\bibinitperiod},
+         given={Gernot},
+         given_i={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SDCLSEPSMHG1}
+    \strng{fullhash}{SDCLSEPSMHG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{EuroSys}
+    \field{title}{Koala: A Platform for OS-level Power Management}
+    \field{year}{2009}
+  \endentry
 
-\entry{Sojka}{article}{}
-  \name{author}{7}{}{%
-    {{}%
-     {Sojka}{S.}%
-     {Michal}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {P\'{\i}sa}{P.}%
-     {Pavel}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Faggioli}{F.}%
-     {Dario}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Cucinotta}{C.}%
-     {Tommaso}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Checconi}{C.}%
-     {Fabio}{F.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hanz{\'a}lek}{H.}%
-     {Zdenek}{Z.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lipari}{L.}%
-     {Giuseppe}{G.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{SMPPFDCTCFHZLG1}
-  \strng{fullhash}{SMPPFDCTCFHZLG1}
-  \field{sortinit}{S}
-  \field{number}{4}
-  \field{title}{Modular software architecture for flexible reservation
+  \entry{Sojka}{article}{}
+    \name{author}{7}{}{%
+      {{hash=SM}{%
+         family={Sojka},
+         family_i={S\bibinitperiod},
+         given={Michal},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=PP}{%
+         family={P\'{\i}sa},
+         family_i={P\bibinitperiod},
+         given={Pavel},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=FD}{%
+         family={Faggioli},
+         family_i={F\bibinitperiod},
+         given={Dario},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Cucinotta},
+         family_i={C\bibinitperiod},
+         given={Tommaso},
+         given_i={T\bibinitperiod},
+      }}%
+      {{hash=CF}{%
+         family={Checconi},
+         family_i={C\bibinitperiod},
+         given={Fabio},
+         given_i={F\bibinitperiod},
+      }}%
+      {{hash=HZ}{%
+         family={Hanz{\'a}lek},
+         family_i={H\bibinitperiod},
+         given={Zdenek},
+         given_i={Z\bibinitperiod},
+      }}%
+      {{hash=LG}{%
+         family={Lipari},
+         family_i={L\bibinitperiod},
+         given={Giuseppe},
+         given_i={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SMPPFDCTCFHZLG1}
+    \strng{fullhash}{SMPPFDCTCFHZLG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{number}{4}
+    \field{title}{Modular software architecture for flexible reservation
   mechanisms on heterogeneous resources}
-  \field{volume}{57}
-  \field{journaltitle}{Journal of Systems Architecture}
-  \field{year}{2011}
-\endentry
+    \field{volume}{57}
+    \field{journaltitle}{Journal of Systems Architecture}
+    \field{year}{2011}
+  \endentry
 
-\entry{ParallelismDial}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Sridharan}{S.}%
-     {Srinath}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Gupta}{G.}%
-     {Gagan}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Sohi}{S.}%
-     {Gurindar~S.}{G.~S.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{SSGGSGS1}
-  \strng{fullhash}{SSGGSGS1}
-  \field{sortinit}{S}
-  \field{booktitle}{ICS}
-  \field{title}{Holistic Run-time Parallelism Management for Time and Energy
+  \entry{ParallelismDial}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SS}{%
+         family={Sridharan},
+         family_i={S\bibinitperiod},
+         given={Srinath},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=GG}{%
+         family={Gupta},
+         family_i={G\bibinitperiod},
+         given={Gagan},
+         given_i={G\bibinitperiod},
+      }}%
+      {{hash=SGS}{%
+         family={Sohi},
+         family_i={S\bibinitperiod},
+         given={Gurindar\bibnamedelima S.},
+         given_i={G\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SSGGSGS1}
+    \strng{fullhash}{SSGGSGS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{ICS}
+    \field{title}{Holistic Run-time Parallelism Management for Time and Energy
   Efficiency}
-  \field{year}{2013}
-\endentry
+    \field{year}{2013}
+  \endentry
 
-\entry{Steere99}{inproceedings}{}
-  \name{author}{6}{}{%
-    {{}%
-     {Steere}{S.}%
-     {David~C.}{D.~C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Goel}{G.}%
-     {Ashvin}{A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Gruenberg}{G.}%
-     {Joshua}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {McNamee}{M.}%
-     {Dylan}{D.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pu}{P.}%
-     {Calton}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Walpole}{W.}%
-     {Jonathan}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{publisher}{1}{%
-    {USENIX Association}%
-  }
-  \strng{namehash}{SDCGAGJMDPCWJ1}
-  \strng{fullhash}{SDCGAGJMDPCWJ1}
-  \field{sortinit}{S}
-  \field{booktitle}{Proceedings of the Third Symposium on Operating Systems
+  \entry{Steere99}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=SDC}{%
+         family={Steere},
+         family_i={S\bibinitperiod},
+         given={David\bibnamedelima C.},
+         given_i={D\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=GA}{%
+         family={Goel},
+         family_i={G\bibinitperiod},
+         given={Ashvin},
+         given_i={A\bibinitperiod},
+      }}%
+      {{hash=GJ}{%
+         family={Gruenberg},
+         family_i={G\bibinitperiod},
+         given={Joshua},
+         given_i={J\bibinitperiod},
+      }}%
+      {{hash=MD}{%
+         family={McNamee},
+         family_i={M\bibinitperiod},
+         given={Dylan},
+         given_i={D\bibinitperiod},
+      }}%
+      {{hash=PC}{%
+         family={Pu},
+         family_i={P\bibinitperiod},
+         given={Calton},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=WJ}{%
+         family={Walpole},
+         family_i={W\bibinitperiod},
+         given={Jonathan},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {USENIX Association}%
+    }
+    \strng{namehash}{SDCGAGJMDPCWJ1}
+    \strng{fullhash}{SDCGAGJMDPCWJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{Proceedings of the Third Symposium on Operating Systems
   Design and Implementation}
-  \field{isbn}{1-880446-39-1}
-  \field{pages}{145\bibrangedash 158}
-  \field{series}{OSDI '99}
-  \field{title}{A Feedback-driven Proportion Allocator for Real-rate
+    \field{isbn}{1-880446-39-1}
+    \field{pages}{145\bibrangedash 158}
+    \field{series}{OSDI '99}
+    \field{title}{A Feedback-driven Proportion Allocator for Real-rate
   Scheduling}
-  \verb{url}
-  \verb http://dl.acm.org/citation.cfm?id=296806.296820
-  \endverb
-  \list{location}{1}{%
-    {New Orleans, Louisiana, USA}%
-  }
-  \field{year}{1999}
-  \warn{\item Can't use 'location' + 'address'}
-\endentry
+    \verb{url}
+    \verb http://dl.acm.org/citation.cfm?id=296806.296820
+    \endverb
+    \list{location}{1}{%
+      {New Orleans, Louisiana, USA}%
+    }
+    \field{year}{1999}
+    \warn{\item Can't use 'location' + 'address'}
+  \endentry
 
-\entry{SunDaiPan-2008a}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Sun}{S.}%
-     {Q.}{Q.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dai}{D.}%
-     {G.}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Pan}{P.}%
-     {W.}{W.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{SQDGPW1}
-  \strng{fullhash}{SQDGPW1}
-  \field{sortinit}{S}
-  \field{booktitle}{ICCSSE}
-  \field{title}{{LPV} Model and Its Application in Web Server Performance
+  \entry{SunDaiPan-2008a}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SQ}{%
+         family={Sun},
+         family_i={S\bibinitperiod},
+         given={Q.},
+         given_i={Q\bibinitperiod},
+      }}%
+      {{hash=DG}{%
+         family={Dai},
+         family_i={D\bibinitperiod},
+         given={G.},
+         given_i={G\bibinitperiod},
+      }}%
+      {{hash=PW}{%
+         family={Pan},
+         family_i={P\bibinitperiod},
+         given={W.},
+         given_i={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{SQDGPW1}
+    \strng{fullhash}{SQDGPW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{booktitle}{ICCSSE}
+    \field{title}{{LPV} Model and Its Application in Web Server Performance
   Control}
-  \field{year}{2008}
-\endentry
+    \field{year}{2008}
+  \endentry
 
-\entry{Tokic2010}{incollection}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Tokic}{T.}%
-     {Michel}{M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{TM1}
-  \strng{fullhash}{TM1}
-  \field{sortinit}{T}
-  \field{booktitle}{KI}
-  \field{title}{Adaptive $\epsilon$-Greedy Exploration in Reinforcement
+  \entry{Tokic2010}{incollection}{}
+    \name{author}{1}{}{%
+      {{hash=TM}{%
+         family={Tokic},
+         family_i={T\bibinitperiod},
+         given={Michel},
+         given_i={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TM1}
+    \strng{fullhash}{TM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{T}
+    \field{sortinithash}{T}
+    \field{booktitle}{KI}
+    \field{title}{Adaptive $\epsilon$-Greedy Exploration in Reinforcement
   Learning Based on Value Differences}
-  \field{year}{2010}
-\endentry
+    \field{year}{2010}
+  \endentry
 
-\entry{grace2}{article}{}
-  \name{author}{8}{}{%
-    {{}%
-     {Vardhan}{V.}%
-     {Vibhore}{V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Yuan}{Y.}%
-     {Wanghong}{W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {III}{I.}%
-     {Albert F.~Harris}{A.~F.~H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Adve}{A.}%
-     {Sarita~V.}{S.~V.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Kravets}{K.}%
-     {Robin}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Nahrstedt}{N.}%
-     {Klara}{K.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Sachs}{S.}%
-     {Daniel~Grobe}{D.~G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Jones}{J.}%
-     {Douglas~L.}{D.~L.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{VVYWIAFHASVKRNKSDGJDL1}
-  \strng{fullhash}{VVYWIAFHASVKRNKSDGJDL1}
-  \field{sortinit}{V}
-  \field{number}{2}
-  \field{title}{GRACE-2: integrating fine-grained application adaptation with
+  \entry{grace2}{article}{}
+    \name{author}{8}{}{%
+      {{hash=VV}{%
+         family={Vardhan},
+         family_i={V\bibinitperiod},
+         given={Vibhore},
+         given_i={V\bibinitperiod},
+      }}%
+      {{hash=YW}{%
+         family={Yuan},
+         family_i={Y\bibinitperiod},
+         given={Wanghong},
+         given_i={W\bibinitperiod},
+      }}%
+      {{hash=IAFH}{%
+         family={III},
+         family_i={I\bibinitperiod},
+         given={Albert F.\bibnamedelima Harris},
+         given_i={A\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim
+  H\bibinitperiod},
+      }}%
+      {{hash=ASV}{%
+         family={Adve},
+         family_i={A\bibinitperiod},
+         given={Sarita\bibnamedelima V.},
+         given_i={S\bibinitperiod\bibinitdelim V\bibinitperiod},
+      }}%
+      {{hash=KR}{%
+         family={Kravets},
+         family_i={K\bibinitperiod},
+         given={Robin},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=NK}{%
+         family={Nahrstedt},
+         family_i={N\bibinitperiod},
+         given={Klara},
+         given_i={K\bibinitperiod},
+      }}%
+      {{hash=SDG}{%
+         family={Sachs},
+         family_i={S\bibinitperiod},
+         given={Daniel\bibnamedelima Grobe},
+         given_i={D\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=JDL}{%
+         family={Jones},
+         family_i={J\bibinitperiod},
+         given={Douglas\bibnamedelima L.},
+         given_i={D\bibinitperiod\bibinitdelim L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{VVYWIAFHASVKRNKSDGJDL1}
+    \strng{fullhash}{VVYWIAFHASVKRNKSDGJDL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{number}{2}
+    \field{title}{GRACE-2: integrating fine-grained application adaptation with
   global adaptation for saving energy}
-  \field{volume}{4}
-  \field{journaltitle}{IJES}
-  \field{year}{2009}
-\endentry
+    \field{volume}{4}
+    \field{journaltitle}{IJES}
+    \field{year}{2009}
+  \endentry
 
-\entry{welch2006kalman}{report}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Welch}{W.}%
-     {Greg}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Bishop}{B.}%
-     {Gary}{G.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WGBG1}
-  \strng{fullhash}{WGBG1}
-  \field{sortinit}{W}
-  \field{number}{TR 95-041}
-  \field{title}{An Introduction to the Kalman Filter}
-  \list{institution}{1}{%
-    {UNC Chapel Hill, Department of Computer Science}%
-  }
-  \field{type}{techreport}
-\endentry
+  \entry{welch2006kalman}{report}{}
+    \name{author}{2}{}{%
+      {{hash=WG}{%
+         family={Welch},
+         family_i={W\bibinitperiod},
+         given={Greg},
+         given_i={G\bibinitperiod},
+      }}%
+      {{hash=BG}{%
+         family={Bishop},
+         family_i={B\bibinitperiod},
+         given={Gary},
+         given_i={G\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WGBG1}
+    \strng{fullhash}{WGBG1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{number}{TR 95-041}
+    \field{title}{An Introduction to the Kalman Filter}
+    \list{institution}{1}{%
+      {UNC Chapel Hill, Department of Computer Science}%
+    }
+    \field{type}{techreport}
+  \endentry
 
-\entry{Winter2010}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Winter}{W.}%
-     {Jonathan~A.}{J.~A.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Albonesi}{A.}%
-     {David~H.}{D.~H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shoemaker}{S.}%
-     {Christine~A.}{C.~A.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WJAADHSCA1}
-  \strng{fullhash}{WJAADHSCA1}
-  \field{sortinit}{W}
-  \field{booktitle}{PACT}
-  \field{title}{Scalable thread scheduling and global power management for
+  \entry{Winter2010}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=WJA}{%
+         family={Winter},
+         family_i={W\bibinitperiod},
+         given={Jonathan\bibnamedelima A.},
+         given_i={J\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=ADH}{%
+         family={Albonesi},
+         family_i={A\bibinitperiod},
+         given={David\bibnamedelima H.},
+         given_i={D\bibinitperiod\bibinitdelim H\bibinitperiod},
+      }}%
+      {{hash=SCA}{%
+         family={Shoemaker},
+         family_i={S\bibinitperiod},
+         given={Christine\bibnamedelima A.},
+         given_i={C\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WJAADHSCA1}
+    \strng{fullhash}{WJAADHSCA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{PACT}
+    \field{title}{Scalable thread scheduling and global power management for
   heterogeneous many-core architectures}
-  \field{year}{2010}
-\endentry
+    \field{year}{2010}
+  \endentry
 
-\entry{Wu2004}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Wu}{W.}%
-     {Qiang}{Q.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Juang}{J.}%
-     {Philo}{P.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Martonosi}{M.}%
-     {Margaret}{M.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Clark}{C.}%
-     {Douglas~W.}{D.~W.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{WQJPMMCDW1}
-  \strng{fullhash}{WQJPMMCDW1}
-  \field{sortinit}{W}
-  \field{booktitle}{ASPLOS}
-  \field{title}{Formal online methods for voltage/frequency control in multiple
-  clock domain microprocessors}
-  \field{year}{2004}
-\endentry
+  \entry{Wu2004}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=WQ}{%
+         family={Wu},
+         family_i={W\bibinitperiod},
+         given={Qiang},
+         given_i={Q\bibinitperiod},
+      }}%
+      {{hash=JP}{%
+         family={Juang},
+         family_i={J\bibinitperiod},
+         given={Philo},
+         given_i={P\bibinitperiod},
+      }}%
+      {{hash=MM}{%
+         family={Martonosi},
+         family_i={M\bibinitperiod},
+         given={Margaret},
+         given_i={M\bibinitperiod},
+      }}%
+      {{hash=CDW}{%
+         family={Clark},
+         family_i={C\bibinitperiod},
+         given={Douglas\bibnamedelima W.},
+         given_i={D\bibinitperiod\bibinitdelim W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{WQJPMMCDW1}
+    \strng{fullhash}{WQJPMMCDW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{ASPLOS}
+    \field{title}{Formal online methods for voltage/frequency control in
+  multiple clock domain microprocessors}
+    \field{year}{2004}
+  \endentry
 
-\entry{wu2012inferred}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Wu}{W.}%
-     {Weidan}{W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lee}{L.}%
-     {Benjamin~C}{B.~C.}%
-     {}{}%
-     {}{}}%
-  }
-  \list{organization}{1}{%
-    {IEEE}%
-  }
-  \strng{namehash}{WWLBC1}
-  \strng{fullhash}{WWLBC1}
-  \field{sortinit}{W}
-  \field{booktitle}{Microarchitecture (MICRO), 2012 45th Annual IEEE/ACM
+  \entry{wu2012inferred}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=WW}{%
+         family={Wu},
+         family_i={W\bibinitperiod},
+         given={Weidan},
+         given_i={W\bibinitperiod},
+      }}%
+      {{hash=LBC}{%
+         family={Lee},
+         family_i={L\bibinitperiod},
+         given={Benjamin\bibnamedelima C},
+         given_i={B\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{WWLBC1}
+    \strng{fullhash}{WWLBC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{booktitle}{Microarchitecture (MICRO), 2012 45th Annual IEEE/ACM
   International Symposium on}
-  \field{pages}{413\bibrangedash 424}
-  \field{title}{Inferred models for dynamic and sparse hardware-software
+    \field{pages}{413\bibrangedash 424}
+    \field{title}{Inferred models for dynamic and sparse hardware-software
   spaces}
-  \field{year}{2012}
-\endentry
+    \field{year}{2012}
+  \endentry
 
-\entry{Yi2003}{inproceedings}{}
-  \name{author}{3}{}{%
-    {{}%
-     {Yi}{Y.}%
-     {Joshua~J.}{J.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lilja}{L.}%
-     {David~J.}{D.~J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hawkins}{H.}%
-     {Douglas~M.}{D.~M.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{YJJLDJHDM1}
-  \strng{fullhash}{YJJLDJHDM1}
-  \field{sortinit}{Y}
-  \field{booktitle}{HPCA}
-  \field{title}{A Statistically Rigorous Approach for Improving Simulation
+  \entry{Yi2003}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=YJJ}{%
+         family={Yi},
+         family_i={Y\bibinitperiod},
+         given={Joshua\bibnamedelima J.},
+         given_i={J\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=LDJ}{%
+         family={Lilja},
+         family_i={L\bibinitperiod},
+         given={David\bibnamedelima J.},
+         given_i={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=HDM}{%
+         family={Hawkins},
+         family_i={H\bibinitperiod},
+         given={Douglas\bibnamedelima M.},
+         given_i={D\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YJJLDJHDM1}
+    \strng{fullhash}{YJJLDJHDM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{booktitle}{HPCA}
+    \field{title}{A Statistically Rigorous Approach for Improving Simulation
   Methodology}
-  \field{year}{2003}
-\endentry
+    \field{year}{2003}
+  \endentry
 
-\entry{grace}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Yuan}{Y.}%
-     {Wanghong}{W.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Nahrstedt}{N.}%
-     {Klara}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{YWNK1}
-  \strng{fullhash}{YWNK1}
-  \field{sortinit}{Y}
-  \field{booktitle}{SOSP}
-  \field{title}{Energy-efficient soft real-time {CPU} scheduling for mobile
+  \entry{grace}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=YW}{%
+         family={Yuan},
+         family_i={Y\bibinitperiod},
+         given={Wanghong},
+         given_i={W\bibinitperiod},
+      }}%
+      {{hash=NK}{%
+         family={Nahrstedt},
+         family_i={N\bibinitperiod},
+         given={Klara},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YWNK1}
+    \strng{fullhash}{YWNK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{booktitle}{SOSP}
+    \field{title}{Energy-efficient soft real-time {CPU} scheduling for mobile
   multimedia systems}
-  \field{year}{2003}
-\endentry
+    \field{year}{2003}
+  \endentry
 
-\entry{PUPiL}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Zhang}{Z.}%
-     {Huazhe}{H.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Hoffmann}{H.}%
-     {Henry}{H.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{ZHHH1}
-  \strng{fullhash}{ZHHH1}
-  \field{sortinit}{Z}
-  \field{booktitle}{ASPLOS}
-  \field{title}{Maximizing Performance Under a Power Cap: A Comparison of
+  \entry{PUPiL}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=ZH}{%
+         family={Zhang},
+         family_i={Z\bibinitperiod},
+         given={Huazhe},
+         given_i={H\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hoffmann},
+         family_i={H\bibinitperiod},
+         given={Henry},
+         given_i={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZHHH1}
+    \strng{fullhash}{ZHHH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{ASPLOS}
+    \field{title}{Maximizing Performance Under a Power Cap: A Comparison of
   Hardware, Software, and Hybrid Techniques}
-  \field{year}{2016}
-\endentry
+    \field{year}{2016}
+  \endentry
 
-\entry{ControlWare}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Zhang}{Z.}%
-     {R.}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Lu}{L.}%
-     {C.}{C.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Abdelzaher}{A.}%
-     {T.F.}{T.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Stankovic}{S.}%
-     {J.A.}{J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{ZRLCATSJ1}
-  \strng{fullhash}{ZRLCATSJ1}
-  \field{sortinit}{Z}
-  \field{booktitle}{ICDCS}
-  \field{title}{ControlWare: A middleware architecture for Feedback Control of
-  Software Performance}
-  \field{year}{2002}
-\endentry
+  \entry{ControlWare}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=ZR}{%
+         family={Zhang},
+         family_i={Z\bibinitperiod},
+         given={R.},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=LC}{%
+         family={Lu},
+         family_i={L\bibinitperiod},
+         given={C.},
+         given_i={C\bibinitperiod},
+      }}%
+      {{hash=AT}{%
+         family={Abdelzaher},
+         family_i={A\bibinitperiod},
+         given={T.F.},
+         given_i={T\bibinitperiod},
+      }}%
+      {{hash=SJ}{%
+         family={Stankovic},
+         family_i={S\bibinitperiod},
+         given={J.A.},
+         given_i={J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZRLCATSJ1}
+    \strng{fullhash}{ZRLCATSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{ICDCS}
+    \field{title}{ControlWare: A middleware architecture for Feedback Control
+  of Software Performance}
+    \field{year}{2002}
+  \endentry
 
-\entry{Zhang2012}{inproceedings}{}
-  \name{author}{4}{}{%
-    {{}%
-     {Zhang}{Z.}%
-     {Xiao}{X.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zhong}{Z.}%
-     {Rongrong}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Dwarkadas}{D.}%
-     {Sandhya}{S.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Shen}{S.}%
-     {Kai}{K.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{ZXZRDSSK1}
-  \strng{fullhash}{ZXZRDSSK1}
-  \field{sortinit}{Z}
-  \field{booktitle}{ICPP}
-  \field{title}{A Flexible Framework for Throttling-Enabled Multicore
+  \entry{Zhang2012}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=ZX}{%
+         family={Zhang},
+         family_i={Z\bibinitperiod},
+         given={Xiao},
+         given_i={X\bibinitperiod},
+      }}%
+      {{hash=ZR}{%
+         family={Zhong},
+         family_i={Z\bibinitperiod},
+         given={Rongrong},
+         given_i={R\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Dwarkadas},
+         family_i={D\bibinitperiod},
+         given={Sandhya},
+         given_i={S\bibinitperiod},
+      }}%
+      {{hash=SK}{%
+         family={Shen},
+         family_i={S\bibinitperiod},
+         given={Kai},
+         given_i={K\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZXZRDSSK1}
+    \strng{fullhash}{ZXZRDSSK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{ICPP}
+    \field{title}{A Flexible Framework for Throttling-Enabled Multicore
   Management (TEMM)}
-  \field{year}{2012}
-\endentry
+    \field{year}{2012}
+  \endentry
 
-\entry{reddiHPCA2013}{inproceedings}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Zhu}{Z.}%
-     {Yuhao}{Y.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Reddi}{R.}%
-     {Vijay~Janapa}{V.~J.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{ZYRVJ1}
-  \strng{fullhash}{ZYRVJ1}
-  \field{sortinit}{Z}
-  \field{booktitle}{HPCA}
-  \field{title}{High-performance and energy-efficient mobile web browsing on
+  \entry{reddiHPCA2013}{inproceedings}{}
+    \name{author}{2}{}{%
+      {{hash=ZY}{%
+         family={Zhu},
+         family_i={Z\bibinitperiod},
+         given={Yuhao},
+         given_i={Y\bibinitperiod},
+      }}%
+      {{hash=RVJ}{%
+         family={Reddi},
+         family_i={R\bibinitperiod},
+         given={Vijay\bibnamedelima Janapa},
+         given_i={V\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ZYRVJ1}
+    \strng{fullhash}{ZYRVJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{booktitle}{HPCA}
+    \field{title}{High-performance and energy-efficient mobile web browsing on
   big/little systems}
-  \field{year}{2013}
-\endentry
-
-\lossort
-\endlossort
-
+    \field{year}{2013}
+  \endentry
+\endsortlist
 \endinput

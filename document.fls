@@ -588,6 +588,9 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/newtx/zxlr-8r.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/boondox/zxxrl7z.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
+INPUT figures/learning_control_doodle.pdf
+INPUT ./figures/learning_control_doodle.pdf
+INPUT ./figures/learning_control_doodle.pdf
 INPUT tex/example.tex
 INPUT tex/example.tex
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/times/ptmbi7t.tfm
@@ -655,6 +658,9 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT figures/performance-hash-table.pdf
+INPUT ./figures/performance-hash-table.pdf
+INPUT ./figures/performance-hash-table.pdf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/vf/public/newtx/ntxsym.vf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/txfonts/txsya.tfm
@@ -683,9 +689,6 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/boondox/zxxrl7z.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/vf/public/txfonts/txr.vf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/txfonts/rtxptmr.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/txfonts/rtxr.tfm
-INPUT figures/performance-hash-table.pdf
-INPUT ./figures/performance-hash-table.pdf
-INPUT ./figures/performance-hash-table.pdf
 INPUT tex/evaluation.tex
 INPUT tex/evaluation.tex
 INPUT figures/odroid.png
@@ -694,13 +697,6 @@ INPUT ./figures/odroid.png
 INPUT figures/odroidall.png
 INPUT ./figures/odroidall.png
 INPUT ./figures/odroidall.png
-INPUT img/mem-compute.tex
-INPUT img/mem-compute.tex
-INPUT out/document-figure3.md5
-INPUT out/document-figure3.pdf
-INPUT out/document-figure3.dpth
-INPUT out/document-figure3.pdf
-INPUT ./out/document-figure3.pdf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/vf/public/newtx/nxlmia.vf
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/newtx/rfxlr-alt.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/newtx/Libertine-nu.tfm
@@ -715,6 +711,13 @@ INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/newtx/ntxsyralt.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/newtx/zxlr-8r.tfm
 INPUT /usr/local/texlive/2016/texmf-dist/fonts/tfm/public/boondox/zxxrl7z.tfm
+INPUT img/mem-compute.tex
+INPUT img/mem-compute.tex
+INPUT out/document-figure3.md5
+INPUT out/document-figure3.pdf
+INPUT out/document-figure3.dpth
+INPUT out/document-figure3.pdf
+INPUT ./out/document-figure3.pdf
 INPUT img/single-app-summary2-v4.tex
 INPUT img/single-app-summary2-v4.tex
 INPUT out/document-figure4.md5
