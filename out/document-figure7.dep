@@ -1,2 +1,3 @@
-out/document-figure7.pdf: img/ma-eff-summary.txt
-out/document-figure7.pdf: img/ma-lat-summary.txt
+out/document-figure7.pdf: img/image_text/dyn-eff-0.60-v3.txt
+out/document-figure7.pdf: img/image_text/dyn-eff-0.75-v3.txt
+out/document-figure7.pdf: img/image_text/dyn-eff-0.90-v3.txt

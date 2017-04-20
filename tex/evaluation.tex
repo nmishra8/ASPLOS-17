@@ -141,28 +141,46 @@ knowledge.  Specifically, we use leave-one-out cross validation: to
 test application $x$, we form a set of all other applications, train
 the learners, and then test on $x$.
 
+\begin{figure*}[t]
+\centering
+ \subfloat[Single-App]
+  {
+   \input{img/single-app-summary2-v4.tex}  \label{fig:single-sum}
+  }
+   %\vskip -.8em
+ \subfloat[Mulit-App]
+  {
+    \input{img/multi-app-summary2-v4.tex}  \label{fig:multi-sum}
+  }
+   \vskip -.5em
+  %\vskip -.8em
+  \caption{\footnotesize Summary data for (a) single- and (b) multi-app scenarios.
+    The top row shows deadline misses, the bottom energy consumption.}
+\end{figure*}
+
 \section{Experimental Evaluation}
 
+
+\PUNT{
 \begin{figure}[t]
 \centering
   \input{img/single-app-summary2-v4.tex}
-   \vskip -.8em
+   \vskip -1.0em
   \caption{Summary data for single-app scenario.}
   \label{fig:single-sum}
 \end{figure}
-
+}
 \subsection{Performance and Energy for Single App}
 %Setup
 
 We set a range of performance targets from 50-90\% of the maximum
-achievable performance and measure the deadline misses and
-energy over optimal for all points of comparison.
-\figref{fig:single-sum} represents the summary results as an average
-error across all targets for the single application scenario. This figure
-shows two charts with the percentage of deadline misses in the top
-chart and the energy over optimal in the bottom.  The dots show the
-average for each technique, while the error bars show the minimum and
-maximum values.
+achievable performance and measure the deadline misses and energy over
+optimal for all points of comparison.  \figref{fig:single-sum}
+represents the summary results as an average error across all targets
+for the single application scenario. This figure shows two charts with
+the percentage of deadline misses in the top chart and the energy over
+optimal in the bottom.  The dots show the average for each technique,
+while the error bars show the minimum and maximum values.
 
 
 Not surprisingly, race-to-idle meets all deadlines, but its
@@ -188,7 +206,7 @@ misses 45\% of all deadlines, which is clearly unacceptable.
   {
     \input{img/single-app-energy-small.tex}
   }
-  \vskip -1em
+  \vskip -1.2em
   \caption{Comparison of application performance error and energy for single application scenario.}
  \label{fig:single-all}
 \end{figure*}
@@ -216,13 +234,15 @@ number of deadline misses and the normalized energy, respectively.
 
 \subsection{Performance and Energy for Multiple Apps}
 
-We again launch each benchmark with a performance target (the same
-targets as the prior study).  Halfway through execution, we start
-another application randomly drawn from our benchmark set---bound to
-one big core---which interferes with the application \SYSTEM{} is
-controlling.  Meeting the required performance in this dynamic
-scenario tests \SYSTEM{}'s ability to react to environmental changes.
+We again launch each benchmark with a performance target (targets
+range from 50-80\%, as higher targets are not achievable in this
+scenario).  Halfway through execution, we start another application
+randomly drawn from our benchmark set---bound to one big core---which
+interferes with the application \SYSTEM{} is controlling.  Meeting the
+required performance in this dynamic scenario tests \SYSTEM{}'s
+ability to react to environmental changes.
 
+\PUNT{
 \begin{figure}[t]
 \centering
   \input{img/multi-app-summary2-v4.tex}
@@ -230,6 +250,7 @@ scenario tests \SYSTEM{}'s ability to react to environmental changes.
   \caption{Summary data for multi-app scenario.}
   \label{fig:multi-sum}
 \end{figure}
+}
 
 \begin{figure*}[t]
  \captionsetup[subfigure]{labelformat=empty}
@@ -243,7 +264,7 @@ scenario tests \SYSTEM{}'s ability to react to environmental changes.
   {
     \input{img/multi-app-energy-small.tex}
   }
-  \vskip -1em
+  \vskip -1.2em
   \label{fig:multi}
   \caption{Comparison of application performance error and energy for multiple
   application scenario. }

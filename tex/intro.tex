@@ -61,18 +61,35 @@ must address two major challenges:
   while maintaining performance guarantees.
 \end{itemize}
 
+%\PUNT{
+\begin{wrapfigure}{r}{0.36\columnwidth}
+%\begin{figure}[t]
+\centering
+\includegraphics[width=.35\columnwidth]{figures/learning_control_doodle.pdf}
+\caption{Learning smoothes the controller's domain.}
+\label{fig:learning-control-doodle}
+%\end{figure}
+\end{wrapfigure}
+%}
 We address the first challenge by splitting resource allocation into
 two sub-tasks.  The first is learning \emph{speedup}---instead of
-absolute performance---so that all unpredictable external interference
-is viewed as a change to a \emph{baseline} performance and the
-relative speedup is independent of these changes.  Learning is
+absolute perf\-ormance---so that all unpredictable external
+interference is viewed as a change to a \emph{baseline} performance
+and the relative speedup is independent of these changes.  Learning is
 well-suited to predicting speedups as a function of resource usage and
 finding Pareto-optimal tradeoffs in speedup and energy.  The second
 sub-task is controlling speedup dynamically based on the difference
 between measured and desired performance.  Once the learner has found
 Pareto-optimal tradeoffs the problem is convex and well-suited to
-adaptive control solutions which guarantee the required speedup even in
-dynamic environments.
+adaptive control solutions which guarantee the required speedup even
+in dynamic environments.  
+%\PUNT{
+\figref{fig:learning-control-doodle}
+illustrates the intuition: processor complexity creates local optima,
+where control solutions can get stuck; but learning finds true optimal
+tradeoffs---``convexifying''---the problem, allowing control
+techniques to handle dynamics while providing globally optimal energy.
+%}
 %Even if the measured performance
 %is substantially changed due to external disturbances, the controller
 %accounts for these dynamics.
@@ -220,14 +237,7 @@ In summary, \emph{\SYSTEM{} is the first work to combine learning and
   processors as a case study.
 \end{itemize}
 
-%\begin{wrapfigure}{r}{0.5\columnwidth}
-\begin{figure}
-\centering
-\includegraphics[width=.5\columnwidth]{figures/learning_control_doodle.pdf}
-\caption{Learning makes controller's domain smooth.}
-\label{fig:learning-control-doodle}
-\end{figure}
-%\end{wrapfigure}
+
 % Formal analysis of \SYSTEM{} demonstrates convergence
 % despite noisy inputs and shows how to integrate learned variance into
 % control theoretic guarantees.  We demonstrate the practical benefits
