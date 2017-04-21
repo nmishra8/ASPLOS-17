@@ -1833,13 +1833,13 @@ Computing Machinery]
       \advance\@tempcnta by \@ne
       \addtolength{\ACM@linecount@bxht}{\baselineskip}
       \ifdim\ACM@linecount@bxht<\textheight\repeat}}
-\fi
-\def\ACM@linecount{%
+  \fi
+  \def\ACM@linecount{%
   \if@ACM@review
   \begin{picture}(0,0)%
     \put(-26,-22){\usebox{\ACM@linecount@bx}}%
   \end{picture}%
-  \fi}
+ \fi}
 \def\@shortauthors{\if@ACM@anonymous Anon.\else\shortauthors\fi}
 \def\@headfootfont{%
   \ifcase\ACM@format@nr
@@ -1861,18 +1861,18 @@ Computing Machinery]
     \sffamily
   \or % sigchi-a
     \sffamily
-  \fi}
+    \fi}
 \fancypagestyle{standardpagestyle}{%
   \fancyhf{}%
   \renewcommand{\headrulewidth}{\z@}%
   \renewcommand{\footrulewidth}{\z@}%
   \ifcase\ACM@format@nr
   \relax % manuscript
-    \fancyhead[LE]{\ACM@linecount\if@ACM@printfolios\thepage\fi}%
-    \fancyhead[RO]{\if@ACM@printfolios\thepage\fi}%
-    \fancyhead[RE]{\@shortauthors}%
-    \fancyhead[LO]{\ACM@linecount\shorttitle}%
-    \fancyfoot[RO,LE]{\footnotesize Manuscript submitted to ACM}%
+    %\fancyhead[LE]{\ACM@linecount\if@ACM@printfolios\thepage\fi}%
+    %\fancyhead[RO]{\if@ACM@printfolios\thepage\fi}%
+    %\fancyhead[RE]{\@shortauthors}%
+    %\fancyhead[LO]{\ACM@linecount\shorttitle}%
+    %\fancyfoot[RO,LE]{\footnotesize Manuscript submitted to ACM}%
   \or % acmsmall
     \fancyhead[LE]{\ACM@linecount\@headfootfont\@acmArticle\if@ACM@printfolios:\thepage\fi}%
     \fancyhead[RO]{\@headfootfont\@acmArticle\if@ACM@printfolios:\thepage\fi}%
@@ -1898,12 +1898,12 @@ Computing Machinery]
     \@acmNumber, Article \@acmArticle.  Publication date: \@acmPubDate.}%
   \else % Proceedings
     \fancyfoot[C]{\if@ACM@printfolios\footnotesize\thepage\fi}%
-    \fancyhead[LO]{\ACM@linecount\@headfootfont\shorttitle}%
-    \fancyhead[RE]{\@headfootfont\@shortauthors}%
-    \fancyhead[LE]{\ACM@linecount\@headfootfont\acmConference@shortname,
-      \acmConference@date, \acmConference@venue}%
-    \fancyhead[RO]{\@headfootfont\acmConference@shortname,
-      \acmConference@date, \acmConference@venue}%
+    %\fancyhead[LO]{\ACM@linecount\@headfootfont\shorttitle}%
+    %\fancyhead[RE]{\@headfootfont\@shortauthors}%
+    %\fancyhead[LE]{\ACM@linecount\@headfootfont\acmConference@shortname,
+    %  \acmConference@date, \acmConference@venue}%
+    %\fancyhead[RO]{\@headfootfont\acmConference@shortname,
+    %  \acmConference@date, \acmConference@venue}%
   \fi
   \if@ACM@sigchiamode
      \fancyheadoffset[L]{\dimexpr(\marginparsep+\marginparwidth)}%
