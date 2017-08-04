@@ -4,7 +4,7 @@
 \documentclass[sigplan,10pt,anonymous,nocopyrightspace]{acmart}\settopmatter{printfolios=true}
 \usepackage{mathptmx} % This is Times font
 
-%\newcommand{\asplossubmissionnumber}{209}
+\newcommand{\asplossubmissionnumber}{XXX}
 %\newcommand{\iscasubmissionnumber}{457}
 \setcopyright{none}             %% For review submission
 
@@ -227,16 +227,41 @@ tick label style={font=\footnotesize},
 \DeclareMathOperator*{\minimize}{minimize}
 \bibliography{reference}
 
+
+\usepackage{fancyhdr}
+
+% Ensure letter paper
+\pdfpagewidth=8.5in
+\pdfpageheight=11in
+
+%%%%%%%%%%%---SETME-----%%%%%%%%%%%%%
+\newcommand{\microsubmissionnumber}{XXX}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+\setlength{\headheight}{50pt}
+\renewcommand{\headrulewidth}{0pt}
+  \fancyhead[C]{\normalsize{ASPLOS 2018 Submission
+      \textbf{\#\asplossubmissionnumber} -- Confidential Draft -- Do NOT Distribute!!}} 
+  \pagenumbering{arabic}
+}  
+
+\pagenumbering{arabic}
+
+
 \begin{document}
 
-\title[\SYSTEM{}]{\SYSTEM{}: Combining Control and Learning for Predictable
+\title[\SYSTEM{}]{\SYSTEM{}: Learning Control for Predictable
   Performance and Low Energy} \date{}
 
-%\thispagestyle{firstpage}
-%\pagestyle{plain}
 
 \input{tex/abstract}
 \maketitle
+\thispagestyle{firstpage}
+\pagestyle{plain}
+
+
 \input{tex/intro}
 \input{tex/example}
 \input{tex/framework-new}

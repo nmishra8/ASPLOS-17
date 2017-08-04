@@ -266,6 +266,8 @@
 \newcount\addauflag
 \global\addauflag=0 %Haven't shown additional authors yet
 
+
+
 \newtoks\subtitletext
 \gdef\subtitle#1{\subtitletext={#1}}
 

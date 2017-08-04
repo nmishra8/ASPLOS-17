@@ -192,6 +192,40 @@
   \field{year}{2008}
 \endentry
 
+\entry{book}{book}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Buttazzo}{B.}%
+     {Giorgio~C}{G.~C.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Lipari}{L.}%
+     {Giuseppe}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Abeni}{A.}%
+     {Luca}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Caccamo}{C.}%
+     {Marco}{M.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{BGCLGALCM1}
+  \strng{fullhash}{BGCLGALCM1}
+  \field{sortinit}{B}
+  \field{title}{Soft Real-Time Systems: Predictability vs. Efficiency:
+  Predictability vs. Efficiency}
+  \field{year}{2006}
+\endentry
+
 \entry{rodinia}{inproceedings}{}
   \name{author}{7}{}{%
     {{}%
@@ -527,6 +561,49 @@
   \field{year}{2008}
 \endentry
 
+\entry{gelman2013bayesian}{book}{}
+  \name{author}{6}{}{%
+    {{}%
+     {Gelman}{G.}%
+     {Andrew}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Carlin}{C.}%
+     {John~B}{J.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Stern}{S.}%
+     {Hal~S}{H.~S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Dunson}{D.}%
+     {David~B}{D.~B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Vehtari}{V.}%
+     {Aki}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rubin}{R.}%
+     {Donald~B}{D.~B.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {CRC press}%
+  }
+  \strng{namehash}{GACJBSHSDDBVARDB1}
+  \strng{fullhash}{GACJBSHSDDBVARDB1}
+  \field{sortinit}{G}
+  \field{title}{Bayesian data analysis}
+  \field{year}{2013}
+\endentry
+
 \entry{SWiFT}{inproceedings}{}
   \name{author}{4}{}{%
     {{}%
@@ -556,6 +633,33 @@
   \field{booktitle}{2nd USENIX Windows NT Symposium}
   \field{title}{SWiFT: A Feedback Control and Dynamic Reconfiguration Toolkit}
   \field{year}{1998}
+\endentry
+
+\entry{HPCA2016}{inproceedings}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Halpern}{H.}%
+     {Matthew}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhu}{Z.}%
+     {Yuhao}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Reddi}{R.}%
+     {Vijay~Janapa}{V.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HMZYRVJ1}
+  \strng{fullhash}{HMZYRVJ1}
+  \field{sortinit}{H}
+  \field{booktitle}{{HPCA}}
+  \field{title}{Mobile CPU's rise to power: Quantifying the impact of
+  generational mobile {CPU} design trends on performance, energy, and user
+  satisfaction}
 \endentry
 
 \entry{Hellerstein2004a}{book}{}
@@ -606,6 +710,35 @@
   \field{booktitle}{SOSP}
   \field{title}{JouleGuard: energy guarantees for approximate applications}
   \field{year}{2015}
+\endentry
+
+\entry{radar}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Hoffmann}{H.}%
+     {Henry}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Agarwal}{A.}%
+     {Anant}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Devadas}{D.}%
+     {Srinivas}{S.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HHAADS1}
+  \strng{fullhash}{HHAADS1}
+  \field{sortinit}{H}
+  \field{number}{10}
+  \field{title}{Selecting Spatiotemporal Patterns for Development of Parallel
+  Applications}
+  \field{volume}{23}
+  \field{journaltitle}{{IEEE} Trans. Parallel Distrib. Syst.}
+  \field{year}{2012}
 \endentry
 
 \entry{icac2010heartbeats}{inproceedings}{}
@@ -741,6 +874,36 @@
   \field{title}{Self-Optimizing Memory Controllers: A Reinforcement Learning
   Approach}
   \field{year}{2008}
+\endentry
+
+\entry{parmibench}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Iqbal}{I.}%
+     {Syed Muhammad~Zeeshan}{S.~M.~Z.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Liang}{L.}%
+     {Yuchen}{Y.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Grahn}{G.}%
+     {Hakan}{H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{ISMZLYGH1}
+  \strng{fullhash}{ISMZLYGH1}
+  \field{sortinit}{I}
+  \field{number}{2}
+  \field{title}{ParMiBench - An Open-Source Benchmark for Embedded
+  Multiprocessor Systems}
+  \field{volume}{9}
+  \field{journaltitle}{IEEE Comput. Archit. Lett.}
+  \field{month}{07}
+  \field{year}{2010}
 \endentry
 
 \entry{KaramanolisEtAl-2005a}{inproceedings}{}
@@ -1125,6 +1288,71 @@
   appear)}
 \endentry
 
+\entry{TAAS}{article}{}
+  \name{author}{7}{}{%
+    {{}%
+     {Maggio}{M.}%
+     {Martina}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Hoffmann}{H.}%
+     {Henry}{H.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Papadopoulos}{P.}%
+     {Alessandro~V.}{A.~V.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Panerati}{P.}%
+     {Jacopo}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Santambrogio}{S.}%
+     {Marco~D.}{M.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Agarwal}{A.}%
+     {Anant}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Leva}{L.}%
+     {Alberto}{A.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {ACM}%
+  }
+  \keyw{Decision mechanisms, comparison, design approaches}
+  \strng{namehash}{MMHHPAVPJSMDAALA1}
+  \strng{fullhash}{MMHHPAVPJSMDAALA1}
+  \field{sortinit}{M}
+  \verb{doi}
+  \verb 10.1145/2382570.2382572
+  \endverb
+  \field{issn}{1556-4665}
+  \field{number}{4}
+  \field{pages}{36:1\bibrangedash 36:32}
+  \field{title}{Comparison of Decision-Making Strategies for Self-Optimization
+  in Autonomic Computing Systems}
+  \verb{url}
+  \verb http://doi.acm.org/10.1145/2382570.2382572
+  \endverb
+  \field{volume}{7}
+  \list{location}{1}{%
+    {New York, NY, USA}%
+  }
+  \field{journaltitle}{ACM Trans. Auton. Adapt. Syst.}
+  \field{month}{12}
+  \field{year}{2012}
+\endentry
+
 \entry{stream}{article}{}
   \name{author}{1}{}{%
     {{}%
@@ -1226,40 +1454,26 @@
   \field{year}{2002}
 \endentry
 
-\entry{minebench}{inproceedings}{}
-  \name{author}{5}{}{%
+\entry{morris1983parametric}{article}{}
+  \name{author}{1}{}{%
     {{}%
-     {Narayanan}{N.}%
-     {R.}{R.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Ozisikyilmaz}{O.}%
-     {B.}{B.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Zambreno}{Z.}%
-     {J.}{J.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Memik}{M.}%
-     {G.}{G.}%
-     {}{}%
-     {}{}}%
-    {{}%
-     {Choudhary}{C.}%
-     {A.}{A.}%
+     {Morris}{M.}%
+     {Carl~N}{C.~N.}%
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{NROBZJMGCA1}
-  \strng{fullhash}{NROBZJMGCA1}
-  \field{sortinit}{N}
-  \field{booktitle}{IISWC}
-  \field{title}{MineBench: A Benchmark Suite for Data Mining Workloads}
-  \field{year}{2006}
+  \list{publisher}{1}{%
+    {Taylor \& Francis Group}%
+  }
+  \strng{namehash}{MCN1}
+  \strng{fullhash}{MCN1}
+  \field{sortinit}{M}
+  \field{number}{381}
+  \field{pages}{47\bibrangedash 55}
+  \field{title}{Parametric empirical Bayes inference: theory and applications}
+  \field{volume}{78}
+  \field{journaltitle}{Journal of the American Statistical Association}
+  \field{year}{1983}
 \endentry
 
 \entry{carat}{inproceedings}{}
@@ -1838,6 +2052,25 @@
   \field{title}{{LPV} Model and Its Application in Web Server Performance
   Control}
   \field{year}{2008}
+\endentry
+
+\entry{RL}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Tesauro}{T.}%
+     {G.}{G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{TG1}
+  \strng{fullhash}{TG1}
+  \field{sortinit}{T}
+  \field{issue}{1}
+  \field{title}{Reinforcement Learning in Autonomic Computing: A Manifesto and
+  Case Studies}
+  \field{volume}{11}
+  \field{journaltitle}{IEEE Internet Computing}
+  \field{year}{2007}
 \endentry
 
 \entry{Tokic2010}{incollection}{}

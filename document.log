@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  21 APR 2017 16:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  4 AUG 2017 17:37
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1635,108 +1635,108 @@ LaTeX Warning: Unused global option(s):
 (./document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 230.
-LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 23
-0.
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 253.
+LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 25
+3.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 230.
-LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 23
-0.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 253.
+LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 25
+3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
 File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 230.
-LaTeX Font Info:    Try loading font information for U+ntxexa on input line 230
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 253.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 253
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 230.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 230.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 253.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 253.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 230.
-LaTeX Font Info:    ... okay on input line 230.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 230.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 253.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 23
-0.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 25
+3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 23
-0.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 25
+3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 23
-0.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 25
+3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 23
-0.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 25
+3.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsya on input line 230
+LaTeX Font Info:    Try loading font information for U+ntxsya on input line 253
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsya.fd
 File: untxsya.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsya.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 230
+LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 253
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyb.fd
 File: untxsyb.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyb.
 )
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 230
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 253
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 230
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 253
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 230.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 253.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 230.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 253.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 230.
-LaTeX Info: Redefining \microtypecontext on input line 230.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 253.
+LaTeX Info: Redefining \microtypecontext on input line 253.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1752,7 +1752,7 @@ File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box84
-Package hyperref Info: Link coloring OFF on input line 230.
+Package hyperref Info: Link coloring OFF on input line 253.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -1762,9 +1762,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count353
 )
-LaTeX Info: Redefining \ref on input line 230.
-LaTeX Info: Redefining \pageref on input line 230.
-LaTeX Info: Redefining \nameref on input line 230.
+LaTeX Info: Redefining \ref on input line 253.
+LaTeX Info: Redefining \pageref on input line 253.
+LaTeX Info: Redefining \nameref on input line 253.
 
 (./document.out) (./document.out)
 \@outlinefile=\write7
@@ -1875,25 +1875,25 @@ Package biblatex Warning: BibTeX reported the following issues
 (biblatex)                - Can't use 'location' + 'address'.
 
 )
-Package biblatex Info: Reference section=0 on input line 230.
-Package biblatex Info: Reference segment=0 on input line 230.
+Package biblatex Info: Reference section=0 on input line 253.
+Package biblatex Info: Reference segment=0 on input line 253.
 \c@lstlisting=\count362
  (./tex/abstract.tex)
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 239.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 260.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Try loading font information for OT1+LinuxBiolinumT-TLF on 
-input line 239.
+input line 260.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertine/OT1LinuxBiolinumT-TLF.fd
 File: OT1LinuxBiolinumT-TLF.fd 2012/11/26 (autoinst) Font definitions for OT1/L
 inuxBiolinumT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 239.
+(Font)              scaled to size 8.0pt on input line 260.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxBiolinumT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1903,20 +1903,25 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 239.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 239.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
 
 (./tex/intro.tex
-<figures/learning_control_doodle.pdf, id=129, 355.3275pt x 234.8775pt>
+Overfull \hbox (2.15102pt too wide) in paragraph at lines 61--63
+[]\OT1/ptm/m/n/10 (-20) Defining ab-strac-tions that ef-fi-ciently com-bine sub
+-problem
+ []
+
+<figures/learning_control_doodle.pdf, id=130, 355.3275pt x 234.8775pt>
 File: figures/learning_control_doodle.pdf Graphic file (type pdf)
 
 <use figures/learning_control_doodle.pdf>
 Package pdftex.def Info: figures/learning_control_doodle.pdf used on input line
- 68.
+ 69.
 (pdftex.def)             Requested size: 84.33221pt x 55.74455pt.
 
-Underfull \hbox (badness 3679) in paragraph at lines 69--69
+Underfull \hbox (badness 3679) in paragraph at lines 70--70
 []\OT1/ptm/b/n/10 Figure 1. |\OT1/ptm/m/n/10 (+20) Learn-
  []
 
@@ -1926,20 +1931,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [1.1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
  <./figures/learning_control_doodle.pdf>]) (./tex/example.tex
-<figures/STREAM-contour.pdf, id=213, 563.10374pt x 542.025pt>
+<figures/STREAM-contour.pdf, id=192, 563.10374pt x 542.025pt>
 File: figures/STREAM-contour.pdf Graphic file (type pdf)
 
 <use figures/STREAM-contour.pdf>
-Package pdftex.def Info: figures/STREAM-contour.pdf used on input line 42.
+Package pdftex.def Info: figures/STREAM-contour.pdf used on input line 45.
 (pdftex.def)             Requested size: 126.47249pt x 121.73532pt.
  (./img/STREAM-example-resized.tex
 ===== Image 'out/document-figure0' is up-to-date. ======
 )
-Overfull \hbox (7.6621pt too wide) in paragraph at lines 42--51
+Overfull \hbox (7.6621pt too wide) in paragraph at lines 45--53
  [][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 51.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 53.
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
 File: ot1zi4.fd 2013/06/09 OT1/zi4 (Inconsolata)
 )
@@ -1947,121 +1952,115 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `zi4' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \vbox (badness 1946) has occurred while \output is active []
-
  [2.2 <./figures/STREAM-contour.pdf> <./out/document-figure0.pdf>]
-<figures/BODYTRACK-contour.png, id=272, 1433.355pt x 1332.98pt>
+<figures/BODYTRACK-contour.png, id=235, 1433.355pt x 1332.98pt>
 File: figures/BODYTRACK-contour.png Graphic file (type png)
 
 <use figures/BODYTRACK-contour.png>
-Package pdftex.def Info: figures/BODYTRACK-contour.png used on input line 102.
+Package pdftex.def Info: figures/BODYTRACK-contour.png used on input line 104.
 (pdftex.def)             Requested size: 126.47249pt x 117.60362pt.
  (./img/BODYTRACK-example-resized.tex
 ===== Image 'out/document-figure1' is up-to-date. ======
 )
-Overfull \hbox (7.6621pt too wide) in paragraph at lines 102--111
+Overfull \hbox (7.6621pt too wide) in paragraph at lines 104--113
  [][][][] 
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (4.71365pt too wide) in paragraph at lines 141--146
-\OT1/ptm/m/n/10 (-20) prediction---handled by learning---and dy-namic managemen
-t---
  []
 
 (./img/BODYTRACK-example2-resized.tex
 ===== Image 'out/document-figure2' is up-to-date. ======
 )
-Underfull \hbox (badness 2368) in paragraph at lines 164--171
+Underfull \hbox (badness 2368) in paragraph at lines 167--174
 [][]\OT1/ptm/m/n/10 (+20) To demon-strate the
  []
 
 
-Overfull \hbox (2.4672pt too wide) in paragraph at lines 164--171
+Overfull \hbox (2.4672pt too wide) in paragraph at lines 167--174
 \OT1/ptm/m/n/10 (-20) again con-trol \OT1/zi4/m/n/10 bodytrack\OT1/ptm/m/n/10 (
 -20) ,
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 164--171
-\OT1/ptm/m/n/10 (+20) first sub-sec-tion. We
+Underfull \hbox (badness 1540) in paragraph at lines 167--174
+\OT1/ptm/m/n/10 (+20) us-age to per-for-mance,
  []
 
-[3.3 <./figures/BODYTRACK-contour.png (PNG copy)> <./out/document-figure1.pdf> 
-<./out/document-figure2.pdf>]) (./tex/framework-new.tex
-<figures/Overview.pdf, id=306, 670.505pt x 399.4925pt>
+) (./tex/framework-new.tex
+<figures/Overview.pdf, id=252, 670.505pt x 399.4925pt>
 File: figures/Overview.pdf Graphic file (type pdf)
 
 <use figures/Overview.pdf>
 Package pdftex.def Info: figures/Overview.pdf used on input line 5.
 (pdftex.def)             Requested size: 240.94499pt x 143.55507pt.
 
-<figures/Timeline.pdf, id=308, 671.50874pt x 322.20375pt>
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3.3 <./figures/BODYTRACK-contour.png (PNG copy)> <./out/document-figure1.pdf>
+ <./figures/Overview.pdf> <./out/document-figure2.pdf>]
+<figures/Timeline.pdf, id=1129, 671.50874pt x 322.20375pt>
 File: figures/Timeline.pdf Graphic file (type pdf)
 
 <use figures/Timeline.pdf>
-Package pdftex.def Info: figures/Timeline.pdf used on input line 27.
+Package pdftex.def Info: figures/Timeline.pdf used on input line 26.
 (pdftex.def)             Requested size: 240.94499pt x 115.60977pt.
- [4.4 <./figures/Overview.pdf> <./figures/Timeline.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5.5]
-<figures/performance-hash-table.pdf, id=1341, 751.80875pt x 553.06625pt>
+ [4.4 <./figures/Timeline.pdf>]
+<figures/performance-hash-table.pdf, id=1297, 751.80875pt x 553.06625pt>
 File: figures/performance-hash-table.pdf Graphic file (type pdf)
 
 <use figures/performance-hash-table.pdf>
 Package pdftex.def Info: figures/performance-hash-table.pdf used on input line 
-248.
+244.
 (pdftex.def)             Requested size: 240.94499pt x 177.24643pt.
-
-Overfull \hbox (10.84848pt too wide) in paragraph at lines 277--282
+ [5.5]
+Overfull \hbox (10.84848pt too wide) in paragraph at lines 273--278
 []\OT1/ptm/m/n/10 (-20) For ex-am-ple, con-sider the PHT in Fig-ure []7[] and a
  $\OML/ztmcm/m/it/10 speedup\U/ntxmia/m/it/10 {\OML/ztmcm/m/it/10 t\U/ntxmia/m/
 it/10 | =
  []
 
-[6.6 <./figures/performance-hash-table.pdf>]
-Overfull \hbox (1.01132pt too wide) in paragraph at lines 331--345
+
+Overfull \hbox (1.01132pt too wide) in paragraph at lines 325--340
  \OT1/ptm/b/n/10 Bayesian Pre-dic-tors: \OT1/ptm/m/n/10 (-20) A hi-er-ar-chi-ca
 l Bayesian model (HBM)
  []
 
 
-Overfull \hbox (10.0pt too wide) detected at line 372
+Overfull \hbox (10.0pt too wide) detected at line 367
 [][] 
  []
 
-) (./tex/evaluation.tex (./img/mem-compute.tex
+
+Underfull \vbox (badness 5119) has occurred while \output is active []
+
+ [6.6 <./figures/performance-hash-table.pdf>]) (./tex/evaluation.tex
+Overfull \hbox (2.07912pt too wide) in paragraph at lines 399--1
+\OT1/ptm/m/n/10 (-20) where $[]$ and $[]$ are the mea-sured val-ues of speedup 
+and powerup
+ []
+
+
+Overfull \hbox (3.00276pt too wide) in paragraph at lines 41--54
+\OT1/ptm/m/n/10 (-20) speed up with in-creas-ing frequency---typical of mem-ory
+ bound
+ []
+
+(./img/mem-compute.tex
 ===== Image 'out/document-figure3' is up-to-date. ======
 )
-Overfull \hbox (3.20314pt too wide) in paragraph at lines 1--50
+Overfull \hbox (2.72736pt too wide) in paragraph at lines 1--57
  [][] 
- []
-
-[7.7]
-Overfull \hbox (9.09486pt too wide) in paragraph at lines 96--102
-[]\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
-input (per-for-mance), multiple-
- []
-
-
-Overfull \hbox (18.3895pt too wide) in paragraph at lines 105--109
-[]\OT1/ptm/m/it/10 (-20) Offline\OT1/ptm/m/n/10 (-20) : does not ob-serve any v
-al-ues for the cur-rent application---
  []
 
 (./img/single-app-summary2-v4.tex
 ===== Image 'out/document-figure4' is up-to-date. ======
 ) (./img/multi-app-summary2-v4.tex
 ===== Image 'out/document-figure5' is up-to-date. ======
-) (./img/single-app-performance-small.tex
+) [7.7 <./out/document-figure3.pdf>]
+Overfull \hbox (9.09486pt too wide) in paragraph at lines 116--122
+[]\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
+input (per-for-mance), multiple-
+ []
+
+(./img/single-app-performance-small.tex
 ===== Image 'out/document-figure6' is up-to-date. ======
 ) (./img/single-app-energy-small.tex
 ===== Image 'out/document-figure7' is up-to-date. ======
@@ -2069,99 +2068,114 @@ al-ues for the cur-rent application---
 ===== Image 'out/document-figure8' is up-to-date. ======
 ) (./img/multi-app-energy-small.tex
 ===== Image 'out/document-figure9' is up-to-date. ======
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [8.8 <./out/document-figure3.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9.9 <./out/document-figure4.pdf> <./out/document-figure5.pdf> <./out/document
--figure6.pdf> <./out/document-figure7.pdf>]
-Overfull \hbox (1.54169pt too wide) in paragraph at lines 258--265
-\OT1/ptm/m/n/10 (-20) an-other ap-pli-ca-tion ran-domly drawn from our bench-ma
-rk set---
+) [8.8 <./out/document-figure4.pdf> <./out/document-figure5.pdf>]
+Overfull \hbox (1.54169pt too wide) in paragraph at lines 245--251
+\OT1/ptm/m/n/10 (-20) another application randomly drawn from our benchmark set
+---
  []
+
+
+Underfull \vbox (badness 1009) has occurred while \output is active []
+
 
 (./img/x264-phases.tex
 ===== Image 'out/document-figure10' is up-to-date. ======
 )
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10.10 <./out/document-figure8.pdf> <./out/document-figure9.pdf> <./out/docume
-nt-figure10.pdf>] <figures/lavamd2.pdf, id=1594, 451.6875pt x 574.145pt>
-File: figures/lavamd2.pdf Graphic file (type pdf)
-
-<use figures/lavamd2.pdf>
-Package pdftex.def Info: figures/lavamd2.pdf used on input line 373.
-(pdftex.def)             Requested size: 101.17645pt x 128.6076pt.
- (./img/LAVA-pole.tex
+ [9.9 <./out/document-figure6.pdf> <./out/document-figure7.pdf> <./out/document
+-figure8.pdf> <./out/document-figure9.pdf>] (./img/LAVA-pole.tex
 ===== Image 'out/document-figure11' is up-to-date. ======
 )
-Overfull \hbox (3.85936pt too wide) in paragraph at lines 373--380
- [][][][] 
+Overfull \hbox (10.65541pt too wide) in paragraph at lines 1--338
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--338
+
+ []
+
+
+Underfull \hbox (badness 7047) in paragraph at lines 341--353
+\OT1/ptm/m/n/10 (+20) learned vari-ance pre-
+ []
+
+
+Overfull \hbox (4.50308pt too wide) in paragraph at lines 341--353
+\OT1/ptm/m/n/10 (-20) an-tees de-spite us-ing noisy,
+ []
+
+
+Underfull \hbox (badness 5667) in paragraph at lines 341--353
+\OT1/ptm/m/n/10 (+20) ing both CALOREE-
  []
 
 (./img/sample-accuracy-v3.tex
 ===== Image 'out/document-figure12' is up-to-date. ======
-)) (./tex/related.tex [11.11 <./figures/lavamd2.pdf> <./out/document-figure11.p
-df> <./out/document-figure12.pdf>]
+)) (./tex/related.tex [10.10 <./out/document-figure10.pdf> <./out/document-figu
+re11.pdf> <./out/document-figure12.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 )
-(./tex/conclusion.tex) (./tex/appendix.tex) [12.12]
-Overfull \hbox (4.83752pt too wide) in paragraph at lines 254--254
+(./tex/conclusion.tex) (./tex/appendix.tex) [11.11] [12.12
+
+]
+Overfull \hbox (4.83752pt too wide) in paragraph at lines 279--279
 \OT1/ptm/m/n/10 (-20) Lim-its from Com-pre-hen-sive Mi-croar-chi-tec-tural Adap
 -
  []
 
-[13.13
-
-]
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 253.
+(Font)              scaled to size 10.0pt on input line 278.
 
-Overfull \hbox (1.44968pt too wide) in paragraph at lines 254--254
+Overfull \hbox (10.53157pt too wide) in paragraph at lines 279--279
+\OT1/ptm/m/it/10 (-20) Amer-i-can Sta-tis-ti-cal As-so-ci-a-tion \OT1/ptm/m/n/1
+0 (-20) 78.381 (1983), pp. 47{
+ []
+
+
+Overfull \hbox (1.44968pt too wide) in paragraph at lines 279--279
 []\OT1/ptm/m/n/10 (-20) R. Raghaven-dra, P. Ran-ganathan, V. Tal-war, Z. Wang,
  []
 
-[14.14]
-Overfull \hbox (3.36096pt too wide) in paragraph at lines 254--254
+[13.13]
+Overfull \hbox (3.36096pt too wide) in paragraph at lines 279--279
 \OT1/ptm/m/n/10 (-20) ``GRACE-2: in-te-grat-ing fine-grained ap-pli-ca-tion ada
 p-
  []
 
 
-Overfull \hbox (1.42087pt too wide) in paragraph at lines 254--254
+Overfull \hbox (1.42087pt too wide) in paragraph at lines 279--279
 \OT1/ptm/m/n/10 (-20) age-ment for het-ero-ge-neous many-core ar-chi-tec-tures'
 '.
  []
 
-[15.15
-
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 254.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 254.
+[14.14]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 279.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
  (./document.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 254.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 254.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 279.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 279.
 Package rerunfilecheck Info: File `document.out' has not changed.
 (rerunfilecheck)             Checksum: D74255AAFD0CDCCE1923578F73B3D65D;1871.
 Package logreq Info: Writing requests to 'document.run.xml'.
 \openout1 = `document.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 254.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
  ) 
 Here is how much of TeX's memory you used:
- 41623 strings out of 493304
- 858154 string characters out of 6139871
- 1344859 words of memory out of 5000000
- 43535 multiletter control sequences out of 15000+600000
- 79824 words of font info for 329 fonts, out of 8000000 for 9000
+ 41652 strings out of 493304
+ 858576 string characters out of 6139871
+ 1343968 words of memory out of 5000000
+ 43541 multiletter control sequences out of 15000+600000
+ 82680 words of font info for 344 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
- 63i,12n,94p,910b,1147s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 63i,12n,94p,910b,1145s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/s
 hare/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/inconsolata/i4-ot1-4.enc}{/usr/share/texlive/texmf-dist/fon
@@ -2179,10 +2193,10 @@ urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/newtx/zxlr.pfb>
-Output written on document.pdf (15 pages, 1154438 bytes).
+Output written on document.pdf (14 pages, 966369 bytes).
 PDF statistics:
- 1854 PDF objects out of 2073 (max. 8388607)
- 1350 compressed objects within 14 object streams
- 180 named destinations out of 1000 (max. 500000)
- 38209 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 1843 PDF objects out of 2073 (max. 8388607)
+ 1344 compressed objects within 14 object streams
+ 184 named destinations out of 1000 (max. 500000)
+ 38716 words of extra memory for PDF output out of 42996 (max. 10000000)
 

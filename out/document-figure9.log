@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  20 APR 2017 14:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  4 AUG 2017 17:19
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -18,7 +18,6 @@ Package acmart Info: Not using screen mode on input line 69.
 Package acmart Info: Not using review mode on input line 77.
 Package acmart Info: Not using authorversion mode on input line 85.
 Package acmart Info: Not using anonymous mode on input line 103.
-Package acmart Info: Using review mode on input line 112.
 Package acmart Info: Using anonymous mode on input line 112.
 Class acmart Info: Using format sigplan, number 6 on input line 112.
 Class acmart Info: Using fontsize 10pt on input line 168.
@@ -568,13 +567,6 @@ Excluding comment 'comment') Excluding comment 'CCSXML'
 \f@ncyO@olf=\skip66
 \f@ncyO@orf=\skip67
 )
-\ACM@linecount@bx=\box34
-\ACM@linecount@bxht=\skip68
-
-Underfull \hbox (badness 10000) in paragraph at lines 1835--1835
-
- []
-
 \@folio@wd=\dimen139
 \@folio@ht=\dimen140
 \@folio@voffset=\dimen141
@@ -655,20 +647,20 @@ Package: balance 1999/02/23 4.3 (PWD)
 ) (/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enitkv@toks@=\toks32
-\labelindent=\skip69
+\labelindent=\skip68
 \enit@outerparindent=\dimen143
 \enit@toks=\toks33
-\enit@inbox=\box35
+\enit@inbox=\box34
 \enitdp@description=\count125
 ) (/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box36
-\UL@hyphenbox=\box37
-\UL@skip=\skip70
+\UL@box=\box35
+\UL@hyphenbox=\box36
+\UL@skip=\skip69
 \UL@hook=\toks34
 \UL@height=\dimen144
 \UL@pe=\count126
 \UL@pixel=\dimen145
-\ULC@box=\box38
+\ULC@box=\box37
 Package: ulem 2012/05/18
 \ULdepth=\dimen146
 ) (/usr/share/texlive/texmf-dist/tex/latex/todonotes/todonotes.sty
@@ -681,7 +673,7 @@ latex/pgf/basiclayer/pgf.sty (/usr/share/texmf/tex/latex/pgf/utilities/pgfrcs.s
 ty (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks35
 ) (/usr/share/texmf/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box39
+\pgfutil@abb=\box38
 ) (/usr/share/texmf/tex/generic/pgf/utilities/pgfrcs.code.tex
 Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
 ))
@@ -732,7 +724,7 @@ mathutil.code.tex) (/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.te
 x
 \pgfmath@dimen=\dimen155
 \pgfmath@count=\count133
-\pgfmath@box=\box40
+\pgfmath@box=\box39
 \pgfmath@toks=\toks39
 \pgfmath@stack@operand=\toks40
 \pgfmath@stack@operation=\toks41
@@ -772,9 +764,9 @@ File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
 \pgf@shorten@start@additional=\dimen173
 ) (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
-\pgfpic=\box41
-\pgf@hbox=\box42
-\pgf@layerbox@main=\box43
+\pgfpic=\box40
+\pgf@hbox=\box41
+\pgf@layerbox@main=\box42
 \pgf@picture@serial@count=\count135
 ) (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
@@ -800,7 +792,7 @@ File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
 File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
-\pgfexternal@startupbox=\box44
+\pgfexternal@startupbox=\box43
 )) (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
 ) (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
@@ -809,7 +801,7 @@ File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
 File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 ))) (/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
-\pgfnodeparttextbox=\box45
+\pgfnodeparttextbox=\box44
 ) (/usr/share/texmf/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
 ) (/usr/share/texmf/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
@@ -839,8 +831,8 @@ File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \tikz@lastysaved=\dimen187
 \tikzleveldistance=\dimen188
 \tikzsiblingdistance=\dimen189
-\tikz@figbox=\box46
-\tikz@tempbox=\box47
+\tikz@figbox=\box45
+\tikz@tempbox=\box46
 \tikztreelevel=\count138
 \tikznumberofchildren=\count139
 \tikznumberofcurrentchild=\count140
@@ -866,29 +858,29 @@ Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Bcount=\count147
 \calc@Adimen=\dimen190
 \calc@Bdimen=\dimen191
-\calc@Askip=\skip71
-\calc@Bskip=\skip72
+\calc@Askip=\skip70
+\calc@Bskip=\skip71
 LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count148
-\calc@Cskip=\skip73
+\calc@Cskip=\skip72
 )
 \c@@todonotes@numberoftodonotes=\count149
 ) (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 \c@KVtest=\count150
-\sf@farskip=\skip74
+\sf@farskip=\skip73
 \sf@captopadj=\dimen192
-\sf@capskip=\skip75
-\sf@nearskip=\skip76
+\sf@capskip=\skip74
+\sf@nearskip=\skip75
 \c@subfigure=\count151
 \c@subfigure@save=\count152
 \c@lofdepth=\count153
 \c@subtable=\count154
 \c@subtable@save=\count155
 \c@lotdepth=\count156
-\sf@top=\skip77
-\sf@bottom=\skip78
+\sf@top=\skip76
+\sf@bottom=\skip77
 ) (/usr/share/texlive/texmf-dist/tex/latex/mh/mathtools.sty
 Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 (/usr/share/texlive/texmf-dist/tex/latex/mh/mhsetup.sty
@@ -898,7 +890,7 @@ LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count157
 \l_MT_multwidth_dim=\dimen193
-\origjot=\skip79
+\origjot=\skip78
 \l_MT_shortvdotswithinadjustabove_dim=\dimen194
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen195
 \l_MT_above_intertext_sep=\dimen196
@@ -922,52 +914,52 @@ Package `algorithm2e' Release 5.0 -- january 06 2013 --
 subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 - Author: Christophe Fiorio (cfiorio@um2.fr)
 ********************************************************
-\skiptotal=\skip80
-\skiplinenumber=\skip81
-\skiprule=\skip82
-\skiphlne=\skip83
-\skiptext=\skip84
-\skiplength=\skip85
-\algomargin=\skip86
-\skipalgocfslide=\skip87
+\skiptotal=\skip79
+\skiplinenumber=\skip80
+\skiprule=\skip81
+\skiphlne=\skip82
+\skiptext=\skip83
+\skiplength=\skip84
+\algomargin=\skip85
+\skipalgocfslide=\skip86
 \algowidth=\dimen200
 \inoutsize=\dimen201
 \inoutindent=\dimen202
 \interspacetitleruled=\dimen203
 \interspacealgoruled=\dimen204
 \interspacetitleboxruled=\dimen205
-\algocf@inoutbox=\box48
-\algocf@inputbox=\box49
-\AlCapSkip=\skip88
-\AlCapHSkip=\skip89
-\algoskipindent=\skip90
-\algocf@nlbox=\box50
-\algocf@hangingbox=\box51
-\algocf@untilbox=\box52
-\algocf@skipuntil=\skip91
-\algocf@capbox=\box53
-\algoheightruledefault=\skip92
-\algoheightrule=\skip93
-\algotitleheightruledefault=\skip94
-\algotitleheightrule=\skip95
+\algocf@inoutbox=\box47
+\algocf@inputbox=\box48
+\AlCapSkip=\skip87
+\AlCapHSkip=\skip88
+\algoskipindent=\skip89
+\algocf@nlbox=\box49
+\algocf@hangingbox=\box50
+\algocf@untilbox=\box51
+\algocf@skipuntil=\skip90
+\algocf@capbox=\box52
+\algoheightruledefault=\skip91
+\algoheightrule=\skip92
+\algotitleheightruledefault=\skip93
+\algotitleheightrule=\skip94
 \c@algocfline=\count159
 \c@algocfproc=\count160
 \c@algocf=\count161
-\algocf@algoframe=\box54
-\algocf@algobox=\box55
+\algocf@algoframe=\box53
+\algocf@algobox=\box54
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithmic.sty
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@ALC@unique=\count162
 \c@ALC@line=\count163
 \c@ALC@rem=\count164
 \c@ALC@depth=\count165
-\ALC@tlm=\skip96
-\algorithmicindent=\skip97
+\ALC@tlm=\skip95
+\algorithmicindent=\skip96
 ) (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen206
 \WF@size=\dimen207
 \c@WF@wrappedlines=\count166
-\WF@box=\box56
+\WF@box=\box55
 \WF@everypar=\toks44
 Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
@@ -1023,15 +1015,15 @@ File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
 \blx@notetype=\count202
 \blx@parenlevel@text=\count203
 \blx@parenlevel@foot=\count204
-\labelnumberwidth=\skip98
-\labelalphawidth=\skip99
-\shorthandwidth=\skip100
-\biblabelsep=\skip101
-\bibitemsep=\skip102
-\bibnamesep=\skip103
-\bibinitsep=\skip104
-\bibparsep=\skip105
-\bibhang=\skip106
+\labelnumberwidth=\skip97
+\labelalphawidth=\skip98
+\shorthandwidth=\skip99
+\biblabelsep=\skip100
+\bibitemsep=\skip101
+\bibnamesep=\skip102
+\bibinitsep=\skip103
+\bibparsep=\skip104
+\bibhang=\skip105
 \blx@auxin=\read2
 \blx@auxout=\write5
 \c@mincomprange=\count205
@@ -1180,7 +1172,7 @@ Package biblatex Info: ... file 'biblatex.cfg' found.
 File: biblatex.cfg 
 ))) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count330
-\lst@gtempboxa=\box57
+\lst@gtempboxa=\box56
 \lst@token=\toks45
 \lst@length=\count331
 \lst@currlwidth=\dimen208
@@ -1195,7 +1187,7 @@ File: biblatex.cfg
 File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 \c@lstnumber=\count336
 \lst@skipnumbers=\count337
-\lst@framebox=\box58
+\lst@framebox=\box57
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2013/08/26 1.5b listings configuration
 ))
@@ -1246,9 +1238,9 @@ gfsupp_pgflibraryfpu.code.tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
 gfsupp_pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2012/11/30  (rcs-revision 1.38)
-\pgfpic=\box59
-\pgf@hbox=\box60
-\pgf@layerbox@main=\box61
+\pgfpic=\box58
+\pgf@hbox=\box59
+\pgf@layerbox@main=\box60
 \pgf@picture@serial@count=\count342
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
@@ -1314,7 +1306,7 @@ code.tex
 \pgfdecorationsegmentamplitude=\dimen219
 \pgfdecorationsegmentlength=\dimen220
 )
-\tikz@lib@dec@box=\box62
+\tikz@lib@dec@box=\box61
 )
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
 ations.pathmorphing.code.tex
@@ -1350,8 +1342,8 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen227
 \extrarowheight=\dimen228
 \NC@list=\toks53
-\extratabsurround=\skip107
-\backup@length=\skip108
+\extratabsurround=\skip106
+\backup@length=\skip107
 ))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.
 code.tex
@@ -1421,26 +1413,26 @@ File: tikzlibraryshapes.multipart.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 (/usr/share/texmf/tex/generic/pgf/libraries/shapes/pgflibraryshapes.multipart.c
 ode.tex
 File: pgflibraryshapes.multipart.code.tex 2010/01/07 v2.10 (rcs-revision 1.2)
-\pgfnodepartlowerbox=\box63
-\pgfnodeparttwobox=\box64
-\pgfnodepartthreebox=\box65
-\pgfnodepartfourbox=\box66
-\pgfnodeparttwentybox=\box67
-\pgfnodepartnineteenbox=\box68
-\pgfnodeparteighteenbox=\box69
-\pgfnodepartseventeenbox=\box70
-\pgfnodepartsixteenbox=\box71
-\pgfnodepartfifteenbox=\box72
-\pgfnodepartfourteenbox=\box73
-\pgfnodepartthirteenbox=\box74
-\pgfnodeparttwelvebox=\box75
-\pgfnodepartelevenbox=\box76
-\pgfnodeparttenbox=\box77
-\pgfnodepartninebox=\box78
-\pgfnodeparteightbox=\box79
-\pgfnodepartsevenbox=\box80
-\pgfnodepartsixbox=\box81
-\pgfnodepartfivebox=\box82
+\pgfnodepartlowerbox=\box62
+\pgfnodeparttwobox=\box63
+\pgfnodepartthreebox=\box64
+\pgfnodepartfourbox=\box65
+\pgfnodeparttwentybox=\box66
+\pgfnodepartnineteenbox=\box67
+\pgfnodeparteighteenbox=\box68
+\pgfnodepartseventeenbox=\box69
+\pgfnodepartsixteenbox=\box70
+\pgfnodepartfifteenbox=\box71
+\pgfnodepartfourteenbox=\box72
+\pgfnodepartthirteenbox=\box73
+\pgfnodeparttwelvebox=\box74
+\pgfnodepartelevenbox=\box75
+\pgfnodeparttenbox=\box76
+\pgfnodepartninebox=\box77
+\pgfnodeparteightbox=\box78
+\pgfnodepartsevenbox=\box79
+\pgfnodepartsixbox=\box80
+\pgfnodepartfivebox=\box81
 )))
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarysnake
 s.code.tex
@@ -1469,8 +1461,8 @@ File: tikzlibraryautomata.code.tex 2008/07/14 v2.10 (rcs-revision 1.3)
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybackg
 rounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2010/02/08 v2.10 (rcs-revision 1.2)
-\pgf@layerbox@background=\box83
-\pgf@layerboxsaved@background=\box84
+\pgf@layerbox@background=\box82
+\pgf@layerboxsaved@background=\box83
 )
 (/usr/share/texmf/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecor
 ations.markings.code.tex
@@ -1503,97 +1495,101 @@ Package biblatex Warning: Patching footnotes failed.
 
 \@quotelevel=\count351
 \@quotereset=\count352
+
+LaTeX Warning: Unused global option(s):
+    [nocopyrightspace].
+
 No file out/document-figure9.aux.
-LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 228.
-LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 22
-8.
+LaTeX Font Info:    Checking defaults for OML/nxlmi/m/it on input line 253.
+LaTeX Font Info:    Try loading font information for OML+nxlmi on input line 25
+3.
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlnxlmi.fd
 File: omlnxlmi.fd 2013/11/19 Fontinst v1.933 font definitions for OML/nxlmi.
 )
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 228.
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 228.
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 228.
-LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 22
-8.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 253.
+LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 25
+3.
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
 File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 228.
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 228.
-LaTeX Font Info:    Try loading font information for U+ntxexa on input line 228
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 253.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 253
 .
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 228.
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 228.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 228.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 253.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 253.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 228.
-LaTeX Font Info:    ... okay on input line 228.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 228.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 253.
+LaTeX Font Info:    ... okay on input line 253.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 253.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 22
-8.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 25
+3.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 22
-8.
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 25
+3.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 22
-8.
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 25
+3.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 22
-8.
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 25
+3.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsya on input line 228
+LaTeX Font Info:    Try loading font information for U+ntxsya on input line 253
 .
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsya.fd
 File: untxsya.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsya.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 228
+LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 253
 .
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyb.fd
 File: untxsyb.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyb.
 )
-LaTeX Font Info:    Try loading font information for U+ntxmia on input line 228
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 253
 .
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
 )
-LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 228
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 253
 .
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 228.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 253.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 228.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 253.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 228.
-LaTeX Info: Redefining \microtypecontext on input line 228.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 253.
+LaTeX Info: Redefining \microtypecontext on input line 253.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1606,8 +1602,8 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 ) ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box85
-Package hyperref Info: Link coloring OFF on input line 228.
+\AtBeginShipoutBox=\box84
+Package hyperref Info: Link coloring OFF on input line 253.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1615,14 +1611,14 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count353
 )
-LaTeX Info: Redefining \ref on input line 228.
-LaTeX Info: Redefining \pageref on input line 228.
-LaTeX Info: Redefining \nameref on input line 228.
+LaTeX Info: Redefining \ref on input line 253.
+LaTeX Info: Redefining \pageref on input line 253.
+LaTeX Info: Redefining \nameref on input line 253.
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count354
 \scratchdimen=\dimen230
-\scratchbox=\box86
+\scratchbox=\box85
 \nofMPsegments=\count355
 \nofMParguments=\count356
 \everyMPshowfont=\toks54
@@ -1694,23 +1690,23 @@ Package biblatex Info: No input encoding detected.
 (biblatex)             Assuming 'ascii'.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'ascii'.
-Package biblatex Info: Reference section=0 on input line 228.
-Package biblatex Info: Reference segment=0 on input line 228.
+Package biblatex Info: Reference section=0 on input line 253.
+Package biblatex Info: Reference segment=0 on input line 253.
 \c@lstlisting=\count362
 (./tex/abstract.tex)
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 237.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 260.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Try loading font information for OT1+LinuxBiolinumT-TLF on 
-input line 237.
+input line 260.
 (/usr/share/texlive/texmf-dist/tex/latex/libertine/OT1LinuxBiolinumT-TLF.fd
 File: OT1LinuxBiolinumT-TLF.fd 2012/11/26 (autoinst) Font definitions for OT1/L
 inuxBiolinumT-TLF.
 )
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 8.0pt on input line 237.
+(Font)              scaled to size 8.0pt on input line 260.
 Package microtype Info: Loading generic settings for font family
 (microtype)             `LinuxBiolinumT-TLF' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
@@ -1720,11 +1716,32 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 237.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 237.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 260.
 (./tex/intro.tex
+Overfull \hbox (2.15102pt too wide) in paragraph at lines 61--63
+[]\OT1/ptm/m/n/10 (-20) Defining ab-strac-tions that ef-fi-ciently com-bine sub
+-problem
+ []
+
+The command '\includegraphics [width=.35\columnwidth ]{figures/learning_control
+_doodle.pdf}' has been optimized away. Use '/tikz/external/optimize=false' to d
+isable this.
+
+Underfull \hbox (badness 3679) in paragraph at lines 70--70
+[]\OT1/ptm/b/n/10 Figure 1. |\OT1/ptm/m/n/10 (+20) Learn-
+ []
+
+
+LaTeX Warning: Reference `fig:learning-control-doodle' on page 1 undefined on i
+nput line 88.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 1082) has occurred while \output is active []
 
 ) (./tex/example.tex
 The command '\includegraphics [width=.25\textwidth ]{figures/STREAM-contour.pdf
@@ -1734,11 +1751,11 @@ The command '\includegraphics [width=.25\textwidth ]{figures/STREAM-contour.pdf
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (190.16882pt too wide) in paragraph at lines 42--51
+Overfull \hbox (187.66882pt too wide) in paragraph at lines 45--53
  [][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 51.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 53.
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
 File: ot1zi4.fd 2013/06/09 OT1/zi4 (Inconsolata)
 )
@@ -1748,14 +1765,12 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 LaTeX Warning: Reference `fig:STREAM_contour' on page 2 undefined on input line
- 61.
+ 64.
 
 
 LaTeX Warning: Reference `fig:STREAM_timeline' on page 2 undefined on input lin
 e 76.
 
-LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 94.
 The command '\includegraphics [width=.25\textwidth ]{figures/BODYTRACK-contour.
 png}' has been optimized away. Use '/tikz/external/optimize=false' to disable t
 his.
@@ -1763,34 +1778,36 @@ his.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (187.66882pt too wide) in paragraph at lines 103--112
+Overfull \hbox (187.66882pt too wide) in paragraph at lines 104--113
  [][][][] 
  []
 
 
 LaTeX Warning: Reference `fig:BODYTRACK_contour' on page 3 undefined on input l
-ine 119.
+ine 120.
 
 
 LaTeX Warning: Reference `fig:BODYTRACK_timeline' on page 3 undefined on input 
-line 128.
+line 129.
 
 
-Overfull \hbox (4.71365pt too wide) in paragraph at lines 145--150
-\OT1/ptm/m/n/10 (-20) prediction---handled by learning---and dy-namic managemen
-t---
- []
+LaTeX Warning: Reference `sec:mov-learn' on page 3 undefined on input line 144.
+
+
+
+LaTeX Warning: Reference `sec:mov-control' on page 3 undefined on input line 14
+4.
 
 (./img/BODYTRACK-example2-resized.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 2368) in paragraph at lines 168--175
+Underfull \hbox (badness 2368) in paragraph at lines 167--174
 [][]\OT1/ptm/m/n/10 (+20) To demon-strate the
  []
 
 
-LaTeX Warning: Reference `fig:not-simple' on page 3 undefined on input line 176
+LaTeX Warning: Reference `fig:not-simple' on page 3 undefined on input line 175
 .
 
 ) (./tex/framework-new.tex
@@ -1802,45 +1819,46 @@ LaTeX Warning: Reference `fig:overview' on page 3 undefined on input line 11.
 The command '\includegraphics [width=\columnwidth ]{figures/Timeline.pdf}' has 
 been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
-LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 33.
+LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 32.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 37.
+LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 36.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 4 undefined on input line 48.
+LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 47.
 
 
-LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 13
-1.
+LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 12
+9.
+
+
+LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 14
+9.
 
 
 LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 15
-1.
+5.
 
 
-LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 15
-7.
-
-
-Overfull \hbox (2.10109pt too wide) in paragraph at lines 151--159
+Overfull \hbox (2.10109pt too wide) in paragraph at lines 149--157
 \OT1/ptm/m/n/10 (-20) CALO-REE con-verts Eqn. [] into a single-input (per-for-m
 ance),
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+LaTeX Warning: Reference `eqn:speedup' on page 4 undefined on input line 167.
 
 
-LaTeX Warning: Reference `eqn:speedup' on page 5 undefined on input line 169.
-
-
-LaTeX Warning: Reference `sec:guarantees' on page 5 undefined on input line 188
+LaTeX Warning: Reference `sec:guarantees' on page 4 undefined on input line 186
 .
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 192.
+e 190.
+
+
+LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
+e 195.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
@@ -1848,144 +1866,121 @@ e 198.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 201.
+e 205.
 
 
-LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 208.
+LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 216.
 
 
-Underfull \vbox (badness 4595) has occurred while \output is active []
+LaTeX Warning: Reference `eqn:work' on page 5 undefined on input line 217.
 
 
-LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 219.
+LaTeX Warning: Reference `eqn:deadline' on page 5 undefined on input line 218.
 
 
-LaTeX Warning: Reference `eqn:work' on page 5 undefined on input line 220.
+LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 219.
 
 
-LaTeX Warning: Reference `eqn:deadline' on page 5 undefined on input line 221.
+LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 226.
 
 
-LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 222.
+LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 226.
 
 
-LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 229.
-
-
-LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 229.
-
-
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 238.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 235.
 
 The command '\includegraphics [width=\columnwidth ]{figures/performance-hash-ta
 ble.pdf}' has been optimized away. Use '/tikz/external/optimize=false' to disab
 le this.
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 254.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 251.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 263.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 260.
 
 
-LaTeX Warning: Reference `fig:pht' on page 6 undefined on input line 277.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 274.
 
 
-Overfull \hbox (15.94849pt too wide) in paragraph at lines 277--282
+Overfull \hbox (15.94849pt too wide) in paragraph at lines 274--279
 []\OT1/ptm/m/n/10 (-20) For ex-am-ple, con-sider the PHT in Fig-ure [] and a $\
 OML/ztmcm/m/it/10 speedup\U/ntxmia/m/it/10 {\OML/ztmcm/m/it/10 t\U/ntxmia/m/it/
 10 | =
  []
 
 
-LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 289.
+LaTeX Warning: Reference `eqn:s1' on page 5 undefined on input line 286.
 
 
-LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 289.
+LaTeX Warning: Reference `eqn:s2' on page 5 undefined on input line 286.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 6 undefined on input line 330.
+LaTeX Warning: Reference `fig:timeline' on page 6 undefined on input line 310.
 
 
-Overfull \hbox (1.01132pt too wide) in paragraph at lines 404--418
+Overfull \hbox (1.01132pt too wide) in paragraph at lines 326--341
  \OT1/ptm/b/n/10 Bayesian Pre-dic-tors: \OT1/ptm/m/n/10 (-20) A hi-er-ar-chi-ca
 l Bayesian model (HBM)
  []
 
 
-LaTeX Warning: Reference `alg:gcs' on page 6 undefined on input line 424.
+LaTeX Warning: Reference `alg:gcs' on page 6 undefined on input line 347.
 
 
-LaTeX Warning: Reference `eqn:speedup' on page 6 undefined on input line 437.
+LaTeX Warning: Reference `eqn:speedup' on page 6 undefined on input line 360.
 
 
-LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 439.
+LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 362.
 
 
-LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 439.
+LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 362.
 
 
-Overfull \hbox (10.0pt too wide) detected at line 445
+Overfull \hbox (10.0pt too wide) detected at line 368
 [][] 
  []
 
+
+Underfull \vbox (badness 5119) has occurred while \output is active []
+
 ) (./tex/evaluation.tex
-The command '\includegraphics [width=.22\textwidth ]{figures/odroid.png}' has b
-een optimized away. Use '/tikz/external/optimize=false' to disable this.
-The command '\includegraphics [width=.22\textwidth ]{figures/odroidall.png}' ha
-s been optimized away. Use '/tikz/external/optimize=false' to disable this.
-
-Overfull \hbox (596.28264pt too wide) in paragraph at lines 7--13
- [][][][] 
- []
-
-
-LaTeX Warning: Reference `fig:odroidall' on page 7 undefined on input line 19.
-
-
-Overfull \hbox (8.07062pt too wide) in paragraph at lines 18--27
-\OT1/ptm/m/n/10 (-20) Sam-sung Exynos 5 Octa pro-ces-sors us-ing the ARM big.LI
-TTLE
+Overfull \hbox (2.07912pt too wide) in paragraph at lines 400--1
+\OT1/ptm/m/n/10 (-20) where $[]$ and $[]$ are the mea-sured val-ues of speedup 
+and powerup
  []
 
 
 LaTeX Warning: Reference `fig:application_variety' on page 7 undefined on input
- line 30.
+ line 41.
 
 (./img/mem-compute.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (9.09486pt too wide) in paragraph at lines 95--101
+Overfull \hbox (9.09486pt too wide) in paragraph at lines 101--107
 []\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
 input (per-for-mance), multiple-
  []
 
 
-Overfull \hbox (18.3895pt too wide) in paragraph at lines 104--108
-[]\OT1/ptm/m/it/10 (-20) Offline\OT1/ptm/m/n/10 (-20) : does not ob-serve any v
-al-ues for the cur-rent application---
- []
-
-
-LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 132
+LaTeX Warning: Reference `sec:guarantees' on page 7 undefined on input line 134
 .
 
 (./img/single-app-summary2-v4.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 149--149
+Underfull \hbox (badness 10000) in paragraph at lines 147--147
 []\OT1/ptm/b/n/8 (a)
  []
 
 
-Overfull \hbox (11.32147pt too wide) in paragraph at lines 149--149
+Overfull \hbox (11.32147pt too wide) in paragraph at lines 147--147
 |\OT1/ptm/m/n/8 (-20) Single-
  []
 
 
-Overfull \hbox (3.21245pt too wide) in paragraph at lines 149--149
+Overfull \hbox (3.21245pt too wide) in paragraph at lines 147--147
 \OT1/ptm/m/n/8 (-20) App| 
  []
 
@@ -1993,23 +1988,26 @@ Overfull \hbox (3.21245pt too wide) in paragraph at lines 149--149
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 154--154
+Underfull \hbox (badness 10000) in paragraph at lines 152--152
 []\OT1/ptm/b/n/8 (b)
  []
 
 
-Overfull \hbox (8.7107pt too wide) in paragraph at lines 154--154
+Overfull \hbox (8.7107pt too wide) in paragraph at lines 152--152
 |\OT1/ptm/m/n/8 (-20) Mulit-
  []
 
 
-Overfull \hbox (3.21245pt too wide) in paragraph at lines 154--154
+Overfull \hbox (3.21245pt too wide) in paragraph at lines 152--152
 \OT1/ptm/m/n/8 (-20) App| 
  []
 
 
-LaTeX Warning: Reference `fig:single-sum' on page 8 undefined on input line 178
+LaTeX Warning: Reference `fig:single-sum' on page 7 undefined on input line 174
 .
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 (./img/single-app-performance-small.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
@@ -2017,52 +2015,47 @@ isable this.
 ) (./img/single-app-energy-small.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
-)
-
-LaTeX Warning: Reference `fig:single-all' on page 8 undefined on input line 224
-.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (1.54169pt too wide) in paragraph at lines 237--244
-\OT1/ptm/m/n/10 (-20) an-other ap-pli-ca-tion ran-domly drawn from our bench-ma
-rk set---
- []
-
-(./img/multi-app-performance-small.tex
+) (./img/multi-app-performance-small.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 ) (./img/multi-app-energy-small.tex
 \openout7 = `out/document-figure9.dpth'.
 
-PGFPlots: reading {img/image_text/ma-eff-0.60-v4.txt}
+PGFPlots: reading {img/image_text/wcet-ma-eff-1.0.txt}
 \tikzexternal@dep@file=\write8
 \openout8 = `out/document-figure9.dep'.
 
-PGFPlots: reading {img/image_text/ma-eff-0.75-v4.txt}
-PGFPlots: reading {img/image_text/ma-eff-0.90-v4.txt}
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 114.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 69.
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 114.
+(Font)              scaled to size 7.0pt on input line 69.
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 114.
-LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 154.
+(Font)              scaled to size 5.0pt on input line 69.
 [8.1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
 
-LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 275.
+LaTeX Warning: Reference `fig:single-all' on page 8 undefined on input line 236
+.
+
+
+Overfull \hbox (1.54169pt too wide) in paragraph at lines 245--251
+\OT1/ptm/m/n/10 (-20) another application randomly drawn from our benchmark set
+---
+ []
+
+
+LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 262.
 
 
 
-LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 289.
+LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 275.
 
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 (./img/x264-phases.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
@@ -2070,34 +2063,37 @@ isable this.
 )
 
 LaTeX Warning: Reference `fig:x264-phase-change' on page 8 undefined on input l
-ine 352.
+ine 293.
 
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.4pt on input line 354.
-The command '\includegraphics [width=.2\textwidth ]{figures/lavamd2.pdf}' has b
-een optimized away. Use '/tikz/external/optimize=false' to disable this.
+(Font)              scaled to size 10.0pt on input line 295.
+LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 7.4pt on input line 295.
+LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 295.
 (./img/LAVA-pole.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (187.66882pt too wide) in paragraph at lines 372--379
- [][][][] 
- []
 
-
-LaTeX Warning: Reference `fig:lavamd' on page 8 undefined on input line 390.
-
-
-LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 391
+LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 341
 .
 
 
-LaTeX Warning: Reference `fig:lavamd-pole' on page 9 undefined on input line 39
-8.
-
-
-LaTeX Warning: Reference `fig:sensitivity' on page 9 undefined on input line 42
+LaTeX Warning: Reference `fig:lavamd-pole' on page 8 undefined on input line 34
 6.
+
+
+Underfull \hbox (badness 7047) in paragraph at lines 341--353
+\OT1/ptm/m/n/10 (+20) learned vari-ance pre-
+ []
+
+
+LaTeX Warning: Reference `fig:sensitivity' on page 8 undefined on input line 36
+3.
+
+
+Underfull \vbox (badness 3439) has occurred while \output is active []
 
 (./img/sample-accuracy-v3.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
@@ -2105,10 +2101,7 @@ isable this.
 )) (./tex/related.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) (./tex/conclusion.tex)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-(./tex/appendix.tex
+) (./tex/conclusion.tex) (./tex/appendix.tex
 
 LaTeX Warning: Reference `eqn:s1' on page 10 undefined on input line 18.
 
@@ -2117,42 +2110,42 @@ LaTeX Warning: Reference `eqn:s2' on page 10 undefined on input line 19.
 
 )
 
-LaTeX Warning: Empty bibliography on input line 251.
+LaTeX Warning: Empty bibliography on input line 278.
 
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
 \newlabel{tocindent1}{0pt}
 \newlabel{tocindent2}{0pt}
 \newlabel{tocindent3}{0pt}
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 252.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 252.
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 252.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 252.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 279.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 279.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 279.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 279.
 
 LaTeX Warning: There were undefined references.
 
 Package logreq Info: Writing requests to 'out/document-figure9.run.xml'.
 \openout1 = `out/document-figure9.run.xml'.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 252.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
  ) 
 Here is how much of TeX's memory you used:
- 41698 strings out of 493304
- 869281 string characters out of 6139871
- 1359800 words of memory out of 5000000
- 43981 multiletter control sequences out of 15000+600000
- 53977 words of font info for 190 fonts, out of 8000000 for 9000
+ 41631 strings out of 493304
+ 867592 string characters out of 6139871
+ 1343010 words of memory out of 5000000
+ 43921 multiletter control sequences out of 15000+600000
+ 53841 words of font info for 187 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
- 64i,14n,94p,952b,2458s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_c6xmqr.enc}{/us
-r/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texm
+ 64i,14n,94p,952b,2424s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texliv
+e/texmf-dist/fonts/enc/dvips/libertine/lbtn_c6xmqr.enc}</usr/share/texlive/texm
 f-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb>
-Output written on out/document-figure9.pdf (1 page, 66569 bytes).
+Output written on out/document-figure9.pdf (1 page, 61503 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  23 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
- 33805 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 31757 words of extra memory for PDF output out of 35830 (max. 10000000)
 

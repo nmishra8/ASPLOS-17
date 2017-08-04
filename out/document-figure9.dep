@@ -1,3 +1,1 @@
-out/document-figure9.pdf: img/image_text/ma-eff-0.60-v4.txt
-out/document-figure9.pdf: img/image_text/ma-eff-0.75-v4.txt
-out/document-figure9.pdf: img/image_text/ma-eff-0.90-v4.txt
+out/document-figure9.pdf: img/image_text/wcet-ma-eff-1.0.txt

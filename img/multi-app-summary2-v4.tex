@@ -1,11 +1,10 @@
 \begin{tikzpicture}
 \begin{centering}
-\pgfplotstableread[col sep=space]{img/ma-eff-summary.txt}{\datatableeff}
-\pgfplotstableread[col sep=space]{img/ma-lat-summary.txt}{\datatablelat}
+\pgfplotstableread[col sep=tab]{img/ma-eff-summary.txt}{\datatableeff}
+\pgfplotstableread[col sep=tab]{img/ma-lat-summary.txt}{\datatablelat}
 \begin{groupplot}[
 % MAKE SURE NO SPACE AROUND EQUALITY
     scatter/classes={
-            OPTIMAL={mark=otimes*,OPTIMAL},
             RACE={mark=otimes*,RACE},
             CONTROL={mark=otimes*,CONTROL},
             ONLINE={mark=otimes*,ONLINE},
@@ -16,7 +15,9 @@
             CALOREE-NP={mark=otimes*,CALOREE-NP},
             ONLINE-ADAPT={mark=otimes*,ONLINE-ADAPT},
             NUCLEAR-ADAPT={mark=otimes*,NUCLEAR-ADAPT},
-            HBM-ADAPT={mark=otimes*,HBM-ADAPT}},
+            HBM-ADAPT={mark=otimes*,HBM-ADAPT},
+            OPTIMAL={mark=otimes*,OPTIMAL}
+},
     group style={
         group name=plots,
         group size=1 by 2,
@@ -63,7 +64,7 @@
         xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=35, anchor = east, font=\tiny},
         %xticklabels from table={\datatableeff}{Benchmark},
-        xticklabels={{\tiny $\mathsf{Optimal}$},
+        xticklabels={
 {\tiny $\mathsf{Race-to-idle}$},
 {\tiny $\mathsf{PID-Control}$},
 {\tiny $\mathsf{Online}$},
@@ -74,7 +75,8 @@
 {\tiny $\mathsf{CALOREE-NoPole}$},
 {\tiny $\mathsf{CALOREE-Online}$},
 {\tiny $\mathsf{CALOREE-Netflix}$},
-{\tiny $\mathsf{CALOREE-HBM}$}
+{\tiny $\mathsf{CALOREE-HBM}$},
+{\tiny $\mathsf{Optimal}$}
 }
 ]
         \addplot[scatter, only marks ,thick, scatter src=explicit symbolic] table[x index=0,y index=3, meta=Benchmark] {\datatableeff};

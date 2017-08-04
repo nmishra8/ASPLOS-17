@@ -9,19 +9,18 @@
 
 
 \figref{fig:overview} shows \SYSTEM{}'s approach of splitting resource
-management into separate learning and control tasks and defining an
-interface between them.  When a new application enters the system with
-a performance requirement, an adaptive control system allocates
-resources using generic predictions and records performance and power.
-The recorded values are sent to a learner, which predicts the
-application's performance and power in all other resource
-configurations. The learner extracts those that are Pareto-optimal and
-packages them in a special data structure: the performance hash table
-(PHT).  The PHT and the estimated variance are sent to the controller,
-which sets its pole and selects an energy minimal resource
-configuration with formal guarantees of convergence to the desired
-performance.  \SYSTEM{}'s only user-specified parameter is the
-performance requirement.
+management into separate learning and control tasks and then composing
+these individual solutions.  When a new application enters the system,
+an adaptive control system allocates resources using a generic model
+and records performance and power.  The recorded values are sent to a
+learner, which predicts the application's performance and power in all
+other resource configurations. The learner extracts those that are
+predicted to be Pareto-optimal and packages them in a data structure:
+the performance hash table (PHT).  The PHT and the estimated variance
+are sent to the controller, which sets its pole and selects an energy
+minimal resource configuration with formal guarantees of convergence
+to the desired performance.  \SYSTEM{}'s only user-specified parameter
+is the performance requirement.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{figures/Timeline.pdf}
@@ -31,19 +30,19 @@ performance requirement.
 \end{figure}
 
 \figref{fig:timeline} illustrates the asynchronous interaction between
-\SYSTEM{}'s learner and controller. The controller starts--using a
-conservative, generic speedup prediction---when a new application
-launches.  The controller sends the learner the application's name and
-device type (message 1, \figref{fig:timeline}).  The learner
-determines how many samples are needed for an accurate prediction and
-sends this number to the controller (message 2).  The controller takes
-these samples and sends the performance and power of each measured
+\SYSTEM{}'s learner and controller. The controller starts---using a
+conservative, generic speedup model---when a new application launches.
+The controller sends the learner the application's name and device
+type (message 1, \figref{fig:timeline}).  The learner determines how
+many samples are needed for an accurate prediction and sends this
+number to the controller (message 2).  The controller takes these
+samples and sends the performance and power of each measured
 configuration to the learner (message 3).  The learner may require
 time to make predictions; so, the controller does not wait, but
 continues with the conservative model.  Once the learner predicts the
-optimal configurations for this application, it sends that data and
-the variance estimate to the controller (message 4), which uses the
-learner's application-specific predictions from then on.
+optimal configurations, it sends that data and the variance estimate
+to the controller (message 4), which uses the learned model from then
+on.
 
 \figref{fig:timeline} shows several key points about the relationship
 between learning and control.  First, the controller never waits for
@@ -57,10 +56,10 @@ its predictions, the controller does not need to know.  Finally, the
 learner and controller have a clearly defined interface, so they can
 be run in separate processes or physically separate devices.
 
-This section first describes traditional adaptive control.  We then
-generalize this approach, separating out parameters to be learned.
-Next, we discuss the class of learning systems that work with
-\SYSTEM{}.  Finally, we formally analyze \SYSTEM{}'s guarantees.
+We first describe adaptive control.  We then generalize this approach,
+separating out parameters to be learned.  Next, we discuss the class
+of learners that work with \SYSTEM{}.  Finally, we formally analyze
+\SYSTEM{}'s guarantees.
 
 
 \subsection{Traditional Control for Computing}
@@ -101,18 +100,17 @@ for each of the big and LITTLE cores.  There is also a single goal:
 performance.  Thus, in this example, $n=4$ and $m=1$. The vector
 $\mathbf{u}(t)$ has four elements representing the resource allocation
 at time $t$. $q$ is the number of variables in the controller's state
-which can vary between, we can choose $q$ to be between 1 to $n$.  The
-matrices $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ capture the
-linear relationship between the control state $\x$, the resource usage
-$\mathbf{u}$, and the measured behavior.  In this example, we know
-there is a non-linear relationship between the resources.  We overcome
-this difficulty by tuning the matrices at each time
-step---approximating the non-linear system through a series of
-changing linear formulations.  This approximation is a form of
-\emph{adaptive} or \emph{self-tuning} control \cite{HandbookControl}.
-Such adaptive controllers provide formal guarantees that they will
-converge to the desired performance even in the face of
-non-linearities, but they still assume convexity.
+which can vary between 1 to $n$.  The matrices $\mathbf{A}$,
+$\mathbf{B}$, and $\mathbf{C}$ capture the linear relationship between
+the control state $\x$, the resource usage $\mathbf{u}$, and the
+measured behavior.  In this example, we know there is a non-linear
+relationship between the resources.  We overcome this difficulty by
+tuning the matrices at each time step---approximating the non-linear
+system through a series of changing linear formulations.  This
+approximation is a form of \emph{adaptive} or \emph{self-tuning}
+control \cite{HandbookControl}.  Such adaptive controllers provide
+formal guarantees that they will converge to the desired performance
+even in the face of non-linearities, but they still assume convexity.
 
 This controller has two major drawbacks.  First, it requires matrix
 computation, so its overhead scales poorly in the number of resources
@@ -165,7 +163,7 @@ estimates this value online using the standard technique of Kalman
 filter estimation \cite{welch2006kalman}. 
 
 
-\SYSTEM{} must reduce the error between the target performance and the goal: $ error(t) = goal - perf(t)$.
+\SYSTEM{} must eliminate the error between the target performance and the goal: $ error(t) = goal - perf(t)$.
 Given \eqnref{speedup}, \SYSTEM{} uses the integral control law
 \cite{Hellerstein2004a}:
 \begin{eqnarray}
@@ -190,11 +188,9 @@ first address converting speedup into a resource allocation.
 
 \subsubsection{Converting Speedup to Resource Schedules}
 \SYSTEM{} must map \eqnref{speedup-control}'s speedup into a resource
-allocation.  On our example ARM big.LITTLE architecture we map speedup
-into an allocation of big and LITTLE cores as well as a speed for both
-(big and LITTLE cores are in separate clock domains).
-
-The primary challenge is that speedups in real systems are discrete
+allocation.  On our example big.LITTLE architecture an allocation
+includes big and LITTLE cores as well as a speed for both.  The
+primary challenge is that speedups in real systems are discrete
 non-linear functions of resource usage, while \eqnref{speedup-control}
 is a continuous linear function.  We bridge this divide by assigning
 time to resource allocations such that the average speedup over a
@@ -252,17 +248,17 @@ solution with the following properties \cite{kim-cpsna}:
 \end{figure}
 
 The PHT (shown in \figref{fig:pht}) provides constant time access to
-points on the lower convex hull.  It consists of two arrays: the first
-being pointers into the second: a configuration array, which stores
-resource configurations on the lower convex hull sorted by speedup.
-Recall speedups are computed relative to the base speed, which uses
-all resources.  The largest estimated speedup is therefore 1, so
-\SYSTEM{} needs only consider speedups between 0 and 1.  The first
-array of pointers has a \emph{resolution} indicating how many decimal
-points of precision it captures and it is indexed by speedup.  The
-example in \figref{fig:pht} has a resolution of $0.1$.  Each pointer
-in the first array points to the configuration in the second array
-that has the largest speedup less than or equal to the index.
+the lower convex hull.  It consists of two arrays: the first being
+pointers into the second: a configuration array, which stores resource
+configurations the learner estimates to be on the lower convex hull
+sorted by speedup.  Recall speedups are computed relative to the base
+speed, which uses all resources.  The largest estimated speedup is
+therefore 1.  The first array of pointers has a \emph{resolution}
+indicating how many decimal points of precision it captures and it is
+indexed by speedup.  The example in \figref{fig:pht} has a resolution
+of $0.1$.  Each pointer in the first array points to the configuration
+in the second array that has the largest speedup less than or equal to
+the index.
 
 \SYSTEM{} computes $speedup(t)$ and uses the PHT to convert speedup
 into two configurations: $hi$ and $lo$.  To find the $hi$
@@ -295,53 +291,52 @@ The previous subsection describes a general control system, which can
 be customized with a number of different learning methods.  The
 requirements on the learner are that it must produce 1) predictions of
 each resource configuration's speedup and powerup and 2) estimate of
-its own variance.  This section describes the general class of
-learning mechanisms that meet these requirements.
+its own variance $\sigma^2$.  This section describes the general class
+of learning mechanisms that meet these requirements.
 
 We refer to application-specific predictors as \emph{online} because
 they work for the current application and do not incorporate knowledge
 of other applications.  We refer to general predictors as
 \emph{offline} as they use prior observations of other applications to
 predict the behavior of a new application. A third class of
-\emph{transfer learning} predictors combines information from the
-previously seen applications and current application to make the
-predictions on the application in hand \cite{pan2010survey}. Transfer
-learning obtains higher prediction accuracies since it augments online
-data with offline information from other applications.  In this work
-we use transfer learning techniques because \SYSTEM{}'s separation of
-learning and control makes it easy to incorporate data from other
-applications---the learner in \figref{fig:timeline} can simply
-aggregate data from multiple controllers. We describe two examples of
-appropriate transfer learning algorithms.
+\emph{transfer learning} combines information from the previously seen
+applications and current application to model the future behavior of
+the current application \cite{pan2010survey}. Transfer learning
+produces highly accurate models since it augments online data with
+offline information from other applications.  \SYSTEM{} uses transfer
+learners because \SYSTEM{}'s separation of learning and control makes
+it easy to incorporate data from other applications---the learner in
+\figref{fig:timeline} can simply aggregate data from multiple
+controllers. We describe two examples of appropriate transfer learning
+algorithms.
 
 \paragraph{Netflix Algorithm:}
 The Netflix problem is a famous challenge posted by Netflix to predict
 users' movie preferences. The challenge was won by realizing that if 2
 users both like some movies, they might have similar taste in other
-movies. This approach allows predictors to borrow large amounts of
-data from other users to answer some questions about a new user.
-%One of the solutions in designing this mathematically is to say
-%the the matrix of users vs movies is low rank and solve the problem
-%using mathematical optimization techniques.
-Delimitriou and Kozyrakis use this algorithm to predict application
-response to heterogeneous resources in data centers
-\cite{Paragon,quasar}.
-
+movies \cite{netflix}. This approach allows learners to borrow large
+amounts of data from other applications to answer questions about a
+new application.  One formulation of this problem is to assume the
+matrix of resource-vs-performance is low-rank and solve the problem
+using mathematical optimization techniques.  The Netflix approach has
+been used to predict application response to heterogeneous resources
+in data centers \cite{Paragon,quasar}.
 
 \paragraph{ Bayesian Predictors:} A hierarchical Bayesian model (HBM)
 provides a statistically sound framework for learning across
-applications and devices \cite{LEO}.  In the HBM, each application has
-its own model, allowing specificity, but these models are
-conditionally dependent on some underlying probability distribution
-with a hidden mean and co-variance.  In practice, an HBM predicts
-behavior for a new application using a small number of observations
-and combining those with the large number of observations of other
-applications.  Rather than over-generalizing, the HBM uses only
-similar applications to predict new application behavior.  The HBM's
-accuracy increases as more applications are observed because
+applications and devices
+\cite{gelman2013bayesian,morris1983parametric}.  In the HBM, each
+application has its own model, allowing specificity, but these models
+are conditionally dependent on some underlying probability
+distribution with a hidden mean and co-variance.  In practice, an HBM
+predicts behavior for a new application using a small number of
+observations and combining those with the large number of observations
+of other applications.  Rather than over-generalizing, the HBM uses
+only similar applications to predict new application behavior.  The
+HBM's accuracy increases as more applications are observed because
 increasingly diverse behaviors are represented in the pool of prior
-knowledge.  Of course, the computational complexity of learning also
-increases with increasing applications.
+knowledge \cite{LEO}.  Of course, the computational complexity of
+learning also increases with increasing applications.
 
 
 \subsection{Formal Analysis}
@@ -403,7 +398,7 @@ the pole based on this uncertainty:
   \label{eqn:uncer}
 \end{equation}
 where $\bar{s}$ and $\bar{p}$ are the measured values of speedup and
-power up and $\hat{s}$ and $\hat{p}$ are the estimated values from the
+powerup and $\hat{s}$ and $\hat{p}$ are the estimated values from the
 learner.  This measure of uncertainty captures both power and
 performance.  We find that it is generally higher than the pole value
 given by our lower bound, so in practice \SYSTEM{} sets the pole

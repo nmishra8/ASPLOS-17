@@ -1,11 +1,11 @@
 \begin{tikzpicture}
-\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.60-v4.txt}{\datatablesixty}
-\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.75-v4.txt}{\datatableseventy}
-\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.90-v4.txt}{\datatableeighty}
+%\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.60-v4.txt}{\datatablesixty}
+%\pgfplotstableread[col sep=space]{img/image_text/ma-eff-0.75-v4.txt}{\datatableseventy}
+\pgfplotstableread[col sep=space]{img/image_text/wcet-ma-eff-1.0.txt}{\datatableeighty}
 \begin{groupplot}[
     group style={
         group name=plots,
-        group size=1 by 3,
+        group size=1 by 1,
         xlabels at=edge bottom,
         xticklabels at=edge bottom,
         vertical sep=5pt
@@ -14,10 +14,10 @@ axis x line* = bottom,
 xlabel near ticks,
 major x tick style = transparent,
 xlabel={},
-height=2.8cm,
-width=0.88\textwidth,
+height=3.0cm,
+width=0.95\textwidth,
 xmin=0,
-xmax=23,
+xmax=15,
 enlargelimits=false,
 tick align = outside,
 tick style={white},
@@ -33,46 +33,10 @@ ymajorgrids,
 grid style={dashed},
 ]
 
-
 \nextgroupplot[ybar=\pgflinewidth,
+bar width=3.0pt,
 ylabel shift={0mm},
-bar width=2.0pt,
-ymin=0,
-ymax=90,
-ytick={0.0,30.0,60.0,90.0},
-yticklabels={,30.0,60.0,90.0},
-]
-
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatablesixty};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatablesixty};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatablesixty};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatablesixty};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatablesixty};
-
-
-\nextgroupplot[ybar=\pgflinewidth,
-ylabel={\footnotesize Energy Above Optimal  {\scriptsize (lower is better)}},
-ylabel shift={0mm},
-bar width=2.0pt,
-ymin=0,
-ymax=90,
-ytick={0.0,30.0,60.0,90.0},
-yticklabels={,30.0,60.0,90.0},]
-
-%\addplot[color=RACE,fill=RACE] table[x index=0,y index=4] {\datatableseventy};
-%\addplot[color=HBM,fill=HBM]       table[x index=0,y index=7] {\datatableseventy};
-%\addplot[color=ADAPT-CONTROL,fill=ADAPT-CONTROL] table[x index=0,y index=9] {\datatableseventy};
-%\addplot[color=CALOREE-NP,fill=CALOREE-NP]   table[x index=0,y index=10] {\datatableseventy};
-%\addplot[color=HBM-ADAPT,fill=HBM-ADAPT]       table[x index=0,y index=13] {\datatableseventy};
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableseventy};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableseventy};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableseventy};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableseventy};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableseventy};
-
-\nextgroupplot[ybar=\pgflinewidth,
-bar width=2.0pt,
-ylabel shift={0mm},
+ylabel={\tiny Energy Above Optimal \\ {\tiny (lower is better)}},
 xticklabel shift={0pt},
 ymin=0,
 ymax=90,
@@ -81,86 +45,26 @@ yticklabels={,30.0,60.0,90.0},
 x tick label style={rotate=35, anchor=east},
 xtick={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22},
 xticklabels={
-{\scriptsize $\mathsf{backprop}$},
-{\scriptsize $\mathsf{bfs}$},
-{\scriptsize $\mathsf{blackscholes}$},
 {\scriptsize $\mathsf{bodytrack}$},
 {\scriptsize $\mathsf{facesim}$},
 {\scriptsize $\mathsf{ferret}$},
 {\scriptsize $\mathsf{heartwall}$},
-{\scriptsize $\mathsf{hotspot}$},
-{\scriptsize $\mathsf{jacobi}$},
 {\scriptsize $\mathsf{kmeans}$},
-{\scriptsize $\mathsf{kmeansnf}$},
-{\scriptsize $\mathsf{lavamd}$},
 {\scriptsize $\mathsf{leukocyte}$},
 {\scriptsize $\mathsf{lud}$},
-{\scriptsize $\mathsf{nw}$},
+{\scriptsize $\mathsf{radar}$},
 {\scriptsize $\mathsf{sha}$},
 {\scriptsize $\mathsf{srad}$},
 {\scriptsize $\mathsf{stream}$},
-{\scriptsize $\mathsf{stream_threads}$},
 {\scriptsize $\mathsf{x264-ducks}$},
 {\scriptsize $\mathsf{x264-native}$},
 {\scriptsize $\mathsf{Average}$}},
 ]
-
 \addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableeighty};
 \addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableeighty};
 \addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableeighty};
 \addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableeighty};
 \addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableeighty};
-
-\end{groupplot}
-\begin{groupplot}[
-    group style={
-        group name=plots,
-        group size=1 by 6,
-        xlabels at=edge top,
-        xticklabels at=edge top,
-        vertical sep=5pt
-    },
-axis x line* = top,
-xlabel near ticks,
-major x tick style = transparent,
-height=2.8cm,
-width=0.88\textwidth,
-xmin=0,
-xmax=9,
-enlargelimits=false,
-tick align = outside,
-tick style={white},
-ylabel style={align=center},
-ytick=\empty,
-xtick=\empty,
-xticklabels={},
-yticklabels={},
-ymin=0,
-ymax=1,
-]
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel style={rotate=270},
-ylabel={$\mathsf{60\%}$},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{70\%}$},
-ylabel style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
-
-
-\nextgroupplot[
-ylabel shift={12mm},
-ylabel={$\mathsf{80\%}$},
-y label style={rotate=270},
-]
-\addplot[thick,solid, color=black] coordinates {(0,1) (22,1)};
 
 \end{groupplot}
 
