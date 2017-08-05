@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  4 AUG 2017 17:19
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  5 AUG 2017 17:13
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1740,9 +1740,6 @@ nput line 88.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-Underfull \vbox (badness 1082) has occurred while \output is active []
-
 ) (./tex/example.tex
 The command '\includegraphics [width=.25\textwidth ]{figures/STREAM-contour.pdf
 }' has been optimized away. Use '/tikz/external/optimize=false' to disable this
@@ -1783,7 +1780,7 @@ Overfull \hbox (187.66882pt too wide) in paragraph at lines 104--113
  []
 
 
-LaTeX Warning: Reference `fig:BODYTRACK_contour' on page 3 undefined on input l
+LaTeX Warning: Reference `fig:BODYTRACK_contour' on page 2 undefined on input l
 ine 120.
 
 
@@ -1858,115 +1855,112 @@ e 190.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 195.
+e 194.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 198.
+e 197.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 205.
+e 204.
 
 
-LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 216.
+LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 215.
 
 
-LaTeX Warning: Reference `eqn:work' on page 5 undefined on input line 217.
+LaTeX Warning: Reference `eqn:work' on page 5 undefined on input line 216.
 
 
-LaTeX Warning: Reference `eqn:deadline' on page 5 undefined on input line 218.
+LaTeX Warning: Reference `eqn:deadline' on page 5 undefined on input line 217.
 
 
-LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 219.
+LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 218.
 
 
-LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 226.
+LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 225.
 
 
-LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 226.
+LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 225.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 235.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 234.
 
 The command '\includegraphics [width=\columnwidth ]{figures/performance-hash-ta
 ble.pdf}' has been optimized away. Use '/tikz/external/optimize=false' to disab
 le this.
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 251.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 250.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 260.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 258.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 274.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 273.
 
 
-Overfull \hbox (15.94849pt too wide) in paragraph at lines 274--279
+Overfull \hbox (15.94849pt too wide) in paragraph at lines 273--278
 []\OT1/ptm/m/n/10 (-20) For ex-am-ple, con-sider the PHT in Fig-ure [] and a $\
 OML/ztmcm/m/it/10 speedup\U/ntxmia/m/it/10 {\OML/ztmcm/m/it/10 t\U/ntxmia/m/it/
 10 | =
  []
 
 
-LaTeX Warning: Reference `eqn:s1' on page 5 undefined on input line 286.
+LaTeX Warning: Reference `eqn:s1' on page 5 undefined on input line 285.
 
 
-LaTeX Warning: Reference `eqn:s2' on page 5 undefined on input line 286.
+LaTeX Warning: Reference `eqn:s2' on page 5 undefined on input line 285.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 6 undefined on input line 310.
+LaTeX Warning: Reference `fig:timeline' on page 5 undefined on input line 309.
 
 
-Overfull \hbox (1.01132pt too wide) in paragraph at lines 326--341
+Overfull \hbox (1.01132pt too wide) in paragraph at lines 325--340
  \OT1/ptm/b/n/10 Bayesian Pre-dic-tors: \OT1/ptm/m/n/10 (-20) A hi-er-ar-chi-ca
 l Bayesian model (HBM)
  []
 
 
-LaTeX Warning: Reference `alg:gcs' on page 6 undefined on input line 347.
+LaTeX Warning: Reference `alg:gcs' on page 6 undefined on input line 346.
 
 
-LaTeX Warning: Reference `eqn:speedup' on page 6 undefined on input line 360.
+LaTeX Warning: Reference `eqn:speedup' on page 6 undefined on input line 359.
 
 
-LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 362.
+LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 361.
 
 
-LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 362.
+LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 361.
 
 
-Overfull \hbox (10.0pt too wide) detected at line 368
+Overfull \hbox (10.0pt too wide) detected at line 367
 [][] 
  []
 
 
-Underfull \vbox (badness 5119) has occurred while \output is active []
+Underfull \vbox (badness 1082) has occurred while \output is active []
 
 ) (./tex/evaluation.tex
-Overfull \hbox (2.07912pt too wide) in paragraph at lines 400--1
+Overfull \hbox (2.07912pt too wide) in paragraph at lines 399--1
 \OT1/ptm/m/n/10 (-20) where $[]$ and $[]$ are the mea-sured val-ues of speedup 
 and powerup
  []
 
 
+Overfull \hbox (1.93097pt too wide) in paragraph at lines 31--41
+\OT1/ptm/m/n/10 (-20) video anal-y-sis (\OT1/zi4/m/n/10 bodytrack\OT1/ptm/m/n/1
+0 (-20) ), im-age sim-i-lar-ity search (\OT1/zi4/m/n/10 ferret\OT1/ptm/m/n/10 (
+-20) ),
+ []
+
+
 LaTeX Warning: Reference `fig:application_variety' on page 7 undefined on input
- line 41.
+ line 42.
 
 (./img/mem-compute.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
-)
-Overfull \hbox (9.09486pt too wide) in paragraph at lines 101--107
-[]\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
-input (per-for-mance), multiple-
- []
-
-
-LaTeX Warning: Reference `sec:guarantees' on page 7 undefined on input line 134
-.
-
-(./img/single-app-summary2-v4.tex
+) (./img/single-app-summary2-v4.tex
 \openout7 = `out/document-figure4.dpth'.
 
 PGFPlots: reading {img/single-eff-summary.txt}
@@ -1976,20 +1970,20 @@ PGFPlots: reading {img/single-eff-summary.txt}
 PGFPlots: reading {img/single-lat-summary.txt}
 Missing character: There is no ] in font nullfont!
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 87.
+(Font)              scaled to size 6.0pt on input line 89.
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 5.0pt on input line 87.
+(Font)              scaled to size 5.0pt on input line 89.
 [7.1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
-Underfull \hbox (badness 10000) in paragraph at lines 147--147
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
 []\OT1/ptm/b/n/8 (a)
  []
 
 
-Overfull \hbox (8.82147pt too wide) in paragraph at lines 147--147
+Overfull \hbox (8.82147pt too wide) in paragraph at lines 84--84
 |\OT1/ptm/m/n/8 (-20) Single-
  []
 
@@ -1997,26 +1991,37 @@ Overfull \hbox (8.82147pt too wide) in paragraph at lines 147--147
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 152--152
+Underfull \hbox (badness 10000) in paragraph at lines 89--89
 []\OT1/ptm/b/n/8 (b)
  []
 
 
-Overfull \hbox (8.7107pt too wide) in paragraph at lines 152--152
+Overfull \hbox (8.7107pt too wide) in paragraph at lines 89--89
 |\OT1/ptm/m/n/8 (-20) Mulit-
  []
 
 
-Overfull \hbox (3.21245pt too wide) in paragraph at lines 152--152
+Overfull \hbox (3.21245pt too wide) in paragraph at lines 89--89
 \OT1/ptm/m/n/8 (-20) App| 
  []
+
+LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 100.
+LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
+(Font)              scaled to size 7.4pt on input line 100.
+
+Overfull \hbox (9.09486pt too wide) in paragraph at lines 116--122
+[]\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
+input (per-for-mance), multiple-
+ []
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 7 undefined on input line 149
+.
 
 
 LaTeX Warning: Reference `fig:single-sum' on page 7 undefined on input line 174
 .
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 (./img/single-app-performance-small.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
@@ -2031,22 +2036,24 @@ isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Reference `fig:single-all' on page 8 undefined on input line 236
+
+LaTeX Warning: Reference `fig:single-all' on page 8 undefined on input line 242
 .
 
 
-Overfull \hbox (1.54169pt too wide) in paragraph at lines 245--251
+Overfull \hbox (1.54169pt too wide) in paragraph at lines 251--256
 \OT1/ptm/m/n/10 (-20) another application randomly drawn from our benchmark set
 ---
  []
 
 
-LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 262.
+LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 267.
 
 
 
-LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 275.
+LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 279.
 
 
 
@@ -2058,43 +2065,36 @@ isable this.
 )
 
 LaTeX Warning: Reference `fig:x264-phase-change' on page 8 undefined on input l
-ine 293.
+ine 297.
 
-LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 295.
-LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.4pt on input line 295.
 (./img/LAVA-pole.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
 
-LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 341
+LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 345
 .
 
 
 LaTeX Warning: Reference `fig:lavamd-pole' on page 8 undefined on input line 34
-6.
+9.
 
 
-Underfull \hbox (badness 7047) in paragraph at lines 341--353
+Underfull \hbox (badness 7047) in paragraph at lines 345--355
 \OT1/ptm/m/n/10 (+20) learned vari-ance pre-
  []
 
 
 LaTeX Warning: Reference `fig:sensitivity' on page 8 undefined on input line 36
-3.
-
-
-Underfull \vbox (badness 3439) has occurred while \output is active []
+4.
 
 (./img/sample-accuracy-v3.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
-)) (./tex/related.tex
+)) (./tex/related.tex) (./tex/conclusion.tex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) (./tex/conclusion.tex) (./tex/appendix.tex
+(./tex/appendix.tex
 
 LaTeX Warning: Reference `eqn:s1' on page 10 undefined on input line 18.
 
@@ -2123,23 +2123,22 @@ Package logreq Info: Writing requests to 'out/document-figure4.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
  ) 
 Here is how much of TeX's memory you used:
- 41553 strings out of 493304
- 865522 string characters out of 6139871
- 1365010 words of memory out of 5000000
- 43844 multiletter control sequences out of 15000+600000
- 48932 words of font info for 175 fonts, out of 8000000 for 9000
+ 41551 strings out of 493304
+ 865492 string characters out of 6139871
+ 1358010 words of memory out of 5000000
+ 43843 multiletter control sequences out of 15000+600000
+ 47825 words of font info for 174 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
- 64i,14n,94p,952b,2834s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,15n,94p,952b,2838s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_c6xmqr.enc}{/us
 r/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texm
 f-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-times/utmr8a.pfb>
-Output written on out/document-figure4.pdf (1 page, 82924 bytes).
+onts/type1/urw/times/utmr8a.pfb>
+Output written on out/document-figure4.pdf (1 page, 75224 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
- 26 compressed objects within 1 object stream
+ 32 PDF objects out of 1000 (max. 8388607)
+ 23 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
  27661 words of extra memory for PDF output out of 29859 (max. 10000000)
 

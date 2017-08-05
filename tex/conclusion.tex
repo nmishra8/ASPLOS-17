@@ -1,12 +1,16 @@
 \section{Conclusion}
-While much recent work has built systems to support learning and data
-science, in this work we use learning and data to build better
-systems.  Specifically we propose \SYSTEM{}, a combination of machine
-learning and control for managing resources to meet performance
-requirements with minimal energy.  \SYSTEM{}'s unique contributions
-are (1) breaking resource allocation into two sub-tasks: learning
-complexity and controlling dynamics; and (2) proposing an interface
-that combines the two efficiently while maintaining formal guarantees
-that the combination will converge to the desired performance. Our
-empirical results show that this combination produces more reliable
-performance and lower energy than either learning or control alone.
+Much recent work builds systems to support learning, \SYSTEM{} uses
+learning to build better systems.  \SYSTEM{} is a resource manager
+that meets application latency requirements with minimal energy, even
+without prior knowledge of the application.  \SYSTEM{} is the first
+work that provides formal guarantees that it will converge to the
+required latency despite not having prior knowledge.  \SYSTEM{}
+achieves this breakthrough by using learning to model complex resource
+interaction and control theory to manage system dynamics.  \SYSTEM{}
+proposes foundational techniques that allow control to be applied
+using noisy learned models---instead of ground truth models---while
+maintaining formal guarantees.  We demonstrate \SYSTEM{}'s
+effectiveness with a case study using embedded applications on a
+heterogeneous processor.  Compared to prior learning and control
+approaches, \SYSTEM{} is the only approach that provides reliable
+latency for all applications with near minimal energy.

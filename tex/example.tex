@@ -23,12 +23,11 @@ applications with dynamically varying inputs
 control design by exposing key parameters to users who customize
 control to their needs \cite{ControlWare,POET}.  User customization
 provides greater flexibility, but the controller will not converge to
-the desired performance if the custom design does not accurately
-capture the relationship between resources and performance.  This
-practice means users must not only be experts in their application
-domain, but must also have sufficient control knowledge to specify the
-parameters correctly.
-}
+the desired latency if the custom design does not accurately capture
+the relationship between resources and latency.  This practice
+means users must not only be experts in their application domain, but
+must also have sufficient control knowledge to specify the parameters
+correctly.  }
 
 This section illustrates how learning handles complexity, how control
 handles dynamics, and then describes a key challenge that must be
@@ -49,7 +48,7 @@ overcome to combine learning and control.
     \label{fig:STREAM_timeline}
   }
   \caption{(a) \texttt{STREAM} performance vs.  configuration.  (b)
-    Managing \texttt{STREAM} performance: \emph{Learning} handles the
+    Managing \texttt{STREAM} latency: \emph{Learning} handles the
     complexity, but \emph{control} oscillates. }
   \label{fig:learning-models1}
 \vskip -2em
@@ -76,17 +75,17 @@ distinct phases, so system dynamics are not an issue in this case.
 \figref{fig:STREAM_timeline} shows 20 iterations of existing learning
 \cite{LEO} and adaptive control \cite{POET} approaches allocating
 resources to \texttt{STREAM}.  The x-axis shows iteration and the
-y-axis shows performance normalized to the requirement.  The
+y-axis shows latency normalized to the requirement.  The
 \emph{learning} approach estimates \texttt{STREAM}'s performance and
 power for all configurations and uses the lowest energy configuration
-that delivers the required performance.  The \emph{adaptive
+that delivers the required latency.  The \emph{adaptive
   controller} begins with a generic notion of power/performance
-tradeoffs.  As the controller runs, it measures performance and
+tradeoffs.  As the controller runs, it measures latency and
 adjusts both the allocated resources and its own parameters.  The
 adaptive controller dynamically adjusts to non-linearities with a
 series of linear approximations; however, inaccuracies in the
-relationship between resources and performance cause oscillations that
-lead to performance violations.  This behavior occurs because the
+relationship between resources and latency cause oscillations that
+lead to latency violations.  This behavior occurs because the
 controller's adaptive mechanisms cannot handle STREAM's complexity, a
 known limitation of adaptive control systems
 \cite{ControlWare,POET,ICSE2014}.  Hence, the \emph{learner}'s ability
@@ -108,7 +107,7 @@ to model complex behavior is crucial.
     \label{fig:BODYTRACK_timeline}    
   }
   \caption{(a) \texttt{bodytrack} performance vs. configuration. (d)
-    Managing \texttt{bodytrack}'s performance with another
+    Managing \texttt{bodytrack}'s latency with another
     application: \emph{control} detects the change (at the vertical
     dashed line) and adjusts, but \emph{learning} does not.}
   \label{fig:control}
@@ -122,22 +121,23 @@ It achieves the best performance on 4 big cores at the highest
 clockspeed; the 4 LITTLE cores are more energy-efficient but slower.
 For \texttt{bodytrack}, the challenge is determining how to split time
 between the LITTLE and big cores to conserve energy while still
-meeting the performance requirements. Halfway through its execution,
+meeting the latency requirements. Halfway through its execution,
 we launch a second application---\texttt{STREAM}---on a single big
 core, dynamically changing available resources.
 
 \figref{fig:BODYTRACK_timeline} shows the results.  The vertical
 dashed line at frame 99 shows when the second application begins.  At
 that point, the adaptive controller detects \texttt{bodytrack}'s
-performance dip---rather than detecting the new application
-specifically---and it increases clockspeed and moves bodytrack from 4
-to 3 big cores.  The learner, however, does not have a mechanism to
-adapt to the altered environment.  While we could theoretically add
-feedback to the learner and periodically re-estimate the configuration
-space, doing so is impractical due to high overhead for learners
-capable of handling this complexity \cite{Paragon,quasar,LEO}.
-Simpler reinforcement learners can adapt, but cannot guarantee
-reconvergence after the dynamic change \cite{RL,TAAS}.
+latency spike---rather than detecting the new application
+specifically---and it increases clockspeed and moves
+\texttt{bodytrack} from 4 to 3 big cores.  The learner, however, does
+not have a mechanism to adapt to the altered environment.  While we
+could theoretically add feedback to the learner and periodically
+re-estimate the configuration space, doing so is impractical due to
+high overhead for learners capable of handling this complexity
+\cite{Paragon,quasar,LEO}.  Simpler reinforcement learners can adapt,
+but cannot guarantee reconvergence after the dynamic change
+\cite{RL,TAAS}.
 
 
 \subsection{Challenges Combining Learning and Control}
@@ -174,8 +174,8 @@ developers \cite{POET}.
 
 As shown in \figref{fig:not-simple}, the carefully tuned pole
 converges. The default pole, however, oscillates around the
-performance target, resulting in a number of missed deadlines.
-Additionally, the frames that exceed the desired performance waste
+latency target, resulting in a number of missed deadlines.
+Additionally, the frames below the desired latency waste
 energy because they spend more time on the big, inefficient cores. The
 pole captures the system's \emph{inertia}---dictating how fast it
 should react to environmental changes.  If the learner is noisy or

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  4 AUG 2017 17:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  5 AUG 2017 17:49
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1935,16 +1935,16 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: figures/STREAM-contour.pdf Graphic file (type pdf)
 
 <use figures/STREAM-contour.pdf>
-Package pdftex.def Info: figures/STREAM-contour.pdf used on input line 45.
+Package pdftex.def Info: figures/STREAM-contour.pdf used on input line 44.
 (pdftex.def)             Requested size: 126.47249pt x 121.73532pt.
  (./img/STREAM-example-resized.tex
 ===== Image 'out/document-figure0' is up-to-date. ======
 )
-Overfull \hbox (7.6621pt too wide) in paragraph at lines 45--53
+Overfull \hbox (7.6621pt too wide) in paragraph at lines 44--52
  [][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 52.
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
 File: ot1zi4.fd 2013/06/09 OT1/zi4 (Inconsolata)
 )
@@ -1957,14 +1957,18 @@ Package microtype Info: Loading generic settings for font family
 File: figures/BODYTRACK-contour.png Graphic file (type png)
 
 <use figures/BODYTRACK-contour.png>
-Package pdftex.def Info: figures/BODYTRACK-contour.png used on input line 104.
+Package pdftex.def Info: figures/BODYTRACK-contour.png used on input line 103.
 (pdftex.def)             Requested size: 126.47249pt x 117.60362pt.
  (./img/BODYTRACK-example-resized.tex
 ===== Image 'out/document-figure1' is up-to-date. ======
 )
-Overfull \hbox (7.6621pt too wide) in paragraph at lines 104--113
+Overfull \hbox (7.6621pt too wide) in paragraph at lines 103--112
  [][][][] 
  []
+
+
+Underfull \vbox (badness 1112) has occurred while \output is active []
+
 
 (./img/BODYTRACK-example2-resized.tex
 ===== Image 'out/document-figure2' is up-to-date. ======
@@ -2038,9 +2042,16 @@ and powerup
  []
 
 
-Overfull \hbox (3.00276pt too wide) in paragraph at lines 41--54
-\OT1/ptm/m/n/10 (-20) speed up with in-creas-ing frequency---typical of mem-ory
- bound
+Overfull \hbox (1.93097pt too wide) in paragraph at lines 31--41
+\OT1/ptm/m/n/10 (-20) video anal-y-sis (\OT1/zi4/m/n/10 bodytrack\OT1/ptm/m/n/1
+0 (-20) ), im-age sim-i-lar-ity search (\OT1/zi4/m/n/10 ferret\OT1/ptm/m/n/10 (
+-20) ),
+ []
+
+
+Overfull \hbox (3.56676pt too wide) in paragraph at lines 31--41
+\OT1/ptm/m/n/10 (-20) from ParMiBench [[]29[]]; mem-ory in-ten-sive pro-cess-in
+g (\OT1/zi4/m/n/10 stream\OT1/ptm/m/n/10 (-20) )
  []
 
 (./img/mem-compute.tex
@@ -2054,7 +2065,12 @@ Overfull \hbox (2.72736pt too wide) in paragraph at lines 1--57
 ===== Image 'out/document-figure4' is up-to-date. ======
 ) (./img/multi-app-summary2-v4.tex
 ===== Image 'out/document-figure5' is up-to-date. ======
-) [7.7 <./out/document-figure3.pdf>]
+)
+Overfull \hbox (13.67305pt too wide) in paragraph at lines 84--90
+ [][][][] 
+ []
+
+[7.7 <./out/document-figure3.pdf>]
 Overfull \hbox (9.09486pt too wide) in paragraph at lines 116--122
 []\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
 input (per-for-mance), multiple-
@@ -2068,14 +2084,17 @@ input (per-for-mance), multiple-
 ===== Image 'out/document-figure8' is up-to-date. ======
 ) (./img/multi-app-energy-small.tex
 ===== Image 'out/document-figure9' is up-to-date. ======
-) [8.8 <./out/document-figure4.pdf> <./out/document-figure5.pdf>]
-Overfull \hbox (1.54169pt too wide) in paragraph at lines 245--251
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8.8 <./out/document-figure4.pdf> <./out/document-figure5.pdf>]
+Overfull \hbox (1.54169pt too wide) in paragraph at lines 251--256
 \OT1/ptm/m/n/10 (-20) another application randomly drawn from our benchmark set
 ---
  []
 
 
-Underfull \vbox (badness 1009) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 (./img/x264-phases.tex
@@ -2085,34 +2104,29 @@ Underfull \vbox (badness 1009) has occurred while \output is active []
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1009) has occurred while \output is active []
 
  [9.9 <./out/document-figure6.pdf> <./out/document-figure7.pdf> <./out/document
 -figure8.pdf> <./out/document-figure9.pdf>] (./img/LAVA-pole.tex
 ===== Image 'out/document-figure11' is up-to-date. ======
 )
-Overfull \hbox (10.65541pt too wide) in paragraph at lines 1--338
+Overfull \hbox (10.65541pt too wide) in paragraph at lines 1--342
 [][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--338
+Underfull \hbox (badness 10000) in paragraph at lines 1--342
 
  []
 
 
-Underfull \hbox (badness 7047) in paragraph at lines 341--353
+Underfull \hbox (badness 7047) in paragraph at lines 345--355
 \OT1/ptm/m/n/10 (+20) learned vari-ance pre-
  []
 
 
-Overfull \hbox (4.50308pt too wide) in paragraph at lines 341--353
+Overfull \hbox (4.50308pt too wide) in paragraph at lines 345--355
 \OT1/ptm/m/n/10 (-20) an-tees de-spite us-ing noisy,
- []
-
-
-Underfull \hbox (badness 5667) in paragraph at lines 341--353
-\OT1/ptm/m/n/10 (+20) ing both CALOREE-
  []
 
 (./img/sample-accuracy-v3.tex
@@ -2169,11 +2183,11 @@ Package logreq Info: Writing requests to 'document.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
  ) 
 Here is how much of TeX's memory you used:
- 41652 strings out of 493304
- 858576 string characters out of 6139871
+ 41655 strings out of 493304
+ 858600 string characters out of 6139871
  1343968 words of memory out of 5000000
  43541 multiletter control sequences out of 15000+600000
- 82680 words of font info for 344 fonts, out of 8000000 for 9000
+ 82881 words of font info for 346 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
  63i,12n,94p,910b,1145s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/libertinealt.enc}{/usr/s
@@ -2193,10 +2207,10 @@ urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/newtx/zxlr.pfb>
-Output written on document.pdf (14 pages, 966369 bytes).
+Output written on document.pdf (14 pages, 965188 bytes).
 PDF statistics:
- 1843 PDF objects out of 2073 (max. 8388607)
- 1344 compressed objects within 14 object streams
+ 1837 PDF objects out of 2073 (max. 8388607)
+ 1338 compressed objects within 14 object streams
  184 named destinations out of 1000 (max. 500000)
  38716 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -33,7 +33,7 @@
 
 \nextgroupplot[
         scale only axis,
-        height=2cm,
+        height=1.5cm,
         width=0.80\columnwidth,
         xlabel near ticks,
         xlabel = {},
@@ -41,7 +41,8 @@
         xmax = 13,
         xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=45, anchor = east, font=\tiny},
-        ylabel={\tiny \textbf{Deadline Misses (\%)} \\ {\tiny (lower is better)}},
+%        ylabel={\tiny \textbf{Deadline Misses (\%)} \\ {\tiny (lower is better)}},
+        ylabel={\tiny Deadline \\ {\tiny Misses (\%)} \\ {\tiny lower is better)}},
         ytick pos=left
         ]
         \addplot[scatter, only marks ,thick, scatter src=explicit symbolic] table[x index=0,y index=3, meta=Benchmark] {\datatablelat};
@@ -52,13 +53,14 @@
 \nextgroupplot[
         scale only axis,
         %grid=both,
-        height=2cm,
+        height=1.5cm,
         width=0.80\columnwidth,
         xlabel near ticks,
         xlabel = {},
         xmin = 0,
         xmax = 13,
-        ylabel={\tiny \textbf{Energy Over Optimal (\%)} \\ {\tiny (lower is better)}},
+%        ylabel={\tiny \textbf{Energy Over Optimal (\%)} \\ {\tiny (lower is better)}},
+        ylabel={\tiny Energy \\ {\tiny Over Optimal (\%)} \\ {\tiny (lower is better)}},
         xticklabel shift={1pt},
         xtick={1,2,3,4,5,6,7,8,9,10,11,12,13},
         x tick label style={rotate=35, anchor = east},

@@ -16,41 +16,41 @@
 }
 
 \subsection{Platform and Benchmarks}
-We use ODROID-XU3 devices with Samsung Exynos 5 Octa processors based
-on the ARM big.LITTLE architecture, running Ubuntu 14.04. Each has 19
-speed settings for the 4 big cores and 13 for 4 LITTLE cores.  Each
-board has an on-board power meter updated at 1/4 s intervals capturing
-core, GPU, network, and memory. We enforce core allocation using
-thread affinity and core speeds using the \texttt{cpufrequtils}
-package.  Our test platforms do not have screens, but recent trends in
-mobile and embedded processor design and workloads have seen processor
-power become the dominant factor in energy consumption
-\cite{HPCA2016}.
+We run applications on an ODROID-XU3 with a Samsung Exynos 5 Octa
+processor (an ARM big.LITTLE architecture), running Ubuntu 14.04. The
+4 big cores support 19 clockspeeds, the 4 LITTLE ones have 13.  An
+on-board power meter updated at 0.25s intervals captures core, GPU,
+network, and memory. We allocate cores using thread affinity and set
+speeds using \texttt{cpufrequtils}.  The ODROID has no screen, but
+recent trends in mobile/embedded processor design and workloads have
+seen processor power become the dominant factor in energy consumption
+\cite{HPCA2016}.  We run the learners on an Intel server with E5-2690
+processors.  The ODROID and the server are connected with Gigabit
+Ethernet.
 
-We use 12 benchmarks representing computation in embedded and mobile
-sensor processing.  These include video encoding (\texttt{x264}),
-image similarity search (\cite{parsec}), video analysis
-(\texttt{bodytrack}), and graphics generation from PARSEC
+We use 12 benchmarks representing embedded and mobile sensor
+processing.  These include video encoding (\texttt{x264})), video
+analysis (\texttt{bodytrack}), image similarity search
+(\texttt{ferret}), and animation (\texttt{facesim}) from PARSEC
 \cite{parsec}; medical imaging (\texttt{heartwall},
-\texttt{leucocyte}), image processing (\texttt{srad}), and machine
+\texttt{leukocyte}), image processing (\texttt{srad}), and machine
 learning (\texttt{kmeans}) from Rodinia \cite{rodinia}; security
 (\texttt{sha}) from ParMiBench \cite{parmibench}; memory intensive
-processing (\texttt{stream}) \cite{stream}; and a synthetic aperature
-radar front end (\texttt{radar}) \cite{radar}.
+processing (\texttt{stream}) \cite{stream}; and synthetic aperture
+radar (\texttt{radar}) \cite{radar}.
 
 \figref{fig:application_variety} shows the variety of workloads
-indicated by the \emph{lack-of-fit}, or the absence of correlation
+indicated by the \emph{lack-of-fit}---the absence of correlation
 between frequency and performance.  Applications with high lack-of-fit
 do not speed up with increasing frequency---typical of memory bound
 applications. Applications with low lack-of-fit increase performance
-with increasing clock speed \cite{powerslope}.  Applications with
-intermediate lack-of-fit tend to improve with increasing clock speed
-up to a point and then stop.  Each application has an outer loop which
-processes one unit in a data stream (\eg{} a point for \texttt{kmeans}
-or a frame for \texttt{x264}). The application signals the completion
-of processing a stream element using a standard API
-\cite{icac2010heartbeats}.  Performance targets are specified as
-application-specific latencies for these inputs.
+with increasing clock speed.  Applications with intermediate
+lack-of-fit tend to improve with increasing clock speed up to a point
+and then stop.  Each application has an outer loop which processes one
+input (\eg{} a point for \texttt{kmeans} or a frame for
+\texttt{x264}). The application signals the completion of an input
+using a standard API \cite{icac2010heartbeats}.  Performance
+requirements are specified as latencies for these inputs.
 
 \begin{figure}[t]
   \input{img/mem-compute.tex}
@@ -67,12 +67,12 @@ application-specific latencies for these inputs.
 %actively uses this knowledge to meet the performance target.
 For each application, we measure its worst-case execution time (wcet)
 running without management; \ie{} the highest latency for any input.
-We set a latency goal--- or \emph{deadline}---for each application's
-input equal to its wcet; the standard approach for ensuring real-time
-latency guarantees or maximum responsiveness \cite{book}. We quantify
+We set a latency goal---or \emph{deadline}---for each input equal to
+its wcet; the standard approach for ensuring real-time latency
+guarantees or maximum responsiveness \cite{book}. We quantify
 performance reliability by measuring the missed deadlines. If the
-application processes $n$ total inputs and $m$ of those took longer
-than the target latency the deadline misses are:
+application processes $n$ total inputs and $m$ exceeded the target
+latency the deadline misses are:
 \begin{equation}
 deadline\, misses = 100\% \cdot \frac{m}{n}.
 \end{equation}
@@ -150,9 +150,9 @@ We compare the above baselines to:
 \item \textit{CALOREE-online}: uses the online learner.
 \item \textit{CALOREE-Netflix}: uses the Netflix learner.
 \item \textit{CALOREE-HBM}: uses the HBM learner.
-\end{enumerate}We use leave-one-out cross validation: to test
-application $x$, we form a set of all other applications, train the
-learners, and then test on $x$.
+\end{enumerate}We use leave-one-out cross validation. To test
+application $x$, we train the learners on all other applications, 
+then test on $x$.
 
 
 
@@ -171,18 +171,21 @@ learners, and then test on $x$.
 \subsection{Performance and Energy for Single App}
 %Setup
 
-\figref{fig:single-sum} represents the summary results as an average
-error across all targets for the single application scenario. This
-figure shows two charts with the percentage of deadline misses in the
-top chart and the energy over optimal in the bottom.  The dots show
-the average for each technique, while the error bars show the minimum
-and maximum values.
+\figref{fig:single-sum} summarizes the average error across all
+targets for the single application scenario. The figure shows deadline
+misses in the top chart and energy over optimal in the bottom.  The
+dots show the average, while the error bars show the minimum and
+maximum values.
 
 Race-to-idle meets all deadlines, but its conservative resource
 allocation has the highest average energy consumption. Among the prior
-approaches The HBM has the lowest average deadline misses (9\%) and
-lowest energy (20\% more than optimal). \SYSTEM{} with no pole misses
-15\% of all deadlines, which is worse than prior approaches.
+approaches HBM has the lowest average deadline misses (9\%) and lowest
+energy (20\% more than optimal). \SYSTEM{} with no pole misses 15\% of
+all deadlines, which is worse than prior approaches. Note that all
+prior approaches---other than racing---have at least one application
+that misses all deadlines. In many cases these approaches are close to
+the latency (within 10\%), but not close enough to deliver reliable
+performance.
 
 
 \begin{figure*}[t]
@@ -222,32 +225,34 @@ lowest energy (20\% more than optimal). \SYSTEM{} with no pole misses
 \end{figure*}
 
 
-When we allow \SYSTEM{} to adaptively tune its pole, however, we see
-greatly improved results.  The best combination is \SYSTEM{} with the
-HBM, which misses only 6.0\% of deadlines on average, while consuming
-just 4.3\% more energy than optimal.  Thus, \SYSTEM{} can reduce
-deadline misses by 65\% and energy consumption by 13\% compared to the
-best prior approach. The error bars on the \SYSTEM{}-HBM approach
-demonstrate that it is the only approach besides race-to-idle that can
-handle every test application; all others see at least 100\% deadline
-misses for one test case. Yet, \SYSTEM{}-HBM reduces energy
-consumption by 27\% compared to race-to-idle.
+When \SYSTEM{} adaptively tune its pole, the results greatly improve.
+The best combination is \SYSTEM{}-HBM, which averages 6.0\% missed
+deadlines, while consuming just 4.3\% more energy than optimal.  Thus,
+\SYSTEM{}-HBM reduces average deadline misses by 65\% and energy
+consumption by 13\% compared to the best prior approach. The error
+bars on the \SYSTEM{}-HBM approach demonstrate that it is the only
+approach---besides racing---that handles every test application; all
+others see at least 100\% deadline misses for one test case. Yet,
+\SYSTEM{}-HBM reduces energy consumption by 27\% compared to
+race-to-idle. The energy savings comes because most inputs are not
+worst case, leaving slack for smart resource allocators to
+save energy.  \emph{Among many smart approaches \SYSTEM{}-HBM provides
+  highly reliable performance with very low energy.}
 
 \figref{fig:single-all} presents a detailed, per-application
 comparison between \SYSTEM{}-HBM and selected prior approaches which
-have performed well in other scenarios: race-to-idle, netflix, HBM,
-and adaptive control---other data has been omitted for space.  The
+have performed well in other scenarios: race-to-idle, Netflix, HBM,
+and adaptive control. Other data has been omitted for space.  The
 benchmarks are shown on the x-axis; the y-axis shows the number of
 deadline misses and the normalized energy, respectively.
 
 \subsection{Performance and Energy for Multiple Apps}
 
-We again launch each benchmark with a goal of meeting the worst case
-latency target.  Halfway through execution, we start another
-application randomly drawn from our benchmark set---bound to one big
-core---which interferes with the original application.  Delivering the
-required latency in this scenario tests the ability to react to
-environmental changes.
+We again launch each benchmark with a goal of meeting its worst case
+latency.  Halfway through execution, we start another application
+randomly drawn from our benchmark set---bound to one big core---which
+interferes with the original application.  Delivering the required
+latency tests the ability to react to environmental changes.
 
 \PUNT{
 \begin{figure}[t]
@@ -259,17 +264,16 @@ environmental changes.
 \end{figure}
 }
 
-\figref{fig:multi-sum} summarizes the results as the average number of
-deadline misses and energy over optimal for all approaches.  We note
-that some targets are unachievable for some applications;
-specifically, \texttt{bodytrack}, \texttt{heartwall}, and
-\texttt{sha}. Due to these unachievable targets, both optimal and
-race-to-idle show some deadline misses. Race-to-idle misses more
-deadlines than optimal because it cannot make use of LITTLE cores to
-do some work, it simply continues using all big cores despite the
-degraded performance due to the second application.  In fact, most
-approaches do badly in this scenario---even adaptive control misses
-40\% of the deadlines.  \SYSTEM{}-HBM produces the lowest deadline
+\figref{fig:multi-sum} shows the average number of deadline misses and
+energy over optimal for all approaches.  Some targets are unachievable
+for some applications; specifically, \texttt{bodytrack},
+\texttt{heartwall}, and \texttt{sha}. Due to these unachievable
+targets, both optimal and race-to-idle show some deadline misses.
+Race-to-idle misses more deadlines than optimal because it cannot make
+use of LITTLE cores to do some work, it simply continues using all big
+cores despite the degraded performance due to the second application.
+Most approaches do badly in this scenario---even adaptive control has
+40\% deadline misses.  \SYSTEM{}-HBM produces the lowest deadline
 misses with an average of 20\%, which is only 2 points more than
 optimal.  It also produces the lowest energy, just 6\% more than
 optimal. \figref{fig:multi-all} shows the detailed results.
@@ -291,15 +295,15 @@ optimal. \figref{fig:multi-all} shows the detailed results.
 % \end{figure}
 We compare \SYSTEM{} and Adaptive-Control reacting to input
 variations.  \figref{fig:x264-phase-change} shows the \texttt{x264}
-video encoder application with 2 different phases caused by a scene
-change in the input occurring at the $500^{th}$ frame. The first scene
-is difficult and the second one is much easier.  In the first,
-\SYSTEM{} is closer to the desired performance (1 in the figure) and
-operates at a lower power state compared to Adaptive-Control.
-Adaptive-Control is not operating at a configuration on the Pareto
-frontier of power and performance.  When the input changes, \SYSTEM{}
-still meets the performance target with fewer fluctuations compared
-to Adaptive-Control.
+video encoder with 2 different phases caused by a scene change
+occurring at the $500^{th}$ frame. The first scene is difficult and
+the second one is much easier.  In the first, \SYSTEM{} is closer to
+the desired performance (1 in the figure) and operates at a lower
+power state compared to Adaptive-Control.  Adaptive-Control is not
+operating at a configuration on the Pareto frontier of power and
+performance.  When the input changes, \SYSTEM{} still meets the
+performance target with fewer fluctuations compared to
+Adaptive-Control.
 
 
 \subsection{The Pole's Importance}
@@ -341,35 +345,31 @@ to Adaptive-Control.
 \end{wrapfigure}\secref{guarantees} argues that tuning the
 controller to learned variance prevents oscillation and provides
 probabilistic guarantees despite using noisy, learned data to control
-unseen applications.  We demonstrate this empirically by showing LUD's
-single-app behavior using both CALOREE-NoPole and \SYSTEM{}-HBM.
-\figref{fig:lavamd-pole} shows the results, with time on the x-axis
-and normalized performance and power on the y-axes.  CALOREE-NoPole
-oscillates and causes wide fluctuations in power consumption.  In
-contrast, \SYSTEM{} provides reliable performance right at the target
-value (normalized to 1).  \SYSTEM{} also saves tremendous energy
-because it does not oscillate but uses a mixture of big and LITTLE
-cores to keep energy near minimal.
+unseen applications.  We demonstrate this empirically by showing LUD
+using both CALOREE-NoPole and \SYSTEM{}-HBM.  \figref{fig:lavamd-pole}
+shows time on the x-axis and normalized performance and power on the
+y-axes.  CALOREE-NoPole oscillates and causes wide power fluctuations.
+In contrast, \SYSTEM{} provides reliable performance and saves
+tremendous energy because it does not oscillate but uses a mixture of
+big and LITTLE cores to keep energy near minimal.
 
 \subsection{Sensitivity to the Measured Samples}
-We vary the number of samples taken and show how it affects learning
-accuracy for the Online, Netflix, and HBM learners.  We quantify
-accuracy as how close the learner is to ground truth (found through
-exhaustive exploration), with 1 meaning the learner perfectly models
-the real performance or power.  Accuracy is significant because the
-smaller the number of samples, the faster the controller can switch to
-the learner's application-specific predictions.
+We show how the number of samples affects model accuracy for the
+Online, Netflix, and HBM learners.  We quantify accuracy as how close
+the learner is to ground truth (found through exhaustive exploration),
+with 1 meaning the learner perfectly models the real performance or
+power.  Accuracy matters because the fewer the samples, the faster the
+controller switches to the learner's application-specific model.
 
-\figref{fig:sensitivity} compares the Online, HBM, and Netflix
-learners's accuracy for both performance (top) and power (bottom) as a
-function of the number of samples. The HBM incorporates prior
-knowledge and as sample size increases, its accuracy uniformly
-improves, exceeding 90\% after 20 samples. The Online approach needs
+\figref{fig:sensitivity} shows the accuracy vs sample count for both
+performance (top) and power (bottom).  The HBM incorporates prior
+knowledge and its accuracy uniformly improves with more
+samples---exceeding 0.9 after 20 samples. The Online approach needs
 at least 7 samples to even generate a prediction.  As Online receives
 more samples, its accuracy improves but never exceeds HBM's for the
-same number of samples. Netflix is very noisy for small sample sizes,
-but after about 50, it is competitive with HBM.  These results not
-only demonstrate the sensitivity to sample size, they show why
+same sample count. Netflix is very noisy for small sample sizes, but
+after about 50, it is competitive with HBM.  These results not only
+demonstrate the sensitivity to sample size, they show why
 \SYSTEM{}-HBM achieves the best results.
 
 \begin{figure}[t]
@@ -389,7 +389,7 @@ across devices by asking each of them to contribute samples for
 estimation. Once the sampling phase is over, the HBM generates an
 estimate as fast as 500 ms, which is significantly smaller than the
 time required to run any of our applications.  In the worst case
-(\texttt{facesim}), the controller sends 160B of sample data to the
+(\texttt{facesim}), the controller sends 320B of sample data to the
 learner, which sends back 1KB.  In this case, the sampling overhead
 and communication cost is less than 2\% of total execution time.
 \SYSTEM{}'s asynchronous communication means that the controller never

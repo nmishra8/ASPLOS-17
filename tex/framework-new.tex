@@ -12,15 +12,15 @@
 management into separate learning and control tasks and then composing
 these individual solutions.  When a new application enters the system,
 an adaptive control system allocates resources using a generic model
-and records performance and power.  The recorded values are sent to a
-learner, which predicts the application's performance and power in all
+and records latency and power.  The recorded values are sent to a
+learner, which predicts the application's latency and power in all
 other resource configurations. The learner extracts those that are
 predicted to be Pareto-optimal and packages them in a data structure:
 the performance hash table (PHT).  The PHT and the estimated variance
 are sent to the controller, which sets its pole and selects an energy
 minimal resource configuration with formal guarantees of convergence
-to the desired performance.  \SYSTEM{}'s only user-specified parameter
-is the performance requirement.
+to the desired latency.  \SYSTEM{}'s only user-specified parameter
+is the latency requirement.
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{figures/Timeline.pdf}
@@ -36,7 +36,7 @@ The controller sends the learner the application's name and device
 type (message 1, \figref{fig:timeline}).  The learner determines how
 many samples are needed for an accurate prediction and sends this
 number to the controller (message 2).  The controller takes these
-samples and sends the performance and power of each measured
+samples and sends the latency and power of each measured
 configuration to the learner (message 3).  The learner may require
 time to make predictions; so, the controller does not wait, but
 continues with the conservative model.  Once the learner predicts the
@@ -65,7 +65,7 @@ of learners that work with \SYSTEM{}.  Finally, we formally analyze
 \subsection{Traditional Control for Computing}
 A multiple-input, multiple-output (MIMO) controller manages multiple
 resources to meet multiple goals.  The inputs are measurements, \eg{}
-performance.  The outputs are the resource settings to be used at a
+latency.  The outputs are the resource settings to be used at a
 particular time, \eg{} an allocation of big and LITTLE cores and a
 clockspeed for each.
 
@@ -97,7 +97,7 @@ relationship.
 For example, in our ARM big.LITTLE system there are four resources:
 the number of big cores, the number of LITTLE cores, and the speeds
 for each of the big and LITTLE cores.  There is also a single goal:
-performance.  Thus, in this example, $n=4$ and $m=1$. The vector
+latency.  Thus, in this example, $n=4$ and $m=1$. The vector
 $\mathbf{u}(t)$ has four elements representing the resource allocation
 at time $t$. $q$ is the number of variables in the controller's state
 which can vary between 1 to $n$.  The matrices $\mathbf{A}$,
@@ -109,7 +109,7 @@ tuning the matrices at each time step---approximating the non-linear
 system through a series of changing linear formulations.  This
 approximation is a form of \emph{adaptive} or \emph{self-tuning}
 control \cite{HandbookControl}.  Such adaptive controllers provide
-formal guarantees that they will converge to the desired performance
+formal guarantees that they will converge to the desired latency
 even in the face of non-linearities, but they still assume convexity.
 
 This controller has two major drawbacks.  First, it requires matrix
@@ -118,7 +118,7 @@ and in the number of goals \cite{Hellerstein2004a,METE}.  Second, the
 adaptive mechanisms require users to specify both (1) starting values
 of the matrices $\mathbf{A}$, $\mathbf{B}$, and $\mathbf{C}$ and (2)
 the method for updating these matrices to account for any
-non-convexity in the relationship between resources and performance
+non-convexity in the relationship between resources and latency
 \cite{POET,METE,ControlWare,HandbookControl}.  Therefore, typically
 100s to 1000s of samples are taken at design time to ensure that the
 starting matrices are sufficient to ensure convergence
@@ -131,13 +131,13 @@ Specifically, \SYSTEM{} takes three steps to transform a standard
 control system into one that works without prior knowledge of the
 application to be controlled:
 \begin{enumerate}[leftmargin=1em]
-\item controlling \emph{speedup} (which is an abstraction of performance) rather than resources;
+\item controlling \emph{speedup} (which is an abstraction of latency) rather than resources;
 \item turning speedup into a minimal energy \emph{resource schedule};
 \item and exploiting the \emph{problem structure} to solve this
   scheduling problem in constant time.
 \end{enumerate}
 These steps assume a separate learner has produced predictions of how
-resource usage affects performance and power.  The result is that
+resource usage affects latency and power.  The result is that
 \SYSTEM{}'s controller runs in constant time without requiring any
 user-specified parameters.
 
@@ -147,15 +147,15 @@ user-specified parameters.
 
 \subsubsection{Controlling Speedup}
 \SYSTEM{} converts \eqnref{system:mimo} into a single-input
-(performance), single-output (speedup) controlling using $\mathbf{A} =
+(latency), single-output (speedup) controlling using $\mathbf{A} =
 0$, $\mathbf{B} = b(t)$, $\mathbf{C} = 1$,$\mathbf{u}= speedup$, and
 $y = perf$; where $b(t)$ is a time-varying parameter representing the
 application's \emph{base speed}---the speed when all resources are
-available---and $perf$ is the measured performance. Using these
+available---and $perf$ is the measured latency. Using these
 substitutions, we eliminate $\x$ from \eqnref{system:mimo} to relate
-speedup to performance:
+speedup to latency:
 \begin{equation}
-  perf(t) = b(t) \cdot speedup(t-1) \label{eqn:speedup}
+  lat(t) = 1/(b(t) \cdot speedup(t-1)) \label{eqn:speedup}
 \end{equation}
 While $b(t)$ is application-specific.  \SYSTEM{} assumes base speed is
 time-variant as applications will transition through phases and it
@@ -163,7 +163,7 @@ estimates this value online using the standard technique of Kalman
 filter estimation \cite{welch2006kalman}. 
 
 
-\SYSTEM{} must eliminate the error between the target performance and the goal: $ error(t) = goal - perf(t)$.
+\SYSTEM{} must eliminate the error between the target latency and the goal: $ error(t) = goal - 1/lat(t)$.
 Given \eqnref{speedup}, \SYSTEM{} uses the integral control law
 \cite{Hellerstein2004a}:
 \begin{eqnarray}
@@ -225,12 +225,12 @@ By encoding the learner's predictions in the performance hash table
 (PHT), \SYSTEM{} solves \eqnrref{power}{time} in constant time.
 
 Kim et al. analyze the problem of minimizing energy while meeting a
-performance constraint and observe that there must be an optimal
+latency constraint and observe that there must be an optimal
 solution with the following properties \cite{kim-cpsna}:
 \begin{itemize}[leftmargin=1em]
 \item At most two of $\tau_c$ are non-zero, meaning that at most two
   configurations will be used in any time interval.
-\item If you chart the configurations in the power and performance
+\item If you chart the configurations in the power and speedup
   tradeoff space (\eg{} the top half of \figref{fig:pht}) the two
   configurations with non-zero $\tau_c$ lie on the lower convex hull
   of the points in that space.
@@ -317,7 +317,7 @@ users both like some movies, they might have similar taste in other
 movies \cite{netflix}. This approach allows learners to borrow large
 amounts of data from other applications to answer questions about a
 new application.  One formulation of this problem is to assume the
-matrix of resource-vs-performance is low-rank and solve the problem
+matrix of resource-vs-speedup is low-rank and solve the problem
 using mathematical optimization techniques.  The Netflix approach has
 been used to predict application response to heterogeneous resources
 in data centers \cite{Paragon,quasar}.
@@ -355,7 +355,7 @@ then each PHT lookup requires constant time.
 \begin{algorithmic}
 %\REQUIRE Initialize the controller with a generic prediction of speedup and powerup. Send power and performance samples to learner and receive a PHT.
 \WHILE{$True$}
-    \STATE    Measure streaming application performance 
+    \STATE    Measure application latency 
     \STATE    Compute required speedup (Equation \eqref{eqn:speedup})
     \STATE    Lookup $s_{hi}$ and $s_{lo}$ with PHT
     \STATE    Compute $\tau_{hi}$ and $\tau_{lo}$ (Equations \ref{eqn:s1} \& \ref{eqn:s2})
@@ -373,9 +373,9 @@ theoretic guarantees in the presence of learned---rather than directly
 measured---data.  \SYSTEM{} requires any learner estimate not only
 speedup and powerup, but also the variance $\sigma$.  \SYSTEM{} uses
 this information to derive a lower bound for the pole which guarantees
-probabilistic convergence to the desired performance. Specifically, we
+probabilistic convergence to the desired latency. Specifically, we
 prove that with probability 99.7\% \SYSTEM{} converges to the desired
-performance if the pole is
+latency if the pole is
 $$\Floor{1- \Floor{max(\hat{s})/(min(\hat{s}) - 3\sigma)}_0}_0 \leq \rho(t)
 < 1,$$ where $\Floor{x}_0 = \max(x,0)$ and $\hat{s}$ is the estimated
 speedup. See appendix A for the proof. Users who need higher
@@ -383,8 +383,8 @@ confidence can set the scalar multiplier on $\sigma$ higher; \eg{}
 using $6$ provides a 99.99966\% probability of convergence.
 
 Thus we provide a lower-bound on the value of $\rho(t)$ required for
-confidence that \SYSTEM{} converges to the desired performance.  This
-pole value only considers performance, and not energy efficiency.  In
+confidence that \SYSTEM{} converges to the desired latency.  This
+pole value only considers latency, and not energy efficiency.  In
 practice, we find it better to use a higher pole based on the
 \emph{uncertainty} between the controller's observed energy efficiency
 and that predicted by the learner.  We follow prior work
@@ -400,7 +400,7 @@ the pole based on this uncertainty:
 where $\bar{s}$ and $\bar{p}$ are the measured values of speedup and
 powerup and $\hat{s}$ and $\hat{p}$ are the estimated values from the
 learner.  This measure of uncertainty captures both power and
-performance.  We find that it is generally higher than the pole value
+latency.  We find that it is generally higher than the pole value
 given by our lower bound, so in practice \SYSTEM{} sets the pole
 dynamically to be the higher of the two values and \SYSTEM{} makes
 spot updates to the estimated speedup and power based on its
