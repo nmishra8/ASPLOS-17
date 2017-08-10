@@ -34,7 +34,7 @@ grid style={dashed},
 ]
 
 \nextgroupplot[ybar=\pgflinewidth,
-bar width=3.0pt,
+bar width=4.0pt,
 ylabel shift={0mm},
 ylabel={\tiny Energy Above Optimal \\ {\tiny (lower is better)}},
 xticklabel shift={0pt},
@@ -60,11 +60,11 @@ xticklabels={
 {\scriptsize $\mathsf{x264-native}$},
 {\scriptsize $\mathsf{Average}$}},
 ]
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableeighty};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableeighty};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableeighty};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableeighty};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableeighty};
+\addplot[color=black, fill=RACE]       table[x index=0,y index=3] {\datatableeighty};
+\addplot[color=black, fill=NETFLIX]     table[x index=0,y index=6] {\datatableeighty};
+\addplot[color=black, fill=HBM]   table[x index=0,y index=7] {\datatableeighty};
+\addplot[color=black, fill=POET] table[x index=0,y index=9] {\datatableeighty};
+\addplot[color=black, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableeighty};
 
 \end{groupplot}
 

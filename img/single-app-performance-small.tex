@@ -38,7 +38,7 @@ grid style={dashed},
 \nextgroupplot[ybar=\pgflinewidth,
 ylabel shift={0mm},
 ylabel={\tiny Deadline \\ {\tiny Misses (\%)} \\  {\tiny (lower is better)}},
-bar width=3.0pt,
+bar width=4.0pt,
 legend entries = {\scriptsize {$\mathsf{Race-to-idle}$},
 {\scriptsize $\mathsf{Netflix}$},
 {\scriptsize $\mathsf{HBM}$},
@@ -51,11 +51,11 @@ ytick={0.0,5.0,10.0,15.0,20.0},
 yticklabels={,5.0,10.0,15.0},
 ]
 
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatablesixty};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatablesixty};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatablesixty};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatablesixty};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatablesixty};
+\addplot[color=black, fill=RACE]       table[x index=0,y index=3] {\datatablesixty};
+\addplot[color=black, fill=NETFLIX]     table[x index=0,y index=6] {\datatablesixty};
+\addplot[color=black, fill=HBM]   table[x index=0,y index=7] {\datatablesixty};
+\addplot[color=black, fill=POET] table[x index=0,y index=9] {\datatablesixty};
+\addplot[color=black, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatablesixty};
                                 
 
 \end{groupplot}

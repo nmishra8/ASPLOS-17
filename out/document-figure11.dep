@@ -1,4 +1,4 @@
-out/document-figure11.pdf: img/pole/leo-poet-np-LAVAMD.txt
-out/document-figure11.pdf: img/pole/leo-poet-LAVAMD.txt
+out/document-figure11.pdf: img/pole/leo-poet-np-LAVAMD-latency.txt
+out/document-figure11.pdf: img/pole/leo-poet-LAVAMD-latency.txt
 out/document-figure11.pdf: img/pole/leo-poet-np-LAVAMD.txt
 out/document-figure11.pdf: img/pole/leo-poet-LAVAMD.txt

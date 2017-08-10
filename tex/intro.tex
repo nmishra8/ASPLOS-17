@@ -122,7 +122,7 @@ learner tunes the control parameters automatically; \ie{} \emph{it
 % Implement CALOREE.  Test against state of the art learning and
 % self-tuning control systems.  We find that:
 We evaluate \SYSTEM{} by implementing the learners on an x86 server
-and the controller on heterogeneous ARM big.LITTLE devices.  We
+and the controller on a heterogeneous ARM big.LITTLE device.  We
 compare to state-of-the-art learning (including polynomial regression
 \cite{Koala,dubach2010}, collaborative filtering---\ie{} the Netflix
 algorithm\cite{netflix,Paragon}---and a hierarchical Bayesian model
@@ -145,15 +145,15 @@ the system and compete for resources.  \SYSTEM{} achieves the:
   \item In the \emph{multi-app} case, the best prior approach averages
     40\% deadline misses, but \SYSTEM{} misses just 20\%.
   \end{itemize}
-\item \textit{Best energy savings:} We compare to an \emph{oracle}
-  with a perfect model of the application, system, and future events.
+\item \textit{Best energy savings:} We compare to optimal energy
+  assuming a perfect model of application, system, and future:
   \begin{itemize}[leftmargin=1em]
   \item In the \emph{single-app} case, the best prior approach
-    averages 18\% more energy consumption than the oracle, but
-    \SYSTEM{} consumes only 4\% more.
+    averages 18\% more energy consumption than optimal, but \SYSTEM{}
+    consumes only 4\% more.
   \item In the \emph{multi-app} case, the best prior approach averages
-    28\% more energy than the oracle, while \SYSTEM{} consumes just
-    6\% more.
+    28\% more energy than optimal, while \SYSTEM{} consumes just 6\%
+    more.
   \end{itemize}
 \end{itemize}
 

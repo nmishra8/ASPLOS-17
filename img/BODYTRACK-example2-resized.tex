@@ -51,8 +51,8 @@ line width=1pt},
 ]
 
 \addplot[thick, solid, black] coordinates {(0,1) (399,1)};
-\addplot[thick, solid, color=s5] table[x index=0,y index=1,col sep=space] {img/dynamics-example-poet.txt};
-\addplot[thick, solid, color=s3] table[x index=0,y index=1,col sep=space] {img/dynamics-example-leopoetnp.txt};
+\addplot[thick, solid, color=s5, mark=triangle, mark size=1pt] table[x index=0,y index=1,col sep=space] {img/dynamics-example-poet.txt};
+\addplot[thick, solid, color=s3, mark=square, mark size=1pt] table[x index=0,y index=1,col sep=space] {img/dynamics-example-leopoetnp.txt};
 \addplot[thick, dashed, black] coordinates {(99,0) (99,1.5)};
 %\addplot[thick, dashed, black] coordinates {(130,0) (130, 2)};
 \end{groupplot}

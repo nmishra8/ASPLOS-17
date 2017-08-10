@@ -1,2 +1,2 @@
-out/document-figure0.pdf: img/complexity-example-leo.txt
-out/document-figure0.pdf: img/complexity-example-poet.txt
+out/document-figure0.pdf: img/complexity-example-leo-latency.txt
+out/document-figure0.pdf: img/complexity-example-poet-latency.txt

@@ -41,7 +41,7 @@ xticklabels={},
 %ylabel={\tiny Deadline Misses (\%) \\ {\tiny (lower is better)}},
 ylabel={\tiny Deadline \\ {\tiny Misses (\%)} \\  {\tiny (lower is better)}},
 ylabel shift={0mm},
-bar width=3.0pt,
+bar width=4.0pt,
 legend entries = {\scriptsize {$\mathsf{Race-to-idle}$},
 {\scriptsize $\mathsf{Netflix}$},
 {\scriptsize $\mathsf{HBM}$},
@@ -55,12 +55,12 @@ ytick={0.0,30.0,60.0,90.0},
 yticklabels={,30.0,60.0,90.0},
 ]
 
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableeighty};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableeighty};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableeighty};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableeighty};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableeighty};
-\addplot[color=OPTIMAL, fill=OPTIMAL]     table[x index=0,y index=2] {\datatableeighty};
+\addplot[color=black, fill=RACE]       table[x index=0,y index=3] {\datatableeighty};
+\addplot[color=black, fill=NETFLIX]     table[x index=0,y index=6] {\datatableeighty};
+\addplot[color=black, fill=HBM]   table[x index=0,y index=7] {\datatableeighty};
+\addplot[color=black, fill=POET] table[x index=0,y index=9] {\datatableeighty};
+\addplot[color=black, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableeighty};
+\addplot[color=black, fill=OPTIMAL]     table[x index=0,y index=2] {\datatableeighty};
 
 
 \end{groupplot}

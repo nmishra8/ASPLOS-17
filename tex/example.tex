@@ -98,46 +98,44 @@ to model complex behavior is crucial.
 \centering
   \subfloat[]
   {
-    \includegraphics[width=.25\textwidth]{figures/BODYTRACK-contour.png}
-    \label{fig:BODYTRACK_contour}
+    \includegraphics[width=.25\textwidth]{figures/X264-contour.png}
+    \label{fig:X264_contour}
   }
   \subfloat[]
   {
-    \input{img/BODYTRACK-example-resized.tex}
-    \label{fig:BODYTRACK_timeline}    
+    \input{img/X264-example-resized.tex}
+    \label{fig:X264_timeline}    
   }
-  \caption{(a) \texttt{bodytrack} performance vs. configuration. (d)
-    Managing \texttt{bodytrack}'s latency with another
+  \caption{(a) \texttt{x264} performance vs. configuration. (d)
+    Managing \texttt{x264}'s latency with another
     application: \emph{control} detects the change (at the vertical
     dashed line) and adjusts, but \emph{learning} does not.}
   \label{fig:control}
 \end{figure}
 
 
-We now consider a dynamic environment.  We begin with
-\texttt{bodytrack} running alone on the system.
-\figref{fig:BODYTRACK_contour} shows \texttt{bodytrack}'s behavior.
-It achieves the best performance on 4 big cores at the highest
-clockspeed; the 4 LITTLE cores are more energy-efficient but slower.
-For \texttt{bodytrack}, the challenge is determining how to split time
-between the LITTLE and big cores to conserve energy while still
-meeting the latency requirements. Halfway through its execution,
-we launch a second application---\texttt{STREAM}---on a single big
-core, dynamically changing available resources.
+We now consider a dynamic environment.  We begin with \texttt{x264}
+running alone on the system.  \figref{fig:X264_contour} shows
+\texttt{x264}'s behavior.  It achieves the best performance on 4 big
+cores at the highest clockspeed; the 4 LITTLE cores are more
+energy-efficient but slower.  For \texttt{x264}, the challenge is
+determining how to split time between the LITTLE and big cores to
+conserve energy while still meeting the latency requirements. During
+execution, we launch a second application---\texttt{STREAM}---on a
+single big core, dynamically changing available resources.
 
-\figref{fig:BODYTRACK_timeline} shows the results.  The vertical
-dashed line at frame 99 shows when the second application begins.  At
-that point, the adaptive controller detects \texttt{bodytrack}'s
-latency spike---rather than detecting the new application
-specifically---and it increases clockspeed and moves
-\texttt{bodytrack} from 4 to 3 big cores.  The learner, however, does
-not have a mechanism to adapt to the altered environment.  While we
-could theoretically add feedback to the learner and periodically
-re-estimate the configuration space, doing so is impractical due to
-high overhead for learners capable of handling this complexity
-\cite{Paragon,quasar,LEO}.  Simpler reinforcement learners can adapt,
-but cannot guarantee reconvergence after the dynamic change
-\cite{RL,TAAS}.
+\figref{fig:X264_timeline} shows the results.  The vertical dashed
+line at frame 99 shows when the second application begins.  At that
+point, the adaptive controller detects \texttt{x264}'s latency
+spike---rather than detecting the new application specifically---and
+it increases clockspeed and moves \texttt{x264} from 4 to 3 big cores.
+The learner, however, does not have a mechanism to adapt to the
+altered environment.  While we could theoretically add feedback to the
+learner and periodically re-estimate the configuration space, doing so
+is impractical due to high overhead for learners capable of handling
+this complexity \cite{Paragon,quasar,LEO}.  Simpler reinforcement
+learners can adapt, but cannot guarantee reconvergence after the
+dynamic change \cite{RL,TAAS}.
 
 
 \subsection{Challenges Combining Learning and Control}
@@ -159,13 +157,13 @@ which may have noise and/or errors.
 \begin{wrapfigure}{r}{0.5\columnwidth} 
 %\begin{figure}
 %\centering
-\input{img/BODYTRACK-example2-resized.tex}
+\input{img/X264-example2-resized.tex}
 \caption{Comparison of carefully tuned and default poles.}
 \label{fig:not-simple}
 %\end{figure}
 \end{wrapfigure}
 To demonstrate the pole's importance when using learned data, we again
-control \texttt{bodytrack}, using the adaptive controller from the
+control \texttt{x264}, using the adaptive controller from the
 previous subsection. Instead of using a ground truth model mapping
 resource usage to performance, we model it using the learner from the
 first subsection.  We compare the results with a carefully hand-tuned

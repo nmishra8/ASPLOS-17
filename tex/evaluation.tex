@@ -14,6 +14,9 @@
  \label{fig:odroidall}
 \end{figure}
 }
+%We compare \SYSTEM{} to 4 prior learning methods and 2 prior control
+%methods across 15 benchmarks on a low-power heterogeneous processor.
+
 
 \subsection{Platform and Benchmarks}
 We run applications on an ODROID-XU3 with a Samsung Exynos 5 Octa
@@ -107,6 +110,7 @@ percentage of energy over optimal.
 \subsection{Points of Comparison}
 We compare to existing learning and control approaches:
 \begin{enumerate}[leftmargin=1em]
+%\item \textit{Oracle:} 
 \item \textit{Race-to-idle}: This well-known heuristic allocates all
   resources to the application to complete each input as fast as
   possible, then idles until the next input is available
@@ -278,9 +282,9 @@ misses with an average of 20\%, which is only 2 points more than
 optimal.  It also produces the lowest energy, just 6\% more than
 optimal. \figref{fig:multi-all} shows the detailed results.
 
-\subsection{Adapting to Phase Changes}
+\subsection{Adapting to Workload Changes}
 \begin{figure}[!h]
-  \input{img/x264-phases.tex}
+  \input{img/x264-phases-latency.tex}
    \vskip -.5em
   \caption{Controlling \texttt{x264} through scene changes.  }
   \label{fig:x264-phase-change}
@@ -293,17 +297,18 @@ optimal. \figref{fig:multi-all} shows the detailed results.
 %      different resource allocations.}
 %   \label{fig:estimation_config}
 % \end{figure}
-We compare \SYSTEM{} and Adaptive-Control reacting to input
-variations.  \figref{fig:x264-phase-change} shows the \texttt{x264}
-video encoder with 2 different phases caused by a scene change
-occurring at the $500^{th}$ frame. The first scene is difficult and
-the second one is much easier.  In the first, \SYSTEM{} is closer to
-the desired performance (1 in the figure) and operates at a lower
-power state compared to Adaptive-Control.  Adaptive-Control is not
-operating at a configuration on the Pareto frontier of power and
-performance.  When the input changes, \SYSTEM{} still meets the
-performance target with fewer fluctuations compared to
-Adaptive-Control.
+We compare \SYSTEM{} and HBM reacting to input variations.
+\figref{fig:x264-phase-change} shows the \texttt{x264} video encoder
+with 2 different phases caused by a scene at the $500^{th}$ frame. The
+first scene is difficult and the second one is much easier.  In the
+first, both the HBM and \SYSTEM{} find a configuration that achieves
+the latency target (1 in the figure) with minimal energy. When the
+input changes, \SYSTEM{} initially misses the latency, then adjusts to
+an optimal configuration.  In contrast, the HBM does not find a new
+configuration, but idles more.  During the second scene, \SYSTEM{}
+operates at ~1.7W, while the HBM is at 2W. Here, \SYSTEM{}'s use of
+learning and control reduces energy by 14\% compared to learning
+alone.
 
 
 \subsection{The Pole's Importance}
@@ -339,19 +344,20 @@ Adaptive-Control.
 %\begin{figure}
 %\centering
 \input{img/LAVA-pole.tex}
+\vskip -1em
 \caption{Comparison of learned and default poles.}
 \label{fig:lavamd-pole}
 %\end{figure}
 \end{wrapfigure}\secref{guarantees} argues that tuning the
 controller to learned variance prevents oscillation and provides
 probabilistic guarantees despite using noisy, learned data to control
-unseen applications.  We demonstrate this empirically by showing LUD
-using both CALOREE-NoPole and \SYSTEM{}-HBM.  \figref{fig:lavamd-pole}
-shows time on the x-axis and normalized performance and power on the
-y-axes.  CALOREE-NoPole oscillates and causes wide power fluctuations.
-In contrast, \SYSTEM{} provides reliable performance and saves
-tremendous energy because it does not oscillate but uses a mixture of
-big and LITTLE cores to keep energy near minimal.
+unseen applications.  We demonstrate this empirically by showing
+\texttt{srad} using both CALOREE-NoPole and \SYSTEM{}-HBM.
+\figref{fig:lavamd-pole} shows time on the x-axis and normalized
+latency and power on the y-axes.  CALOREE-NoPole oscillates and causes
+wide power fluctuations.  In contrast, \SYSTEM{} provides reliable
+performance and saves tremendous energy because it avoids oscillation,
+using a mixture of big and LITTLE cores to minimize energy.
 
 \subsection{Sensitivity to the Measured Samples}
 We show how the number of samples affects model accuracy for the

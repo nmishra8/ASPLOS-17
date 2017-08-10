@@ -32,19 +32,19 @@ ylabel style={align=center},
 unbounded coords=jump,
 ]
 
-\nextgroupplot[ylabel={\scriptsize Performance (Normalized)}, % Performance
+\nextgroupplot[ylabel={\scriptsize Latency (Normalized)}, % Performance
 xlabel={\footnotesize Iteration},
-ymin=0,
-ymax=1.5,
-ytick={0.0,0.5,1.0,1.5},
-yticklabels={,0.5,1.0,1.5},
-legend entries={{\scriptsize $\mathsf{Performance Requirement}$},{\scriptsize $\mathsf{Learning}$},{\scriptsize $\mathsf{Adaptive Control}$},},
+ymin=0.8,
+ymax=1.2,
+ytick={0.8,0.9,1.0,1.1,1.2},
+yticklabels={0.8,,1.0,,1.2},
+legend entries={{\scriptsize $\mathsf{Latency Requirement}$},{\scriptsize $\mathsf{Learning}$},{\scriptsize $\mathsf{Adaptive Control}$},},
 legend style={fill=none,draw=none,at={(0.5,1.65)},anchor=north,legend columns=1,line width=3pt},
 ]
 
 \addplot[thick, solid, black] coordinates {(0,1) (20,1)};
-\addplot[thick, solid, color=s4] table[x index=0,y index=1,col sep=space] {img/complexity-example-leo.txt};
-\addplot[thick, solid, color=s5] table[x index=0,y index=1,col sep=space] {img/complexity-example-poet.txt};
+\addplot[thick, solid, color=s4, mark=o, mark size=1pt] table[x index=0,y index=1,col sep=tab] {img/complexity-example-leo-latency.txt};
+\addplot[thick, solid, color=s5, mark=square, mark size=1pt] table[x index=0,y index=1,col sep=tab] {img/complexity-example-poet-latency.txt};
 \end{groupplot}
 \end{centering}
 \end{tikzpicture}

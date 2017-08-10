@@ -35,7 +35,7 @@ grid style={dashed},
 ]
 
 \nextgroupplot[ybar=\pgflinewidth,
-bar width=3.0pt,
+bar width=4.0pt,
 ylabel shift={0mm},
 xticklabel shift={0pt},
 ymin=0,
@@ -61,11 +61,11 @@ xticklabels={
 {\tiny $\mathsf{Average}$}},
 ]
 
-\addplot[color=RACE, fill=RACE]       table[x index=0,y index=3] {\datatableninty};
-\addplot[color=NETFLIX, fill=NETFLIX]     table[x index=0,y index=6] {\datatableninty};
-\addplot[color=HBM, fill=HBM]   table[x index=0,y index=7] {\datatableninty};
-\addplot[color=POET, fill=POET] table[x index=0,y index=9] {\datatableninty};
-\addplot[color=CALOREE-HBM, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableninty};
+\addplot[color=black, fill=RACE]       table[x index=0,y index=3] {\datatableninty};
+\addplot[color=black, fill=NETFLIX]     table[x index=0,y index=6] {\datatableninty};
+\addplot[color=black, fill=HBM]   table[x index=0,y index=7] {\datatableninty};
+\addplot[color=black, fill=POET] table[x index=0,y index=9] {\datatableninty};
+\addplot[color=black, fill=CALOREE-HBM]     table[x index=0,y index=13] {\datatableninty};
 
 \end{groupplot}
 

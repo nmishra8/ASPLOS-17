@@ -1,12 +1,6 @@
 \section{\SYSTEM{}: Learning Control}
 \label{sec:framework}
 
-\begin{figure}
-  \includegraphics[width=\columnwidth]{figures/Overview.pdf}
-  \caption{\SYSTEM{} overview.}
-  \label{fig:overview}
-\end{figure}
-
 
 \figref{fig:overview} shows \SYSTEM{}'s approach of splitting resource
 management into separate learning and control tasks and then composing
@@ -21,6 +15,15 @@ are sent to the controller, which sets its pole and selects an energy
 minimal resource configuration with formal guarantees of convergence
 to the desired latency.  \SYSTEM{}'s only user-specified parameter
 is the latency requirement.
+
+
+\begin{figure}
+  \includegraphics[width=\columnwidth]{figures/Overview.pdf}
+  \caption{\SYSTEM{} overview.}
+  \label{fig:overview}
+\end{figure}
+
+
 
 \begin{figure}
   \includegraphics[width=\columnwidth]{figures/Timeline.pdf}
@@ -342,7 +345,6 @@ learning also increases with increasing applications.
 \subsection{Formal Analysis}
 \label{sec:guarantees}
 \paragraph{Control System Complexity}
-
 \SYSTEM{}'s control system (see Algorithm \ref{alg:gcs}) runs on the
 local device along with the application under control, so its overhead
 must be minimal.  In fact, each controller invocation is $O(1)$ .  The
@@ -367,7 +369,6 @@ then each PHT lookup requires constant time.
 \end{algorithm}
 
 \paragraph{Control Theoretic Formal Guarantees}
-
 The controller's pole $\rho(t)$ is critical to providing control
 theoretic guarantees in the presence of learned---rather than directly
 measured---data.  \SYSTEM{} requires any learner estimate not only

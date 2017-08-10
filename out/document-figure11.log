@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  5 AUG 2017 17:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.6.29)  7 AUG 2017 11:05
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1748,11 +1748,11 @@ The command '\includegraphics [width=.25\textwidth ]{figures/STREAM-contour.pdf
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (187.66882pt too wide) in paragraph at lines 45--53
+Overfull \hbox (187.66882pt too wide) in paragraph at lines 44--52
  [][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+zi4 on input line 52.
 (/usr/share/texlive/texmf-dist/tex/latex/inconsolata/ot1zi4.fd
 File: ot1zi4.fd 2013/06/09 OT1/zi4 (Inconsolata)
 )
@@ -1762,100 +1762,89 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             See the microtype manual for details.
 
 LaTeX Warning: Reference `fig:STREAM_contour' on page 2 undefined on input line
- 64.
+ 63.
 
 
 LaTeX Warning: Reference `fig:STREAM_timeline' on page 2 undefined on input lin
-e 76.
+e 75.
 
-The command '\includegraphics [width=.25\textwidth ]{figures/BODYTRACK-contour.
-png}' has been optimized away. Use '/tikz/external/optimize=false' to disable t
-his.
-(./img/BODYTRACK-example-resized.tex
+The command '\includegraphics [width=.25\textwidth ]{figures/X264-contour.png}'
+ has been optimized away. Use '/tikz/external/optimize=false' to disable this.
+(./img/X264-example-resized.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Overfull \hbox (187.66882pt too wide) in paragraph at lines 104--113
+Overfull \hbox (187.66882pt too wide) in paragraph at lines 103--112
  [][][][] 
  []
 
 
-LaTeX Warning: Reference `fig:BODYTRACK_contour' on page 2 undefined on input l
-ine 120.
+LaTeX Warning: Reference `fig:X264_contour' on page 2 undefined on input line 1
+18.
 
 
-LaTeX Warning: Reference `fig:BODYTRACK_timeline' on page 3 undefined on input 
-line 129.
+LaTeX Warning: Reference `fig:X264_timeline' on page 3 undefined on input line 
+127.
 
 
-LaTeX Warning: Reference `sec:mov-learn' on page 3 undefined on input line 144.
+LaTeX Warning: Reference `sec:mov-learn' on page 3 undefined on input line 142.
 
 
 
 LaTeX Warning: Reference `sec:mov-control' on page 3 undefined on input line 14
-4.
+2.
 
-(./img/BODYTRACK-example2-resized.tex
+(./img/X264-example2-resized.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 2368) in paragraph at lines 167--174
+Underfull \hbox (badness 2368) in paragraph at lines 165--172
 [][]\OT1/ptm/m/n/10 (+20) To demon-strate the
  []
 
 
-LaTeX Warning: Reference `fig:not-simple' on page 3 undefined on input line 175
+LaTeX Warning: Reference `fig:not-simple' on page 3 undefined on input line 173
 .
 
 ) (./tex/framework-new.tex
+
+LaTeX Warning: Reference `fig:overview' on page 3 undefined on input line 5.
+
 The command '\includegraphics [width=\columnwidth ]{figures/Overview.pdf}' has 
 been optimized away. Use '/tikz/external/optimize=false' to disable this.
-
-LaTeX Warning: Reference `fig:overview' on page 3 undefined on input line 11.
-
 The command '\includegraphics [width=\columnwidth ]{figures/Timeline.pdf}' has 
 been optimized away. Use '/tikz/external/optimize=false' to disable this.
 
-LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 32.
+LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 35.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 36.
+LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 39.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 47.
+LaTeX Warning: Reference `fig:timeline' on page 3 undefined on input line 50.
 
 
-LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 12
-9.
-
-
-LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 14
-9.
+LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 13
+2.
 
 
 LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 15
-5.
+2.
 
 
-Overfull \hbox (2.10109pt too wide) in paragraph at lines 149--157
-\OT1/ptm/m/n/10 (-20) CALO-REE con-verts Eqn. [] into a single-input (per-for-m
-ance),
- []
+LaTeX Warning: Reference `eqn:system:mimo' on page 4 undefined on input line 15
+8.
 
 
-LaTeX Warning: Reference `eqn:speedup' on page 4 undefined on input line 167.
+LaTeX Warning: Reference `eqn:speedup' on page 4 undefined on input line 170.
 
 
-LaTeX Warning: Reference `sec:guarantees' on page 4 undefined on input line 186
+LaTeX Warning: Reference `sec:guarantees' on page 4 undefined on input line 189
 .
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 190.
-
-
-LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 194.
+e 193.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
@@ -1863,91 +1852,98 @@ e 197.
 
 
 LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
-e 204.
+e 200.
 
 
-LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 215.
+LaTeX Warning: Reference `eqn:speedup-control' on page 5 undefined on input lin
+e 207.
 
 
-LaTeX Warning: Reference `eqn:work' on page 5 undefined on input line 216.
+LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 218.
 
 
-LaTeX Warning: Reference `eqn:deadline' on page 5 undefined on input line 217.
+LaTeX Warning: Reference `eqn:work' on page 5 undefined on input line 219.
 
 
-LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 218.
+LaTeX Warning: Reference `eqn:deadline' on page 5 undefined on input line 220.
 
 
-LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 225.
+LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 221.
 
 
-LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 225.
+LaTeX Warning: Reference `eqn:power' on page 5 undefined on input line 228.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 234.
+LaTeX Warning: Reference `eqn:time' on page 5 undefined on input line 228.
+
+
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 237.
 
 The command '\includegraphics [width=\columnwidth ]{figures/performance-hash-ta
 ble.pdf}' has been optimized away. Use '/tikz/external/optimize=false' to disab
 le this.
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 250.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 253.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 258.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 261.
 
 
-LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 273.
+LaTeX Warning: Reference `fig:pht' on page 5 undefined on input line 276.
 
 
-Overfull \hbox (15.94849pt too wide) in paragraph at lines 273--278
+Overfull \hbox (15.94849pt too wide) in paragraph at lines 276--281
 []\OT1/ptm/m/n/10 (-20) For ex-am-ple, con-sider the PHT in Fig-ure [] and a $\
 OML/ztmcm/m/it/10 speedup\U/ntxmia/m/it/10 {\OML/ztmcm/m/it/10 t\U/ntxmia/m/it/
 10 | =
  []
 
 
-LaTeX Warning: Reference `eqn:s1' on page 5 undefined on input line 285.
+LaTeX Warning: Reference `eqn:s1' on page 5 undefined on input line 288.
 
 
-LaTeX Warning: Reference `eqn:s2' on page 5 undefined on input line 285.
+LaTeX Warning: Reference `eqn:s2' on page 5 undefined on input line 288.
 
 
-LaTeX Warning: Reference `fig:timeline' on page 5 undefined on input line 309.
+LaTeX Warning: Reference `fig:timeline' on page 5 undefined on input line 312.
 
 
-Overfull \hbox (1.01132pt too wide) in paragraph at lines 325--340
+Overfull \hbox (1.01132pt too wide) in paragraph at lines 328--343
  \OT1/ptm/b/n/10 Bayesian Pre-dic-tors: \OT1/ptm/m/n/10 (-20) A hi-er-ar-chi-ca
 l Bayesian model (HBM)
  []
 
 
-LaTeX Warning: Reference `alg:gcs' on page 6 undefined on input line 346.
+LaTeX Warning: Reference `alg:gcs' on page 6 undefined on input line 348.
 
 
-LaTeX Warning: Reference `eqn:speedup' on page 6 undefined on input line 359.
+LaTeX Warning: Reference `eqn:speedup' on page 6 undefined on input line 361.
 
 
-LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 361.
+LaTeX Warning: Reference `eqn:s1' on page 6 undefined on input line 363.
 
 
-LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 361.
+LaTeX Warning: Reference `eqn:s2' on page 6 undefined on input line 363.
 
 
-Overfull \hbox (10.0pt too wide) detected at line 367
+Overfull \hbox (10.0pt too wide) detected at line 369
 [][] 
  []
 
 
-Underfull \vbox (badness 1082) has occurred while \output is active []
+Overfull \hbox (2.11534pt too wide) in paragraph at lines 371--380
+\OT1/ptm/b/n/10 Control The-o-retic For-mal Guar-an-tees \OT1/ptm/m/n/10 (-20) 
+The con-troller's pole
+ []
 
 ) (./tex/evaluation.tex
-Overfull \hbox (2.07912pt too wide) in paragraph at lines 399--1
+Overfull \hbox (2.07912pt too wide) in paragraph at lines 400--1
 \OT1/ptm/m/n/10 (-20) where $[]$ and $[]$ are the mea-sured val-ues of speedup 
 and powerup
  []
 
 
-Overfull \hbox (1.93097pt too wide) in paragraph at lines 31--41
+Overfull \hbox (1.93097pt too wide) in paragraph at lines 34--44
 \OT1/ptm/m/n/10 (-20) video anal-y-sis (\OT1/zi4/m/n/10 bodytrack\OT1/ptm/m/n/1
 0 (-20) ), im-age sim-i-lar-ity search (\OT1/zi4/m/n/10 ferret\OT1/ptm/m/n/10 (
 -20) ),
@@ -1955,7 +1951,7 @@ Overfull \hbox (1.93097pt too wide) in paragraph at lines 31--41
 
 
 LaTeX Warning: Reference `fig:application_variety' on page 7 undefined on input
- line 42.
+ line 45.
 
 (./img/mem-compute.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
@@ -1964,17 +1960,17 @@ isable this.
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 84--84
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
 []\OT1/ptm/b/n/8 (a)
  []
 
 
-Overfull \hbox (11.32147pt too wide) in paragraph at lines 84--84
+Overfull \hbox (11.32147pt too wide) in paragraph at lines 87--87
 |\OT1/ptm/m/n/8 (-20) Single-
  []
 
 
-Overfull \hbox (3.21245pt too wide) in paragraph at lines 84--84
+Overfull \hbox (3.21245pt too wide) in paragraph at lines 87--87
 \OT1/ptm/m/n/8 (-20) App| 
  []
 
@@ -1982,32 +1978,32 @@ Overfull \hbox (3.21245pt too wide) in paragraph at lines 84--84
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 89--89
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
 []\OT1/ptm/b/n/8 (b)
  []
 
 
-Overfull \hbox (8.7107pt too wide) in paragraph at lines 89--89
+Overfull \hbox (8.7107pt too wide) in paragraph at lines 92--92
 |\OT1/ptm/m/n/8 (-20) Mulit-
  []
 
 
-Overfull \hbox (3.21245pt too wide) in paragraph at lines 89--89
+Overfull \hbox (3.21245pt too wide) in paragraph at lines 92--92
 \OT1/ptm/m/n/8 (-20) App| 
  []
 
 
-Overfull \hbox (9.09486pt too wide) in paragraph at lines 116--122
+Overfull \hbox (9.09486pt too wide) in paragraph at lines 119--125
 []\OT1/ptm/m/it/10 (-20) PID-Control\OT1/ptm/m/n/10 (-20) : a stan-dard single-
 input (per-for-mance), multiple-
  []
 
 
-LaTeX Warning: Reference `sec:guarantees' on page 7 undefined on input line 149
+LaTeX Warning: Reference `sec:guarantees' on page 7 undefined on input line 152
 .
 
 
-LaTeX Warning: Reference `fig:single-sum' on page 7 undefined on input line 174
+LaTeX Warning: Reference `fig:single-sum' on page 7 undefined on input line 177
 .
 
 (./img/single-app-performance-small.tex
@@ -2026,1049 +2022,1030 @@ isable this.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-LaTeX Warning: Reference `fig:single-all' on page 8 undefined on input line 242
+LaTeX Warning: Reference `fig:single-all' on page 8 undefined on input line 245
 .
 
 
-Overfull \hbox (1.54169pt too wide) in paragraph at lines 251--256
+Overfull \hbox (1.54169pt too wide) in paragraph at lines 254--259
 \OT1/ptm/m/n/10 (-20) another application randomly drawn from our benchmark set
 ---
  []
 
 
-LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 267.
+LaTeX Warning: Reference `fig:multi-sum' on page 8 undefined on input line 270.
 
 
 
-LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 279.
+LaTeX Warning: Reference `fig:multi-all' on page 8 undefined on input line 282.
 
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-(./img/x264-phases.tex
+(./img/x264-phases-latency.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
 )
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 LaTeX Warning: Reference `fig:x264-phase-change' on page 8 undefined on input l
-ine 297.
+ine 300.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 (./img/LAVA-pole.tex
 \openout7 = `out/document-figure11.dpth'.
 
-PGFPlots: reading {img/pole/leo-poet-np-LAVAMD.txt}
+PGFPlots: reading {img/pole/leo-poet-np-LAVAMD-latency.txt}
 \tikzexternal@dep@file=\write8
 \openout8 = `out/document-figure11.dep'.
 
-NOTE: coordinate (1,1.02393) has been dropped because of a coordinate filter. 
-NOTE: coordinate (2,1.39664) has been dropped because of a coordinate filter. 
-NOTE: coordinate (3,0.852548) has been dropped because of a coordinate filter. 
+NOTE: coordinate (1,0.976629) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (4,1.18234) has been dropped because of a coordinate filter. 
-NOTE: coordinate (6,1.12472) has been dropped because of a coordinate filter. 
-NOTE: coordinate (7,1.21468) has been dropped because of a coordinate filter. 
-NOTE: coordinate (8,0.964571) has been dropped because of a coordinate filter. 
+NOTE: coordinate (2,0.716004) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (9,0.872719) has been dropped because of a coordinate filter. 
+NOTE: coordinate (3,1.17295) has been dropped because of a coordinate filter. 
+NOTE: coordinate (4,0.84578) has been dropped because of a coordinate filter. 
+NOTE: coordinate (6,0.88911) has been dropped because of a coordinate filter. 
+NOTE: coordinate (7,0.823262) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (11,1.10865) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (12,0.94237) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (13,0.878748) has been dropped because of a coordinate filter.
+NOTE: coordinate (8,1.03673) has been dropped because of a coordinate filter. 
+NOTE: coordinate (9,1.14584) has been dropped because of a coordinate filter. 
+NOTE: coordinate (11,0.901998) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (14,1.41931) has been dropped because of a coordinate filter. 
+NOTE: coordinate (12,1.06115) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (16,1.25534) has been dropped because of a coordinate filter. 
+NOTE: coordinate (13,1.13798) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (17,0.803789) has been dropped because of a coordinate filter.
+NOTE: coordinate (14,0.704568) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (18,1.0734) has been dropped because of a coordinate filter. 
-NOTE: coordinate (19,0.939354) has been dropped because of a coordinate filter.
+NOTE: coordinate (16,0.796597) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (21,1.0051) has been dropped because of a coordinate filter. 
-NOTE: coordinate (22,0.928336) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (23,0.752462) has been dropped because of a coordinate filter.
+NOTE: coordinate (17,1.24411) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (18,0.931619) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (24,1.14767) has been dropped because of a coordinate filter. 
+NOTE: coordinate (19,1.06456) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (26,0.811491) has been dropped because of a coordinate filter.
+NOTE: coordinate (21,0.994926) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (27,0.938086) has been dropped because of a coordinate filter.
+NOTE: coordinate (22,1.0772) has been dropped because of a coordinate filter. 
+NOTE: coordinate (23,1.32897) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (24,0.871331) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (28,1.2633) has been dropped because of a coordinate filter. 
-NOTE: coordinate (29,0.805429) has been dropped because of a coordinate filter.
+NOTE: coordinate (26,1.2323) has been dropped because of a coordinate filter. 
+NOTE: coordinate (27,1.066) has been dropped because of a coordinate filter. 
+NOTE: coordinate (28,0.791578) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (31,1.16319) has been dropped because of a coordinate filter. 
+NOTE: coordinate (29,1.24157) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (32,0.736899) has been dropped because of a coordinate filter.
+NOTE: coordinate (31,0.859705) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (33,1.45601) has been dropped because of a coordinate filter. 
+NOTE: coordinate (32,1.35704) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (34,0.707344) has been dropped because of a coordinate filter.
+NOTE: coordinate (33,0.686808) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (36,1.01209) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (37,1.15914) has been dropped because of a coordinate filter. 
+NOTE: coordinate (34,1.41374) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (38,0.727604) has been dropped because of a coordinate filter.
+NOTE: coordinate (36,0.988054) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (39,0.978964) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (41,0.65878) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (42,1.45193) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (43,0.694809) has been dropped because of a coordinate filter.
+NOTE: coordinate (37,0.862709) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (44,1.00763) has been dropped because of a coordinate filter. 
+NOTE: coordinate (38,1.37437) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (46,1.07764) has been dropped because of a coordinate filter. 
+NOTE: coordinate (39,1.02149) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (47,1.28597) has been dropped because of a coordinate filter. 
+NOTE: coordinate (41,1.51796) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (48,0.6074) has been dropped because of a coordinate filter. 
-NOTE: coordinate (49,1.41823) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (51,1.16612) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (52,0.869635) has been dropped because of a coordinate filter.
+NOTE: coordinate (42,0.688738) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (53,1.28249) has been dropped because of a coordinate filter. 
+NOTE: coordinate (43,1.43924) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (54,0.605052) has been dropped because of a coordinate filter.
+NOTE: coordinate (44,0.992428) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (56,1.42854) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (57,0.59584) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (58,0.98402) has been dropped because of a coordinate filter. 
+NOTE: coordinate (46,0.927954) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (47,0.777623) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (48,1.64636) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (59,0.868556) has been dropped because of a coordinate filter.
+NOTE: coordinate (49,0.705104) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (61,1.22518) has been dropped because of a coordinate filter. 
+NOTE: coordinate (51,0.857545) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (52,1.14991) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (62,0.7477) has been dropped because of a coordinate filter. 
-NOTE: coordinate (63,1.17827) has been dropped because of a coordinate filter. 
+NOTE: coordinate (53,0.779733) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (54,1.65275) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (64,0.588587) has been dropped because of a coordinate filter.
+NOTE: coordinate (56,0.700015) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (66,1.10338) has been dropped because of a coordinate filter. 
+NOTE: coordinate (57,1.6783) has been dropped because of a coordinate filter. 
+NOTE: coordinate (58,1.01624) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (67,1.08186) has been dropped because of a coordinate filter. 
+NOTE: coordinate (59,1.15134) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (68,1.01074) has been dropped because of a coordinate filter. 
+NOTE: coordinate (61,0.816207) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (62,1.33743) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (69,1.06365) has been dropped because of a coordinate filter. 
+NOTE: coordinate (63,0.848702) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (64,1.69898) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (71,0.956837) has been dropped because of a coordinate filter.
+NOTE: coordinate (66,0.906306) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (72,0.879574) has been dropped because of a coordinate filter.
+NOTE: coordinate (67,0.924334) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (73,1.16692) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (74,1.13752) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (76,0.764405) has been dropped because of a coordinate filter.
+NOTE: coordinate (68,0.989374) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (77,0.825331) has been dropped because of a coordinate filter.
+NOTE: coordinate (69,0.940159) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (78,1.49962) has been dropped because of a coordinate filter. 
+NOTE: coordinate (71,1.04511) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (72,1.13691) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (79,0.517422) has been dropped because of a coordinate filter.
+NOTE: coordinate (73,0.856957) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (81,0.968375) has been dropped because of a coordinate filter.
+NOTE: coordinate (74,0.879105) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (82,1.0732) has been dropped because of a coordinate filter. 
-NOTE: coordinate (83,0.823521) has been dropped because of a coordinate filter.
+NOTE: coordinate (76,1.30821) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (77,1.21164) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (78,0.666836) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (84,1.36096) has been dropped because of a coordinate filter. 
+NOTE: coordinate (79,1.93266) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (86,0.936677) has been dropped because of a coordinate filter.
+NOTE: coordinate (81,1.03266) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (82,0.931793) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (87,0.972361) has been dropped because of a coordinate filter.
+NOTE: coordinate (83,1.2143) has been dropped because of a coordinate filter. 
+NOTE: coordinate (84,0.734775) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (88,1.56282) has been dropped because of a coordinate filter. 
+NOTE: coordinate (86,1.0676) has been dropped because of a coordinate filter. 
+NOTE: coordinate (87,1.02842) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (89,0.970222) has been dropped because of a coordinate filter.
+NOTE: coordinate (88,0.639869) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (91,1.05886) has been dropped because of a coordinate filter. 
+NOTE: coordinate (89,1.03069) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (92,0.676866) has been dropped because of a coordinate filter.
+NOTE: coordinate (91,0.944412) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (93,1.37562) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (94,0.749151) has been dropped because of a coordinate filter.
+NOTE: coordinate (92,1.4774) has been dropped because of a coordinate filter. 
+NOTE: coordinate (93,0.726945) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (96,1.18778) has been dropped because of a coordinate filter. 
+NOTE: coordinate (94,1.33484) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (97,0.821102) has been dropped because of a coordinate filter.
+NOTE: coordinate (96,0.841907) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (98,1.09263) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (99,0.78866) has been dropped because of a coordinate filter. 
+NOTE: coordinate (97,1.21788) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (101,1.30737) has been dropped because of a coordinate filter.
+NOTE: coordinate (98,0.915223) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (102,0.918392) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (103,0.778311) has been dropped because of a coordinate filter
+NOTE: coordinate (99,1.26797) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (101,0.764894) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (104,1.11033) has been dropped because of a coordinate filter.
+NOTE: coordinate (102,1.08886) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (106,1.12761) has been dropped because of a coordinate filter.
+NOTE: coordinate (103,1.28483) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (107,0.988896) has been dropped because of a coordinate filter
+NOTE: coordinate (104,0.900633) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (108,0.944221) has been dropped because of a coordinate filter
+NOTE: coordinate (106,0.886831) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (109,1.22914) has been dropped because of a coordinate filter.
+NOTE: coordinate (107,1.01123) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (111,0.708111) has been dropped because of a coordinate filter
+NOTE: coordinate (108,1.05907) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (109,0.813577) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (112,1.03308) has been dropped because of a coordinate filter.
+NOTE: coordinate (111,1.41221) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (113,1.0989) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (114,0.946601) has been dropped because of a coordinate filter
+NOTE: coordinate (112,0.967979) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (116,0.569987) has been dropped because of a coordinate filter
+NOTE: coordinate (113,0.910001) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (117,1.02517) has been dropped because of a coordinate filter.
+NOTE: coordinate (114,1.05641) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (118,1.5075) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (119,0.829609) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (121,1.02608) has been dropped because of a coordinate filter.
+NOTE: coordinate (116,1.75443) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (122,0.981348) has been dropped because of a coordinate filter
+NOTE: coordinate (117,0.975448) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (123,1.02484) has been dropped because of a coordinate filter.
+NOTE: coordinate (118,0.66335) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (124,0.895477) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (126,0.752022) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (127,0.910666) has been dropped because of a coordinate filter
+NOTE: coordinate (119,1.20539) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (121,0.974583) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (128,1.15843) has been dropped because of a coordinate filter.
+NOTE: coordinate (122,1.01901) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (129,1.00578) has been dropped because of a coordinate filter.
+NOTE: coordinate (123,0.975762) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (124,1.11672) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (131,1.26275) has been dropped because of a coordinate filter.
+NOTE: coordinate (126,1.32975) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (132,0.625394) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (133,0.982724) has been dropped because of a coordinate filter
+NOTE: coordinate (127,1.0981) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (128,0.863237) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (134,0.994004) has been dropped because of a coordinate filter
+NOTE: coordinate (129,0.994253) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (136,0.879206) has been dropped because of a coordinate filter
+NOTE: coordinate (131,0.791922) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (137,0.91779) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (138,1.07661) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (139,0.90135) has been dropped because of a coordinate filter.
+NOTE: coordinate (132,1.59899) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (141,0.542549) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (142,1.01168) has been dropped because of a coordinate filter.
+NOTE: coordinate (133,1.01758) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (143,0.982548) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (144,1.38025) has been dropped because of a coordinate filter.
+NOTE: coordinate (134,1.00603) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (146,1.26222) has been dropped because of a coordinate filter.
+NOTE: coordinate (136,1.13739) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (147,1.04103) has been dropped because of a coordinate filter.
+NOTE: coordinate (137,1.08957) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (148,0.773837) has been dropped because of a coordinate filter
+NOTE: coordinate (138,0.928841) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (149,1.12692) has been dropped because of a coordinate filter.
+NOTE: coordinate (139,1.10945) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (151,1.0996) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (152,1.27048) has been dropped because of a coordinate filter.
+NOTE: coordinate (141,1.84315) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (153,0.747616) has been dropped because of a coordinate filter
+NOTE: coordinate (142,0.988455) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (154,0.973444) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (156,1.04874) has been dropped because of a coordinate filter.
+NOTE: coordinate (143,1.01776) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (157,0.757401) has been dropped because of a coordinate filter
+NOTE: coordinate (144,0.724506) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (158,1.00305) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (159,0.943907) has been dropped because of a coordinate filter
+NOTE: coordinate (146,0.792255) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (161,1.06692) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (162,1.21978) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (163,1.19792) has been dropped because of a coordinate filter.
+NOTE: coordinate (147,0.960587) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (148,1.29226) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (164,0.676674) has been dropped because of a coordinate filter
+NOTE: coordinate (149,0.887374) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (166,0.675829) has been dropped because of a coordinate filter
+NOTE: coordinate (151,0.909422) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (167,0.911739) has been dropped because of a coordinate filter
+NOTE: coordinate (152,0.787104) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (168,1.05551) has been dropped because of a coordinate filter.
+NOTE: coordinate (153,1.33759) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (169,1.22488) has been dropped because of a coordinate filter.
+NOTE: coordinate (154,1.02728) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (171,0.924735) has been dropped because of a coordinate filter
+NOTE: coordinate (156,0.953525) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (172,0.779416) has been dropped because of a coordinate filter
+NOTE: coordinate (157,1.3203) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (158,0.996959) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (173,1.37165) has been dropped because of a coordinate filter.
+NOTE: coordinate (159,1.05943) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (174,0.475208) has been dropped because of a coordinate filter
+NOTE: coordinate (161,0.937277) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (176,1.01351) has been dropped because of a coordinate filter.
+NOTE: coordinate (162,0.81982) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (177,1.05842) has been dropped because of a coordinate filter.
+NOTE: coordinate (163,0.83478) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (178,1.10374) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (179,0.848387) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (181,1.01254) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (182,0.710005) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (183,1.0537) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (184,1.15972) has been dropped because of a coordinate filter.
+NOTE: coordinate (164,1.47782) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (186,0.7362) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (187,1.26169) has been dropped because of a coordinate filter.
+NOTE: coordinate (166,1.47966) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (188,1.05296) has been dropped because of a coordinate filter.
+NOTE: coordinate (167,1.09681) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (189,0.864404) has been dropped because of a coordinate filter
+NOTE: coordinate (168,0.947409) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (169,0.816407) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (191,1.17949) has been dropped because of a coordinate filter.
+NOTE: coordinate (171,1.08139) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (192,1.00326) has been dropped because of a coordinate filter.
+NOTE: coordinate (172,1.28301) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (193,0.940784) has been dropped because of a coordinate filter
+NOTE: coordinate (173,0.729049) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (194,1.08344) has been dropped because of a coordinate filter.
+NOTE: coordinate (174,2.10434) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (196,0.9096) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (197,0.858855) has been dropped because of a coordinate filter
+NOTE: coordinate (176,0.98667) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (177,0.944805) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (198,1.05857) has been dropped because of a coordinate filter.
+NOTE: coordinate (178,0.90601) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (199,1.23422) has been dropped because of a coordinate filter.
+NOTE: coordinate (179,1.17871) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (201,0.958394) has been dropped because of a coordinate filter
+NOTE: coordinate (181,0.987615) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (202,0.909964) has been dropped because of a coordinate filter
+NOTE: coordinate (182,1.40844) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (183,0.949037) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (203,0.818739) has been dropped because of a coordinate filter
+NOTE: coordinate (184,0.862277) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (204,0.94778) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (206,1.41359) has been dropped because of a coordinate filter.
+NOTE: coordinate (186,1.35833) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (207,0.789104) has been dropped because of a coordinate filter
+NOTE: coordinate (187,0.792588) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (208,1.15978) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (209,1.04263) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (211,0.820701) has been dropped because of a coordinate filter
+NOTE: coordinate (188,0.949704) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (212,1.21562) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (213,0.96872) has been dropped because of a coordinate filter.
+NOTE: coordinate (189,1.15687) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (214,0.94856) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (216,1.19629) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (217,0.723956) has been dropped because of a coordinate filter
+NOTE: coordinate (191,0.847824) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (218,1.13998) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (219,1.03897) has been dropped because of a coordinate filter.
+NOTE: coordinate (192,0.996751) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (193,1.06294) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (221,0.665972) has been dropped because of a coordinate filter
+NOTE: coordinate (194,0.922986) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (222,1.18057) has been dropped because of a coordinate filter.
+NOTE: coordinate (196,1.09938) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (223,1.40974) has been dropped because of a coordinate filter.
+NOTE: coordinate (197,1.16434) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (224,0.597221) has been dropped because of a coordinate filter
+NOTE: coordinate (198,0.944671) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (226,1.34232) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (227,1.01862) has been dropped because of a coordinate filter.
+NOTE: coordinate (199,0.810228) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (201,1.04341) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (228,0.81768) has been dropped because of a coordinate filter.
+NOTE: coordinate (202,1.09894) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (229,1.04166) has been dropped because of a coordinate filter.
+NOTE: coordinate (203,1.22139) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (231,0.887958) has been dropped because of a coordinate filter
+NOTE: coordinate (204,1.0551) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (206,0.707419) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (232,1.23252) has been dropped because of a coordinate filter.
+NOTE: coordinate (207,1.26726) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (233,0.832719) has been dropped because of a coordinate filter
+NOTE: coordinate (208,0.862232) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (234,0.953069) has been dropped because of a coordinate filter
+NOTE: coordinate (209,0.959113) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (236,1.10621) has been dropped because of a coordinate filter.
+NOTE: coordinate (211,1.21847) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (237,0.861151) has been dropped because of a coordinate filter
+NOTE: coordinate (212,0.822625) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (238,1.12669) has been dropped because of a coordinate filter.
+NOTE: coordinate (213,1.03229) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (239,1.2591) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (241,0.962112) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (242,1.15039) has been dropped because of a coordinate filter.
+NOTE: coordinate (214,1.05423) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (243,0.802554) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (244,0.979117) has been dropped because of a coordinate filter
+NOTE: coordinate (216,0.835918) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (246,0.937426) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (247,0.983671) has been dropped because of a coordinate filter
+NOTE: coordinate (217,1.3813) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (218,0.877208) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (248,0.964659) has been dropped because of a coordinate filter
+NOTE: coordinate (219,0.962492) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (249,1.28581) has been dropped because of a coordinate filter.
+NOTE: coordinate (221,1.50156) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (251,1.3716) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (252,0.711249) has been dropped because of a coordinate filter
+NOTE: coordinate (222,0.847048) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (253,1.09728) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (254,0.893935) has been dropped because of a coordinate filter
+NOTE: coordinate (223,0.709351) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (256,1.46448) has been dropped because of a coordinate filter.
+NOTE: coordinate (224,1.67442) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (257,0.476376) has been dropped because of a coordinate filter
+NOTE: coordinate (226,0.744979) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (258,1.24684) has been dropped because of a coordinate filter.
+NOTE: coordinate (227,0.98172) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (259,0.812837) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (261,0.969481) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (262,0.882291) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (263,1.0057) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (264,1.08775) has been dropped because of a coordinate filter.
+NOTE: coordinate (228,1.22297) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (266,0.917457) has been dropped because of a coordinate filter
+NOTE: coordinate (229,0.960006) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (267,1.47396) has been dropped because of a coordinate filter.
+NOTE: coordinate (231,1.12618) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (268,0.656031) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (269,0.772104) has been dropped because of a coordinate filter
+NOTE: coordinate (232,0.811346) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (271,1.02807) has been dropped because of a coordinate filter.
+NOTE: coordinate (233,1.20089) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (272,1.02243) has been dropped because of a coordinate filter.
+NOTE: coordinate (234,1.04924) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (273,0.902889) has been dropped because of a coordinate filter
+NOTE: coordinate (236,0.903987) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (274,1.33013) has been dropped because of a coordinate filter.
+NOTE: coordinate (237,1.16124) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (276,0.929545) has been dropped because of a coordinate filter
+NOTE: coordinate (238,0.887556) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (277,1.11588) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (278,0.994391) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (279,0.802359) has been dropped because of a coordinate filter
+NOTE: coordinate (239,0.794218) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (281,0.67215) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (282,0.84782) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (283,1.62408) has been dropped because of a coordinate filter.
+NOTE: coordinate (241,1.03938) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (284,0.731143) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (286,1.03253) has been dropped because of a coordinate filter.
+NOTE: coordinate (242,0.86927) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (287,1.141) has been dropped because of a coordinate filter. 
-NOTE: coordinate (288,1.16231) has been dropped because of a coordinate filter.
+NOTE: coordinate (243,1.24602) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (289,0.79239) has been dropped because of a coordinate filter.
+NOTE: coordinate (244,1.02133) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (291,0.971605) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (292,1.35695) has been dropped because of a coordinate filter.
+NOTE: coordinate (246,1.06675) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (293,0.58853) has been dropped because of a coordinate filter.
+NOTE: coordinate (247,1.0166) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (248,1.03664) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (294,1.34032) has been dropped because of a coordinate filter.
+NOTE: coordinate (249,0.77772) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (296,0.992266) has been dropped because of a coordinate filter
+NOTE: coordinate (251,0.729076) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (297,1.01029) has been dropped because of a coordinate filter.
+NOTE: coordinate (252,1.40598) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (298,0.684876) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (299,0.949269) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (301,0.738625) has been dropped because of a coordinate filter
+NOTE: coordinate (253,0.911344) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (302,1.29134) has been dropped because of a coordinate filter.
+NOTE: coordinate (254,1.11865) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (303,0.820861) has been dropped because of a coordinate filter
+NOTE: coordinate (256,0.682836) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (304,1.5592) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (306,1.12854) has been dropped because of a coordinate filter.
+NOTE: coordinate (257,2.09918) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (307,0.755629) has been dropped because of a coordinate filter
+NOTE: coordinate (258,0.802028) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (308,1.23366) has been dropped because of a coordinate filter.
+NOTE: coordinate (259,1.23026) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (309,0.878827) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (311,1.01013) has been dropped because of a coordinate filter.
+NOTE: coordinate (261,1.03148) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (312,1.02058) has been dropped because of a coordinate filter.
+NOTE: coordinate (262,1.13341) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (313,0.891504) has been dropped because of a coordinate filter
+NOTE: coordinate (263,0.994332) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (314,1.12862) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (316,1.21291) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (317,1.14144) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (318,0.739275) has been dropped because of a coordinate filter
+NOTE: coordinate (264,0.919329) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (319,1.15088) has been dropped because of a coordinate filter.
+NOTE: coordinate (266,1.08997) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (321,0.92812) has been dropped because of a coordinate filter.
+NOTE: coordinate (267,0.678444) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (268,1.52432) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (322,1.17138) has been dropped because of a coordinate filter.
+NOTE: coordinate (269,1.29516) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (323,0.797473) has been dropped because of a coordinate filter
+NOTE: coordinate (271,0.972696) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (324,0.974825) has been dropped because of a coordinate filter
+NOTE: coordinate (272,0.978062) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (326,1.02764) has been dropped because of a coordinate filter.
+NOTE: coordinate (273,1.10756) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (327,1.28445) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (328,0.687978) has been dropped because of a coordinate filter
+NOTE: coordinate (274,0.751806) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (329,1.09801) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (331,1.14191) has been dropped because of a coordinate filter.
+NOTE: coordinate (276,1.0758) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (277,0.896154) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (278,1.00564) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (332,1.13983) has been dropped because of a coordinate filter.
+NOTE: coordinate (279,1.24632) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (333,0.547449) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (334,1.02335) has been dropped because of a coordinate filter.
+NOTE: coordinate (281,1.48776) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (336,0.920408) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (337,1.2479) has been dropped because of a coordinate filter. 
+NOTE: coordinate (282,1.1795) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (338,1.03747) has been dropped because of a coordinate filter.
+NOTE: coordinate (283,0.615733) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (284,1.36772) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (339,0.735419) has been dropped because of a coordinate filter
+NOTE: coordinate (286,0.968495) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (341,0.746059) has been dropped because of a coordinate filter
+NOTE: coordinate (287,0.876424) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (342,1.2374) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (343,0.739511) has been dropped because of a coordinate filter
+NOTE: coordinate (288,0.860356) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (344,1.06969) has been dropped because of a coordinate filter.
+NOTE: coordinate (289,1.262) has been dropped because of a coordinate filter. 
+NOTE: coordinate (291,1.02922) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (346,0.566905) has been dropped because of a coordinate filter
+NOTE: coordinate (292,0.736947) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (347,1.19533) has been dropped because of a coordinate filter.
+NOTE: coordinate (293,1.69915) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (348,0.802087) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (349,0.952912) has been dropped because of a coordinate filter
+NOTE: coordinate (294,0.74609) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (296,1.00779) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (297,0.989815) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (351,1.44726) has been dropped because of a coordinate filter.
+NOTE: coordinate (298,1.46012) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (299,1.05344) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (301,1.35387) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (352,0.484856) has been dropped because of a coordinate filter
+NOTE: coordinate (302,0.774389) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (353,1.12365) has been dropped because of a coordinate filter.
+NOTE: coordinate (303,1.21823) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (354,0.901512) has been dropped because of a coordinate filter
+NOTE: coordinate (304,0.641355) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (356,0.825464) has been dropped because of a coordinate filter
+NOTE: coordinate (306,0.886101) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (357,0.841074) has been dropped because of a coordinate filter
+NOTE: coordinate (307,1.3234) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (308,0.810596) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (358,1.66593) has been dropped because of a coordinate filter.
+NOTE: coordinate (309,1.13788) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (359,0.387644) has been dropped because of a coordinate filter
+NOTE: coordinate (311,0.989972) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (361,1.04042) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (362,0.802432) has been dropped because of a coordinate filter
+NOTE: coordinate (312,0.979835) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (363,0.702002) has been dropped because of a coordinate filter
+NOTE: coordinate (313,1.1217) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (314,0.886038) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (364,1.26169) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (366,0.742631) has been dropped because of a coordinate filter
+NOTE: coordinate (316,0.824463) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (367,1.04154) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (368,1.22582) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (369,1.00647) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (371,0.53168) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (372,1.45829) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (373,0.634085) has been dropped because of a coordinate filter
+NOTE: coordinate (317,0.876086) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (374,1.27946) has been dropped because of a coordinate filter.
+NOTE: coordinate (318,1.35268) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (376,1.05112) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (377,1.0045) has been dropped because of a coordinate filter. 
+NOTE: coordinate (319,0.8689) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (378,1.20671) has been dropped because of a coordinate filter.
+NOTE: coordinate (321,1.07745) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (379,0.744927) has been dropped because of a coordinate filter
+NOTE: coordinate (322,0.853694) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (381,1.62443) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (382,0.64269) has been dropped because of a coordinate filter.
+NOTE: coordinate (323,1.25396) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (383,0.94121) has been dropped because of a coordinate filter.
+NOTE: coordinate (324,1.02583) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (384,1.04156) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (386,1.60247) has been dropped because of a coordinate filter.
+NOTE: coordinate (326,0.973103) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (327,0.778543) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (328,1.45353) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (387,0.806396) has been dropped because of a coordinate filter
+NOTE: coordinate (329,0.910739) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (388,0.918935) has been dropped because of a coordinate filter
+NOTE: coordinate (331,0.875726) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (389,0.600619) has been dropped because of a coordinate filter
+NOTE: coordinate (332,0.877324) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (391,1.20488) has been dropped because of a coordinate filter.
+NOTE: coordinate (333,1.82665) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (392,0.813525) has been dropped because of a coordinate filter
+NOTE: coordinate (334,0.977183) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (393,1.27819) has been dropped because of a coordinate filter.
+NOTE: coordinate (336,1.08647) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (394,0.799694) has been dropped because of a coordinate filter
+NOTE: coordinate (337,0.801346) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (396,0.93878) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (397,1.07324) has been dropped because of a coordinate filter.
+NOTE: coordinate (338,0.963883) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (339,1.35977) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (398,1.20985) has been dropped because of a coordinate filter.
+NOTE: coordinate (341,1.34038) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (399,0.770196) has been dropped because of a coordinate filter
+NOTE: coordinate (342,0.808146) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (401,0.968396) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (402,1.08969) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (403,1.39713) has been dropped because of a coordinate filter.
+NOTE: coordinate (343,1.35224) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (404,0.54903) has been dropped because of a coordinate filter.
+NOTE: coordinate (344,0.93485) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (406,1.05797) has been dropped because of a coordinate filter.
+NOTE: coordinate (346,1.76396) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (407,0.930519) has been dropped because of a coordinate filter
+NOTE: coordinate (347,0.836589) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (408,0.749476) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (409,1.54971) has been dropped because of a coordinate filter.
+NOTE: coordinate (348,1.24675) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (411,1.36381) has been dropped because of a coordinate filter.
+NOTE: coordinate (349,1.04941) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (412,0.950436) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (413,0.985639) has been dropped because of a coordinate filter
+NOTE: coordinate (351,0.690961) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (414,1.12329) has been dropped because of a coordinate filter.
+NOTE: coordinate (352,2.06247) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (416,1.44586) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (417,0.670207) has been dropped because of a coordinate filter
+NOTE: coordinate (353,0.889957) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (418,1.01593) has been dropped because of a coordinate filter.
+NOTE: coordinate (354,1.10925) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (419,0.901558) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (421,1.1644) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (422,1.00184) has been dropped because of a coordinate filter.
+NOTE: coordinate (356,1.21144) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (423,0.913931) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (424,0.597976) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (426,0.855603) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (427,0.663289) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (428,1.31444) has been dropped because of a coordinate filter.
+NOTE: coordinate (357,1.18896) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (429,0.982295) has been dropped because of a coordinate filter
+NOTE: coordinate (358,0.600265) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (431,1.06336) has been dropped because of a coordinate filter.
+NOTE: coordinate (359,2.57969) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (432,0.989402) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (433,0.683385) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (434,1.07623) has been dropped because of a coordinate filter.
+NOTE: coordinate (361,0.96115) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (436,1.29728) has been dropped because of a coordinate filter.
+NOTE: coordinate (362,1.24621) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (437,0.900789) has been dropped because of a coordinate filter
+NOTE: coordinate (363,1.4245) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (364,0.792588) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (438,1.03568) has been dropped because of a coordinate filter.
+NOTE: coordinate (366,1.34656) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (439,0.750332) has been dropped because of a coordinate filter
+NOTE: coordinate (367,0.960117) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (441,0.634235) has been dropped because of a coordinate filter
+NOTE: coordinate (368,0.81578) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (369,0.993572) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (442,0.87799) has been dropped because of a coordinate filter.
+NOTE: coordinate (371,1.88083) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (443,1.25691) has been dropped because of a coordinate filter.
+NOTE: coordinate (372,0.685735) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (373,1.57708) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (444,1.09335) has been dropped because of a coordinate filter.
+NOTE: coordinate (374,0.78158) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (446,0.841859) has been dropped because of a coordinate filter
+NOTE: coordinate (376,0.951366) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (447,1.52417) has been dropped because of a coordinate filter.
+NOTE: coordinate (377,0.99552) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (448,0.531929) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (449,0.981905) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (451,1.30278) has been dropped because of a coordinate filter.
+NOTE: coordinate (378,0.8287) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (379,1.34241) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (452,0.676085) has been dropped because of a coordinate filter
+NOTE: coordinate (381,0.615601) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (453,1.25485) has been dropped because of a coordinate filter.
+NOTE: coordinate (382,1.55596) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (454,0.536701) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (456,1.08224) has been dropped because of a coordinate filter.
+NOTE: coordinate (383,1.06246) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (457,0.949371) has been dropped because of a coordinate filter
+NOTE: coordinate (384,0.960098) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (458,0.728399) has been dropped because of a coordinate filter
+NOTE: coordinate (386,0.624037) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (459,1.20557) has been dropped because of a coordinate filter.
+NOTE: coordinate (387,1.24009) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (461,0.932102) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (462,0.780386) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (463,1.20839) has been dropped because of a coordinate filter.
+NOTE: coordinate (388,1.08822) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (464,1.01952) has been dropped because of a coordinate filter.
+NOTE: coordinate (389,1.66495) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (466,0.769176) has been dropped because of a coordinate filter
+NOTE: coordinate (391,0.829958) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (467,1.30868) has been dropped because of a coordinate filter.
+NOTE: coordinate (392,1.22922) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (468,0.724086) has been dropped because of a coordinate filter
+NOTE: coordinate (393,0.782356) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (469,1.42584) has been dropped because of a coordinate filter.
+NOTE: coordinate (394,1.25048) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (396,1.06521) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (471,0.911596) has been dropped because of a coordinate filter
+NOTE: coordinate (397,0.931758) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (472,0.727846) has been dropped because of a coordinate filter
+NOTE: coordinate (398,0.826549) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (473,1.2053) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (474,1.28273) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (476,0.84547) has been dropped because of a coordinate filter.
+NOTE: coordinate (399,1.29837) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (477,1.28683) has been dropped because of a coordinate filter.
+NOTE: coordinate (401,1.03264) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (478,0.949724) has been dropped because of a coordinate filter
+NOTE: coordinate (402,0.917692) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (479,0.830254) has been dropped because of a coordinate filter
+NOTE: coordinate (403,0.715753) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (481,0.799585) has been dropped because of a coordinate filter
+NOTE: coordinate (404,1.82139) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (406,0.945206) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (482,1.22372) has been dropped because of a coordinate filter.
+NOTE: coordinate (407,1.07467) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (483,1.02145) has been dropped because of a coordinate filter.
+NOTE: coordinate (408,1.33427) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (484,0.924974) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (486,0.818524) has been dropped because of a coordinate filter
+NOTE: coordinate (409,0.645282) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (487,1.08097) has been dropped because of a coordinate filter.
+NOTE: coordinate (411,0.73324) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (488,1.35833) has been dropped because of a coordinate filter.
+NOTE: coordinate (412,1.05215) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (489,0.86904) has been dropped because of a coordinate filter.
+NOTE: coordinate (413,1.01457) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (491,1.07165) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (492,0.751467) has been dropped because of a coordinate filter
+NOTE: coordinate (414,0.890242) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (493,0.86038) has been dropped because of a coordinate filter.
+NOTE: coordinate (416,0.69163) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (494,1.16565) has been dropped because of a coordinate filter.
+NOTE: coordinate (417,1.49208) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (496,1.09232) has been dropped because of a coordinate filter.
+NOTE: coordinate (418,0.98432) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (497,0.893547) has been dropped because of a coordinate filter
+NOTE: coordinate (419,1.10919) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (421,0.858811) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (498,0.873594) has been dropped because of a coordinate filter
+NOTE: coordinate (422,0.998163) has been dropped because of a coordinate filter
 . 
-NOTE: coordinate (499,1.34233) has been dropped because of a coordinate filter.
- 
-PGFPlots: reading {img/pole/leo-poet-LAVAMD.txt}
-NOTE: coordinate (1,0.667854) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (2,0.69452) has been dropped because of a coordinate filter. 
-NOTE: coordinate (3,0.797011) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (4,0.899295) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (6,0.781305) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (7,0.761486) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (8,0.95596) has been dropped because of a coordinate filter. 
-NOTE: coordinate (9,1.03429) has been dropped because of a coordinate filter. 
-NOTE: coordinate (11,0.888657) has been dropped because of a coordinate filter.
+NOTE: coordinate (423,1.09417) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (12,0.918181) has been dropped because of a coordinate filter.
+NOTE: coordinate (424,1.67231) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (13,0.956156) has been dropped because of a coordinate filter.
+NOTE: coordinate (426,1.16877) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (14,0.892528) has been dropped because of a coordinate filter.
+NOTE: coordinate (427,1.50764) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (16,0.99516) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (17,0.976715) has been dropped because of a coordinate filter.
+NOTE: coordinate (428,0.76078) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (18,0.9464) has been dropped because of a coordinate filter. 
-NOTE: coordinate (19,0.914821) has been dropped because of a coordinate filter.
+NOTE: coordinate (429,1.01802) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (21,0.998582) has been dropped because of a coordinate filter.
+NOTE: coordinate (431,0.940415) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (432,1.01071) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (22,1.04092) has been dropped because of a coordinate filter. 
+NOTE: coordinate (433,1.4633) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (23,1.07729) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (24,0.894755) has been dropped because of a coordinate filter.
+NOTE: coordinate (434,0.929169) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (436,0.770844) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (437,1.11014) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (26,0.873749) has been dropped because of a coordinate filter.
+NOTE: coordinate (438,0.965549) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (439,1.33274) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (27,0.88985) has been dropped because of a coordinate filter. 
+NOTE: coordinate (441,1.5767) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (28,0.895182) has been dropped because of a coordinate filter.
+NOTE: coordinate (442,1.13897) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (29,0.926948) has been dropped because of a coordinate filter.
+NOTE: coordinate (443,0.795602) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (444,0.91462) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (31,0.934151) has been dropped because of a coordinate filter.
+NOTE: coordinate (446,1.18785) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (32,0.944281) has been dropped because of a coordinate filter.
+NOTE: coordinate (447,0.656095) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (448,1.87995) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (33,0.951821) has been dropped because of a coordinate filter.
+NOTE: coordinate (449,1.01843) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (34,0.956888) has been dropped because of a coordinate filter.
+NOTE: coordinate (451,0.767589) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (452,1.4791) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (453,0.796908) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (454,1.86323) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (36,0.965167) has been dropped because of a coordinate filter.
+NOTE: coordinate (456,0.924009) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (457,1.05333) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (37,0.969492) has been dropped because of a coordinate filter.
+NOTE: coordinate (458,1.37287) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (38,0.973976) has been dropped because of a coordinate filter.
+NOTE: coordinate (459,0.829483) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (461,1.07284) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (39,0.975234) has been dropped because of a coordinate filter.
+NOTE: coordinate (462,1.28142) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (41,0.9804) has been dropped because of a coordinate filter. 
-NOTE: coordinate (42,0.982354) has been dropped because of a coordinate filter.
+NOTE: coordinate (463,0.827547) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (464,0.980854) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (466,1.30009) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (43,0.984126) has been dropped because of a coordinate filter.
+NOTE: coordinate (467,0.764129) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (468,1.38105) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (44,0.985715) has been dropped because of a coordinate filter.
+NOTE: coordinate (469,0.701341) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (471,1.09698) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (46,0.988429) has been dropped because of a coordinate filter.
+NOTE: coordinate (472,1.37392) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (47,0.989586) has been dropped because of a coordinate filter.
+NOTE: coordinate (473,0.829669) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (474,0.779587) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (476,1.18277) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (48,0.990627) has been dropped because of a coordinate filter.
+NOTE: coordinate (477,0.777103) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (478,1.05294) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (49,0.991565) has been dropped because of a coordinate filter.
+NOTE: coordinate (479,1.20445) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (51,0.993167) has been dropped because of a coordinate filter.
+NOTE: coordinate (481,1.25065) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (52,0.99385) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (53,0.994465) has been dropped because of a coordinate filter.
+NOTE: coordinate (482,0.81718) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (54,0.995019) has been dropped because of a coordinate filter.
+NOTE: coordinate (483,0.979) has been dropped because of a coordinate filter. 
+NOTE: coordinate (484,1.08111) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (56,0.995965) has been dropped because of a coordinate filter.
+NOTE: coordinate (486,1.22171) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (57,0.996369) has been dropped because of a coordinate filter.
+NOTE: coordinate (487,0.925095) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (488,0.736198) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (489,1.1507) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (491,0.93314) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (58,0.996733) has been dropped because of a coordinate filter.
+NOTE: coordinate (492,1.33073) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (59,0.997059) has been dropped because of a coordinate filter.
+NOTE: coordinate (493,1.16228) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (61,0.997617) has been dropped because of a coordinate filter.
+NOTE: coordinate (494,0.85789) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (62,0.997856) has been dropped because of a coordinate filter.
+NOTE: coordinate (496,0.915483) has been dropped because of a coordinate filter
+. 
+NOTE: coordinate (497,1.11914) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (63,0.99807) has been dropped because of a coordinate filter. 
+NOTE: coordinate (498,1.1447) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (64,0.998264) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (66,0.998594) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (67,0.998734) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (68,0.99886) has been dropped because of a coordinate filter. 
+NOTE: coordinate (499,0.744973) has been dropped because of a coordinate filter
+. 
+PGFPlots: reading {img/pole/leo-poet-LAVAMD-latency.txt}
+NOTE: coordinate (1,1.49733) has been dropped because of a coordinate filter. 
+NOTE: coordinate (2,1.43984) has been dropped because of a coordinate filter. 
+NOTE: coordinate (3,1.25469) has been dropped because of a coordinate filter. 
+NOTE: coordinate (4,1.11198) has been dropped because of a coordinate filter. 
+NOTE: coordinate (6,1.27991) has been dropped because of a coordinate filter. 
+NOTE: coordinate (7,1.31322) has been dropped because of a coordinate filter. 
+NOTE: coordinate (8,1.04607) has been dropped because of a coordinate filter. 
+NOTE: coordinate (9,0.966847) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (69,0.998975) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (71,0.999169) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (72,0.999252) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (73,0.999327) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (74,0.999395) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (76,0.99951) has been dropped because of a coordinate filter. 
+NOTE: coordinate (11,1.12529) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (77,0.999559) has been dropped because of a coordinate filter.
- 
-NOTE: coordinate (78,0.999602) has been dropped because of a coordinate filter.
+NOTE: coordinate (12,1.08911) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (13,1.04585) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (14,1.12041) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (16,1.00486) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (17,1.02384) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (18,1.05664) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (19,1.09311) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (21,1.00142) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (22,0.960689) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (79,0.999642) has been dropped because of a coordinate filter.
+NOTE: coordinate (23,0.928255) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (81,0.99971) has been dropped because of a coordinate filter. 
+NOTE: coordinate (24,1.11762) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (26,1.14449) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (27,1.12378) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (28,1.11709) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (29,1.07881) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (31,1.07049) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (32,1.05901) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (33,1.05062) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (34,1.04505) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (36,1.03609) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (37,1.03147) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (38,1.02672) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (39,1.02539) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (41,1.01999) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (42,1.01796) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (43,1.01613) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (44,1.01449) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (46,1.01171) has been dropped because of a coordinate filter. 
 
-NOTE: coordinate (82,0.999739) has been dropped because of a coordinate filter.
+NOTE: coordinate (47,1.01052) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (48,1.00946) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (49,1.00851) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (51,1.00688) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (52,1.00619) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (53,1.00557) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (54,1.00501) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (56,1.00405) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (57,1.00364) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (58,1.00328) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (59,1.00295) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (61,1.00239) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (62,1.00215) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (63,1.00193) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (64,1.00174) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (66,1.00141) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (67,1.00127) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (68,1.00114) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (69,1.00103) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (71,1.00083) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (72,1.00075) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (73,1.00067) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (74,1.00061) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (76,1.00049) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (77,1.00044) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (78,1.0004) has been dropped because of a coordinate filter. 
+NOTE: coordinate (79,1.00036) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (81,1.00029) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (82,1.00026) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (83,1.00024) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (84,1.00021) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (86,1.00017) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (87,1.00015) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (88,1.00014) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (89,1.00013) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (91,1.0001) has been dropped because of a coordinate filter. 
+NOTE: coordinate (92,1.00009) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (93,1.00008) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (94,1.00007) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (96,1.00006) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (97,1.00005) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (98,1.00005) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (99,1.00004) has been dropped because of a coordinate filter. 
+
+NOTE: coordinate (101,1.00004) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (83,0.999765) has been dropped because of a coordinate filter.
+NOTE: coordinate (102,1.00003) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (84,0.999789) has been dropped because of a coordinate filter.
+NOTE: coordinate (103,1.00003) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (86,0.999829) has been dropped because of a coordinate filter.
+NOTE: coordinate (104,1.00003) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (87,0.999846) has been dropped because of a coordinate filter.
+NOTE: coordinate (106,1.00002) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (88,0.999861) has been dropped because of a coordinate filter.
+NOTE: coordinate (107,1.00002) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (89,0.999875) has been dropped because of a coordinate filter.
+NOTE: coordinate (108,1.00002) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (91,0.999899) has been dropped because of a coordinate filter.
+NOTE: coordinate (109,1.00002) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (92,0.999909) has been dropped because of a coordinate filter.
+NOTE: coordinate (111,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (93,0.999919) has been dropped because of a coordinate filter.
+NOTE: coordinate (112,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (94,0.999926) has been dropped because of a coordinate filter.
+NOTE: coordinate (113,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (96,0.99994) has been dropped because of a coordinate filter. 
-
-NOTE: coordinate (97,0.999946) has been dropped because of a coordinate filter.
+NOTE: coordinate (114,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (98,0.999951) has been dropped because of a coordinate filter.
+NOTE: coordinate (116,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (99,0.999956) has been dropped because of a coordinate filter.
+NOTE: coordinate (117,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (101,0.999965) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (102,0.999969) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (103,0.999971) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (104,0.999974) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (106,0.999979) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (107,0.999981) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (108,0.999984) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (109,0.999985) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (111,0.999987) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (112,0.999989) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (113,0.99999) has been dropped because of a coordinate filter.
+NOTE: coordinate (118,1.00001) has been dropped because of a coordinate filter.
  
-NOTE: coordinate (114,0.999991) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (116,0.999992) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (117,0.999994) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (118,0.999994) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (119,0.999995) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (121,0.999996) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (122,0.999996) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (123,0.999996) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (124,0.999997) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (126,0.999997) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (127,0.999997) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (128,0.999997) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (129,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (131,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (132,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (133,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (134,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (136,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (137,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (138,0.999999) has been dropped because of a coordinate filter
-. 
-NOTE: coordinate (139,0.999999) has been dropped because of a coordinate filter
-. 
+NOTE: coordinate (119,1.00001) has been dropped because of a coordinate filter.
+ 
+NOTE: coordinate (121,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (122,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (123,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (124,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (126,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (127,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (128,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (129,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (131,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (132,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (133,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (134,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (136,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (137,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (138,1) has been dropped because of a coordinate filter. 
+NOTE: coordinate (139,1) has been dropped because of a coordinate filter. 
 NOTE: coordinate (141,1) has been dropped because of a coordinate filter. 
 NOTE: coordinate (142,1) has been dropped because of a coordinate filter. 
 NOTE: coordinate (143,1) has been dropped because of a coordinate filter. 
@@ -3357,10 +3334,8 @@ NOTE: coordinate (496,1) has been dropped because of a coordinate filter.
 NOTE: coordinate (497,1) has been dropped because of a coordinate filter. 
 NOTE: coordinate (498,1) has been dropped because of a coordinate filter. 
 NOTE: coordinate (499,1) has been dropped because of a coordinate filter. 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 58.
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 7.0pt on input line 58.
+(Font)              scaled to size 6.0pt on input line 58.
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 5.0pt on input line 58.
 PGFPlots: reading {img/pole/leo-poet-np-LAVAMD.txt}
@@ -4945,37 +4920,27 @@ NOTE: coordinate (498,0.914958) has been dropped because of a coordinate filter
 . 
 NOTE: coordinate (499,0.96948) has been dropped because of a coordinate filter.
  
-LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
-(Font)              scaled to size 6.0pt on input line 63.
 [8.1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
 
-LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 345
+LaTeX Warning: Reference `sec:guarantees' on page 8 undefined on input line 350
 .
 
 
-LaTeX Warning: Reference `fig:lavamd-pole' on page 8 undefined on input line 34
-9.
-
-
-Underfull \hbox (badness 7047) in paragraph at lines 345--355
-\OT1/ptm/m/n/10 (+20) learned vari-ance pre-
- []
+LaTeX Warning: Reference `fig:lavamd-pole' on page 8 undefined on input line 35
+5.
 
 
 LaTeX Warning: Reference `fig:sensitivity' on page 8 undefined on input line 36
-4.
+9.
 
 (./img/sample-accuracy-v3.tex
 A tikzpicture has been optimized away. Use '/tikz/external/optimize=false' to d
 isable this.
-)) (./tex/related.tex) (./tex/conclusion.tex)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-(./tex/appendix.tex
+)) (./tex/related.tex) (./tex/conclusion.tex) (./tex/appendix.tex
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 3.
 LaTeX Font Info:    Font shape `OT1/LinuxBiolinumT-TLF/m/n' will be
@@ -5008,23 +4973,23 @@ Package logreq Info: Writing requests to 'out/document-figure11.run.xml'.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 279.
  ) 
 Here is how much of TeX's memory you used:
- 41473 strings out of 493304
- 862998 string characters out of 6139871
- 1346015 words of memory out of 5000000
- 43759 multiletter control sequences out of 15000+600000
- 54627 words of font info for 189 fonts, out of 8000000 for 9000
+ 41450 strings out of 493304
+ 862609 string characters out of 6139871
+ 1348015 words of memory out of 5000000
+ 43734 multiletter control sequences out of 15000+600000
+ 49651 words of font info for 177 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
- 64i,20n,94p,952b,2316s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,20n,94p,952b,2391s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/share/texliv
 e/texmf-dist/fonts/enc/dvips/libertine/lbtn_c6xmqr.enc}</usr/share/texlive/texm
 f-dist/fonts/type1/public/libertine/LinBiolinumT.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on out/document-figure11.pdf (1 page, 66483 bytes).
+Output written on out/document-figure11.pdf (1 page, 69607 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  26 compressed objects within 1 object stream
  2 named destinations out of 1000 (max. 500000)
- 31757 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 29709 words of extra memory for PDF output out of 29859 (max. 10000000)
 

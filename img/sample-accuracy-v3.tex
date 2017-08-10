@@ -34,12 +34,12 @@ yticklabels={,0.3,0.6,0.9},
 yticklabel style={font=\footnotesize},
 ymin=0,
 ymax=1,
-legend entries={{\footnotesize $\mathsf{ONLINE}$},{\footnotesize $\mathsf{HBM}$},{\footnotesize $\mathsf{NETFLIX}$}},
+legend entries={{\footnotesize $\mathsf{ONLINE}$},{\footnotesize $\mathsf{NETFLIX}$},{\footnotesize $\mathsf{HBM}$}},
 legend style={draw=none,at={(0.5,1.45)},anchor=north,legend columns=4,line width=5pt},
 ]
-\addplot[thick, solid, color=ONLINE-ADAPT] table[x index=0,y index=3] {\datatable};
-\addplot[thick, solid, color=HBM-ADAPT]    table[x index=0,y index=1] {\datatable};
-\addplot[thick, solid, color=NUCLEAR-ADAPT]  table[x index=0,y index=7] {\datatable};
+\addplot[thick, solid, color=ONLINE-ADAPT, mark=+, mark size=1pt] table[x index=0,y index=3] {\datatable};
+\addplot[thick, solid, color=NUCLEAR-ADAPT, mark=x, mark size=1pt]  table[x index=0,y index=7] {\datatable};
+\addplot[thick, solid, color=HBM-ADAPT, mark=triangle, mark size=1pt]    table[x index=0,y index=1] {\datatable};
 
 \nextgroupplot[ylabel={\footnotesize Accuracy\\ (Power)}, % Power
 ytick={0.0,0.3,0.6,0.9,1.0},
@@ -54,9 +54,9 @@ xticklabels={0,20,40,60,80,100},
 xticklabel style={font=\footnotesize},
 ]
 
-\addplot[thick, solid, color=ONLINE-ADAPT]    table[x index=0,y index=4] {\datatable};
-\addplot[thick, solid, color=HBM-ADAPT]   table[x index=0,y index=2] {\datatable};
-\addplot[thick, solid, color=NUCLEAR-ADAPT] table[x index=0,y index=8] {\datatable};
+\addplot[thick, solid, color=ONLINE-ADAPT, mark=+, mark size=1pt]    table[x index=0,y index=4] {\datatable};
+\addplot[thick, solid, color=NUCLEAR-ADAPT, mark=x, mark size=1pt] table[x index=0,y index=8] {\datatable};
+\addplot[thick, solid, color=HBM-ADAPT, mark=triangle, mark size=1pt]   table[x index=0,y index=2] {\datatable};
 
 \end{groupplot}
 \end{centering}
